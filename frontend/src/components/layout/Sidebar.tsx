@@ -17,6 +17,8 @@ import {
   Layers,
   Sparkles,
   UserCheck,
+  Globe,
+  ExternalLink,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -37,26 +39,32 @@ export default function Sidebar() {
 
   return (
     <aside className="w-64 flex-shrink-0 bg-[#0c0f17] border-r border-[#1a2030] flex flex-col justify-between h-screen sticky top-0 z-40 select-none">
-      {/* Brand Header */}
+      {/* Brand Header with direct Link to Landing Page */}
       <div>
-        <div className="h-16 flex items-center gap-3 px-5 border-b border-[#1a2030]">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 text-white font-bold text-lg">
-            <Layers className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-semibold text-white tracking-tight text-base">
-                DataScope
-              </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">
-                PRO
-              </span>
+        <Link
+          href="/"
+          className="h-16 flex items-center gap-3 px-5 border-b border-[#1a2030] hover:bg-[#121622] transition-colors group cursor-pointer block"
+          title="Return to Public Landing Page"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 text-white font-bold text-lg group-hover:scale-105 transition-transform">
+              <Layers className="w-5 h-5 text-white" />
             </div>
-            <p className="text-[11px] text-zinc-500 font-mono">
-              Enterprise Intelligence
-            </p>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="font-semibold text-white tracking-tight text-base">
+                  DataScope
+                </span>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">
+                  PRO
+                </span>
+              </div>
+              <p className="text-[11px] text-zinc-400 font-mono">
+                Enterprise Intelligence
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
 
         {/* Navigation List */}
         <nav className="p-3 space-y-1">
@@ -68,7 +76,7 @@ export default function Sidebar() {
             const Icon = item.icon;
             const isActive =
               item.href === "/overview"
-                ? pathname === "/overview" || pathname === "/"
+                ? pathname === "/overview"
                 : pathname?.startsWith(item.href);
 
             return (
@@ -99,6 +107,26 @@ export default function Sidebar() {
               </Link>
             );
           })}
+
+          {/* Public Portal Navigation */}
+          <div className="pt-3 pb-1 px-3 text-[10px] font-semibold text-zinc-400 uppercase tracking-wider font-mono">
+            Public Portal
+          </div>
+          <Link
+            href="/"
+            className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all group ${
+              pathname === "/"
+                ? "bg-indigo-600/15 text-indigo-300 border border-indigo-500/30 shadow-sm"
+                : "text-zinc-400 hover:text-zinc-200 hover:bg-[#141926]"
+            }`}
+            title="View the public marketing & features landing page"
+          >
+            <div className="flex items-center gap-2.5">
+              <Globe className="w-4 h-4 text-indigo-400" />
+              <span>Public Landing Page</span>
+            </div>
+            <ExternalLink className="w-3 h-3 text-zinc-500 group-hover:text-zinc-300" />
+          </Link>
         </nav>
       </div>
 
