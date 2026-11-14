@@ -46,3 +46,4 @@ describe("DataScope Backend REST API & Engine Tests", () => {
     assert.ok(sorted[0].revenue >= sorted[sorted.length - 1].revenue);
   });
 });
+
