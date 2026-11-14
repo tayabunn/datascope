@@ -5,6 +5,7 @@ import datasetReducer from "./slices/datasetSlice";
 import searchConfigReducer from "./slices/searchConfigSlice";
 import savedViewsReducer from "./slices/savedViewsSlice";
 import uiPreferenceReducer from "./slices/uiPreferenceSlice";
+import toastReducer from "./slices/toastSlice";
 import { recordsApi } from "./api/recordsApi";
 
 export const store = configureStore({
@@ -14,6 +15,7 @@ export const store = configureStore({
     searchConfig: searchConfigReducer,
     savedViews: savedViewsReducer,
     uiPreference: uiPreferenceReducer,
+    toast: toastReducer,
     [recordsApi.reducerPath]: recordsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -68,6 +68,22 @@ export default function OverviewPage() {
                   <BarChart3 className="w-4 h-4 text-cyan-400" />
                   <span>Portfolio Analytics</span>
                 </Link>
+
+                <Link
+                  href="/login"
+                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#141926] hover:bg-[#1b2236] border border-[#232c42] text-zinc-300 hover:text-white text-xs font-semibold transition-all"
+                >
+                  <Lock className="w-3.5 h-3.5 text-zinc-400" />
+                  <span>Sign In</span>
+                </Link>
+
+                <Link
+                  href="/register"
+                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-cyan-600/15 hover:bg-cyan-600/25 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-semibold transition-all"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Register</span>
+                </Link>
               </div>
             </div>
           </div>

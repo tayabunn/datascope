@@ -9,6 +9,7 @@ import {
   setTableDensity,
   resetVisibleColumns,
 } from "@/store/slices/uiPreferenceSlice";
+import { addToast } from "@/store/slices/toastSlice";
 import {
   Settings,
   Database,
@@ -32,6 +33,13 @@ export default function SettingsPage() {
     dispatch(setPageSize(50));
     dispatch(setTableDensity("compact"));
     dispatch(resetVisibleColumns());
+    dispatch(
+      addToast({
+        type: "info",
+        title: "Preferences Reset",
+        message: "Viewport density set to compact, default page size set to 50.",
+      })
+    );
     setStatusMessage("UI settings successfully reset to enterprise defaults.");
     setTimeout(() => setStatusMessage(""), 3000);
   };

@@ -141,13 +141,24 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="text-center pt-2">
-          <Link
-            href="/"
-            className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
-          >
-            ← Return to Overview Landing Page
-          </Link>
+        <div className="text-center pt-2 space-y-2 border-t border-[#1a2236]">
+          <p className="text-xs text-zinc-400">
+            Need an enterprise account?{" "}
+            <Link
+              href="/register"
+              className="text-indigo-400 hover:text-indigo-300 font-semibold underline underline-offset-4"
+            >
+              Register
+            </Link>
+          </p>
+          <div>
+            <Link
+              href="/"
+              className="text-[11px] text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              ← Return to Landing Page
+            </Link>
+          </div>
         </div>
       </div>
     </div>

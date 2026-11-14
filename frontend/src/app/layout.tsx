@@ -3,6 +3,7 @@ import "./globals.css";
 import StoreProvider from "@/store/StoreProvider";
 import RecordDetailDrawer from "@/components/table/RecordDetailDrawer";
 import SaveViewModal from "@/components/views/SaveViewModal";
+import ToastContainer from "@/components/common/Toast";
 
 export const metadata: Metadata = {
   title: "DataScope – Enterprise Data Discovery & Intelligence Platform",
@@ -22,6 +23,7 @@ export default function RootLayout({
           {children}
           <RecordDetailDrawer />
           <SaveViewModal />
+          <ToastContainer />
         </StoreProvider>
       </body>
     </html>

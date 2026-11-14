@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 const NAV_ITEMS = [
-  { label: "Overview", href: "/", icon: LayoutDashboard },
+  { label: "Overview", href: "/overview", icon: LayoutDashboard },
   { label: "Dataset Library", href: "/datasets", icon: Layers },
   { label: "Data Explorer", href: "/explorer", icon: Database, badge: "100k+" },
   { label: "Advanced Search", href: "/search", icon: Search },
@@ -67,8 +67,8 @@ export default function Sidebar() {
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive =
-              item.href === "/"
-                ? pathname === "/"
+              item.href === "/overview"
+                ? pathname === "/overview" || pathname === "/"
                 : pathname?.startsWith(item.href);
 
             return (

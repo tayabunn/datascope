@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { closeSaveModal } from "@/store/slices/savedViewsSlice";
+import { addToast } from "@/store/slices/toastSlice";
 import { useSaveViewMutation } from "@/store/api/recordsApi";
 import { BookmarkPlus, X, Check, Share2 } from "lucide-react";
 
@@ -43,10 +44,24 @@ export default function SaveViewModal() {
       }).unwrap();
 
       dispatch(closeSaveModal());
+      dispatch(
+        addToast({
+          type: "success",
+          title: "View Saved",
+          message: `Saved view "${viewName}" is now available to your team.`,
+        })
+      );
       setViewName("");
       setDescription("");
     } catch (err) {
       console.error("Save view error:", err);
+      dispatch(
+        addToast({
+          type: "error",
+          title: "Save Failed",
+          message: "Failed to persist view configuration.",
+        })
+      );
     }
   };
 
