@@ -24,7 +24,26 @@ app.use(
 
 app.use(express.json());
 
-// Health Check
+// Health & API Index Check
+app.get(["/", "/api"], (req: express.Request, res: express.Response) => {
+  res.json({
+    service: "DataScope Enterprise REST API",
+    version: "2.4.0",
+    status: "active",
+    message: "DataScope REST API Engine is running successfully.",
+    endpoints: {
+      health: "/api/health",
+      records: "/api/records?page=1&pageSize=50",
+      analytics: "/api/analytics",
+      savedViews: "/api/saved-views",
+      exportCsv: "/api/export",
+      aiSearch: "/api/ai-search",
+    },
+    database: "Neon PostgreSQL (100,000+ indexed records)",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.get("/api/health", (req: express.Request, res: express.Response) => {
   res.json({
     status: "healthy",
