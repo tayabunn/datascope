@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import StoreProvider from "@/store/StoreProvider";
+import AuthGuard from "@/components/auth/AuthGuard";
 import RecordDetailDrawer from "@/components/table/RecordDetailDrawer";
 import SaveViewModal from "@/components/views/SaveViewModal";
 import ToastContainer from "@/components/common/Toast";
@@ -20,10 +21,12 @@ export default function RootLayout({
     <html lang="en" className="dark h-full antialiased">
       <body className="min-h-full flex flex-col bg-[#090b10] text-[#f1f3f7]">
         <StoreProvider>
-          {children}
-          <RecordDetailDrawer />
-          <SaveViewModal />
-          <ToastContainer />
+          <AuthGuard>
+            {children}
+            <RecordDetailDrawer />
+            <SaveViewModal />
+            <ToastContainer />
+          </AuthGuard>
         </StoreProvider>
       </body>
     </html>
