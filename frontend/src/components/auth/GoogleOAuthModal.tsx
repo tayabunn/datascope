@@ -71,6 +71,16 @@ export default function GoogleOAuthModal({
   const [authStep, setAuthStep] = useState("");
   const [selectedAccount, setSelectedAccount] = useState<typeof GOOGLE_ACCOUNTS[0] | null>(null);
 
+  const handleLiveGoogleSignIn = () => {
+    const clientId =
+      process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
+      "69388296590-e9s1bisp2cvpguk867lbi8g3madm0f2j.apps.googleusercontent.com";
+    const redirectUri = encodeURIComponent("http://localhost:3000/api/auth/callback/google");
+    const scope = encodeURIComponent("openid email profile");
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&prompt=select_account`;
+    window.location.href = googleAuthUrl;
+  };
+
   if (!isOpen) return null;
 
   const handleAccountSelect = (acc: typeof GOOGLE_ACCOUNTS[0]) => {
@@ -183,6 +193,27 @@ export default function GoogleOAuthModal({
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Live Google Cloud Sign-In Button */}
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={handleLiveGoogleSignIn}
+                  className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-semibold flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-600/25 transition-all group"
+                >
+                  <GoogleLogo className="w-4 h-4 bg-white rounded-full p-0.5" />
+                  <span>Launch Live Google Login Window</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-white/80 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+              </div>
+
+              <div className="relative flex items-center justify-center">
+                <div className="border-t border-[#1e2538] w-full" />
+                <span className="bg-[#0f121d] px-2 text-[10px] font-mono uppercase tracking-wider text-zinc-500 whitespace-nowrap">
+                  Or choose quick test account
+                </span>
+                <div className="border-t border-[#1e2538] w-full" />
               </div>
 
               {/* Account list */}
