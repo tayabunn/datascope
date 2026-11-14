@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -15,6 +16,8 @@ import {
   Database,
   Sliders,
   Shield,
+  ShieldAlert,
+  ArrowRight,
   CheckCircle2,
   Cpu,
   RefreshCw,
@@ -43,6 +46,48 @@ export default function SettingsPage() {
     setStatusMessage("UI settings successfully reset to enterprise defaults.");
     setTimeout(() => setStatusMessage(""), 3000);
   };
+
+  // RBAC: Strict Administrator Authority Guard for System Configuration
+  if (user?.role !== "Administrator") {
+    return (
+      <div className="flex h-screen bg-[#090b10] text-[#f1f3f7] overflow-hidden">
+        <Sidebar />
+        <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+          <Header />
+          <main className="p-6 max-w-xl mx-auto w-full my-auto text-center space-y-4">
+            <div className="p-8 rounded-2xl bg-[#0d101a] border border-[#232c42] shadow-2xl space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mx-auto shadow-inner">
+                <ShieldAlert className="w-7 h-7" />
+              </div>
+              <div className="space-y-1.5">
+                <div className="inline-block px-2.5 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-[10px] font-mono text-rose-400 font-semibold uppercase tracking-wider">
+                  403 Forbidden • Admin Authority Required
+                </div>
+                <h2 className="text-lg font-bold text-white tracking-tight">
+                  System Configuration Restricted
+                </h2>
+                <p className="text-xs text-zinc-400">
+                  Database engine telemetry, connection pooling parameters, and platform architecture controls are restricted strictly to platform <span className="text-rose-400 font-semibold">Administrators</span>.
+                </p>
+                <p className="text-[11px] font-mono text-zinc-500 pt-1">
+                  Your current session role is: <span className="text-indigo-400 font-semibold">{user?.role || "Viewer"}</span>
+                </p>
+              </div>
+              <div className="pt-2 flex justify-center">
+                <Link
+                  href="/explorer"
+                  className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/20 transition-all flex items-center gap-2"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                  <span>Return to Data Explorer</span>
+                </Link>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen bg-[#090b10] text-[#f1f3f7] overflow-hidden">
