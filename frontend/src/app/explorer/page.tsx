@@ -9,6 +9,7 @@ import DataTable from "@/components/table/DataTable";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useGetRecordsQuery } from "@/store/api/recordsApi";
+import { useDebounce } from "@/hooks/useDebounce";
 import { setTelemetry } from "@/store/slices/uiPreferenceSlice";
 import { addToast } from "@/store/slices/toastSlice";
 import {
@@ -38,6 +39,9 @@ function ExplorerContent() {
     startDate,
     endDate,
   } = useAppSelector((state) => state.searchConfig);
+
+  // Debounce global text search by 300ms to eliminate unnecessary API requests while typing
+  const debouncedQuery = useDebounce(globalQuery, 300);
 
   const { pageSize } = useAppSelector((state) => state.uiPreference);
 
@@ -96,7 +100,7 @@ function ExplorerContent() {
     if (page > 1) params.set("page", String(page));
     if (sortField !== "createdAt") params.set("sortField", sortField);
     if (sortOrder !== "desc") params.set("sortOrder", sortOrder);
-    if (globalQuery) params.set("q", globalQuery);
+    if (debouncedQuery) params.set("q", debouncedQuery);
     if (statusFilter && statusFilter !== "all") params.set("status", statusFilter);
     if (categoryFilter && categoryFilter !== "all") params.set("category", categoryFilter);
     if (countryFilter && countryFilter !== "all") params.set("country", countryFilter);
@@ -110,7 +114,7 @@ function ExplorerContent() {
     page,
     sortField,
     sortOrder,
-    globalQuery,
+    debouncedQuery,
     statusFilter,
     categoryFilter,
     countryFilter,
@@ -123,7 +127,7 @@ function ExplorerContent() {
   const queryParams = {
     page,
     pageSize,
-    q: globalQuery,
+    q: debouncedQuery,
     status: statusFilter,
     category: categoryFilter,
     country: countryFilter,
@@ -154,7 +158,7 @@ function ExplorerContent() {
   useEffect(() => {
     setPage(1);
   }, [
-    globalQuery,
+    debouncedQuery,
     statusFilter,
     categoryFilter,
     countryFilter,
