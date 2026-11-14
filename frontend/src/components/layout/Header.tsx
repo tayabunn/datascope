@@ -20,6 +20,7 @@ export default function Header() {
   const dispatch = useAppDispatch();
   const { globalQuery } = useAppSelector((state) => state.searchConfig);
   const { performanceTelemetry } = useAppSelector((state) => state.uiPreference);
+  const { user } = useAppSelector((state) => state.auth);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
 
   return (
@@ -76,16 +77,26 @@ export default function Header() {
             <span className="hidden sm:inline">AI Search</span>
           </button>
 
-          {/* Export CSV Button */}
-          <a
-            href="/api/export"
-            download
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#202738] text-zinc-300 hover:text-white text-xs font-medium transition-all"
-            title="Export filtered records to CSV"
-          >
-            <Download className="w-3.5 h-3.5 text-zinc-400" />
-            <span className="hidden sm:inline">Export CSV</span>
-          </a>
+          {/* Export CSV Button (RBAC: Admin & Analyst only, Viewer read-only) */}
+          {user?.role !== "Viewer" ? (
+            <a
+              href="/api/export"
+              download
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#202738] text-zinc-300 hover:text-white text-xs font-medium transition-all"
+              title="Export filtered records to CSV"
+            >
+              <Download className="w-3.5 h-3.5 text-zinc-400" />
+              <span className="hidden sm:inline">Export CSV</span>
+            </a>
+          ) : (
+            <span
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#121622] border border-[#1b2234] text-zinc-500 text-xs font-medium cursor-not-allowed opacity-60"
+              title="Export restricted: Requires Data Analyst or Admin role"
+            >
+              <Download className="w-3.5 h-3.5 text-zinc-600" />
+              <span>Export Locked</span>
+            </span>
+          )}
 
           {/* Public Landing Page Link */}
           <Link
