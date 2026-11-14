@@ -2,9 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { switchRole, UserRole } from "@/store/slices/authSlice";
+import { switchRole, logout, UserRole } from "@/store/slices/authSlice";
+import { addToast } from "@/store/slices/toastSlice";
 import {
   LayoutDashboard,
   Database,
@@ -19,6 +20,7 @@ import {
   UserCheck,
   Globe,
   ExternalLink,
+  LogOut,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -29,13 +31,42 @@ const NAV_ITEMS = [
   { label: "Saved Views", href: "/saved-views", icon: BookmarkCheck },
   { label: "Search History", href: "/history", icon: History },
   { label: "Analytics", href: "/analytics", icon: BarChart3 },
-  { label: "System Settings", href: "/settings", icon: Settings },
+  { label: "System Settings", href: "/settings", icon: Settings, adminOnly: true },
 ];
 
 export default function Sidebar() {
+  const router = useRouter();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(
+      addToast({
+        type: "info",
+        title: "Signed Out",
+        message: "You have been successfully signed out of DataScope.",
+      })
+    );
+    router.push("/login");
+  };
+
+  const handleRoleChange = (targetRole: UserRole) => {
+    // Security Guard: Prevent unauthorized role elevation to Administrator
+    if (targetRole === "Administrator" && user?.role !== "Administrator") {
+      dispatch(
+        addToast({
+          type: "error",
+          title: "Privilege Escalation Denied",
+          message:
+            "Administrator access requires authenticating with Admin credentials at Sign In.",
+        })
+      );
+      return;
+    }
+    dispatch(switchRole(targetRole));
+  };
 
   return (
     <aside className="w-64 flex-shrink-0 bg-[#0c0f17] border-r border-[#1a2030] flex flex-col justify-between h-screen sticky top-0 z-40 select-none">
@@ -99,11 +130,15 @@ export default function Sidebar() {
                   />
                   <span>{item.label}</span>
                 </div>
-                {item.badge && (
+                {item.adminOnly && user?.role !== "Administrator" ? (
+                  <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                    Admin
+                  </span>
+                ) : item.badge ? (
                   <span className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
                     {item.badge}
                   </span>
-                )}
+                ) : null}
               </Link>
             );
           })}
@@ -148,7 +183,7 @@ export default function Sidebar() {
                 return (
                   <button
                     key={r}
-                    onClick={() => dispatch(switchRole(r))}
+                    onClick={() => handleRoleChange(r)}
                     className={`text-[9px] py-1 px-1 rounded font-medium text-center transition-all ${
                       isSelected
                         ? "bg-indigo-600 text-white font-semibold shadow"
@@ -167,18 +202,29 @@ export default function Sidebar() {
             )}
           </div>
 
-          <div className="pt-1.5 flex items-center gap-2 border-t border-[#1d2436]/60">
-            <div className="w-7 h-7 rounded-full bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-xs font-semibold text-indigo-300">
-              {user?.fullName?.charAt(0) || "U"}
-            </div>
-            <div className="overflow-hidden">
-              <div className="text-xs font-medium text-zinc-200 truncate">
-                {user?.fullName || "Sarah Connor"}
+          <div className="pt-1.5 flex items-center justify-between border-t border-[#1d2436]/60">
+            <div className="flex items-center gap-2 overflow-hidden">
+              <div className="w-7 h-7 rounded-full bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-xs font-semibold text-indigo-300 flex-shrink-0">
+                {user?.fullName?.charAt(0) || "U"}
               </div>
-              <div className="text-[10px] text-zinc-400 font-mono truncate">
-                {user?.role}
+              <div className="overflow-hidden">
+                <div className="text-xs font-medium text-zinc-200 truncate">
+                  {user?.fullName || "Sarah Connor"}
+                </div>
+                <div className="text-[10px] text-zinc-400 font-mono truncate">
+                  {user?.role}
+                </div>
               </div>
             </div>
+
+            {/* Logout Action Button */}
+            <button
+              onClick={handleLogout}
+              className="p-1.5 rounded-lg text-zinc-400 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all flex-shrink-0"
+              title="Sign out of DataScope"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       </div>
