@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setGlobalQuery } from "@/store/slices/searchConfigSlice";
 import { toggleExportModal } from "@/store/slices/uiPreferenceSlice";
@@ -11,6 +12,7 @@ import {
   Zap,
   Database,
   SlidersHorizontal,
+  Globe,
 } from "lucide-react";
 import AiSearchModal from "@/components/filters/AiSearchModal";
 
@@ -84,6 +86,16 @@ export default function Header() {
             <Download className="w-3.5 h-3.5 text-zinc-400" />
             <span className="hidden sm:inline">Export CSV</span>
           </a>
+
+          {/* Public Landing Page Link */}
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600/15 hover:bg-indigo-600/25 border border-indigo-500/30 text-indigo-300 hover:text-white text-xs font-medium transition-all"
+            title="Go to Public Landing Page"
+          >
+            <Globe className="w-3.5 h-3.5 text-indigo-400" />
+            <span className="hidden md:inline">Landing Page</span>
+          </Link>
         </div>
       </header>
 
