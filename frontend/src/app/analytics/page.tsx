@@ -4,6 +4,7 @@ import React from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import AnalyticsCharts from "@/components/analytics/AnalyticsCharts";
+import ErrorBoundary from "@/components/common/ErrorBoundary";
 import { useGetAnalyticsQuery } from "@/store/api/recordsApi";
 import { BarChart3, RefreshCw, Cpu, Activity, Database } from "lucide-react";
 
@@ -48,8 +49,10 @@ export default function AnalyticsPage() {
             </button>
           </div>
 
-          {/* Recharts Analytics Charts Component */}
-          <AnalyticsCharts data={data?.data} isLoading={isLoading} />
+          {/* Recharts Analytics Charts Component wrapped in Error Boundary */}
+          <ErrorBoundary fallbackTitle="Analytics Charts Rendering Error">
+            <AnalyticsCharts data={data?.data} isLoading={isLoading} />
+          </ErrorBoundary>
 
           {/* Search Performance Monitoring Section (Bonus Challenge F) */}
           <div className="rounded-xl bg-[#0f131f] border border-[#1d2538] p-5 space-y-4">

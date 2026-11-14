@@ -21,6 +21,7 @@ import {
 
 const NAV_ITEMS = [
   { label: "Overview", href: "/", icon: LayoutDashboard },
+  { label: "Dataset Library", href: "/datasets", icon: Layers },
   { label: "Data Explorer", href: "/explorer", icon: Database, badge: "100k+" },
   { label: "Advanced Search", href: "/search", icon: Search },
   { label: "Saved Views", href: "/saved-views", icon: BookmarkCheck },

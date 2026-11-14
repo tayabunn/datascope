@@ -1,20 +1,30 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import React, { useState, useEffect, Suspense, useRef } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import FilterBuilder from "@/components/filters/FilterBuilder";
 import DataTable from "@/components/table/DataTable";
+import ErrorBoundary from "@/components/common/ErrorBoundary";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useGetRecordsQuery } from "@/store/api/recordsApi";
 import { setTelemetry } from "@/store/slices/uiPreferenceSlice";
-import { Database, Filter, RefreshCw, Layers } from "lucide-react";
+import {
+  setGlobalQuery,
+  setStatusFilter,
+  setCategoryFilter,
+  setCountryFilter,
+  setRevenueRange,
+} from "@/store/slices/searchConfigSlice";
+import { RefreshCw, Sparkles, Filter } from "lucide-react";
 
 function ExplorerContent() {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
+  const isInitialized = useRef(false);
 
   // Redux state
   const {
@@ -34,6 +44,79 @@ function ExplorerContent() {
   const [page, setPage] = useState(1);
   const [sortField, setSortField] = useState("createdAt");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+
+  // Step 1: Read URL search params on initial mount (URL-Based Search State)
+  useEffect(() => {
+    if (isInitialized.current) return;
+    isInitialized.current = true;
+
+    const urlPage = searchParams.get("page");
+    if (urlPage && !isNaN(Number(urlPage))) {
+      setPage(Number(urlPage));
+    }
+
+    const urlSortField = searchParams.get("sortField");
+    if (urlSortField) setSortField(urlSortField);
+
+    const urlSortOrder = searchParams.get("sortOrder");
+    if (urlSortOrder === "asc" || urlSortOrder === "desc") {
+      setSortOrder(urlSortOrder);
+    }
+
+    const urlQ = searchParams.get("q");
+    if (urlQ) dispatch(setGlobalQuery(urlQ));
+
+    const urlStatus = searchParams.get("status");
+    if (urlStatus) dispatch(setStatusFilter(urlStatus));
+
+    const urlCategory = searchParams.get("category");
+    if (urlCategory) dispatch(setCategoryFilter(urlCategory));
+
+    const urlCountry = searchParams.get("country");
+    if (urlCountry) dispatch(setCountryFilter(urlCountry));
+
+    const urlMinRev = searchParams.get("minRevenue");
+    const urlMaxRev = searchParams.get("maxRevenue");
+    if (urlMinRev != null || urlMaxRev != null) {
+      dispatch(
+        setRevenueRange({
+          min: urlMinRev ? Number(urlMinRev) : null,
+          max: urlMaxRev ? Number(urlMaxRev) : null,
+        })
+      );
+    }
+  }, [searchParams, dispatch]);
+
+  // Step 2: Bidirectionally sync search state changes back to URL query parameters
+  useEffect(() => {
+    if (!isInitialized.current) return;
+
+    const params = new URLSearchParams();
+    if (page > 1) params.set("page", String(page));
+    if (sortField !== "createdAt") params.set("sortField", sortField);
+    if (sortOrder !== "desc") params.set("sortOrder", sortOrder);
+    if (globalQuery) params.set("q", globalQuery);
+    if (statusFilter && statusFilter !== "all") params.set("status", statusFilter);
+    if (categoryFilter && categoryFilter !== "all") params.set("category", categoryFilter);
+    if (countryFilter && countryFilter !== "all") params.set("country", countryFilter);
+    if (minRevenue != null) params.set("minRevenue", String(minRevenue));
+    if (maxRevenue != null) params.set("maxRevenue", String(maxRevenue));
+
+    const queryStr = params.toString();
+    const targetUrl = queryStr ? `${pathname}?${queryStr}` : pathname;
+    window.history.replaceState(null, "", targetUrl);
+  }, [
+    page,
+    sortField,
+    sortOrder,
+    globalQuery,
+    statusFilter,
+    categoryFilter,
+    countryFilter,
+    minRevenue,
+    maxRevenue,
+    pathname,
+  ]);
 
   // RTK Query: Caching, deduplication, background refetching
   const queryParams = {
@@ -142,20 +225,22 @@ function ExplorerContent() {
           {/* Filter Builder Component */}
           <FilterBuilder />
 
-          {/* Enterprise Data Table */}
-          <DataTable
-            records={records}
-            isLoading={isLoading}
-            isFetching={isFetching}
-            page={pagination.page}
-            pageSize={pageSize}
-            totalCount={pagination.totalCount}
-            totalPages={pagination.totalPages}
-            onPageChange={(p) => setPage(p)}
-            sortField={sortField}
-            sortOrder={sortOrder}
-            onSortChange={handleSortChange}
-          />
+          {/* Enterprise Data Table wrapped in Error Boundary */}
+          <ErrorBoundary fallbackTitle="Data Table Component Error">
+            <DataTable
+              records={records}
+              isLoading={isLoading}
+              isFetching={isFetching}
+              page={pagination.page}
+              pageSize={pageSize}
+              totalCount={pagination.totalCount}
+              totalPages={pagination.totalPages}
+              onPageChange={(p) => setPage(p)}
+              sortField={sortField}
+              sortOrder={sortOrder}
+              onSortChange={handleSortChange}
+            />
+          </ErrorBoundary>
         </main>
       </div>
     </div>
@@ -175,4 +260,3 @@ export default function ExplorerPage() {
     </Suspense>
   );
 }
-
