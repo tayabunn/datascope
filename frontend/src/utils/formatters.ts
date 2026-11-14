@@ -38,3 +38,4 @@ export function formatDate(dateString: string): string {
 export function formatPercentage(val: number): string {
   return `${val.toFixed(1)}%`;
 }
+
