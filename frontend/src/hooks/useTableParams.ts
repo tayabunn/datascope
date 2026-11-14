@@ -45,3 +45,4 @@ export function useTableParams(initialParams: Partial<TableParams> = {}) {
     handleSortChange,
   };
 }
+
