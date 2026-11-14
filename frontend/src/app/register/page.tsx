@@ -10,6 +10,7 @@ import {
   Layers,
   ShieldCheck,
   ArrowRight,
+  ArrowLeft,
   Lock,
   Mail,
   User,
@@ -86,18 +87,47 @@ export default function RegisterPage() {
   };
 
   const handleGoogleSignUp = () => {
-    setIsGoogleModalOpen(true);
+    // Direct Redirection to Live Google OAuth 2.0 Consent Screen
+    const clientId =
+      process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
+      "69388296590-e9s1bisp2cvpguk867lbi8g3madm0f2j.apps.googleusercontent.com";
+    const redirectUri = encodeURIComponent("http://localhost:3000/api/auth/callback/google");
+    const scope = encodeURIComponent("openid email profile");
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&prompt=select_account`;
+    window.location.href = googleAuthUrl;
   };
 
   return (
     <div className="min-h-screen bg-[#090b10] flex items-center justify-center p-6 relative overflow-hidden">
+      {/* Floating Top Navigation Back Button */}
+      <div className="absolute top-6 left-6 z-20">
+        <button
+          type="button"
+          onClick={() => router.push("/")}
+          className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0e121d]/90 hover:bg-[#151c2c] border border-[#1e2538] hover:border-indigo-500/40 text-zinc-300 hover:text-white text-xs font-medium transition-all shadow-md group backdrop-blur-md"
+          title="Return to Public Landing Page"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform text-indigo-400" />
+          <span>Back to Home</span>
+        </button>
+      </div>
+
       {/* Background Ambient Glow */}
       <div className="absolute top-1/4 -left-48 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-md w-full bg-[#0d101a] border border-[#1d263b] rounded-2xl p-8 shadow-2xl space-y-6 relative z-10">
-        {/* Brand Header */}
-        <div className="text-center space-y-2">
+        {/* Brand Header with In-Card Back Arrow */}
+        <div className="relative text-center space-y-2">
+          <button
+            type="button"
+            onClick={() => router.push("/")}
+            className="absolute left-0 top-0 p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-[#141926] border border-transparent hover:border-[#222a3d] transition-all"
+            title="Return to Landing Page"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+
           <Link
             href="/"
             className="inline-flex w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 items-center justify-center mx-auto shadow-lg shadow-indigo-500/20 text-white hover:scale-105 transition-transform"
@@ -268,14 +298,6 @@ export default function RegisterPage() {
           </p>
         </div>
       </div>
-
-      {/* Google OAuth Modal */}
-      <GoogleOAuthModal
-        isOpen={isGoogleModalOpen}
-        onClose={() => setIsGoogleModalOpen(false)}
-        defaultRole={selectedRole}
-        redirectPath="/explorer"
-      />
     </div>
   );
 }
