@@ -1,0 +1,43 @@
+{
+  "name": "datascope-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DataScope Enterprise Client Application (Next.js + Redux Toolkit)",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.1",
+    "@reduxjs/toolkit": "^2.5.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.4.7",
+    "gsap": "^3.12.7",
+    "lenis": "^1.1.20",
+    "lucide-react": "^0.475.0",
+    "matter-js": "^0.20.0",
+    "motion": "^12.4.7",
+    "next": "15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "recharts": "^2.15.1",
+    "tailwind-merge": "^3.0.1",
+    "three": "^0.173.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/matter-js": "^0.19.7",
+    "@types/node": "^20.17.19",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.173.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.0",
+    "tailwindcss": "^4",
+    "typescript": "^5.7.3"
+  }
+}

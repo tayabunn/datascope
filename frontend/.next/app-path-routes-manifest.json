@@ -1,0 +1,18 @@
+{
+  "/api/ai-search/route": "/api/ai-search",
+  "/api/analytics/route": "/api/analytics",
+  "/api/export/route": "/api/export",
+  "/api/records/[id]/route": "/api/records/[id]",
+  "/api/records/route": "/api/records",
+  "/api/saved-views/[id]/route": "/api/saved-views/[id]",
+  "/api/saved-views/route": "/api/saved-views",
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/explorer/page": "/explorer",
+  "/history/page": "/history",
+  "/page": "/",
+  "/saved-views/page": "/saved-views",
+  "/search/page": "/search",
+  "/settings/page": "/settings",
+  "/analytics/page": "/analytics"
+}

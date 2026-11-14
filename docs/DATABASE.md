@@ -161,3 +161,4 @@ CREATE INDEX idx_records_dataset_created ON dataset_records (dataset_id, created
 ## 3. Data Integrity & Validation Rules
 * **Foreign Key Cascades:** Deleting a dataset cascades to its fields and records safely.
 * **Zod Runtime Validation:** Every incoming query parameter (`page`, `pageSize`, `sortField`, `sortOrder`, `minRevenue`, `status`) is validated against strict Zod schemas before touching the database query builder, completely eliminating SQL injection risks.
+

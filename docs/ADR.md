@@ -373,3 +373,4 @@ Guarantees fast, robust, and crash-proof data generation that stays safely withi
 ### 8. Future Limitations & Mitigation
 * *Limitation:* Seeding 10 million records would take ~30 minutes with standard batch inserts.
 * *Mitigation:* For multi-million row datasets, generate a CSV file on disk and use PostgreSQL's native high-speed binary `COPY table FROM 'file.csv' WITH (FORMAT csv)` command.
+

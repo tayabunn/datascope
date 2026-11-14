@@ -101,3 +101,4 @@ If DataScope grows from 100,000 to 10,000,000 records, the following architectur
 2. **Estimated Row Counts:** Replace `SELECT COUNT(*)` on multi-million row queries with PostgreSQL catalog statistics (`SELECT reltuples FROM pg_class WHERE relname = 'dataset_records'`) to calculate total pages in 0.2ms.
 3. **Cursor-Based Infinite Scroll:** Introduce keyset pagination (`WHERE (created_at, id) < (:last_date, :last_id) LIMIT 50`) for deep exploratory navigation.
 4. **Read Replicas:** Route analytical queries to PostgreSQL read-replicas while mutations target the primary writer node.
+
