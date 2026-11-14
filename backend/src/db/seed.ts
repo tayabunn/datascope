@@ -167,23 +167,32 @@ export async function seedDatabase(targetRecordCount = 100000) {
 
     // 3. Seed Primary Dataset Definition
     console.log("-> Seeding Primary Enterprise Dataset...");
-    const [dataset] = await db
-      .insert(datasets)
-      .values({
-        name: "Global Enterprise Revenue & Contracts",
-        description:
-          "High-volume repository containing enterprise contract telemetry, multi-region sales, account profitability, and historical status audits.",
-        category: "Enterprise",
-        dataSource: "SAP S/4HANA & Salesforce Lake",
-        totalRecords: targetRecordCount,
-        accessLevel: "Public",
-        createdById: adminUser.id,
-      })
-      .onConflictDoUpdate({
-        target: datasets.name,
-        set: { totalRecords: targetRecordCount, updatedAt: new Date() },
-      })
-      .returning();
+    let [dataset] = await db
+      .select()
+      .from(datasets)
+      .where(sql`name = 'Global Enterprise Revenue & Contracts'`);
+
+    if (!dataset) {
+      const [inserted] = await db
+        .insert(datasets)
+        .values({
+          name: "Global Enterprise Revenue & Contracts",
+          description:
+            "High-volume repository containing enterprise contract telemetry, multi-region sales, account profitability, and historical status audits.",
+          category: "Enterprise",
+          dataSource: "SAP S/4HANA & Salesforce Lake",
+          totalRecords: targetRecordCount,
+          accessLevel: "Public",
+          createdById: adminUser.id,
+        })
+        .returning();
+      dataset = inserted;
+    } else {
+      await db
+        .update(datasets)
+        .set({ totalRecords: targetRecordCount, updatedAt: new Date() })
+        .where(sql`id = ${dataset.id}`);
+    }
 
     console.log(`   ✓ Dataset registered: '${dataset.name}' (ID: ${dataset.id})`);
 
@@ -204,17 +213,23 @@ export async function seedDatabase(targetRecordCount = 100000) {
       { fieldName: "createdAt", displayName: "Created Date", dataType: "date", orderIndex: 12 },
     ];
 
-    for (const f of fieldsToInsert) {
-      await db
-        .insert(datasetFields)
-        .values({
-          datasetId: dataset.id,
-          fieldName: f.fieldName,
-          displayName: f.displayName,
-          dataType: f.dataType,
-          orderIndex: f.orderIndex,
-        })
-        .onConflictDoNothing();
+    const existingFields = await db
+      .select()
+      .from(datasetFields)
+      .where(sql`dataset_id = ${dataset.id}`);
+
+    if (existingFields.length === 0) {
+      for (const f of fieldsToInsert) {
+        await db
+          .insert(datasetFields)
+          .values({
+            datasetId: dataset.id,
+            fieldName: f.fieldName,
+            displayName: f.displayName,
+            dataType: f.dataType,
+            orderIndex: f.orderIndex,
+          });
+      }
     }
     console.log("   ✓ 12 Field schema definitions mapped.");
 
@@ -302,41 +317,47 @@ export async function seedDatabase(targetRecordCount = 100000) {
 
     // 6. Seed Sample Saved Views
     console.log("-> Seeding Default Saved Views for Analysts...");
-    await db
-      .insert(savedViews)
-      .values([
-        {
-          userId: analystUser.id,
-          datasetId: dataset.id,
-          viewName: "High-Value German Enterprise Accounts",
-          description: "Active accounts based in Germany with revenues exceeding $100,000",
-          filters: { status: "Active", country: "Germany", minRevenue: 100000 },
-          sortingConfig: { field: "revenue", order: "desc" },
-          visibleColumns: ["recordCode", "title", "companyName", "status", "country", "revenue", "profit", "priority"],
-          isShared: true,
-        },
-        {
-          userId: analystUser.id,
-          datasetId: dataset.id,
-          viewName: "Pending Critical Reviews (US & UK)",
-          description: "Urgent or High priority transactions pending operational audit",
-          filters: { status: "Pending", priority: "Urgent" },
-          sortingConfig: { field: "createdAt", order: "desc" },
-          visibleColumns: ["recordCode", "title", "companyName", "priority", "status", "revenue", "createdAt"],
-          isShared: true,
-        },
-        {
-          userId: analystUser.id,
-          datasetId: dataset.id,
-          viewName: "Top Profit Margin Leaders",
-          description: "Deals sorted by maximum net profit margins",
-          filters: { status: "Active" },
-          sortingConfig: { field: "profit", order: "desc" },
-          visibleColumns: ["recordCode", "companyName", "revenue", "cost", "profit", "rating"],
-          isShared: false,
-        },
-      ])
-      .onConflictDoNothing();
+    const existingViews = await db
+      .select()
+      .from(savedViews)
+      .where(sql`dataset_id = ${dataset.id}`);
+
+    if (existingViews.length === 0) {
+      await db
+        .insert(savedViews)
+        .values([
+          {
+            userId: analystUser.id,
+            datasetId: dataset.id,
+            viewName: "High-Value German Enterprise Accounts",
+            description: "Active accounts based in Germany with revenues exceeding $100,000",
+            filters: { status: "Active", country: "Germany", minRevenue: 100000 },
+            sortingConfig: { field: "revenue", order: "desc" },
+            visibleColumns: ["recordCode", "title", "companyName", "status", "country", "revenue", "profit", "priority"],
+            isShared: true,
+          },
+          {
+            userId: analystUser.id,
+            datasetId: dataset.id,
+            viewName: "Pending Critical Reviews (US & UK)",
+            description: "Urgent or High priority transactions pending operational audit",
+            filters: { status: "Pending", priority: "Urgent" },
+            sortingConfig: { field: "createdAt", order: "desc" },
+            visibleColumns: ["recordCode", "title", "companyName", "priority", "status", "revenue", "createdAt"],
+            isShared: true,
+          },
+          {
+            userId: analystUser.id,
+            datasetId: dataset.id,
+            viewName: "Top Profit Margin Leaders",
+            description: "Deals sorted by maximum net profit margins",
+            filters: { status: "Active" },
+            sortingConfig: { field: "profit", order: "desc" },
+            visibleColumns: ["recordCode", "companyName", "revenue", "cost", "profit", "rating"],
+            isShared: false,
+          },
+        ]);
+    }
 
     console.log("   ✓ 3 Preset Saved Views configured.");
 
