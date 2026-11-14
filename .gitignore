@@ -33,3 +33,6 @@ yarn-error.log*
 
 # References
 _references/
+next-env.d.ts
+*/next-env.d.ts
+frontend/next-env.d.ts
