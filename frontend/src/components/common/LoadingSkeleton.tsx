@@ -52,3 +52,4 @@ export function TableSkeletonRows({ rows = 10, cols = 8 }: { rows?: number; cols
 }
 
 export default Skeleton;
+
