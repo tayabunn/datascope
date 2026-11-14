@@ -14,25 +14,39 @@ interface AuthState {
   user: UserProfile | null;
   isAuthenticated: boolean;
   token: string | null;
+  isInitialized: boolean;
 }
 
 const initialState: AuthState = {
-  // Default to a pre-authenticated Analyst session for seamless exploration & testing
-  user: {
-    id: "u-analyst-001",
-    email: "analyst@datascope.internal",
-    fullName: "Sarah Connor",
-    role: "Data Analyst",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-  },
-  isAuthenticated: true,
-  token: "datascope-session-token-analyst-mock",
+  // Unauthenticated by default: User MUST log in or register before accessing dashboard
+  user: null,
+  isAuthenticated: false,
+  token: null,
+  isInitialized: false,
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    initAuthFromStorage: (state) => {
+      state.isInitialized = true;
+      if (typeof window !== "undefined") {
+        try {
+          const stored = localStorage.getItem("datascope_auth");
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed.user && parsed.token) {
+              state.user = parsed.user;
+              state.token = parsed.token;
+              state.isAuthenticated = true;
+            }
+          }
+        } catch {
+          // Ignore parse errors
+        }
+      }
+    },
     setCredentials: (
       state,
       action: PayloadAction<{ user: UserProfile; token: string }>
@@ -40,6 +54,13 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isAuthenticated = true;
+      state.isInitialized = true;
+      if (typeof window !== "undefined") {
+        localStorage.setItem(
+          "datascope_auth",
+          JSON.stringify({ user: action.payload.user, token: action.payload.token })
+        );
+      }
     },
     switchRole: (state, action: PayloadAction<UserRole>) => {
       if (state.user) {
@@ -54,16 +75,26 @@ export const authSlice = createSlice({
           state.user.fullName = "Marcus Vance (Viewer)";
           state.user.email = "viewer@datascope.internal";
         }
+        if (typeof window !== "undefined") {
+          localStorage.setItem(
+            "datascope_auth",
+            JSON.stringify({ user: state.user, token: state.token })
+          );
+        }
       }
     },
     logout: (state) => {
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("datascope_auth");
+      }
     },
   },
 });
 
-export const { setCredentials, switchRole, logout } = authSlice.actions;
+export const { initAuthFromStorage, setCredentials, switchRole, logout } =
+  authSlice.actions;
 export default authSlice.reducer;
 
