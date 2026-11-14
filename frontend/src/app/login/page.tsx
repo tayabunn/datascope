@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAppDispatch } from "@/store/hooks";
 import { setCredentials, UserRole } from "@/store/slices/authSlice";
 import { addToast } from "@/store/slices/toastSlice";
@@ -9,6 +9,7 @@ import {
   Layers,
   ShieldCheck,
   ArrowRight,
+  ArrowLeft,
   Lock,
   Mail,
   UserCheck,
@@ -43,13 +44,71 @@ import GoogleOAuthModal, { GoogleLogo } from "@/components/auth/GoogleOAuthModal
 import { Loader2 } from "lucide-react";
 
 export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#090b10] flex items-center justify-center">
+          <Loader2 className="w-8 h-8 text-indigo-400 animate-spin" />
+        </div>
+      }
+    >
+      <LoginContent />
+    </Suspense>
+  );
+}
+
+function LoginContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState("analyst@datascope.internal");
   const [password, setPassword] = useState("••••••••••••");
   const [selectedRole, setSelectedRole] = useState<UserRole>("Data Analyst");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGoogleModalOpen, setIsGoogleModalOpen] = useState(false);
+
+  // Catch OAuth redirection callbacks from Google Cloud
+  useEffect(() => {
+    const oauthSuccess = searchParams.get("oauth_success");
+    const error = searchParams.get("error");
+
+    if (oauthSuccess === "true") {
+      const oauthEmail = searchParams.get("email") || "tayabun.nesa@gmail.com";
+      const oauthName = searchParams.get("name") || "Tayabun Nesa Jannat";
+      const oauthPicture = searchParams.get("picture") || undefined;
+
+      dispatch(
+        setCredentials({
+          user: {
+            id: `u-google-${Date.now().toString().slice(-4)}`,
+            email: oauthEmail,
+            fullName: oauthName,
+            role: "Data Analyst",
+            avatar: oauthPicture,
+          },
+          token: `google-oauth-bearer-${Date.now()}`,
+        })
+      );
+
+      dispatch(
+        addToast({
+          type: "success",
+          title: "Google Authentication Verified",
+          message: `Welcome, ${oauthName}! Successfully authenticated via Google Cloud.`,
+        })
+      );
+
+      router.replace("/explorer");
+    } else if (error) {
+      dispatch(
+        addToast({
+          type: "error",
+          title: "Google Sign-In Error",
+          message: `OAuth authorization failed: ${error}`,
+        })
+      );
+    }
+  }, [searchParams, dispatch, router]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,7 +169,14 @@ export default function LoginPage() {
   };
 
   const handleGoogleSignIn = () => {
-    setIsGoogleModalOpen(true);
+    // Direct Redirection to Live Google OAuth 2.0 Consent Screen
+    const clientId =
+      process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
+      "69388296590-e9s1bisp2cvpguk867lbi8g3madm0f2j.apps.googleusercontent.com";
+    const redirectUri = encodeURIComponent("http://localhost:3000/api/auth/callback/google");
+    const scope = encodeURIComponent("openid email profile");
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&prompt=select_account`;
+    window.location.href = googleAuthUrl;
   };
 
   const handleQuickRole = (role: UserRole, defaultEmail: string) => {
@@ -120,13 +186,35 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#090b10] flex items-center justify-center p-6 relative overflow-hidden">
+      {/* Floating Top Navigation Back Button */}
+      <div className="absolute top-6 left-6 z-20">
+        <button
+          type="button"
+          onClick={() => router.push("/")}
+          className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0e121d]/90 hover:bg-[#151c2c] border border-[#1e2538] hover:border-indigo-500/40 text-zinc-300 hover:text-white text-xs font-medium transition-all shadow-md group backdrop-blur-md"
+          title="Return to Public Landing Page"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform text-indigo-400" />
+          <span>Back to Home</span>
+        </button>
+      </div>
+
       {/* Background Ambient Glow */}
       <div className="absolute top-1/4 -left-48 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-md w-full bg-[#0d101a] border border-[#1d263b] rounded-2xl p-8 shadow-2xl space-y-6 relative z-10">
-        {/* Brand Header */}
-        <div className="text-center space-y-2">
+        {/* Brand Header with In-Card Back Arrow */}
+        <div className="relative text-center space-y-2">
+          <button
+            type="button"
+            onClick={() => router.push("/")}
+            className="absolute left-0 top-0 p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-[#141926] border border-transparent hover:border-[#222a3d] transition-all"
+            title="Return to Landing Page"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+
           <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center mx-auto shadow-lg shadow-indigo-500/20 text-white">
             <Layers className="w-6 h-6" />
           </div>
@@ -259,14 +347,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-
-      {/* Realistic Google OAuth 2.0 Consent Dialog */}
-      <GoogleOAuthModal
-        isOpen={isGoogleModalOpen}
-        onClose={() => setIsGoogleModalOpen(false)}
-        defaultRole={selectedRole}
-        redirectPath="/explorer"
-      />
     </div>
   );
 }
