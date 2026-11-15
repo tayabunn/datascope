@@ -139,6 +139,9 @@ export const datasetRecords = pgTable(
     // Composite indexes for simultaneous filtering
     index("idx_records_status_country").on(table.status, table.country),
     index("idx_records_dataset_created").on(table.datasetId, table.createdAt),
+    // GIN Trigram indexes for high-performance sub-20ms text and substring search
+    index("idx_records_title_trgm").using("gin", sql`${table.title} gin_trgm_ops`),
+    index("idx_records_company_trgm").using("gin", sql`${table.companyName} gin_trgm_ops`),
   ]
 );
 
