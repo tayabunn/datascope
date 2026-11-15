@@ -25,19 +25,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Install Backend Dependencies
-        run: npm --prefix backend ci || npm --prefix backend install
+        run: cd backend && npm install
 
       - name: Install Frontend Dependencies
-        run: npm --prefix frontend ci || npm --prefix frontend install
+        run: cd frontend && npm install --legacy-peer-deps
 
       - name: Typecheck Backend
-        run: npx --prefix backend tsc --noEmit
+        run: npx tsc --project backend/tsconfig.json --noEmit
 
       - name: Typecheck Frontend
-        run: npx --prefix frontend tsc --noEmit
+        run: npx tsc --project frontend/tsconfig.json --noEmit
 
   # ==========================================================================
   # JOB 2: AUTOMATED TESTING & 100K RECORD BENCHMARK
@@ -55,10 +54,10 @@ jobs:
           node-version: 20
 
       - name: Install Backend Dependencies
-        run: npm --prefix backend ci || npm --prefix backend install
+        run: cd backend && npm install
 
       - name: Run 12 Automated Test Suites & Performance Benchmark
-        run: npm --prefix backend test
+        run: cd backend && npm test
 
   # ==========================================================================
   # JOB 3: FRONTEND PRODUCTION BUILD VERIFICATION
@@ -77,13 +76,13 @@ jobs:
           node-version: 20
 
       - name: Install Frontend Dependencies
-        run: npm --prefix frontend ci || npm --prefix frontend install
+        run: cd frontend && npm install --legacy-peer-deps
 
       - name: Build Next.js Production Bundle
         env:
           NEXT_TELEMETRY_DISABLED: 1
           NODE_ENV: production
-        run: npm --prefix frontend run build
+        run: cd frontend && npm run build
 
   # ==========================================================================
   # JOB 4: DOCKER COMPOSE CONFIGURATION VALIDATION
