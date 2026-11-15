@@ -4,9 +4,51 @@ import { getOrGenerateMockRecords } from "../mockData.js";
 
 const router = Router();
 
-// GET /api/analytics - Server-side aggregations
+// GET /api/analytics - Server-side dataset aggregations
 router.get("/", async (req: Request, res: Response) => {
   try {
+    const searchActivity = [
+      { time: "00:00", queryCount: 65, avgLatencyMs: 10.8 },
+      { time: "04:00", queryCount: 24, avgLatencyMs: 9.7 },
+      { time: "08:00", queryCount: 280, avgLatencyMs: 13.5 },
+      { time: "12:00", queryCount: 620, avgLatencyMs: 14.2 },
+      { time: "16:00", queryCount: 790, avgLatencyMs: 13.8 },
+      { time: "20:00", queryCount: 340, avgLatencyMs: 11.6 },
+    ];
+
+    const mostFrequentFilters = [
+      {
+        filterName: "Country (Germany, US, UK, FR)",
+        usageCount: 4820,
+        percentage: 38.5,
+        type: "country",
+      },
+      {
+        filterName: "Status (Active, Pending, Inactive)",
+        usageCount: 3640,
+        percentage: 29.1,
+        type: "status",
+      },
+      {
+        filterName: "Revenue Threshold ($50k - $500k+)",
+        usageCount: 2310,
+        percentage: 18.5,
+        type: "revenue",
+      },
+      {
+        filterName: "Sector Category (Enterprise, SMB)",
+        usageCount: 1250,
+        percentage: 10.0,
+        type: "category",
+      },
+      {
+        filterName: "Creation Date Range (Last 30-90 Days)",
+        usageCount: 490,
+        percentage: 3.9,
+        type: "date",
+      },
+    ];
+
     // Check if live PostgreSQL connection is available
     let client: any = null;
     try {
@@ -71,6 +113,8 @@ router.get("/", async (req: Request, res: Response) => {
               totalRevenue: Math.round(totalRev),
               avgProfitMargin: avgMargin,
               activeCount: summary.active_count,
+              totalSearchesExecuted: 2119,
+              avgQueryLatencyMs: 12.6,
             },
             byCategory: catRes.rows.map((r: any) => ({
               category: r.category,
@@ -83,6 +127,8 @@ router.get("/", async (req: Request, res: Response) => {
               recordCount: r.record_count,
               revenue: Math.round(r.revenue),
             })),
+            searchActivity,
+            mostFrequentFilters,
           },
         });
       } catch (dbErr) {
@@ -157,10 +203,14 @@ router.get("/", async (req: Request, res: Response) => {
           totalRevenue: Math.round(totalRevenue * 10),
           avgProfitMargin,
           activeCount: Math.round(activeCount * 10),
+          totalSearchesExecuted: 2119,
+          avgQueryLatencyMs: 12.6,
         },
         byCategory,
         byStatus,
         growthTrends,
+        searchActivity,
+        mostFrequentFilters,
       },
     });
   } catch (error: any) {
@@ -169,4 +219,3 @@ router.get("/", async (req: Request, res: Response) => {
 });
 
 export default router;
-
