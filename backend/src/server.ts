@@ -6,6 +6,7 @@ import analyticsRouter from "./routes/analytics.js";
 import savedViewsRouter from "./routes/savedViews.js";
 import exportRouter from "./routes/export.js";
 import aiSearchRouter from "./routes/aiSearch.js";
+import searchHistoryRouter from "./routes/searchHistory.js";
 
 dotenv.config({ path: ".env.local" });
 dotenv.config();
@@ -59,6 +60,7 @@ app.use("/api/analytics", analyticsRouter);
 app.use("/api/saved-views", savedViewsRouter);
 app.use("/api/export", exportRouter);
 app.use("/api/ai-search", aiSearchRouter);
+app.use("/api/search-history", searchHistoryRouter);
 
 app.listen(PORT, () => {
   console.log(`=======================================================`);
