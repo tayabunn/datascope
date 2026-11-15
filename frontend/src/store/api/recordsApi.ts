@@ -131,10 +131,23 @@ export interface AnalyticsApiResponse {
       totalRevenue: number;
       avgProfitMargin: number;
       activeCount: number;
+      totalSearchesExecuted?: number;
+      avgQueryLatencyMs?: number;
     };
     byCategory: Array<{ category: string; count: number; revenue: number }>;
     byStatus: Array<{ status: string; count: number }>;
     growthTrends: Array<{ month: string; recordCount: number; revenue: number }>;
+    searchActivity: Array<{
+      time: string;
+      queryCount: number;
+      avgLatencyMs: number;
+    }>;
+    mostFrequentFilters: Array<{
+      filterName: string;
+      usageCount: number;
+      percentage: number;
+      type: "country" | "status" | "revenue" | "category" | "date";
+    }>;
   };
 }
 
