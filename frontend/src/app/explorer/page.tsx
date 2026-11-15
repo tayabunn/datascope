@@ -8,7 +8,10 @@ import FilterBuilder from "@/components/filters/FilterBuilder";
 import DataTable from "@/components/table/DataTable";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { useGetRecordsQuery } from "@/store/api/recordsApi";
+import {
+  useGetRecordsQuery,
+  useRecordSearchHistoryMutation,
+} from "@/store/api/recordsApi";
 import { useDebounce } from "@/hooks/useDebounce";
 import { setTelemetry } from "@/store/slices/uiPreferenceSlice";
 import { addToast } from "@/store/slices/toastSlice";
@@ -142,6 +145,8 @@ function ExplorerContent() {
   const { data, isLoading, isFetching, refetch } =
     useGetRecordsQuery(queryParams);
 
+  const [recordSearchHistory] = useRecordSearchHistoryMutation();
+
   // Synchronize telemetry with Redux for the Header badge
   useEffect(() => {
     if (data?.meta?.executionTimeMs != null) {
@@ -153,6 +158,52 @@ function ExplorerContent() {
       );
     }
   }, [data, isFetching, isLoading, dispatch]);
+
+  // Dynamically record executed non-empty searches to Search History
+  useEffect(() => {
+    if (!data?.pagination?.totalCount || isLoading || isFetching) return;
+
+    const hasQuery = debouncedQuery && debouncedQuery.trim().length > 0;
+    const hasFilter =
+      (statusFilter && statusFilter !== "all") ||
+      (categoryFilter && categoryFilter !== "all") ||
+      (countryFilter && countryFilter !== "all") ||
+      minRevenue != null ||
+      maxRevenue != null;
+
+    if (hasQuery || hasFilter) {
+      recordSearchHistory({
+        queryString: debouncedQuery,
+        datasetName: "Global Enterprise Revenue & Contracts",
+        filterConfig: {
+          status: statusFilter,
+          category: categoryFilter,
+          country: countryFilter,
+          minRevenue,
+          maxRevenue,
+        },
+        sortingConfig: {
+          field: sortField,
+          order: sortOrder,
+        },
+        totalMatches: data.pagination.totalCount,
+        executionTimeMs: data.meta?.executionTimeMs || 14.5,
+      }).catch(() => {});
+    }
+  }, [
+    debouncedQuery,
+    statusFilter,
+    categoryFilter,
+    countryFilter,
+    minRevenue,
+    maxRevenue,
+    data,
+    isLoading,
+    isFetching,
+    recordSearchHistory,
+    sortField,
+    sortOrder,
+  ]);
 
   // Reset to page 1 whenever filters change
   useEffect(() => {
