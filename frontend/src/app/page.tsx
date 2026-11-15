@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { useAppSelector } from "@/store/hooks";
 import {
   Layers,
   Database,
@@ -25,6 +26,8 @@ import {
 } from "lucide-react";
 
 export default function LandingPage() {
+  const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+
   return (
     <div className="min-h-screen bg-[#07090e] text-[#f1f3f7] flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
       {/* Ambient Radial Background Glows */}
@@ -71,28 +74,39 @@ export default function LandingPage() {
             </Link>
           </nav>
 
-          {/* Action CTAs */}
+          {/* Action CTAs: Dynamic based on Session State */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className="text-xs font-semibold text-zinc-300 hover:text-white px-3.5 py-2 rounded-lg hover:bg-[#121724] transition-all"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/register"
-              className="text-xs font-semibold text-zinc-200 hover:text-white px-3.5 py-2 rounded-lg bg-[#141926] hover:bg-[#1b2236] border border-[#222a3d] transition-all hidden sm:block"
-            >
-              Register
-            </Link>
-            <Link
-              href="/explorer"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
-            >
-              <Database className="w-3.5 h-3.5 text-indigo-200" />
-              <span>Launch App</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+            {isAuthenticated ? (
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-zinc-400 font-mono hidden sm:inline">
+                  Signed in as <span className="text-indigo-400 font-semibold">{user?.fullName?.split(" ")[0] || "User"}</span>
+                </span>
+                <Link
+                  href="/explorer"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
+                >
+                  <Database className="w-3.5 h-3.5 text-indigo-200" />
+                  <span>Go to Explorer</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/login"
+                  className="text-xs font-semibold text-zinc-300 hover:text-white px-3.5 py-2 rounded-lg hover:bg-[#121724] transition-all"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/register"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
+                >
+                  <span>Get Started</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </header>
