@@ -42,7 +42,7 @@ export interface RecordsQueryParams {
   startDate?: string | null;
   endDate?: string | null;
   sortField?: string;
-  sortOrder?: "asc" | "desc";
+  sortOrder?: "asc" | "desc" | string;
 }
 
 export interface RecordsApiResponse {
