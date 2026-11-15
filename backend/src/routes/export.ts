@@ -10,21 +10,28 @@ router.get("/", (req: Request, res: Response) => {
   const category = (req.query.category as string) || "all";
   const country = (req.query.country as string) || "all";
 
+  const idsParam = (req.query.ids as string) || "";
+
   const allRecords = getOrGenerateMockRecords(5000);
   let filtered = allRecords;
 
-  if (q.trim()) {
-    const term = q.toLowerCase();
-    filtered = filtered.filter(
-      (r) =>
-        r.title.toLowerCase().includes(term) ||
-        r.companyName.toLowerCase().includes(term) ||
-        r.recordCode.toLowerCase().includes(term)
-    );
+  if (idsParam.trim()) {
+    const idList = idsParam.split(",").map((s) => s.trim()).filter(Boolean);
+    filtered = filtered.filter((r) => idList.includes(r.id) || idList.includes(r.recordCode));
+  } else {
+    if (q.trim()) {
+      const term = q.toLowerCase();
+      filtered = filtered.filter(
+        (r) =>
+          r.title.toLowerCase().includes(term) ||
+          r.companyName.toLowerCase().includes(term) ||
+          r.recordCode.toLowerCase().includes(term)
+      );
+    }
+    if (status !== "all") filtered = filtered.filter((r) => r.status === status);
+    if (category !== "all") filtered = filtered.filter((r) => r.category === category);
+    if (country !== "all") filtered = filtered.filter((r) => r.country === country);
   }
-  if (status !== "all") filtered = filtered.filter((r) => r.status === status);
-  if (category !== "all") filtered = filtered.filter((r) => r.category === category);
-  if (country !== "all") filtered = filtered.filter((r) => r.country === country);
 
   res.setHeader("Content-Type", "text/csv; charset=utf-8");
   res.setHeader(
