@@ -1,20 +1,27 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   setStatusFilter,
   setCategoryFilter,
   setCountryFilter,
   setRevenueRange,
+  setGlobalQuery,
   clearAllFilters,
   toggleAdvancedBuilder,
 } from "@/store/slices/searchConfigSlice";
 import { openSaveModal } from "@/store/slices/savedViewsSlice";
+import { setVisibleColumns } from "@/store/slices/uiPreferenceSlice";
+import { addToast } from "@/store/slices/toastSlice";
+import { useGetSavedViewsQuery, SavedViewItem } from "@/store/api/recordsApi";
 import {
   Filter,
   RotateCcw,
   BookmarkPlus,
+  BookmarkCheck,
+  History,
   SlidersHorizontal,
   ChevronDown,
   DollarSign,
@@ -56,6 +63,37 @@ export default function FilterBuilder() {
     maxRevenue,
     isAdvancedBuilderOpen,
   } = useAppSelector((state) => state.searchConfig);
+
+  const { data: savedViewsData } = useGetSavedViewsQuery();
+  const savedViews: SavedViewItem[] = savedViewsData?.data || [];
+
+  const handleApplySavedView = (view: SavedViewItem) => {
+    const f = view.filters || {};
+    if (f.status) dispatch(setStatusFilter(f.status));
+    if (f.category) dispatch(setCategoryFilter(f.category));
+    if (f.country) dispatch(setCountryFilter(f.country));
+    if (f.minRevenue != null || f.maxRevenue != null) {
+      dispatch(
+        setRevenueRange({
+          min: f.minRevenue ?? null,
+          max: f.maxRevenue ?? null,
+        })
+      );
+    }
+    if (view.searchConditions?.q != null) {
+      dispatch(setGlobalQuery(view.searchConditions.q));
+    }
+    if (view.visibleColumns && view.visibleColumns.length > 0) {
+      dispatch(setVisibleColumns(view.visibleColumns));
+    }
+    dispatch(
+      addToast({
+        type: "success",
+        title: "Preset Applied",
+        message: `Loaded saved configuration "${view.viewName}".`,
+      })
+    );
+  };
 
   const activeFiltersCount =
     (statusFilter !== "all" ? 1 : 0) +
@@ -142,8 +180,46 @@ export default function FilterBuilder() {
           </button>
         </div>
 
-        {/* Action Controls: Reset & Save View */}
+        {/* Action Controls: Saved Views, History, Reset & Save View */}
         <div className="flex items-center gap-2">
+          {/* Quick Saved Views Dropdown */}
+          {savedViews.length > 0 && (
+            <div className="relative">
+              <select
+                onChange={(e) => {
+                  const selected = savedViews.find((v) => v.id === e.target.value);
+                  if (selected) handleApplySavedView(selected);
+                  e.target.value = "";
+                }}
+                defaultValue=""
+                aria-label="Load a saved search view"
+                className="appearance-none pl-7 pr-8 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-xs text-zinc-300 font-medium hover:border-indigo-500/50 focus:outline-none focus:border-indigo-500 cursor-pointer"
+                title="Select and apply a saved search configuration"
+              >
+                <option value="" disabled>
+                  Saved Views ({savedViews.length})
+                </option>
+                {savedViews.map((sv) => (
+                  <option key={sv.id} value={sv.id} className="bg-[#141926] text-white">
+                    {sv.isShared ? "🌐 " : "🔒 "} {sv.viewName}
+                  </option>
+                ))}
+              </select>
+              <BookmarkCheck className="w-3.5 h-3.5 text-indigo-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <ChevronDown className="w-3.5 h-3.5 text-zinc-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
+          )}
+
+          {/* Quick Link to Search History */}
+          <Link
+            href="/history"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-medium transition-all"
+            title="View recent search query history"
+          >
+            <History className="w-3.5 h-3.5 text-zinc-400" />
+            <span className="hidden sm:inline">History</span>
+          </Link>
+
           {activeFiltersCount > 0 && (
             <button
               onClick={() => dispatch(clearAllFilters())}
