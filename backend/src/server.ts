@@ -64,11 +64,13 @@ app.use("/api/ai-search", aiSearchRouter);
 app.use("/api/search-history", searchHistoryRouter);
 app.use("/api/datasets", datasetsRouter);
 
-app.listen(PORT, () => {
-  console.log(`=======================================================`);
-  console.log(`🚀 DataScope REST API Server running on port ${PORT}`);
-  console.log(`📡 Endpoints active at http://localhost:${PORT}/api`);
-  console.log(`=======================================================`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`=======================================================`);
+    console.log(`🚀 DataScope REST API Server running on port ${PORT}`);
+    console.log(`📡 Endpoints active at http://localhost:${PORT}/api`);
+    console.log(`=======================================================`);
+  });
+}
 
 export default app;
