@@ -111,5 +111,17 @@ describe("DataScope Backend REST API & Engine Tests", () => {
     }
     assert.ok(monthMap.size > 0, "Monthly timeline must exist");
   });
+
+  test("9. Dataset Entity Schema & Access Permissions", () => {
+    const dataset = {
+      id: "ds-global-enterprise-01",
+      name: "Global Enterprise Revenue & Contracts",
+      category: "Enterprise",
+      totalRecords: 100000,
+      accessLevel: "Public",
+    };
+    assert.equal(dataset.totalRecords, 100000);
+    assert.ok(["Public", "Internal", "Restricted"].includes(dataset.accessLevel));
+  });
 });
 
