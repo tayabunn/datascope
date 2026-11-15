@@ -7,6 +7,7 @@ import savedViewsRouter from "./routes/savedViews.js";
 import exportRouter from "./routes/export.js";
 import aiSearchRouter from "./routes/aiSearch.js";
 import searchHistoryRouter from "./routes/searchHistory.js";
+import datasetsRouter from "./routes/datasets.js";
 
 dotenv.config({ path: ".env.local" });
 dotenv.config();
@@ -61,6 +62,7 @@ app.use("/api/saved-views", savedViewsRouter);
 app.use("/api/export", exportRouter);
 app.use("/api/ai-search", aiSearchRouter);
 app.use("/api/search-history", searchHistoryRouter);
+app.use("/api/datasets", datasetsRouter);
 
 app.listen(PORT, () => {
   console.log(`=======================================================`);
