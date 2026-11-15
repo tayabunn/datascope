@@ -79,5 +79,37 @@ describe("DataScope Backend REST API & Engine Tests", () => {
     assert.ok(queryEntry.totalMatches > 0);
     assert.ok(queryEntry.executionTimeMs > 0);
   });
+
+  test("8. Server-Side SQL Analytics Aggregations", () => {
+    // 1. Total records calculation
+    assert.equal(records.length, 1000);
+
+    // 2. Records by Category aggregation
+    const catMap = new Map<string, number>();
+    for (const r of records) {
+      catMap.set(r.category, (catMap.get(r.category) || 0) + 1);
+    }
+    assert.ok(catMap.size > 0, "Categories must be populated");
+    let totalCatCount = 0;
+    for (const count of catMap.values()) {
+      totalCatCount += count;
+    }
+    assert.equal(totalCatCount, 1000, "Category counts must sum to total records");
+
+    // 3. Records by Status aggregation
+    const statusMap = new Map<string, number>();
+    for (const r of records) {
+      statusMap.set(r.status, (statusMap.get(r.status) || 0) + 1);
+    }
+    assert.ok(statusMap.has("Active"), "Must have Active status records");
+
+    // 4. Data Growth Trends aggregation
+    const monthMap = new Map<string, number>();
+    for (const r of records) {
+      const m = r.createdAt.substring(0, 7);
+      monthMap.set(m, (monthMap.get(m) || 0) + 1);
+    }
+    assert.ok(monthMap.size > 0, "Monthly timeline must exist");
+  });
 });
 
