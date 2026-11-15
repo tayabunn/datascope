@@ -48,7 +48,7 @@ function ExplorerContent() {
   // Pagination & Sorting state
   const [page, setPage] = useState(1);
   const [sortField, setSortField] = useState("createdAt");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [sortOrder, setSortOrder] = useState<string>("desc");
 
   // Step 1: Read URL search params on initial mount (URL-Based Search State)
   useEffect(() => {
@@ -64,7 +64,7 @@ function ExplorerContent() {
     if (urlSortField) setSortField(urlSortField);
 
     const urlSortOrder = searchParams.get("sortOrder");
-    if (urlSortOrder === "asc" || urlSortOrder === "desc") {
+    if (urlSortOrder) {
       setSortOrder(urlSortOrder);
     }
 
@@ -166,12 +166,29 @@ function ExplorerContent() {
     maxRevenue,
   ]);
 
-  const handleSortChange = (field: string) => {
-    if (sortField === field) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  const handleSortChange = (field: string, isMulti: boolean = false) => {
+    if (!isMulti) {
+      if (sortField === field) {
+        setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+      } else {
+        setSortField(field);
+        setSortOrder("desc");
+      }
     } else {
-      setSortField(field);
-      setSortOrder("desc");
+      const currentFields = sortField.split(",").map((s) => s.trim()).filter(Boolean);
+      const currentOrders = sortOrder.split(",").map((s) => s.trim()).filter(Boolean);
+
+      const existingIndex = currentFields.indexOf(field);
+      if (existingIndex >= 0) {
+        const newOrder = (currentOrders[existingIndex] || "desc") === "asc" ? "desc" : "asc";
+        currentOrders[existingIndex] = newOrder;
+        setSortOrder(currentOrders.join(","));
+      } else {
+        currentFields.push(field);
+        currentOrders.push("desc");
+        setSortField(currentFields.join(","));
+        setSortOrder(currentOrders.join(","));
+      }
     }
     setPage(1);
   };
