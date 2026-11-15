@@ -9,14 +9,23 @@ import {
   setRevenueRange,
   setGlobalQuery,
 } from "@/store/slices/searchConfigSlice";
-import { Sparkles, X, ArrowRight, CheckCircle2, CornerDownLeft } from "lucide-react";
+import {
+  Sparkles,
+  X,
+  ArrowRight,
+  CheckCircle2,
+  CornerDownLeft,
+  ShieldCheck,
+  AlertTriangle,
+  Cpu,
+} from "lucide-react";
 
 interface AiSearchModalProps {
   onClose: () => void;
 }
 
 const EXAMPLE_PROMPTS = [
-  "Find active customers from Germany with revenue greater than $10,000",
+  "Find active customers from Germany with revenue greater than $50,000",
   "Show urgent deals in United Kingdom with high revenue",
   "Top enterprise accounts in Japan sorted by profit",
   "Pending deals in France with revenue over 50k",
@@ -27,11 +36,13 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleGenerate = async (queryText: string) => {
     if (!queryText.trim()) return;
     setIsLoading(true);
     setResult(null);
+    setErrorMessage(null);
 
     try {
       const res = await fetch("/api/ai-search", {
@@ -42,9 +53,11 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
       const data = await res.json();
       if (data.success) {
         setResult(data.data);
+      } else {
+        setErrorMessage(data.error?.message || "Failed to process query.");
       }
-    } catch (e) {
-      console.error(e);
+    } catch (e: any) {
+      setErrorMessage(e?.message || "Network error while calling AI assistant.");
     } finally {
       setIsLoading(false);
     }
@@ -60,6 +73,9 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
     if (cfg.minRevenue != null) {
       dispatch(setRevenueRange({ min: cfg.minRevenue, max: null }));
     }
+    if (cfg.search) {
+      dispatch(setGlobalQuery(cfg.search));
+    }
 
     onClose();
   };
@@ -74,11 +90,16 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-white">
-                AI Natural Language Search Assistant
-              </h3>
+              <div className="flex items-center gap-2">
+                <h3 className="text-sm font-semibold text-white">
+                  AI Natural Language Search Assistant
+                </h3>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-mono">
+                  Tool Calling + Guardrails
+                </span>
+              </div>
               <p className="text-xs text-zinc-400">
-                Describe what you want in plain English; DataScope converts it to SQL filters.
+                Describe your query in plain English; DataScope translates it to typed SQL parameters.
               </p>
             </div>
           </div>
@@ -102,7 +123,7 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
             <input
               type="text"
               autoFocus
-              placeholder="e.g. Find active customers from Germany with revenue greater than $10,000..."
+              placeholder="e.g. Find active customers from Germany with revenue greater than $50,000..."
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               className="w-full px-3.5 py-2.5 rounded-lg bg-[#141a29] border border-[#252f47] text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 font-sans pr-24"
@@ -112,7 +133,7 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
               disabled={isLoading || !prompt.trim()}
               className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-medium flex items-center gap-1 transition-all"
             >
-              {isLoading ? "Parsing..." : "Translate"}
+              {isLoading ? "Analyzing..." : "Translate"}
               <CornerDownLeft className="w-3 h-3" />
             </button>
           </div>
@@ -136,21 +157,52 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
           </div>
         </form>
 
-        {/* Translation Results Preview */}
+        {/* Error / Guardrail Alert */}
+        {errorMessage && (
+          <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-start gap-2.5 text-xs text-rose-300 animate-in fade-in">
+            <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+            <div>
+              <p className="font-semibold">Query Processing Failed</p>
+              <p className="text-[11px] text-rose-300/80 mt-0.5">{errorMessage}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Translation Results Preview with Tool Calling & Guardrails */}
         {result && (
           <div className="p-3.5 rounded-lg bg-[#121724] border border-indigo-500/30 space-y-2.5 animate-in fade-in duration-150">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>Validated Filter Configuration Generated:</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+                <CheckCircle2 className="w-4 h-4" />
+                <span>Validated Query Tool Call Generated</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                  <ShieldCheck className="w-3 h-3" />
+                  Guardrails Passed
+                </span>
+                <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded bg-blue-500/15 text-blue-300 border border-blue-500/30">
+                  <Cpu className="w-3 h-3" />
+                  {result.metadata?.provider || "Engine"}
+                </span>
+              </div>
             </div>
-            <pre className="p-2.5 rounded bg-[#0b0e17] text-[11px] font-mono text-indigo-300 border border-[#1b2236] overflow-x-auto">
-              {JSON.stringify(result.filterConfig, null, 2)}
-            </pre>
-            <div className="flex justify-end gap-2 pt-1">
+
+            <div className="p-2.5 rounded bg-[#0b0e17] text-[11px] font-mono text-indigo-300 border border-[#1b2236] overflow-x-auto space-y-1">
+              <div className="text-[10px] text-zinc-500 uppercase font-semibold">
+                Tool: {result.toolCall?.name || "query_dataset_records"}
+              </div>
+              <pre>{JSON.stringify(result.toolCall?.arguments || result.filterConfig, null, 2)}</pre>
+            </div>
+
+            <div className="flex items-center justify-between pt-1">
+              <p className="text-[11px] text-zinc-400 truncate max-w-[340px]">
+                {result.metadata?.summary || result.interpretation}
+              </p>
               <button
                 type="button"
                 onClick={handleApply}
-                className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium flex items-center gap-1.5 shadow-md shadow-emerald-600/20 transition-all"
+                className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium flex items-center gap-1.5 shadow-md shadow-emerald-600/20 transition-all shrink-0"
               >
                 <span>Apply to Data Explorer</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -162,4 +214,3 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
     </div>
   );
 }
-
