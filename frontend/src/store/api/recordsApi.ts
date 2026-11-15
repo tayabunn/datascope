@@ -74,6 +74,55 @@ export interface SingleRecordResponse {
   };
 }
 
+export interface SavedViewItem {
+  id: string;
+  viewName: string;
+  description?: string;
+  datasetId: string;
+  datasetName: string;
+  searchConditions: {
+    q: string;
+  };
+  filters: {
+    status?: string;
+    category?: string;
+    country?: string;
+    minRevenue?: number | null;
+    maxRevenue?: number | null;
+    startDate?: string | null;
+    endDate?: string | null;
+  };
+  sortingConfig: {
+    field: string;
+    order: string;
+  };
+  visibleColumns: string[];
+  isShared: boolean;
+  sharedWith: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SearchHistoryItem {
+  id: string;
+  queryString: string;
+  datasetName: string;
+  filterConfig: {
+    status?: string;
+    category?: string;
+    country?: string;
+    minRevenue?: number | null;
+    maxRevenue?: number | null;
+  };
+  sortingConfig?: {
+    field: string;
+    order: string;
+  };
+  totalMatches: number;
+  executionTimeMs: number;
+  executedAt: string;
+}
+
 export interface AnalyticsApiResponse {
   success: boolean;
   data: {
@@ -138,17 +187,19 @@ export const recordsApi = createApi({
     }),
 
     getSavedViews: builder.query<
-      { success: boolean; data: any[] },
-      { datasetId?: string }
+      { success: boolean; data: SavedViewItem[] },
+      { datasetId?: string } | void
     >({
-      query: ({ datasetId }) =>
-        datasetId ? `/saved-views?datasetId=${datasetId}` : `/saved-views`,
+      query: (params) =>
+        params && params.datasetId
+          ? `/saved-views?datasetId=${params.datasetId}`
+          : `/saved-views`,
       providesTags: ["SavedViews"],
     }),
 
     saveView: builder.mutation<
-      { success: boolean; data: any },
-      Record<string, unknown>
+      { success: boolean; data: SavedViewItem; message?: string },
+      Partial<SavedViewItem>
     >({
       query: (body) => ({
         url: "/saved-views",
@@ -158,7 +209,31 @@ export const recordsApi = createApi({
       invalidatesTags: ["SavedViews"],
     }),
 
-    deleteView: builder.mutation<{ success: boolean }, string>({
+    updateSavedView: builder.mutation<
+      { success: boolean; data: SavedViewItem; message?: string },
+      { id: string; view: Partial<SavedViewItem> }
+    >({
+      query: ({ id, view }) => ({
+        url: `/saved-views/${id}`,
+        method: "PUT",
+        body: view,
+      }),
+      invalidatesTags: ["SavedViews"],
+    }),
+
+    toggleShareSavedView: builder.mutation<
+      { success: boolean; data: SavedViewItem; message?: string },
+      { id: string; isShared?: boolean; sharedWith?: string[] }
+    >({
+      query: ({ id, ...body }) => ({
+        url: `/saved-views/${id}/share`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["SavedViews"],
+    }),
+
+    deleteView: builder.mutation<{ success: boolean; message?: string }, string>({
       query: (id) => ({
         url: `/saved-views/${id}`,
         method: "DELETE",
@@ -182,9 +257,43 @@ export const recordsApi = createApi({
       ],
     }),
 
-    getSearchHistory: builder.query<{ success: boolean; data: any[] }, void>({
-      query: () => "/history",
+    getSearchHistory: builder.query<
+      { success: boolean; data: SearchHistoryItem[] },
+      void
+    >({
+      query: () => "/search-history",
       providesTags: ["SearchHistory"],
+    }),
+
+    recordSearchHistory: builder.mutation<
+      { success: boolean; data?: SearchHistoryItem },
+      Partial<SearchHistoryItem>
+    >({
+      query: (body) => ({
+        url: "/search-history",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["SearchHistory"],
+    }),
+
+    clearSearchHistory: builder.mutation<{ success: boolean; message?: string }, void>({
+      query: () => ({
+        url: "/search-history",
+        method: "DELETE",
+      }),
+      invalidatesTags: ["SearchHistory"],
+    }),
+
+    deleteSearchHistoryItem: builder.mutation<
+      { success: boolean; message?: string },
+      string
+    >({
+      query: (id) => ({
+        url: `/search-history/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["SearchHistory"],
     }),
   }),
 });
@@ -195,8 +304,13 @@ export const {
   useGetAnalyticsQuery,
   useGetSavedViewsQuery,
   useSaveViewMutation,
+  useUpdateSavedViewMutation,
+  useToggleShareSavedViewMutation,
   useDeleteViewMutation,
   useUpdateRecordMutation,
   useGetSearchHistoryQuery,
+  useRecordSearchHistoryMutation,
+  useClearSearchHistoryMutation,
+  useDeleteSearchHistoryItemMutation,
 } = recordsApi;
 
