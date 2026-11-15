@@ -131,24 +131,29 @@ const ToolArgumentsSchema = z.object({
 // ============================================================================
 
 export const SYSTEM_PROMPT = `You are DataScope AI, an enterprise intelligence assistant.
-Your responsibility is to analyze natural language user instructions and translate them into a strictly typed function call: 'query_dataset_records'.
-
-Domain Constraints:
-- Valid statuses: Active, Pending, Inactive, Archived.
-- Valid categories: Enterprise, Mid-Market, SMB, Public Sector, Financial Services.
-- Valid priorities: Urgent, High, Medium, Low.
-- Supported countries: Germany, United States, United Kingdom, France, Japan, Canada, Australia, Singapore, Netherlands, Switzerland.
-- Dollar amounts (e.g. "$50k", "100,000 dollars") must be converted to numeric values (50000, 100000).
+Your responsibility is to analyze natural language user instructions and return a JSON object with query parameters.
+Only output JSON matching:
+{
+  "status"?: "Active" | "Pending" | "Inactive" | "Archived",
+  "country"?: "Germany" | "United States" | "United Kingdom" | "France" | "Japan" | "Canada" | "Australia" | "Singapore" | "Netherlands" | "Switzerland",
+  "category"?: "Enterprise" | "Mid-Market" | "SMB" | "Public Sector" | "Financial Services",
+  "minRevenue"?: number,
+  "maxRevenue"?: number,
+  "priority"?: "Urgent" | "High" | "Medium" | "Low",
+  "sortField"?: "revenue" | "profit" | "rating" | "createdAt" | "companyName",
+  "sortOrder"?: "asc" | "desc",
+  "search"?: string
+}
 
 Few-Shot Examples:
-Prompt: "Find active customers from Germany with revenue greater than $50,000"
-Tool Call: query_dataset_records({ status: "Active", country: "Germany", minRevenue: 50000 })
+User: "Find active customers from Germany with revenue greater than $50,000"
+Output: {"status": "Active", "country": "Germany", "minRevenue": 50000}
 
-Prompt: "Show top enterprise accounts in Japan sorted by profit"
-Tool Call: query_dataset_records({ category: "Enterprise", country: "Japan", sortField: "profit", sortOrder: "desc" })
+User: "Show top enterprise accounts in Japan sorted by profit"
+Output: {"category": "Enterprise", "country": "Japan", "sortField": "profit", "sortOrder": "desc"}
 
-Prompt: "Show urgent deals in United States with revenue over 100k"
-Tool Call: query_dataset_records({ priority: "Urgent", country: "United States", minRevenue: 100000 })`;
+User: "Show urgent deals in United States with revenue over 100k"
+Output: {"priority": "Urgent", "country": "United States", "minRevenue": 100000}`;
 
 // ============================================================================
 // 4. DETERMINISTIC TOOL-CALLING PARSER & PLANNER (ZERO-DEPENDENCY ENGINE)
@@ -226,7 +231,125 @@ function parseWithSemanticEngine(prompt: string): Record<string, unknown> {
 }
 
 // ============================================================================
-// 5. REST API ROUTE WITH LLM + TOOL CALLING + GUARDRAILS
+// 5. MULTI-PROVIDER LLM CALLER (GROQ, MISTRAL, OPENAI, GEMINI, FALLBACK)
+// ============================================================================
+
+async function executeMultiProviderLLM(prompt: string): Promise<{
+  arguments: Record<string, unknown>;
+  provider: string;
+}> {
+  // Provider 1: Groq (Ultra-fast, high limits)
+  if (process.env.GROQ_API_KEY) {
+    try {
+      const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: process.env.GROQ_MODEL || "openai/gpt-oss-120b",
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            { role: "user", content: prompt },
+          ],
+          response_format: { type: "json_object" },
+          temperature: 0.1,
+        }),
+      });
+
+      if (res.ok) {
+        const json = await res.json();
+        const rawContent = json.choices?.[0]?.message?.content;
+        if (rawContent) {
+          const parsed = JSON.parse(rawContent);
+          // Capitalize status if needed
+          if (parsed.status) {
+            parsed.status = parsed.status.charAt(0).toUpperCase() + parsed.status.slice(1);
+          }
+          return { arguments: parsed, provider: `Groq (${json.model || "gpt-oss-120b"})` };
+        }
+      }
+    } catch (e) {
+      console.warn("Groq provider call error, falling to next provider:", e);
+    }
+  }
+
+  // Provider 2: Mistral AI
+  if (process.env.MISTRAL_API_KEY) {
+    try {
+      const res = await fetch("https://api.mistral.ai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.MISTRAL_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: process.env.MISTRAL_MODEL || "mistral-small-latest",
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            { role: "user", content: prompt },
+          ],
+          response_format: { type: "json_object" },
+          temperature: 0.1,
+        }),
+      });
+
+      if (res.ok) {
+        const json = await res.json();
+        const rawContent = json.choices?.[0]?.message?.content;
+        if (rawContent) {
+          const parsed = JSON.parse(rawContent);
+          return { arguments: parsed, provider: `Mistral AI (${json.model || "mistral-small"})` };
+        }
+      }
+    } catch (e) {
+      console.warn("Mistral AI provider error:", e);
+    }
+  }
+
+  // Provider 3: OpenAI (if credits available)
+  if (process.env.OPENAI_API_KEY) {
+    try {
+      const res = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            { role: "user", content: prompt },
+          ],
+          response_format: { type: "json_object" },
+          temperature: 0.1,
+        }),
+      });
+
+      if (res.ok) {
+        const json = await res.json();
+        const rawContent = json.choices?.[0]?.message?.content;
+        if (rawContent) {
+          const parsed = JSON.parse(rawContent);
+          return { arguments: parsed, provider: `OpenAI (${json.model || "gpt-4o-mini"})` };
+        }
+      }
+    } catch (e) {
+      console.warn("OpenAI provider error:", e);
+    }
+  }
+
+  // Provider 4: Fallback Deterministic Semantic Engine
+  return {
+    arguments: parseWithSemanticEngine(prompt),
+    provider: "DataScope-Semantic-Engine-v2 (Zero-Downtime Fallback)",
+  };
+}
+
+// ============================================================================
+// 6. REST API ROUTE WITH LLM + TOOL CALLING + GUARDRAILS
 // ============================================================================
 
 const AiSearchInputSchema = z.object({
@@ -249,55 +372,13 @@ router.post("/", async (req: Request, res: Response) => {
       });
     }
 
-    let toolArguments: Record<string, unknown> = {};
-    let modelProvider = "DataScope-Semantic-Engine-v2";
+    // 2. Call Multi-Provider LLM Router with automatic fallbacks
+    const { arguments: rawArgs, provider: modelProvider } = await executeMultiProviderLLM(prompt);
 
-    // 2. Check if External LLM Key is Configured (e.g. OpenAI / Groq / Neon AI Gateway)
-    const apiKey = process.env.OPENAI_API_KEY || process.env.AI_GATEWAY_KEY;
-    const apiUrl = process.env.AI_GATEWAY_URL || "https://api.openai.com/v1/chat/completions";
+    // 3. Execute Output Guardrail (Schema Bounds Validation with Zod)
+    const validatedArguments = ToolArgumentsSchema.parse(rawArgs);
 
-    if (apiKey) {
-      try {
-        const llmResponse = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-          },
-          body: JSON.stringify({
-            model: process.env.AI_MODEL || "gpt-4o-mini",
-            messages: [
-              { role: "system", content: SYSTEM_PROMPT },
-              { role: "user", content: prompt },
-            ],
-            tools: DATA_EXPLORER_TOOLS,
-            tool_choice: { type: "function", function: { name: "query_dataset_records" } },
-            temperature: 0.1,
-          }),
-        });
-
-        if (llmResponse.ok) {
-          const llmData = await llmResponse.json();
-          const toolCall = llmData.choices?.[0]?.message?.tool_calls?.[0];
-          if (toolCall?.function?.arguments) {
-            toolArguments = JSON.parse(toolCall.function.arguments);
-            modelProvider = `${llmData.model || "LLM"} (Tool Calling)`;
-          }
-        }
-      } catch (err) {
-        console.warn("LLM API Call fallback to local engine:", err);
-      }
-    }
-
-    // 3. If no LLM key or LLM failed, fallback to zero-dependency deterministic parser
-    if (Object.keys(toolArguments).length === 0) {
-      toolArguments = parseWithSemanticEngine(prompt);
-    }
-
-    // 4. Execute Output Guardrail (Schema Bounds Validation)
-    const validatedArguments = ToolArgumentsSchema.parse(toolArguments);
-
-    // Format human-friendly interpretation
+    // Format human-friendly interpretation summary
     const parts: string[] = [];
     if (validatedArguments.status) parts.push(`Status: ${validatedArguments.status}`);
     if (validatedArguments.country) parts.push(`Country: ${validatedArguments.country}`);
