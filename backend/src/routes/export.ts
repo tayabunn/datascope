@@ -1,10 +1,15 @@
 import { Router, Request, Response } from "express";
 import { getOrGenerateMockRecords } from "../mockData.js";
+import { authenticateUser, requireRole } from "../middleware/auth.js";
 
 const router = Router();
 
-// GET /api/export - Streaming CSV Export
-router.get("/", (req: Request, res: Response) => {
+// GET /api/export - Streaming CSV Export (RBAC Protected: Admin & Analyst only)
+router.get(
+  "/",
+  authenticateUser,
+  requireRole("Administrator", "Data Analyst"),
+  (req: Request, res: Response) => {
   const q = (req.query.q as string) || "";
   const status = (req.query.status as string) || "all";
   const category = (req.query.category as string) || "all";

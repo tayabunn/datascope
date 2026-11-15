@@ -4,27 +4,40 @@ import { db, pool } from "../db/index.js";
 import { datasetRecords } from "../db/schema.js";
 import { sql, and, eq, gte, lte, ilike, or, desc, asc } from "drizzle-orm";
 import { getOrGenerateMockRecords } from "../mockData.js";
+import {
+  authenticateUser,
+  enforceDatasetPermission,
+  requireRole,
+} from "../middleware/auth.js";
 
 const router = Router();
 
 const RecordsQuerySchema = z.object({
-  datasetId: z.string().optional(),
+  datasetId: z.string().max(100).optional(),
   page: z.coerce.number().int().min(1).default(1),
   pageSize: z.coerce.number().int().min(5).max(250).default(50),
-  q: z.string().optional().default(""),
-  status: z.string().optional().default("all"),
-  category: z.string().optional().default("all"),
-  country: z.string().optional().default("all"),
-  minRevenue: z.coerce.number().optional(),
-  maxRevenue: z.coerce.number().optional(),
+  q: z
+    .string()
+    .max(200, "Search query string cannot exceed 200 characters.")
+    .optional()
+    .default(""),
+  status: z.string().max(50).optional().default("all"),
+  category: z.string().max(50).optional().default("all"),
+  country: z.string().max(50).optional().default("all"),
+  minRevenue: z.coerce.number().min(0).optional(),
+  maxRevenue: z.coerce.number().min(0).optional(),
   startDate: z.string().optional(),
   endDate: z.string().optional(),
-  sortField: z.string().optional().default("createdAt"),
-  sortOrder: z.string().optional().default("desc"),
+  sortField: z.string().max(100).optional().default("createdAt"),
+  sortOrder: z.string().max(50).optional().default("desc"),
 });
 
-// GET /api/records - Search, filter, paginate 100k records
-router.get("/", async (req: Request, res: Response) => {
+// GET /api/records - Search, filter, paginate 100k records with dataset permission checks
+router.get(
+  "/",
+  authenticateUser,
+  enforceDatasetPermission,
+  async (req: Request, res: Response) => {
   const startTime = performance.now();
 
   try {
@@ -308,8 +321,12 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
-// PATCH /api/records/:id - Update record fields
-router.patch("/:id", async (req: Request, res: Response) => {
+// PATCH /api/records/:id - Update record fields (RBAC: Administrator & Data Analyst only)
+router.patch(
+  "/:id",
+  authenticateUser,
+  requireRole("Administrator", "Data Analyst"),
+  async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const body = req.body;

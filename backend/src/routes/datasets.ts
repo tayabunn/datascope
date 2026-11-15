@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import { z } from "zod";
+import { authenticateUser, requireRole } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -78,8 +79,12 @@ router.get("/:id", (req: Request, res: Response) => {
   res.json({ success: true, data: ds });
 });
 
-// POST /api/datasets - Create a new dataset (Admin only)
-router.post("/", (req: Request, res: Response) => {
+// POST /api/datasets - Create a new dataset (RBAC: Administrator authority only)
+router.post(
+  "/",
+  authenticateUser,
+  requireRole("Administrator"),
+  (req: Request, res: Response) => {
   const parsed = CreateDatasetSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({

@@ -155,6 +155,18 @@ export const recordsApi = createApi({
   reducerPath: "recordsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "/api",
+    prepareHeaders: (headers, { getState }) => {
+      const state = getState() as any;
+      const token = state.auth?.token;
+      const role = state.auth?.user?.role;
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      if (role) {
+        headers.set("X-User-Role", role);
+      }
+      return headers;
+    },
   }),
   tagTypes: ["DatasetRecords", "RecordDetail", "Analytics", "SavedViews", "SearchHistory"],
   // Retain unused data in cache for 300 seconds (5 minutes) for instant backward navigation
