@@ -20,7 +20,7 @@ const RecordsQuerySchema = z.object({
   startDate: z.string().optional(),
   endDate: z.string().optional(),
   sortField: z.string().optional().default("createdAt"),
-  sortOrder: z.enum(["asc", "desc"]).optional().default("desc"),
+  sortOrder: z.string().optional().default("desc"),
 });
 
 // GET /api/records - Search, filter, paginate 100k records
@@ -112,27 +112,40 @@ router.get("/", async (req: Request, res: Response) => {
 
       const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
-      const sortColumn =
-        sortField === "revenue"
-          ? datasetRecords.revenue
-          : sortField === "profit"
-          ? datasetRecords.profit
-          : sortField === "rating"
-          ? datasetRecords.rating
-          : sortField === "companyName"
-          ? datasetRecords.companyName
-          : sortField === "title"
-          ? datasetRecords.title
-          : datasetRecords.createdAt;
+      const COLUMN_MAP: Record<string, any> = {
+        recordCode: datasetRecords.recordCode,
+        title: datasetRecords.title,
+        companyName: datasetRecords.companyName,
+        category: datasetRecords.category,
+        status: datasetRecords.status,
+        country: datasetRecords.country,
+        revenue: datasetRecords.revenue,
+        cost: datasetRecords.cost,
+        profit: datasetRecords.profit,
+        rating: datasetRecords.rating,
+        priority: datasetRecords.priority,
+        createdAt: datasetRecords.createdAt,
+      };
 
-      const orderExpr = sortOrder === "asc" ? asc(sortColumn) : desc(sortColumn);
+      const sortFields = sortField.split(",").map((s) => s.trim()).filter(Boolean);
+      const sortOrders = sortOrder.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+
+      const orderExprs = sortFields.map((f, idx) => {
+        const col = COLUMN_MAP[f] || datasetRecords.createdAt;
+        const ord = sortOrders[idx] || sortOrders[0] || "desc";
+        return ord === "asc" ? asc(col) : desc(col);
+      });
+
+      if (orderExprs.length === 0) {
+        orderExprs.push(desc(datasetRecords.createdAt));
+      }
 
       const [rows, [countRes]] = await Promise.all([
         db
           .select()
           .from(datasetRecords)
           .where(whereClause)
-          .orderBy(orderExpr)
+          .orderBy(...orderExprs)
           .limit(pageSize)
           .offset(offset),
         db
@@ -191,13 +204,20 @@ router.get("/", async (req: Request, res: Response) => {
     if (minRevenue != null) filtered = filtered.filter((r) => r.revenue >= minRevenue);
     if (maxRevenue != null) filtered = filtered.filter((r) => r.revenue <= maxRevenue);
 
+    const fallbackSortFields = sortField.split(",").map((s) => s.trim()).filter(Boolean);
+    const fallbackSortOrders = sortOrder.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+
     filtered.sort((a, b) => {
-      let valA: any = a[sortField as keyof typeof a] ?? a.createdAt;
-      let valB: any = b[sortField as keyof typeof b] ?? b.createdAt;
-      if (typeof valA === "string") valA = valA.toLowerCase();
-      if (typeof valB === "string") valB = valB.toLowerCase();
-      if (valA < valB) return sortOrder === "asc" ? -1 : 1;
-      if (valA > valB) return sortOrder === "asc" ? 1 : -1;
+      for (let i = 0; i < fallbackSortFields.length; i++) {
+        const field = fallbackSortFields[i];
+        const order = fallbackSortOrders[i] || fallbackSortOrders[0] || "desc";
+        let valA: any = a[field as keyof typeof a] ?? a.createdAt;
+        let valB: any = b[field as keyof typeof b] ?? b.createdAt;
+        if (typeof valA === "string") valA = valA.toLowerCase();
+        if (typeof valB === "string") valB = valB.toLowerCase();
+        if (valA < valB) return order === "asc" ? -1 : 1;
+        if (valA > valB) return order === "asc" ? 1 : -1;
+      }
       return 0;
     });
 
