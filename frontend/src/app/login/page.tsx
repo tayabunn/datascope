@@ -62,9 +62,9 @@ function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
-  const [email, setEmail] = useState("analyst@datascope.internal");
+  const [email, setEmail] = useState("admin@datascope.internal");
   const [password, setPassword] = useState("••••••••••••");
-  const [selectedRole, setSelectedRole] = useState<UserRole>("Data Analyst");
+  const [selectedRole, setSelectedRole] = useState<UserRole>("Administrator");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGoogleModalOpen, setIsGoogleModalOpen] = useState(false);
 
@@ -160,12 +160,19 @@ function LoginContent() {
         addToast({
           type: "success",
           title: "Authentication Verified",
-          message: `Authenticated as ${selectedRole}. Launching Enterprise Explorer...`,
+          message:
+            selectedRole === "Administrator"
+              ? "Authenticated as Administrator. Launching Mission Control..."
+              : `Authenticated as ${selectedRole}. Launching Enterprise Explorer...`,
         })
       );
 
       setIsSubmitting(false);
-      router.push("/explorer");
+      if (selectedRole === "Administrator") {
+        router.push("/overview");
+      } else {
+        router.push("/explorer");
+      }
     }, 700);
   };
 
