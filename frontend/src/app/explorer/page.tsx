@@ -273,28 +273,28 @@ function ExplorerContent() {
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         <Header />
 
-        <main className="p-6 space-y-5 w-full">
+        <main className="p-6 space-y-6 w-full">
           {/* Page Title & Quick Refresh */}
-          <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-3">
                 <h1 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
                   Data Explorer
                 </h1>
-                <span className="render-pill text-xs py-0.5 px-2.5 font-semibold">
+                <span className="render-pill text-xs py-1 px-3 font-semibold font-mono">
                   100k+ Records Loaded
                 </span>
               </div>
-              <p className="text-sm text-[#a1a1aa] mt-1">
+              <p className="text-sm text-[#a1a1aa] mt-1.5">
                 Execute multi-condition searches, apply composite filters, and inspect record schemas with sub-20ms latency.
               </p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <button
                 onClick={handleManualRefresh}
                 disabled={isFetching}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg btn-render-secondary text-xs font-medium"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg btn-render-secondary text-xs font-semibold shadow-sm transition-all"
                 title="Force background cache invalidation & refetch"
               >
                 <RefreshCw

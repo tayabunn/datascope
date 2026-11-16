@@ -103,17 +103,18 @@ export default function FilterBuilder() {
     (maxRevenue != null ? 1 : 0);
 
   return (
-    <div className="render-card rounded-lg p-4 space-y-3 shadow-sm">
+    <div className="render-card rounded-lg p-5 space-y-4 shadow-md">
       {/* Top Filter Controls Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2.5">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        {/* Left Filter Controls */}
+        <div className="flex flex-wrap items-center gap-3.5">
           {/* Status Dropdown */}
           <div className="relative">
             <select
               value={statusFilter}
               onChange={(e) => dispatch(setStatusFilter(e.target.value))}
               aria-label="Filter records by status"
-              className="appearance-none pl-7 pr-8 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-xs text-zinc-200 font-medium hover:border-zinc-600 focus:outline-none focus:border-indigo-500 cursor-pointer"
+              className="appearance-none pl-9 pr-9 py-2 rounded-lg bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-zinc-500 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
             >
               {STATUS_OPTIONS.map((st) => (
                 <option key={st} value={st} className="bg-[#141926]">
@@ -121,8 +122,8 @@ export default function FilterBuilder() {
                 </option>
               ))}
             </select>
-            <Activity className="w-3.5 h-3.5 text-zinc-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <ChevronDown className="w-3.5 h-3.5 text-zinc-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Activity className="w-4 h-4 text-[#968dfa] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-4 h-4 text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* Category Dropdown */}
@@ -131,7 +132,7 @@ export default function FilterBuilder() {
               value={categoryFilter}
               onChange={(e) => dispatch(setCategoryFilter(e.target.value))}
               aria-label="Filter records by sector category"
-              className="appearance-none pl-7 pr-8 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-xs text-zinc-200 font-medium hover:border-zinc-600 focus:outline-none focus:border-indigo-500 cursor-pointer"
+              className="appearance-none pl-9 pr-9 py-2 rounded-lg bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-zinc-500 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
             >
               {CATEGORY_OPTIONS.map((cat) => (
                 <option key={cat} value={cat} className="bg-[#141926]">
@@ -139,8 +140,8 @@ export default function FilterBuilder() {
                 </option>
               ))}
             </select>
-            <Tag className="w-3.5 h-3.5 text-zinc-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <ChevronDown className="w-3.5 h-3.5 text-zinc-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Tag className="w-4 h-4 text-[#ffa033] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-4 h-4 text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* Country Dropdown */}
@@ -149,7 +150,7 @@ export default function FilterBuilder() {
               value={countryFilter}
               onChange={(e) => dispatch(setCountryFilter(e.target.value))}
               aria-label="Filter records by country"
-              className="appearance-none pl-7 pr-8 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-xs text-zinc-200 font-medium hover:border-zinc-600 focus:outline-none focus:border-indigo-500 cursor-pointer"
+              className="appearance-none pl-9 pr-9 py-2 rounded-lg bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-zinc-500 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
             >
               {COUNTRY_OPTIONS.map((ct) => (
                 <option key={ct} value={ct} className="bg-[#141926]">
@@ -157,20 +158,20 @@ export default function FilterBuilder() {
                 </option>
               ))}
             </select>
-            <Globe className="w-3.5 h-3.5 text-zinc-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <ChevronDown className="w-3.5 h-3.5 text-zinc-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Globe className="w-4 h-4 text-[#38bdf8] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-4 h-4 text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* Toggle Advanced Ranges */}
           <button
             onClick={() => dispatch(toggleAdvancedBuilder())}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold border transition-all shadow-sm ${
               isAdvancedBuilderOpen
                 ? "bg-[#6c35f5]/20 text-[#b193e0] border-[#968dfa]/40"
                 : "btn-render-secondary"
             }`}
           >
-            <SlidersHorizontal className="w-3.5 h-3.5 text-[#968dfa]" />
+            <SlidersHorizontal className="w-4 h-4 text-[#968dfa]" />
             <span>Range Filters</span>
             {activeFiltersCount > 0 && (
               <span className="w-4 h-4 rounded-full bg-[#6c35f5] text-white font-mono text-[10px] flex items-center justify-center font-bold">
@@ -181,7 +182,7 @@ export default function FilterBuilder() {
         </div>
 
         {/* Action Controls: Saved Views, History, Reset & Save View */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-3">
           {/* Quick Saved Views Dropdown */}
           {savedViews.length > 0 && (
             <div className="relative">
@@ -193,7 +194,7 @@ export default function FilterBuilder() {
                 }}
                 defaultValue=""
                 aria-label="Load a saved search view"
-                className="appearance-none pl-7 pr-8 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-xs text-[#fafaf4] font-medium hover:border-[#968dfa]/50 focus:outline-none focus:border-[#968dfa] cursor-pointer"
+                className="appearance-none pl-9 pr-9 py-2 rounded-lg bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-[#968dfa]/50 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
                 title="Select and apply a saved search configuration"
               >
                 <option value="" disabled>
@@ -205,25 +206,25 @@ export default function FilterBuilder() {
                   </option>
                 ))}
               </select>
-              <BookmarkCheck className="w-3.5 h-3.5 text-[#968dfa] absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <ChevronDown className="w-3.5 h-3.5 text-zinc-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <BookmarkCheck className="w-4 h-4 text-[#968dfa] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <ChevronDown className="w-4 h-4 text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
           )}
 
           {/* Quick Link to Search History */}
           <Link
             href="/history"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg btn-render-secondary text-xs font-medium"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg btn-render-secondary text-xs font-semibold shadow-sm"
             title="View recent search query history"
           >
-            <History className="w-3.5 h-3.5 text-[#968dfa]" />
+            <History className="w-4 h-4 text-[#968dfa]" />
             <span className="hidden sm:inline">History</span>
           </Link>
 
           {activeFiltersCount > 0 && (
             <button
               onClick={() => dispatch(clearAllFilters())}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs text-[#a1a1aa] hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-[#a1a1aa] hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset</span>
@@ -232,9 +233,9 @@ export default function FilterBuilder() {
 
           <button
             onClick={() => dispatch(openSaveModal())}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg btn-render-primary text-xs font-semibold shadow-md"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg btn-render-primary text-xs font-semibold shadow-md"
           >
-            <BookmarkPlus className="w-3.5 h-3.5 text-[#b193e0]" />
+            <BookmarkPlus className="w-4 h-4 text-[#b193e0]" />
             <span>Save View</span>
           </button>
         </div>
