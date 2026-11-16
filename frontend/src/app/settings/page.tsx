@@ -96,7 +96,7 @@ export default function SettingsPage() {
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         <Header />
 
-        <main className="p-6 space-y-6 max-w-4xl mx-auto w-full">
+        <main className="p-6 space-y-6 w-full">
           <div>
             <div className="flex items-center gap-2.5">
               <h1 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
