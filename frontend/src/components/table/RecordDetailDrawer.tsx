@@ -91,15 +91,15 @@ export default function RecordDetailDrawer() {
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {isLoading || !record ? (
             <div className="space-y-4 animate-pulse">
-              <div className="h-20 bg-[#161c2c] rounded-xl" />
-              <div className="h-40 bg-[#161c2c] rounded-xl" />
-              <div className="h-40 bg-[#161c2c] rounded-xl" />
+              <div className="h-20 bg-[#161c2c] rounded-lg" />
+              <div className="h-40 bg-[#161c2c] rounded-lg" />
+              <div className="h-40 bg-[#161c2c] rounded-lg" />
             </div>
           ) : (
             <>
               {/* Financial Metrics Cards */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="p-3.5 rounded-xl bg-[#121624] border border-[#1d2436] space-y-1">
+                <div className="p-3.5 rounded-lg bg-[#121624] border border-[#1d2436] space-y-1">
                   <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-1">
                     <DollarSign className="w-3.5 h-3.5 text-emerald-400" />
                     Revenue
@@ -109,7 +109,7 @@ export default function RecordDetailDrawer() {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-[#121624] border border-[#1d2436] space-y-1">
+                <div className="p-3.5 rounded-lg bg-[#121624] border border-[#1d2436] space-y-1">
                   <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-1">
                     <TrendingUp className="w-3.5 h-3.5 text-cyan-400" />
                     Net Profit
@@ -119,7 +119,7 @@ export default function RecordDetailDrawer() {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-[#121624] border border-[#1d2436] space-y-1">
+                <div className="p-3.5 rounded-lg bg-[#121624] border border-[#1d2436] space-y-1">
                   <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-1">
                     <Shield className="w-3.5 h-3.5 text-amber-400" />
                     Priority
@@ -132,7 +132,7 @@ export default function RecordDetailDrawer() {
 
               {/* Status Update Quick Action (RBAC: Admin & Analyst only) */}
               {user?.role !== "Viewer" && (
-                <div className="p-3.5 rounded-xl bg-[#101420] border border-[#1f283d] flex items-center justify-between">
+                <div className="p-3.5 rounded-lg bg-[#101420] border border-[#1f283d] flex items-center justify-between">
                   <div>
                     <div className="text-xs font-semibold text-zinc-200">
                       Update Operational Status
@@ -161,7 +161,7 @@ export default function RecordDetailDrawer() {
               )}
 
               {/* Core Information Grid */}
-              <div className="rounded-xl bg-[#121624] border border-[#1d2436] p-4 space-y-3">
+              <div className="rounded-lg bg-[#121624] border border-[#1d2436] p-4 space-y-3">
                 <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold border-b border-[#1c2438] pb-2">
                   Entity Metadata
                 </h3>
@@ -207,7 +207,7 @@ export default function RecordDetailDrawer() {
               </div>
 
               {/* Related Records (Connected Graph) */}
-              <div className="rounded-xl bg-[#121624] border border-[#1d2436] p-4 space-y-3">
+              <div className="rounded-lg bg-[#121624] border border-[#1d2436] p-4 space-y-3">
                 <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold border-b border-[#1c2438] pb-2">
                   <LinkIcon className="w-3.5 h-3.5 text-cyan-400" />
                   <span>Related Business Records</span>
@@ -235,7 +235,7 @@ export default function RecordDetailDrawer() {
               </div>
 
               {/* Historical Audit Trail Timeline */}
-              <div className="rounded-xl bg-[#121624] border border-[#1d2436] p-4 space-y-3">
+              <div className="rounded-lg bg-[#121624] border border-[#1d2436] p-4 space-y-3">
                 <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold border-b border-[#1c2438] pb-2">
                   <History className="w-3.5 h-3.5 text-indigo-400" />
                   <span>Historical Change Audit Log</span>
