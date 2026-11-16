@@ -127,21 +127,21 @@ export default function AdvancedSearchPage() {
 
         <main className="p-6 space-y-6 max-w-5xl mx-auto w-full">
           <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold text-white tracking-tight">
+            <div className="flex items-center gap-2.5">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                 Visual Query Builder
               </h1>
               <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">
                 AST Query Engine
               </span>
             </div>
-            <p className="text-xs text-zinc-400 mt-0.5">
+            <p className="text-sm text-zinc-400 mt-1">
               Construct complex, multi-variable relational queries with custom logical predicates without writing raw SQL.
             </p>
           </div>
 
           {/* Builder Panel */}
-          <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-4 shadow-xl">
+          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4 shadow-xl">
             <div className="flex items-center justify-between border-b border-[#1b2234] pb-3">
               <span className="text-xs font-mono uppercase text-zinc-400 font-semibold flex items-center gap-1.5">
                 <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-400" />
@@ -234,7 +234,7 @@ export default function AdvancedSearchPage() {
           </div>
 
           {/* Dynamic SQL Compiler Preview */}
-          <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-2">
+          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono uppercase text-zinc-400 font-semibold">
               <Code2 className="w-4 h-4 text-cyan-400" />
               <span>Compiled PostgreSQL Abstract Syntax Tree (AST)</span>
