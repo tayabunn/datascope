@@ -103,7 +103,7 @@ export default function FilterBuilder() {
     (maxRevenue != null ? 1 : 0);
 
   return (
-    <div className="bg-[#0e121c] border border-[#1b2234] rounded-xl p-4 space-y-3 shadow-sm">
+    <div className="bg-[#0e121c] border border-[#1b2234] rounded-lg p-4 space-y-3 shadow-sm">
       {/* Top Filter Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2.5">
