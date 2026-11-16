@@ -149,7 +149,7 @@ export default function SaveViewModal() {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
-      <div className="bg-[#0f131d] border border-[#232c42] rounded-xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div className="bg-[#0f131d] border border-[#232c42] rounded-lg max-w-lg w-full p-6 shadow-2xl space-y-4">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#1f273b] pb-3">
           <div className="flex items-center gap-2.5">
