@@ -169,6 +169,7 @@ export default function AnalyticsCharts({
                 />
                 <YAxis stroke="#a1a1aa" fontSize={10} tickLine={false} />
                 <Tooltip
+                  cursor={false}
                   contentStyle={{
                     backgroundColor: "#0c0f18",
                     borderColor: "#1a2030",
@@ -218,6 +219,8 @@ export default function AnalyticsCharts({
                   innerRadius={60}
                   outerRadius={92}
                   paddingAngle={4}
+                  stroke="#0c0f18"
+                  strokeWidth={2}
                 >
                   {byStatus.map((entry, index) => (
                     <Cell
@@ -263,6 +266,7 @@ export default function AnalyticsCharts({
               <XAxis dataKey="month" stroke="#a1a1aa" fontSize={10} tickLine={false} />
               <YAxis stroke="#a1a1aa" fontSize={10} tickLine={false} />
               <Tooltip
+                cursor={{ stroke: "#6c35f5", strokeWidth: 1, strokeDasharray: "3 3" }}
                 contentStyle={{
                   backgroundColor: "#0c0f18",
                   borderColor: "#1a2030",
@@ -316,6 +320,7 @@ export default function AnalyticsCharts({
                   unit="ms"
                 />
                 <Tooltip
+                  cursor={false}
                   contentStyle={{
                     backgroundColor: "#0c0f18",
                     borderColor: "#1a2030",
@@ -374,6 +379,7 @@ export default function AnalyticsCharts({
                   width={140}
                 />
                 <Tooltip
+                  cursor={false}
                   contentStyle={{
                     backgroundColor: "#0c0f18",
                     borderColor: "#1a2030",
