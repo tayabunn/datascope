@@ -82,7 +82,7 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
-      <div className="bg-[#0f131d] border border-[#232c42] rounded-xl max-w-xl w-full p-6 shadow-2xl space-y-4">
+      <div className="bg-[#0f131d] border border-[#232c42] rounded-lg max-w-xl w-full p-6 shadow-2xl space-y-4">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#1f273b] pb-3">
           <div className="flex items-center gap-2">
@@ -131,7 +131,7 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
             <button
               type="submit"
               disabled={isLoading || !prompt.trim()}
-              className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-medium flex items-center gap-1 transition-all"
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-medium flex items-center gap-1 transition-all"
             >
               {isLoading ? "Analyzing..." : "Translate"}
               <CornerDownLeft className="w-3 h-3" />
