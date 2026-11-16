@@ -34,8 +34,8 @@ export default function OverviewDashboardPage() {
           {/* Header Banner */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold text-white tracking-tight">
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Overview Dashboard
                 </h1>
                 <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold flex items-center gap-1">
@@ -43,7 +43,7 @@ export default function OverviewDashboardPage() {
                   Cluster Operational
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-sm text-zinc-400 mt-1">
                 Centralized discovery metrics, cluster telemetry, and high-volume data lake synchronizations.
               </p>
             </div>
@@ -62,7 +62,7 @@ export default function OverviewDashboardPage() {
 
           {/* 4 Core KPI Metrics */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-2">
+            <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-2">
               <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
                 <span>TOTAL INDEXED RECORDS</span>
                 <Database className="w-4 h-4 text-cyan-400" />
@@ -76,7 +76,7 @@ export default function OverviewDashboardPage() {
               </div>
             </div>
 
-            <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-2">
+            <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-2">
               <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
                 <span>PORTFOLIO REVENUE</span>
                 <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -89,7 +89,7 @@ export default function OverviewDashboardPage() {
               </div>
             </div>
 
-            <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-2">
+            <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-2">
               <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
                 <span>QUERY EXECUTION P95</span>
                 <Zap className="w-4 h-4 text-amber-400" />
@@ -102,7 +102,7 @@ export default function OverviewDashboardPage() {
               </div>
             </div>
 
-            <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-2">
+            <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-2">
               <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
                 <span>CONNECTED LAKES</span>
                 <Layers className="w-4 h-4 text-indigo-400" />
@@ -120,7 +120,7 @@ export default function OverviewDashboardPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Link
               href="/explorer"
-              className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] hover:border-indigo-500/40 transition-all space-y-3 group"
+              className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] hover:border-indigo-500/40 transition-all space-y-3 group"
             >
               <div className="w-9 h-9 rounded-lg bg-indigo-500/10 border border-indigo-500/25 flex items-center justify-center text-indigo-400 group-hover:scale-105 transition-transform">
                 <Database className="w-5 h-5" />
@@ -137,7 +137,7 @@ export default function OverviewDashboardPage() {
 
             <Link
               href="/search"
-              className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] hover:border-indigo-500/40 transition-all space-y-3 group"
+              className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] hover:border-indigo-500/40 transition-all space-y-3 group"
             >
               <div className="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
                 <Search className="w-5 h-5" />
@@ -154,7 +154,7 @@ export default function OverviewDashboardPage() {
 
             <Link
               href="/analytics"
-              className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] hover:border-indigo-500/40 transition-all space-y-3 group"
+              className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] hover:border-indigo-500/40 transition-all space-y-3 group"
             >
               <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
                 <BarChart3 className="w-5 h-5" />
@@ -171,7 +171,7 @@ export default function OverviewDashboardPage() {
           </div>
 
           {/* Connected Data Lakes & Health Status Table */}
-          <div className="rounded-xl bg-[#0f131f] border border-[#1d2538] p-5 space-y-4">
+          <div className="rounded-lg bg-[#0f131f] border border-[#1d2538] p-5 space-y-4">
             <div className="flex items-center justify-between border-b border-[#1b2234] pb-3">
               <div className="flex items-center gap-2">
                 <Server className="w-4 h-4 text-indigo-400" />
