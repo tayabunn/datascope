@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { switchRole, logout, UserRole } from "@/store/slices/authSlice";
+import { logout } from "@/store/slices/authSlice";
 import { addToast } from "@/store/slices/toastSlice";
 import DataScopeLogo from "@/components/common/DataScopeLogo";
 import {
@@ -17,29 +17,40 @@ import {
   Settings,
   ShieldCheck,
   Layers,
-  Sparkles,
-  UserCheck,
   Globe,
   ExternalLink,
   LogOut,
 } from "lucide-react";
-
-const NAV_ITEMS = [
-  { label: "Overview", href: "/overview", icon: LayoutDashboard },
-  { label: "Dataset Library", href: "/datasets", icon: Layers },
-  { label: "Data Explorer", href: "/explorer", icon: Database, badge: "100k+" },
-  { label: "Advanced Search", href: "/search", icon: Search },
-  { label: "Saved Views", href: "/saved-views", icon: BookmarkCheck },
-  { label: "Search History", href: "/history", icon: History },
-  { label: "Analytics", href: "/analytics", icon: BarChart3 },
-  { label: "System Settings", href: "/settings", icon: Settings, adminOnly: true },
-];
 
 export default function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+
+  const isAdmin = user?.role === "Administrator";
+
+  const navItems = [
+    {
+      label: isAdmin ? "Admin Dashboard" : "Overview",
+      href: "/overview",
+      icon: isAdmin ? ShieldCheck : LayoutDashboard,
+      badge: isAdmin ? "Admin" : undefined,
+    },
+    { label: "Dataset Library", href: "/datasets", icon: Layers },
+    { label: "Data Explorer", href: "/explorer", icon: Database, badge: "100k+" },
+    { label: "Advanced Search", href: "/search", icon: Search },
+    { label: "Saved Views", href: "/saved-views", icon: BookmarkCheck },
+    { label: "Search History", href: "/history", icon: History },
+    { label: "Analytics", href: "/analytics", icon: BarChart3 },
+    {
+      label: "System Settings",
+      href: "/settings",
+      icon: Settings,
+      adminOnly: true,
+      badge: isAdmin ? "Full Access" : "Admin",
+    },
+  ];
 
   const handleLogout = () => {
     dispatch(logout());
@@ -51,22 +62,6 @@ export default function Sidebar() {
       })
     );
     router.push("/login");
-  };
-
-  const handleRoleChange = (targetRole: UserRole) => {
-    // Security Guard: Prevent unauthorized role elevation to Administrator
-    if (targetRole === "Administrator" && user?.role !== "Administrator") {
-      dispatch(
-        addToast({
-          type: "error",
-          title: "Privilege Escalation Denied",
-          message:
-            "Administrator access requires authenticating with Admin credentials at Sign In.",
-        })
-      );
-      return;
-    }
-    dispatch(switchRole(targetRole));
   };
 
   return (
@@ -101,10 +96,10 @@ export default function Sidebar() {
         {/* Navigation List */}
         <nav className="p-3 space-y-1">
           <div className="px-3 py-1.5 text-[10px] font-semibold text-zinc-400 uppercase tracking-wider font-mono">
-            Platform Modules
+            {isAdmin ? "Admin Controls" : "Platform Modules"}
           </div>
 
-          {NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             const Icon = item.icon;
             const isActive =
               item.href === "/overview"
@@ -131,12 +126,20 @@ export default function Sidebar() {
                   />
                   <span>{item.label}</span>
                 </div>
-                {item.adminOnly && user?.role !== "Administrator" ? (
+                {item.adminOnly && !isAdmin ? (
                   <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">
                     Admin
                   </span>
                 ) : item.badge ? (
-                  <span className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-[#6c35f5]/20 text-[#b193e0] border border-[#968dfa]/30">
+                  <span
+                    className={`text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded ${
+                      isAdmin && item.badge === "Admin"
+                        ? "bg-[#6c35f5]/25 text-[#b193e0] border border-[#968dfa]/40"
+                        : isAdmin && item.badge === "Full Access"
+                        ? "bg-[#0b7d55]/15 text-[#0b7d55] border border-[#0b7d55]/30"
+                        : "bg-[#6c35f5]/20 text-[#b193e0] border border-[#968dfa]/30"
+                    }`}
+                  >
                     {item.badge}
                   </span>
                 ) : null}
@@ -166,54 +169,55 @@ export default function Sidebar() {
         </nav>
       </div>
 
-      {/* RBAC Role Switcher & User Profile */}
+      {/* Authenticated User Profile & Fixed Role Identity */}
       <div className="p-3 border-t border-[#1a2030] bg-[#090b12]">
         <div className="p-2.5 rounded-lg bg-[#121622] border border-[#1d2436] space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 flex items-center gap-1 font-semibold">
-              <ShieldCheck className="w-3 h-3 text-emerald-400" />
-              Active Role (RBAC)
+              <ShieldCheck
+                className={`w-3.5 h-3.5 ${
+                  isAdmin
+                    ? "text-[#968dfa]"
+                    : user?.role === "Data Analyst"
+                    ? "text-[#0b7d55]"
+                    : "text-zinc-400"
+                }`}
+              />
+              {isAdmin ? "Administrator Authority" : "Authenticated Session"}
             </span>
-          </div>
 
-          {/* Quick Role Switcher Buttons */}
-          <div className="grid grid-cols-3 gap-1">
-            {(["Administrator", "Data Analyst", "Viewer"] as UserRole[]).map(
-              (r) => {
-                const isSelected = user?.role === r;
-                return (
-                  <button
-                    key={r}
-                    onClick={() => handleRoleChange(r)}
-                    className={`text-[9px] py-1 px-1 rounded font-medium text-center transition-all ${
-                      isSelected
-                        ? "bg-[#6c35f5] text-white font-semibold shadow"
-                        : "bg-[#181e2e] text-zinc-400 hover:text-zinc-200 hover:bg-[#20283d]"
-                    }`}
-                    title={`Switch session to ${r}`}
-                  >
-                    {r === "Administrator"
-                      ? "Admin"
-                      : r === "Data Analyst"
-                      ? "Analyst"
-                      : "Viewer"}
-                  </button>
-                );
-              }
-            )}
+            <span
+              className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded ${
+                isAdmin
+                  ? "bg-[#6c35f5]/25 text-[#b193e0] border border-[#968dfa]/40"
+                  : user?.role === "Data Analyst"
+                  ? "bg-[#0b7d55]/15 text-[#0b7d55] border border-[#0b7d55]/30"
+                  : "bg-zinc-800 text-zinc-400 border border-zinc-700"
+              }`}
+            >
+              {user?.role || "Viewer"}
+            </span>
           </div>
 
           <div className="pt-1.5 flex items-center justify-between border-t border-[#1d2436]/60">
             <div className="flex items-center gap-2 overflow-hidden">
-              <div className="w-7 h-7 rounded-full bg-[#6c35f5]/20 border border-[#968dfa]/40 flex items-center justify-center text-xs font-semibold text-[#b193e0] flex-shrink-0">
+              <div
+                className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${
+                  isAdmin
+                    ? "bg-[#6c35f5]/20 border border-[#968dfa]/40 text-[#b193e0]"
+                    : user?.role === "Data Analyst"
+                    ? "bg-[#0b7d55]/20 border border-[#0b7d55]/40 text-[#0b7d55]"
+                    : "bg-zinc-800 border border-zinc-700 text-zinc-300"
+                }`}
+              >
                 {user?.fullName?.charAt(0) || "U"}
               </div>
               <div className="overflow-hidden">
                 <div className="text-xs font-medium text-zinc-200 truncate">
-                  {user?.fullName || "Sarah Connor"}
+                  {user?.fullName || "Authenticated User"}
                 </div>
                 <div className="text-[10px] text-zinc-400 font-mono truncate">
-                  {user?.role}
+                  {user?.email || "user@datascope.internal"}
                 </div>
               </div>
             </div>
@@ -232,4 +236,3 @@ export default function Sidebar() {
     </aside>
   );
 }
-
