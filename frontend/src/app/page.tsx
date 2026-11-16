@@ -40,7 +40,7 @@ export default function LandingPage() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Hero Section (Render Cloud Atmosphere + Mistral Editorial Typography) */}
-        <section className="relative pt-20 pb-16 px-6 max-w-6xl mx-auto text-center space-y-6">
+        <section className="relative pt-20 pb-16 px-4 w-[90%] mx-auto text-center space-y-6">
           <div className="mistral-pill mb-2 shadow-sm inline-flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5 text-[#ff8204] animate-pulse" />
             <span>100,000+ Business Records • Sub-18ms GIN Indexing</span>
@@ -53,7 +53,7 @@ export default function LandingPage() {
             </span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-[#a1a1aa] text-sm sm:text-base leading-relaxed">
+          <p className="max-w-3xl mx-auto text-[#a1a1aa] text-sm sm:text-base leading-relaxed">
             Engineered for high-volume enterprise discovery. Query millions of records with PostgreSQL B-Tree & GIN trigram indexing, RTK Query server-state caching, and sub-20ms response times.
           </p>
 
@@ -85,7 +85,7 @@ export default function LandingPage() {
           </div>
 
           {/* Metric Strip (Render Inset Cards + Mistral Telemetry) */}
-          <div className="pt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div className="pt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 w-full mx-auto">
             <div className="p-4 rounded-lg render-card text-center space-y-1">
               <div className="text-2xl sm:text-3xl font-bold font-mono text-[#fafaf4]">
                 100,000+
@@ -125,7 +125,7 @@ export default function LandingPage() {
         </section>
 
         {/* Live Interactive Explorer Preview Section */}
-        <section className="py-16 px-6 max-w-6xl mx-auto">
+        <section className="py-16 px-4 w-[90%] mx-auto">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
             <div className="space-y-2">
               <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
@@ -228,7 +228,7 @@ export default function LandingPage() {
         </section>
 
         {/* Platform Capabilities Grid */}
-        <section className="py-16 px-6 max-w-6xl mx-auto space-y-12">
+        <section className="py-16 px-4 w-[90%] mx-auto space-y-12">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
             <div className="space-y-2">
               <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">
@@ -323,7 +323,7 @@ export default function LandingPage() {
         </section>
 
         {/* CTA Footer Section (Render Iris + Mistral Amber) */}
-        <section className="py-20 px-6 max-w-5xl mx-auto text-center">
+        <section className="py-20 px-4 w-[90%] mx-auto text-center">
           <div className="p-10 sm:p-12 rounded-lg render-card space-y-6">
             <h2 className="text-2xl sm:text-4xl font-bold text-[#fafaf4] tracking-tight">
               Ready to Explore High-Volume Enterprise Data?
