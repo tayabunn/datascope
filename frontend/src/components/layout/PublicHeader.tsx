@@ -45,7 +45,7 @@ export default function PublicHeader() {
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#080a10]/85 border-b border-[#1a2030]">
-      <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+      <div className="w-[90%] mx-auto h-18 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] flex items-center justify-center shadow-lg shadow-[#6c35f5]/30 text-white font-bold group-hover:scale-105 transition-transform p-2">
