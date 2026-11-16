@@ -22,15 +22,15 @@ export default function AnalyticsPage() {
           {/* Header */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold text-white tracking-tight">
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Portfolio & Search Analytics
                 </h1>
                 <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-semibold">
                   Server-Side SQL Aggregations
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-sm text-zinc-400 mt-1">
                 Real-time distributions, operational growth, and performance telemetry across 100,000+ enterprise records without downloading rows to the client.
               </p>
             </div>
@@ -55,7 +55,7 @@ export default function AnalyticsPage() {
           </ErrorBoundary>
 
           {/* Search Performance Monitoring Section (Bonus Challenge F) */}
-          <div className="rounded-xl bg-[#0f131f] border border-[#1d2538] p-5 space-y-4">
+          <div className="rounded-lg bg-[#0f131f] border border-[#1d2538] p-5 space-y-4">
             <div className="flex items-center gap-2 border-b border-[#1d2538] pb-3">
               <Cpu className="w-4 h-4 text-emerald-400" />
               <h3 className="text-xs font-semibold text-white uppercase font-mono tracking-wider">
