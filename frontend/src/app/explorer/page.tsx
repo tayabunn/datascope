@@ -278,14 +278,14 @@ function ExplorerContent() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <div className="flex items-center gap-2.5">
-                <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                <h1 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
                   Data Explorer
                 </h1>
-                <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">
-                  100k+ Records
+                <span className="render-pill text-xs py-0.5 px-2.5 font-semibold">
+                  100k+ Records Loaded
                 </span>
               </div>
-              <p className="text-sm text-zinc-400 mt-1">
+              <p className="text-sm text-[#a1a1aa] mt-1">
                 Execute multi-condition searches, apply composite filters, and inspect record schemas with sub-20ms latency.
               </p>
             </div>
@@ -294,15 +294,15 @@ function ExplorerContent() {
               <button
                 onClick={handleManualRefresh}
                 disabled={isFetching}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-medium transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg btn-render-secondary text-xs font-medium"
                 title="Force background cache invalidation & refetch"
               >
                 <RefreshCw
-                  className={`w-3.5 h-3.5 text-zinc-400 ${
-                    isFetching ? "animate-spin text-cyan-400" : ""
+                  className={`w-3.5 h-3.5 text-[#968dfa] ${
+                    isFetching ? "animate-spin text-[#ffa033]" : ""
                   }`}
                 />
-                <span>{isFetching ? "Syncing..." : "Refresh"}</span>
+                <span>{isFetching ? "Syncing..." : "Sync Cluster"}</span>
               </button>
             </div>
           </div>
