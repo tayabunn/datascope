@@ -55,8 +55,8 @@ export default function SettingsPage() {
         <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
           <Header />
           <main className="p-6 max-w-xl mx-auto w-full my-auto text-center space-y-4">
-            <div className="p-8 rounded-2xl bg-[#0d101a] border border-[#232c42] shadow-2xl space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mx-auto shadow-inner">
+            <div className="p-8 rounded-lg bg-[#0d101a] border border-[#232c42] shadow-2xl space-y-4">
+              <div className="w-14 h-14 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mx-auto shadow-inner">
                 <ShieldAlert className="w-7 h-7" />
               </div>
               <div className="space-y-1.5">
@@ -76,7 +76,7 @@ export default function SettingsPage() {
               <div className="pt-2 flex justify-center">
                 <Link
                   href="/explorer"
-                  className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/20 transition-all flex items-center gap-2"
+                  className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/20 transition-all flex items-center gap-2"
                 >
                   <ArrowRight className="w-4 h-4" />
                   <span>Return to Data Explorer</span>
@@ -98,15 +98,15 @@ export default function SettingsPage() {
 
         <main className="p-6 space-y-6 max-w-4xl mx-auto w-full">
           <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold text-white tracking-tight">
+            <div className="flex items-center gap-2.5">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                 System & Workspace Preferences
               </h1>
               <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">
                 Configuration
               </span>
             </div>
-            <p className="text-xs text-zinc-400 mt-0.5">
+            <p className="text-sm text-zinc-400 mt-1">
               Customize table viewport densities, manage connection pool parameters, and review system diagnostics.
             </p>
           </div>
@@ -119,7 +119,7 @@ export default function SettingsPage() {
           )}
 
           {/* Table Display Preferences */}
-          <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-4">
+          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4">
             <div className="flex items-center gap-2 border-b border-[#1b2234] pb-3">
               <Sliders className="w-4 h-4 text-indigo-400" />
               <h2 className="text-xs font-semibold uppercase font-mono tracking-wider text-white">
@@ -182,7 +182,7 @@ export default function SettingsPage() {
           </div>
 
           {/* Database Diagnostics */}
-          <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-4">
+          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4">
             <div className="flex items-center gap-2 border-b border-[#1b2234] pb-3">
               <Database className="w-4 h-4 text-cyan-400" />
               <h2 className="text-xs font-semibold uppercase font-mono tracking-wider text-white">
