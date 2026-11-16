@@ -150,15 +150,15 @@ export default function SavedViewsPage() {
           {/* Top Bar with Title and Actions */}
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold text-white tracking-tight">
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Saved Views & Analytical Presets
                 </h1>
                 <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">
                   {views.length} Presets
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-sm text-zinc-400 mt-1">
                 Save, manage, reuse, and share high-frequency search criteria, column layouts, and multi-filter rules.
               </p>
             </div>
@@ -168,7 +168,7 @@ export default function SavedViewsPage() {
               <div className="flex items-center bg-[#141926] border border-[#222a3d] rounded-lg p-0.5 text-xs font-medium">
                 <button
                   onClick={() => setActiveFilterTab("all")}
-                  className={`px-3 py-1 rounded-md transition-colors ${
+                  className={`px-3 py-1 rounded-lg transition-colors ${
                     activeFilterTab === "all"
                       ? "bg-indigo-600 text-white"
                       : "text-zinc-400 hover:text-white"
@@ -178,7 +178,7 @@ export default function SavedViewsPage() {
                 </button>
                 <button
                   onClick={() => setActiveFilterTab("shared")}
-                  className={`px-3 py-1 rounded-md transition-colors ${
+                  className={`px-3 py-1 rounded-lg transition-colors ${
                     activeFilterTab === "shared"
                       ? "bg-indigo-600 text-white"
                       : "text-zinc-400 hover:text-white"
@@ -188,7 +188,7 @@ export default function SavedViewsPage() {
                 </button>
                 <button
                   onClick={() => setActiveFilterTab("private")}
-                  className={`px-3 py-1 rounded-md transition-colors ${
+                  className={`px-3 py-1 rounded-lg transition-colors ${
                     activeFilterTab === "private"
                       ? "bg-indigo-600 text-white"
                       : "text-zinc-400 hover:text-white"
@@ -213,10 +213,10 @@ export default function SavedViewsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {isLoading ? (
               Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="h-56 bg-[#0f131f] rounded-xl animate-pulse border border-[#1b2234]" />
+                <div key={i} className="h-56 bg-[#0f131f] rounded-lg animate-pulse border border-[#1b2234]" />
               ))
             ) : filteredViews.length === 0 ? (
-              <div className="col-span-full text-center py-20 text-zinc-500 rounded-xl bg-[#0c0f18] border border-[#1b2234]">
+              <div className="col-span-full text-center py-20 text-zinc-500 rounded-lg bg-[#0c0f18] border border-[#1b2234]">
                 <BookmarkCheck className="w-10 h-10 text-zinc-600 mx-auto mb-2" />
                 <h4 className="text-sm font-semibold text-zinc-300">No Saved Views Found</h4>
                 <p className="text-xs text-zinc-500 mt-1">
@@ -229,7 +229,7 @@ export default function SavedViewsPage() {
               filteredViews.map((v) => (
                 <div
                   key={v.id}
-                  className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] hover:border-indigo-500/40 transition-all flex flex-col justify-between space-y-4 group shadow-md"
+                  className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] hover:border-indigo-500/40 transition-all flex flex-col justify-between space-y-4 group shadow-md"
                 >
                   {/* Top: Header & Sharing Badge */}
                   <div className="space-y-2">
