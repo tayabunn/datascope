@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useAppSelector } from "@/store/hooks";
+import DataScopeLogo from "@/components/common/DataScopeLogo";
 import {
   Layers,
   Database,
@@ -39,8 +40,8 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 text-white font-bold group-hover:scale-105 transition-transform">
-              <Layers className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 text-white font-bold group-hover:scale-105 transition-transform p-2">
+              <DataScopeLogo className="w-full h-full text-white" />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -83,7 +84,7 @@ export default function LandingPage() {
                 </span>
                 <Link
                   href="/explorer"
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
                 >
                   <Database className="w-3.5 h-3.5 text-indigo-200" />
                   <span>Go to Explorer</span>
@@ -100,7 +101,7 @@ export default function LandingPage() {
                 </Link>
                 <Link
                   href="/register"
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
                 >
                   <span>Get Started</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -120,7 +121,7 @@ export default function LandingPage() {
             <span>High-Speed Search & Analytics for 100,000+ Business Records</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
+          <h1 className="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-[1.15]">
             Next-Generation Enterprise <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400">
               Data Discovery & Intelligence
@@ -134,7 +135,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-4">
             <Link
               href="/explorer"
-              className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-xl shadow-indigo-600/30 transition-all group"
+              className="flex items-center gap-2.5 px-6 py-3.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-xl shadow-indigo-600/30 transition-all group"
             >
               <Database className="w-4 h-4 text-indigo-200" />
               <span>Launch Live Data Explorer (100k Rows)</span>
@@ -143,7 +144,7 @@ export default function LandingPage() {
 
             <Link
               href="/overview"
-              className="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-[#121624] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-200 text-sm font-semibold transition-all"
+              className="flex items-center gap-2 px-5 py-3.5 rounded-lg bg-[#121624] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-200 text-sm font-semibold transition-all"
             >
               <Activity className="w-4 h-4 text-cyan-400" />
               <span>Overview Dashboard</span>
@@ -151,7 +152,7 @@ export default function LandingPage() {
 
             <Link
               href="/login"
-              className="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-[#121624] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-sm font-semibold transition-all"
+              className="flex items-center gap-2 px-5 py-3.5 rounded-lg bg-[#121624] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-sm font-semibold transition-all"
             >
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
               <span>Evaluate Demo Roles</span>
@@ -160,8 +161,8 @@ export default function LandingPage() {
 
           {/* Metric Strip */}
           <div className="pt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1b2336] text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-extrabold font-mono text-white">
+            <div className="p-4 rounded-lg bg-[#0d111a] border border-[#1b2336] text-center space-y-1">
+              <div className="text-2xl sm:text-3xl font-bold font-mono text-white">
                 100,000+
               </div>
               <div className="text-[11px] text-zinc-400 font-mono">
@@ -169,8 +170,8 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1b2336] text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-400">
+            <div className="p-4 rounded-lg bg-[#0d111a] border border-[#1b2336] text-center space-y-1">
+              <div className="text-2xl sm:text-3xl font-bold font-mono text-emerald-400">
                 &lt; 18ms
               </div>
               <div className="text-[11px] text-zinc-400 font-mono">
@@ -178,8 +179,8 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1b2336] text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-extrabold font-mono text-cyan-400">
+            <div className="p-4 rounded-lg bg-[#0d111a] border border-[#1b2336] text-center space-y-1">
+              <div className="text-2xl sm:text-3xl font-bold font-mono text-cyan-400">
                 300s
               </div>
               <div className="text-[11px] text-zinc-400 font-mono">
@@ -187,8 +188,8 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1b2336] text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-extrabold font-mono text-indigo-300">
+            <div className="p-4 rounded-lg bg-[#0d111a] border border-[#1b2336] text-center space-y-1">
+              <div className="text-2xl sm:text-3xl font-bold font-mono text-indigo-300">
                 100%
               </div>
               <div className="text-[11px] text-zinc-400 font-mono">
@@ -213,7 +214,7 @@ export default function LandingPage() {
           </div>
 
           {/* Mock Interactive Data Table Graphic */}
-          <div className="rounded-2xl bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
+          <div className="rounded-lg bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
             {/* Table Mock Bar */}
             <div className="p-3.5 bg-[#0e121d] border-b border-[#1b2234] flex flex-wrap items-center justify-between gap-3 text-xs">
               <div className="flex items-center gap-2.5">
@@ -304,8 +305,8 @@ export default function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+            <div className="p-6 rounded-lg bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
+              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
                 <Database className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
@@ -316,8 +317,8 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+            <div className="p-6 rounded-lg bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
+              <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
                 <Search className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
@@ -328,8 +329,8 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+            <div className="p-6 rounded-lg bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
+              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                 <Zap className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
@@ -340,8 +341,8 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+            <div className="p-6 rounded-lg bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
                 <BarChart3 className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
@@ -352,8 +353,8 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+            <div className="p-6 rounded-lg bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
+              <div className="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
                 <BookmarkCheck className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
@@ -364,8 +365,8 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
-              <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
+            <div className="p-6 rounded-lg bg-[#0c0f18] border border-[#1b2234] space-y-3 hover:border-indigo-500/40 transition-all">
+              <div className="w-10 h-10 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
@@ -380,8 +381,8 @@ export default function LandingPage() {
 
         {/* CTA Footer Section */}
         <section className="py-20 px-6 max-w-5xl mx-auto text-center">
-          <div className="p-10 sm:p-12 rounded-3xl bg-gradient-to-br from-[#121626] via-[#0d101d] to-[#090b14] border border-[#1f2942] shadow-2xl space-y-6">
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <div className="p-10 sm:p-12 rounded-lg bg-gradient-to-br from-[#121626] via-[#0d101d] to-[#090b14] border border-[#1f2942] shadow-2xl space-y-6">
+            <h2 className="text-2xl sm:text-4xl font-bold text-white tracking-tight">
               Ready to Explore High-Volume Enterprise Data?
             </h2>
             <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">
@@ -390,13 +391,13 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
               <Link
                 href="/explorer"
-                className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all"
+                className="px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all"
               >
                 Launch Data Explorer
               </Link>
               <Link
                 href="/register"
-                className="px-6 py-3 rounded-xl bg-[#171d2e] hover:bg-[#1f273d] border border-[#27334d] text-zinc-200 text-xs font-semibold transition-all"
+                className="px-6 py-3 rounded-lg bg-[#171d2e] hover:bg-[#1f273d] border border-[#27334d] text-zinc-200 text-xs font-semibold transition-all"
               >
                 Register Account
               </Link>
@@ -409,7 +410,7 @@ export default function LandingPage() {
       <footer className="border-t border-[#161d2d] bg-[#06080c] py-10 px-6 text-xs text-zinc-400">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-indigo-400" />
+            <DataScopeLogo className="w-4 h-4 text-indigo-400" />
             <span className="text-white font-semibold">DataScope Enterprise Platform</span>
             <span>•</span>
             <span>PostgreSQL 16 & Drizzle ORM • Next.js 15 & Redux Toolkit</span>
