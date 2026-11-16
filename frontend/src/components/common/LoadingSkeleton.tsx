@@ -21,7 +21,7 @@ export function Skeleton({ className, ...props }: SkeletonProps) {
 
 export function CardSkeleton() {
   return (
-    <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-3 animate-pulse">
+    <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 animate-pulse">
       <div className="flex items-center justify-between">
         <Skeleton className="h-4 w-28" />
         <Skeleton className="h-4 w-4 rounded-full" />
