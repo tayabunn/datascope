@@ -325,6 +325,7 @@ export const recordsApi = createApi({
 
 export const {
   useGetRecordsQuery,
+  useLazyGetRecordsQuery,
   useGetRecordByIdQuery,
   useGetAnalyticsQuery,
   useGetSavedViewsQuery,

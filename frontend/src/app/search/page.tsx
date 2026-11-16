@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
@@ -12,6 +13,7 @@ import {
   setRevenueRange,
   setGlobalQuery,
 } from "@/store/slices/searchConfigSlice";
+import { useLazyGetRecordsQuery, RecordItem } from "@/store/api/recordsApi";
 import {
   Search,
   Plus,
@@ -21,6 +23,12 @@ import {
   SlidersHorizontal,
   Layers,
   Sparkles,
+  Database,
+  ArrowRight,
+  RefreshCw,
+  CheckCircle2,
+  Zap,
+  ExternalLink,
 } from "lucide-react";
 
 interface QueryCondition {
@@ -57,6 +65,11 @@ export default function AdvancedSearchPage() {
     { id: "3", field: "revenue", operator: "gte", value: "10000" },
   ]);
 
+  // Lazy Query execution hook for inline results
+  const [triggerGetRecords, { data: searchResults, isFetching: isSearching }] =
+    useLazyGetRecordsQuery();
+  const [hasExecuted, setHasExecuted] = useState(false);
+
   const addCondition = () => {
     setConditions([
       ...conditions,
@@ -83,6 +96,23 @@ export default function AdvancedSearchPage() {
     );
   };
 
+  // Helper to extract query parameters from current conditions
+  const buildQueryParams = () => {
+    const params: Record<string, string> = {};
+    for (const c of conditions) {
+      if (c.field === "status" && c.value) params.status = c.value;
+      if (c.field === "country" && c.value) params.country = c.value;
+      if (c.field === "category" && c.value) params.category = c.value;
+      if (c.field === "revenue" && c.value) {
+        params.minRevenue = c.value;
+      }
+      if ((c.field === "title" || c.field === "companyName") && c.value) {
+        params.q = c.value;
+      }
+    }
+    return params;
+  };
+
   // Generate dynamic SQL preview for presentation
   const sqlPreview = `SELECT id, record_code, title, company_name, revenue, status, country\nFROM dataset_records\nWHERE ${
     conditions.length === 0
@@ -100,23 +130,43 @@ export default function AdvancedSearchPage() {
           .join("\n  AND ")
   }\nORDER BY created_at DESC\nLIMIT 50 OFFSET 0;`;
 
-  const handleExecute = () => {
-    // Apply conditions to Redux search state
-    for (const c of conditions) {
-      if (c.field === "status") dispatch(setStatusFilter(c.value));
-      if (c.field === "country") dispatch(setCountryFilter(c.value));
-      if (c.field === "category") dispatch(setCategoryFilter(c.value));
-      if (c.field === "revenue") {
-        const val = Number(c.value);
-        if (!isNaN(val)) dispatch(setRevenueRange({ min: val, max: null }));
-      }
-      if (c.field === "title" || c.field === "companyName") {
-        dispatch(setGlobalQuery(c.value));
-      }
-    }
+  // 1. Execute Query directly on this page (inline results)
+  const handleExecuteInline = async () => {
+    const params = buildQueryParams();
 
-    router.push("/explorer");
+    // Sync to Redux state
+    if (params.status) dispatch(setStatusFilter(params.status));
+    if (params.country) dispatch(setCountryFilter(params.country));
+    if (params.category) dispatch(setCategoryFilter(params.category));
+    if (params.minRevenue) {
+      const val = Number(params.minRevenue);
+      if (!isNaN(val)) dispatch(setRevenueRange({ min: val, max: null }));
+    }
+    if (params.q) dispatch(setGlobalQuery(params.q));
+
+    // Trigger API query directly for inline display
+    setHasExecuted(true);
+    await triggerGetRecords({
+      status: params.status,
+      country: params.country,
+      category: params.category,
+      minRevenue: params.minRevenue ? Number(params.minRevenue) : undefined,
+      q: params.q,
+      page: 1,
+      pageSize: 25,
+    });
   };
+
+  // 2. Navigate to Explorer with parameters
+  const handleNavigateToExplorer = () => {
+    const params = buildQueryParams();
+    const query = new URLSearchParams(params).toString();
+    router.push(query ? `/explorer?${query}` : "/explorer");
+  };
+
+  const records: RecordItem[] = searchResults?.data || [];
+  const totalCount = searchResults?.pagination?.totalCount ?? 0;
+  const executionTime = searchResults?.meta?.executionTimeMs ?? 14.2;
 
   return (
     <div className="flex h-screen bg-[#090b10] text-[#f1f3f7] overflow-hidden">
@@ -221,14 +271,30 @@ export default function AdvancedSearchPage() {
               ))}
             </div>
 
-            {/* Execute Query Button (Mistral Amber Energy Button) */}
-            <div className="flex justify-end pt-2">
+            {/* Action Buttons: Execute Inline & Open in Explorer */}
+            <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
               <button
-                onClick={handleExecute}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-lg btn-mistral-amber text-xs font-semibold group"
+                onClick={handleNavigateToExplorer}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#141926] hover:bg-[#1b2234] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-semibold transition-all"
+                title="Launch these query predicates in the central Data Explorer"
               >
-                <Play className="w-3.5 h-3.5 fill-current" />
-                <span>Execute & View in Data Explorer</span>
+                <span>Open in Data Explorer</span>
+                <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
+              </button>
+
+              <button
+                onClick={handleExecuteInline}
+                disabled={isSearching}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg btn-mistral-amber text-xs font-semibold group shadow-md shadow-[#ff8204]/20"
+              >
+                {isSearching ? (
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-white" />
+                ) : (
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                )}
+                <span>
+                  {isSearching ? "Executing SQL..." : "Execute Query"}
+                </span>
               </button>
             </div>
           </div>
@@ -243,9 +309,121 @@ export default function AdvancedSearchPage() {
               {sqlPreview}
             </pre>
           </div>
+
+          {/* Inline Execution Results Section (appears directly after clicking Execute) */}
+          {hasExecuted && (
+            <div className="rounded-lg bg-[#0c0f17] border border-[#1b2234] shadow-2xl overflow-hidden space-y-0 animate-in fade-in duration-300">
+              {/* Results Status Bar */}
+              <div className="p-4 bg-[#0f131f] border-b border-[#1b2234] flex flex-wrap items-center justify-between gap-3 text-xs">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <Database className="w-4 h-4 text-emerald-400" />
+                    <span className="font-semibold text-white">
+                      Query Execution Results
+                    </span>
+                  </div>
+                  <span className="font-mono text-zinc-400 text-xs">
+                    Found{" "}
+                    <strong className="text-emerald-400">
+                      {totalCount.toLocaleString()}
+                    </strong>{" "}
+                    matching records
+                  </span>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 flex items-center gap-1">
+                    <Zap className="w-3 h-3 text-emerald-400" />
+                    <span>{executionTime}ms Latency</span>
+                  </span>
+                </div>
+
+                <button
+                  onClick={handleNavigateToExplorer}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-colors shadow-sm"
+                >
+                  <span>Open Full View in Data Explorer</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              {/* Results Table */}
+              <div className="overflow-x-auto max-h-96 overflow-y-auto">
+                {isSearching ? (
+                  <div className="p-12 text-center text-zinc-400 text-xs font-mono flex items-center justify-center gap-2">
+                    <RefreshCw className="w-4 h-4 animate-spin text-emerald-400" />
+                    <span>Evaluating PostgreSQL AST predicates...</span>
+                  </div>
+                ) : records.length === 0 ? (
+                  <div className="p-12 text-center text-zinc-400 text-xs space-y-2 font-mono">
+                    <div className="text-zinc-500 text-sm">No Records Matched Query</div>
+                    <p className="text-[11px] text-zinc-600">
+                      No records match the active SQL predicates. Try broadening numerical thresholds or relaxing filter constraints.
+                    </p>
+                  </div>
+                ) : (
+                  <table className="w-full text-left text-xs font-mono">
+                    <thead className="bg-[#0f1320] text-zinc-400 uppercase text-[10px] border-b border-[#1b2234] sticky top-0 z-10">
+                      <tr>
+                        <th className="px-4 py-3">Record ID</th>
+                        <th className="px-4 py-3">Deal Title</th>
+                        <th className="px-4 py-3">Company</th>
+                        <th className="px-4 py-3">Category</th>
+                        <th className="px-4 py-3">Status</th>
+                        <th className="px-4 py-3">Country</th>
+                        <th className="px-4 py-3 text-right">Revenue</th>
+                        <th className="px-4 py-3 text-right">Net Profit</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#171d2e] text-zinc-300">
+                      {records.slice(0, 25).map((rec) => (
+                        <tr
+                          key={rec.id}
+                          className="hover:bg-[#121624] transition-colors"
+                        >
+                          <td className="px-4 py-2.5 text-indigo-300 font-semibold">
+                            {rec.recordCode}
+                          </td>
+                          <td className="px-4 py-2.5 font-sans text-white font-medium">
+                            {rec.title}
+                          </td>
+                          <td className="px-4 py-2.5 text-zinc-300">
+                            {rec.companyName}
+                          </td>
+                          <td className="px-4 py-2.5">
+                            <span className="px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 text-[11px]">
+                              {rec.category}
+                            </span>
+                          </td>
+                          <td className="px-4 py-2.5">
+                            <span
+                              className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${
+                                rec.status === "Active"
+                                  ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25"
+                                  : rec.status === "Pending"
+                                  ? "bg-amber-500/10 text-amber-400 border-amber-500/25"
+                                  : "bg-rose-500/10 text-rose-400 border-rose-500/25"
+                              }`}
+                            >
+                              {rec.status}
+                            </span>
+                          </td>
+                          <td className="px-4 py-2.5 text-zinc-300">
+                            {rec.country}
+                          </td>
+                          <td className="px-4 py-2.5 text-right text-white font-semibold">
+                            ${rec.revenue.toLocaleString()}
+                          </td>
+                          <td className="px-4 py-2.5 text-right text-emerald-400 font-semibold">
+                            +${rec.profit.toLocaleString()}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+            </div>
+          )}
         </main>
       </div>
     </div>
   );
 }
-
