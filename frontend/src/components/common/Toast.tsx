@@ -38,7 +38,7 @@ function SingleToast({ toast }: { toast: ToastItem }) {
 
   return (
     <div
-      className={`pointer-events-auto flex items-start gap-3 p-3.5 rounded-xl border ${borderColors[toast.type]} shadow-2xl backdrop-blur-md transition-all animate-in slide-in-from-bottom-2 fade-in duration-200 min-w-[280px] max-w-sm`}
+      className={`pointer-events-auto flex items-start gap-3 p-3.5 rounded-lg border ${borderColors[toast.type]} shadow-2xl backdrop-blur-md transition-all animate-in slide-in-from-bottom-2 fade-in duration-200 min-w-[280px] max-w-sm`}
     >
       <div className="mt-0.5">{icons[toast.type]}</div>
       <div className="flex-1 space-y-0.5">
