@@ -277,15 +277,15 @@ function ExplorerContent() {
           {/* Page Title & Quick Refresh */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold text-white tracking-tight">
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Data Explorer
                 </h1>
                 <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">
                   100k+ Records
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-sm text-zinc-400 mt-1">
                 Execute multi-condition searches, apply composite filters, and inspect record schemas with sub-20ms latency.
               </p>
             </div>
