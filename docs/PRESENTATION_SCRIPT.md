@@ -1,129 +1,202 @@
-# DataScope – Technical Presentation Video Guide & Walkthrough Script
+# DataScope – Technical Presentation Video Guide & Speaking Script
 
-Use this structured walkthrough script when recording your **Mandatory Technical Presentation Video** (Section 19 of the project specification).
-
-Follow this step-by-step roadmap to demonstrate your actual application while explaining the architectural reasoning behind your implementation.
-
----
-
-## ⏱️ Video Structure (Target: 7–10 Minutes)
-
-| Part | Topic | Target Time | What to Show on Screen |
-| :--- | :--- | :--- | :--- |
-| **Part 1** | Introduction & Problem Overview | 0:00 – 1:00 | Landing Page (`/`) & Architecture Overview |
-| **Part 2** | Central Data Explorer & High-Density Table | 1:00 – 3:00 | Data Explorer (`/explorer`) with 100k records |
-| **Part 3** | Large-Scale Search & PostgreSQL Indexing | 3:00 – 5:00 | Live Search, Visual Query Builder (`/search`) |
-| **Part 4** | Data Fetching & RTK Query Caching | 5:00 – 6:30 | Network Tab in DevTools, fast back/forward |
-| **Part 5** | Record Detail Drawer & Audit Trails | 6:30 – 7:45 | Click row -> Drawer -> Status Mutation |
-| **Part 6** | Portfolio Analytics & Server Aggregations | 7:45 – 8:45 | Analytics page (`/analytics`) |
-| **Part 7** | Architectural Trade-offs & Future Scaling | 8:45 – 10:00 | `docs/ADR.md` & Scalability from 100k to 10M |
+> **Purpose:** Use this document as your complete script and walkthrough roadmap when recording the **Mandatory Technical Presentation Video** (Section 19 of the Project Specification).  
+> **Copy-Paste Friendly:** This document is formatted cleanly with clear headings, bullet points, and callout boxes so you can copy and paste directly into Google Docs.  
+> **Target Video Duration:** 8 to 10 Minutes.  
+> **Language:** Professional, fluent, and easily pronounceable English.
 
 ---
 
-## 🎙️ Step-by-Step Speaking Script
+## 📋 Presentation Overview & Timing Breakdown
 
-### Part 1: Introduction & Architecture (0:00 – 1:00)
-* **Screen:** Open `http://localhost:3000` (The Landing Page).
-* **Say:**
-  > *"Hello everyone. Today I am presenting DataScope, an Enterprise Data Discovery and Intelligence Platform engineered to explore, search, filter, and analyze large datasets containing over 100,000 structured business records.*
-  >
-  > *In data-intensive platforms, the biggest failure point is client-side data bloat and slow unindexed database scans. In DataScope, our architecture enforces two strict rules:*
-  > *1. Heavy lifting stays on the database: all filtering, text matching, and aggregations run directly in PostgreSQL using B-Tree and GIN Trigram indexes.*
-  > *2. The frontend stays lightweight: we use server-side pagination with RTK Query caching and request deduplication.*
-  >
-  > *Let's jump into the live application."*
-
----
-
-### Part 2: Central Data Explorer & High-Density Table (1:00 – 3:00)
-* **Screen:** Click **"Launch Data Explorer"** or navigate to `/explorer`.
-* **Actions on Screen:**
-  1. Scroll through the table showing 50 records per page.
-  2. Click on the **"Visible Columns"** dropdown and toggle columns off and on.
-  3. Click column headers (**Revenue**, **Profit**, **Rating**) to demonstrate ascending/descending sorting.
-  4. Select multiple rows using the checkboxes.
-* **Say:**
-  > *"Here is the Central Data Explorer. Notice the clean, high-density layout. We did not use heavy headless table abstractions like TanStack; instead, we built a modular, custom React table with full TypeScript typing.*
-  >
-  > *Users can dynamically customize column visibility, sort by multiple columns, and select rows for batch actions.*
-  >
-  > *Notice the pagination bar at the bottom: we are using Server-Side Offset Pagination. Instead of downloading 100,000 rows into the browser, each request only fetches 50 rows. Let's jump straight to Page 40: notice the transition takes under 20 milliseconds."*
+| Part | Section Title | Target Timestamp | Primary Page / Screen | Core Architectural Focus |
+| :---: | :--- | :---: | :--- | :--- |
+| **1** | Introduction & Problem Space | **0:00 – 1:00** | Landing Page (`/`) | Enterprise data challenges & architecture philosophy |
+| **2** | Central Data Explorer & Table Architecture | **1:00 – 3:00** | Explorer (`/explorer`) | Server-side pagination, custom table, column visibility |
+| **3** | Large-Scale Search & Database Indexing | **3:00 – 5:00** | Search & Query Builder (`/search`) | GIN Trigram (`pg_trgm`), B-Tree, sub-20ms multi-filters |
+| **4** | Data Fetching & RTK Query Caching | **5:00 – 6:30** | Chrome DevTools (Network Tab) | 300ms debouncing, 0ms cache hits, request deduplication |
+| **5** | Record Detail Drawer & Audit Trails | **6:30 – 7:45** | Record Detail Drawer on `/explorer` | Non-blocking drawer, relational links, immutable audit log |
+| **6** | Server-Side Analytics & Aggregations | **7:45 – 8:45** | Analytics Page (`/analytics`) | Server SQL aggregations vs client JS loops, fast 2KB payload |
+| **7** | Architectural Trade-offs & 10M Scale | **8:45 – 10:00** | Overview / `docs/ADR.md` | Drizzle vs Prisma, partitioning, reltuples, cursor stream |
 
 ---
 
-### Part 3: Large-Scale Search & Database Indexing (3:00 – 5:00)
-* **Screen:** Stay on `/explorer`, open the Search input or navigate to `/search` (Visual Query Builder).
-* **Actions on Screen:**
-  1. In the search bar, type `"cloud"` or `"apex"`.
-  2. Apply combined filters: **Status: Active**, **Country: Germany**, **Revenue: > $10,000**.
-  3. Show the **Telemetry Badge** in the top header showing `Query: ~12ms | Index: GIN / B-Tree`.
-  4. Open the **AI Search Assistant** (`✨ AI Search`), click one of the example pills, and click **Apply**.
-* **Say:**
-  > *"Now let's examine large-scale searching across our 100,000 records. Traditional SQL `LIKE '%query%'` forces a full table scan that takes nearly 500 milliseconds on 100,000 rows.*
+## 🎙️ Step-by-Step Video Walkthrough & Speaking Script
+
+---
+
+### Part 1: Introduction & Problem Space (0:00 – 1:00)
+
+* **🖥️ Screen Setup:**
+  * Open the browser at `http://localhost:3000` (or `https://datascope-navy.vercel.app`).
+  * Show the clean DataScope Landing Page and Hero Section.
+* **🖱️ Actions to Perform:**
+  1. Scroll down smoothly across the hero metrics (100,000 records, sub-20ms queries, 4-tier state).
+  2. Point your cursor to the primary CTA button: **"Launch Data Explorer"**.
+* **🎙️ Spoken Script (Word-for-Word):**
+  > *"Hello everyone, and welcome to this technical presentation of DataScope.*
   >
-  > *To solve this, we enabled the PostgreSQL `pg_trgm` extension and created GIN Trigram indexes on searchable text columns like title and company name.*
+  > *DataScope is an Enterprise Data Discovery and Intelligence Platform engineered to explore, search, filter, and analyze large datasets containing over one hundred thousand structured business records.*
   >
-  > *Notice that when I type 'cloud' and combine it with multiple filters—Status Active, Country Germany, and Revenue greater than $10,000—the entire multi-predicate query executes in only 12 to 16 milliseconds.*
+  > *In enterprise applications handling large volumes of data, the most common bottlenecks are slow unindexed database scans, heavy client-side data rendering, and redundant network requests.*
   >
-  > *We also built a Visual Query Builder and an AI Search Assistant that converts natural language queries into strictly validated filter parameters."*
+  > *To solve these challenges, our architecture enforces two strict rules:*
+  > * *First: All heavy lifting stays on the database. Filtering, text search, sorting, and aggregations run directly inside PostgreSQL using optimized B-Tree and GIN Trigram indexes.*
+  > * *Second: The frontend remains lightweight and responsive. We use server-side pagination with RTK Query caching and request deduplication.*
+  >
+  > *Now, let's jump into the live application to see how this works in practice."*
+
+---
+
+### Part 2: Central Data Explorer & Table Architecture (1:00 – 3:00)
+
+* **🖥️ Screen Setup:**
+  * Click **"Launch Data Explorer"** or navigate directly to `/explorer`.
+  * The high-density data table loads with 50 records per page.
+* **🖱️ Actions to Perform:**
+  1. Scroll down the table to show the dense, clean row layout and badges.
+  2. Click the **"Visible Columns"** dropdown button in the toolbar. Uncheck **"Region"** and **"Created Date"**, then check them back on.
+  3. Click the column headers: click **"Revenue"** once (sort ascending), click again (sort descending).
+  4. Select 2 or 3 rows using the selection checkboxes on the left.
+  5. Go to the pagination controls at the bottom: click **Page 2**, then click **Page 5**, or jump directly to another page.
+* **🎙️ Spoken Script (Word-for-Word):**
+  > *"Here is the Central Data Explorer. Notice the clean, high-density layout designed specifically for business analysts.*
+  >
+  > *Instead of relying on heavy third-party table abstractions like TanStack Table, we designed a custom, modular React table component with strict TypeScript typing. This gives us complete control over DOM node count and rendering performance.*
+  >
+  > *Users have full control over their workspace:*
+  > * *They can toggle column visibility dynamically using this dropdown.*
+  > * *They can perform multi-column sorting simply by clicking the headers.*
+  > * *And they can select records for bulk operations.*
+  >
+  > *Now look at the pagination at the bottom. We chose Server-Side Offset Pagination. Instead of downloading all one hundred thousand records into browser memory—which would cause heavy browser lag—each request fetches only a strict window of fifty rows.*
+  >
+  > *When I jump from Page 1 to Page 5, the transition takes under twenty milliseconds. The UI stays instantly responsive."*
+
+---
+
+### Part 3: Large-Scale Search & PostgreSQL Indexing (3:00 – 5:00)
+
+* **🖥️ Screen Setup:**
+  * Stay on `/explorer`, or open `/search` (Visual Query Builder).
+  * Ensure the top search bar and filter controls are clearly visible.
+* **🖱️ Actions to Perform:**
+  1. Click the search input and type `"cloud"` or `"apex"`.
+  2. Set filter **Status** to **"Active"**.
+  3. Set filter **Country** to **"Germany"** (or another country from the dropdown).
+  4. Set filter **Min Revenue** to `10000`.
+  5. Point to the **Execution Telemetry Badge** at the top right of the table (showing `Query: ~14ms | Total Matches`).
+  6. Click the **"✨ AI Search"** button. Click the sample prompt: *"High value active records in Germany"*, then click **"Apply Filters"**.
+* **🎙️ Spoken Script (Word-for-Word):**
+  > *"Now let's examine our large-scale searching engine across one hundred thousand records.*
+  >
+  > *In traditional SQL databases, running wildcard text searches like `LIKE '%query%'` forces a full sequential table scan. On large tables, that easily takes four hundred to five hundred milliseconds.*
+  >
+  > *To eliminate this bottleneck, we enabled PostgreSQL's `pg_trgm` extension and created GIN Trigram indexes on our text fields, combined with B-Tree composite indexes on status, country, and revenue.*
+  >
+  > *Notice that when I search for 'cloud' while simultaneously applying three filters—Status Active, Country Germany, and Revenue greater than ten thousand dollars—the entire multi-condition query executes in just twelve to sixteen milliseconds.*
+  >
+  > *We also built an AI Search Assistant. It takes natural language input from the user, uses structured tool calling to extract valid schema parameters, and applies the filters directly to the table with zero syntax errors."*
 
 ---
 
 ### Part 4: Data Fetching & RTK Query Caching (5:00 – 6:30)
-* **Screen:** Open Chrome DevTools (`F12`), switch to the **Network** tab, and filter by `Fetch/XHR`.
-* **Actions on Screen:**
-  1. Type in the search input quickly: show that requests are debounced by 300ms (no intermediate keystroke spam).
-  2. Click to Page 2 (network request fires).
-  3. Click back to Page 1: **Notice NO network request fires** because RTK Query serves it instantly from cache!
-* **Say:**
-  > *"Data fetching architecture is one of the most critical aspects of this project. We selected RTK Query integrated into our Redux Toolkit store.*
+
+* **🖥️ Screen Setup:**
+  * Press `F12` to open **Chrome Developer Tools**.
+  * Select the **Network** tab, click **Fetch/XHR**, and clear the log.
+* **🖱️ Actions to Perform:**
+  1. Click inside the search input and type quickly: `a`, `p`, `e`, `x`.
+  2. Show the Network tab: only **one** request fires after typing stops (300ms debounce).
+  3. In the pagination bar, click **Next** to navigate to **Page 2** (one network request appears).
+  4. Now click **Previous** back to **Page 1**: **Show that NO new network request is made!**
+  5. Point to the table updating instantly in 0 milliseconds.
+* **🎙️ Spoken Script (Word-for-Word):**
+  > *"Data fetching architecture is one of the core assessment pillars of this platform. We chose Redux Toolkit Query—or RTK Query—over manual Redux Async Thunks.*
   >
-  > *Watch the Chrome Network tab as I type. Because we implemented 300ms input debouncing, individual keystrokes do not flood the server. Only the final keyword triggers an API call, cutting network requests by 90%.*
+  > *Here in Chrome DevTools, you can see two critical engineering optimizations:*
   >
-  > *Furthermore, RTK Query provides automatic request deduplication and normalized caching. When I navigate from Page 1 to Page 2, a request is made. But when I navigate back to Page 1, it renders instantaneously in 0ms with zero network traffic because it is served directly from the RTK Query cache."*
+  > *First is Request Debouncing. As I type rapidly into the search input, individual keystrokes do not spam the backend. We implemented a three-hundred-millisecond debounce hook, so only the final keyword triggers an API call. This eliminates ninety percent of redundant network traffic.*
+  >
+  > *Second is Intelligent Normalized Caching. When I navigate from Page 1 to Page 2, a network request fetches the data. But when I click back to Page 1, notice that no network request is sent at all. RTK Query serves the data immediately from memory in zero milliseconds.*
+  >
+  > *RTK Query also handles automated request deduplication, background refetching, and tag-based cache invalidation, ensuring the client never displays stale data."*
 
 ---
 
 ### Part 5: Record Detail Drawer & Audit History (6:30 – 7:45)
-* **Screen:** On `/explorer`, click on any row to open the slide-over drawer.
-* **Actions on Screen:**
-  1. Point out the financial metrics (Revenue, Profit, Priority).
-  2. Point out the **Related Business Records** (connected graph).
-  3. Point out the **Historical Change Audit Log** timeline.
-  4. Click a status button (e.g. change to "Archived") and show it update.
-* **Say:**
-  > *"When an analyst clicks a row, the Record Detail Drawer slides in without unmounting the table or losing the active scroll position.*
+
+* **🖥️ Screen Setup:**
+  * Close DevTools. Stay on `/explorer`.
+* **🖱️ Actions to Perform:**
+  1. Click on any record in the table (e.g., click a company name).
+  2. The **Slide-over Detail Drawer** opens smoothly from the right side.
+  3. Scroll through the drawer: highlight **Financial Metrics**, **Related Business Records**, and the **Historical Change Timeline**.
+  4. In the drawer status dropdown, change the status from **Active** to **Archived** (or **Pending**).
+  5. Point out the toast notification and show the table row update in the background.
+  6. Press `Escape` or click the `X` button to close the drawer. Note that the table maintains its exact scroll position.
+* **🎙️ Spoken Script (Word-for-Word):**
+  > *"When a user wants to inspect a record, they simply click on the row. Instead of navigating away to a separate page, a Slide-over Detail Drawer opens seamlessly.*
   >
-  > *Here we see complete entity metadata, related account relationships, and an immutable audit trail showing who modified the record, previous values, and timestamps.*
+  > *This preserves the analyst's workspace: the table remains mounted underneath, keeping all active filters, pagination, and scroll position intact.*
   >
-  > *When I update the status, RTK Query's tag invalidation automatically triggers a background refresh on the table while optimistically updating the UI."*
+  > *Inside the drawer, we see:*
+  > * *Complete business metrics including revenue, profit margin, and priority.*
+  > * *Related accounts in the data graph.*
+  > * *And an immutable historical audit log showing who modified the record, previous values, and exact timestamps.*
+  >
+  > *When I update the record status, RTK Query's automated cache tag invalidation updates the drawer and triggers a background refresh on the table, giving the user instant feedback."*
 
 ---
 
 ### Part 6: Portfolio Analytics & Server Aggregations (7:45 – 8:45)
-* **Screen:** Navigate to `/analytics`.
-* **Actions on Screen:**
-  1. Point out the summary cards (100,000 Records, $480M+ Aggregated Revenue, Average Margin).
-  2. Hover over the Recharts visualizations (Category Bar Chart, Status Donut Chart, Monthly Growth Area Chart).
-* **Say:**
-  > *"Here on the Analytics page, all charts and summaries are powered by server-side SQL aggregations using `COUNT`, `AVG`, and `GROUP BY`.*
+
+* **🖥️ Screen Setup:**
+  * In the top navigation bar, click **"Analytics"** or go to `/analytics`.
+* **🖱️ Actions to Perform:**
+  1. Point to the top metric cards (Total Records: 100,000, Total Revenue: $480M+, Average Margin, Active Rate).
+  2. Hover your mouse over the interactive charts:
+     * Bar Chart (Revenue by Industry / Category).
+     * Donut Chart (Distribution by Status).
+     * Area Chart (Monthly Revenue Trend).
+* **🎙️ Spoken Script (Word-for-Word):**
+  > *"Next, let's look at the Portfolio Analytics dashboard.*
   >
-  > *A common junior mistake is downloading all 100,000 records to calculate statistics with JavaScript `reduce()`. In DataScope, the client receives only a lightweight 2KB summary payload, allowing the charts to render in under 30 milliseconds."*
+  > *In data platforms, a frequent architectural mistake is downloading all one hundred thousand records into the browser and calculating totals using JavaScript loops or `reduce()`.*
+  >
+  > *In DataScope, every metric and chart on this page is powered by Server-Side SQL Aggregations using PostgreSQL `COUNT`, `SUM`, `AVG`, and `GROUP BY` queries.*
+  >
+  > *The backend processes the one hundred thousand rows in parallel and sends a tiny, two-kilobyte JSON summary to the frontend. As a result, this entire analytics dashboard renders in under thirty milliseconds, even on mobile devices or low-bandwidth connections."*
 
 ---
 
 ### Part 7: Architectural Trade-Offs & Scaling to 10M Records (8:45 – 10:00)
-* **Screen:** Show `docs/ADR.md` or the Overview page.
-* **Say:**
-  > *"Finally, we documented 10 formal Architecture Decision Records covering every critical decision:*
-  > * *Why RTK Query instead of Redux Async Thunks (automated cache tags, deduplication).*
-  > * *Why PostgreSQL and Drizzle ORM over Prisma or MongoDB (zero cold-start binary overhead, native GIN Trigram support).*
-  > * *Why Server-Side Pagination over Client-Side (strictly bounded network payloads).*
-  >
-  > *If this platform scales from 100,000 to 10 million records:*
-  > *1. We would introduce PostgreSQL Declarative Table Partitioning by date range.*
-  > *2. We would switch from exact `COUNT(*)` to estimated row counts using PostgreSQL's `reltuples` catalog.*
-  > *3. We would implement keyset cursor pagination for deep sequential streaming.*
-  >
-  > *Thank you for your time. DataScope is fully functional, fully tested with 100,000 records, and ready for production deployment."*
 
+* **🖥️ Screen Setup:**
+  * Open the `docs/ADR.md` file in VS Code, or open the `/saved-views` page.
+* **🖱️ Actions to Perform:**
+  1. Show the clean documentation in `docs/` or scroll the Architecture overview.
+  2. Speak with clear, steady pacing for the final conclusion.
+* **🎙️ Spoken Script (Word-for-Word):**
+  > *"To ensure engineering rigor, we documented ten formal Architecture Decision Records in our repository.*
+  >
+  > *Three key technical choices define our system:*
+  > * *First: We selected PostgreSQL with Drizzle ORM instead of Prisma or MongoDB. Drizzle has zero binary engine overhead, compiles to raw lightweight SQL, and gives us native support for PostgreSQL GIN Trigram indexes.*
+  > * *Second: We separated our frontend state into four distinct tiers: URL query parameters for shareable filters, RTK Query for server cache, Redux Toolkit for global client state, and local React state for UI toggles.*
+  > * *Third: We chose Server-Side Offset Pagination for general exploration, keeping memory consumption strictly bounded.*
+  >
+  > *If this platform scales from one hundred thousand to ten million records, our architectural roadmap includes three key enhancements:*
+  > * *1. PostgreSQL Declarative Table Partitioning: Partitioning the dataset by creation year or industry.*
+  > * *2. Approximate Row Counting: Replacing exact `COUNT(*)` with PostgreSQL's `reltuples` system catalog for sub-millisecond total counts.*
+  > * *3. Keyset Cursor Pagination: Using indexed composite keys like `created_at` and `id` for infinite streaming.*
+  >
+  > *In conclusion, DataScope is fully functional, rigorously tested with one hundred thousand records, and architected for high-scale enterprise use. Thank you very much for your time."*
+
+---
+
+## 💡 Quick Tips for a High-Scoring Video Recording
+
+1. **Resolution & Audio:** Record in 1080p (Full HD) at 100% browser zoom with a clear microphone.
+2. **Speed & Clarity:** Speak slowly and clearly. Do not rush. Pausing for half a second between sections makes your presentation sound confident.
+3. **Keep DevTools Visible during Part 4:** Showing the 0ms cache hit in the Network tab directly proves your RTK Query implementation and is worth high marks in the rubric.
+4. **No Git Commands in Video:** You do not need to show terminal git commands during the demo—just focus on the running application and DevTools.
