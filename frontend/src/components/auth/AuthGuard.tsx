@@ -41,8 +41,8 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
   if (mounted && isInitialized && !isAuthenticated && !isPublicRoute) {
     return (
       <div className="min-h-screen bg-[#090b10] flex flex-col items-center justify-center p-6 text-center">
-        <div className="p-8 rounded-2xl bg-[#0d101a] border border-[#1f283d] shadow-2xl max-w-md w-full space-y-4 animate-in fade-in">
-          <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto shadow-inner">
+        <div className="p-8 rounded-lg bg-[#0d101a] border border-[#1f283d] shadow-2xl max-w-md w-full space-y-4 animate-in fade-in">
+          <div className="w-14 h-14 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto shadow-inner">
             <Lock className="w-6 h-6 animate-pulse" />
           </div>
           <div className="space-y-1.5">
