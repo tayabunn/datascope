@@ -510,7 +510,7 @@ export default function DataTable({
   const activeColumns = ALL_COLUMNS.filter((col) => visibleColumns.includes(col.key));
 
   return (
-    <div className="bg-[#0c0f17] border border-[#1b2234] rounded-xl shadow-2xl flex flex-col overflow-hidden">
+    <div className="bg-[#0c0f17] border border-[#1b2234] rounded-lg shadow-2xl flex flex-col overflow-hidden">
       {/* Table Action Bar */}
       <div className="p-3 bg-[#0f131f] border-b border-[#1b2234] flex flex-wrap items-center justify-between gap-3 text-xs">
         {/* Left: Row Stats or Selection Banner */}
@@ -646,7 +646,7 @@ export default function DataTable({
             </button>
 
             {isColumnDropdownOpen && (
-              <div className="absolute right-0 top-full mt-1.5 w-60 bg-[#121624] border border-[#232c42] rounded-xl p-2.5 shadow-2xl z-50 space-y-1 animate-in fade-in duration-100">
+              <div className="absolute right-0 top-full mt-1.5 w-60 bg-[#121624] border border-[#232c42] rounded-lg p-2.5 shadow-2xl z-50 space-y-1 animate-in fade-in duration-100">
                 <div className="flex items-center justify-between px-2 py-1 border-b border-[#1f273b] text-[10px] uppercase font-mono text-zinc-400">
                   <span>Toggle Columns</span>
                   <div className="flex items-center gap-1.5">
