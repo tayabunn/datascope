@@ -56,7 +56,7 @@ export default function AnalyticsCharts({
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 animate-pulse">
         {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="h-28 bg-[#121624] rounded-xl border border-[#1d2538]" />
+          <div key={i} className="h-28 bg-[#121624] rounded-lg border border-[#1d2538]" />
         ))}
       </div>
     );
@@ -76,7 +76,7 @@ export default function AnalyticsCharts({
       {/* 1. Summary Metric Cards: Total Records & Key Financials */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Records */}
-        <div className="p-4 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
+        <div className="p-4 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
           <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
             <span>TOTAL RECORDS</span>
             <Layers className="w-4 h-4 text-cyan-400" />
@@ -91,7 +91,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Total Revenue */}
-        <div className="p-4 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
+        <div className="p-4 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
           <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
             <span>TOTAL REVENUE (SQL SUM)</span>
             <DollarSign className="w-4 h-4 text-emerald-400" />
@@ -105,7 +105,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Average Profit Margin */}
-        <div className="p-4 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
+        <div className="p-4 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
           <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
             <span>AVG PROFIT MARGIN</span>
             <TrendingUp className="w-4 h-4 text-indigo-400" />
@@ -119,7 +119,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Active Accounts & Search Metrics */}
-        <div className="p-4 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
+        <div className="p-4 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
           <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
             <span>ACTIVE RECORDS</span>
             <Activity className="w-4 h-4 text-amber-400" />
@@ -137,7 +137,7 @@ export default function AnalyticsCharts({
       {/* 2 & 3. Category Breakdown & Status Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 1: Records by Category (Bar Chart) */}
-        <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <BarChart2 className="w-4 h-4 text-indigo-400" />
@@ -177,7 +177,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Chart 2: Records by Status (Donut Pie Chart) */}
-        <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <PieIcon className="w-4 h-4 text-emerald-400" />
@@ -229,7 +229,7 @@ export default function AnalyticsCharts({
       </div>
 
       {/* 4. Data Growth Trends (Area Chart) */}
-      <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+      <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-cyan-400" />
@@ -279,7 +279,7 @@ export default function AnalyticsCharts({
       {/* 5 & 6. Search Activity & Most Frequently Used Filters */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 5: Search Activity & Query Latency (Composed Chart) */}
-        <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Search className="w-4 h-4 text-cyan-400" />
@@ -335,7 +335,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Chart 6: Most Frequently Used Filters (Horizontal Bar Chart) */}
-        <div className="p-5 rounded-xl bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Filter className="w-4 h-4 text-purple-400" />
