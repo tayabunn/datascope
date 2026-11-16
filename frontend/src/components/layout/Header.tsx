@@ -29,14 +29,14 @@ export default function Header() {
         {/* Left Section: Active Dataset & Telemetry */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#141926] border border-[#1d2436] text-xs">
-            <Database className="w-3.5 h-3.5 text-cyan-400" />
+            <Database className="w-3.5 h-3.5 text-[#968dfa]" />
             <span className="text-zinc-300 font-medium hidden sm:inline">
               Dataset:
             </span>
             <span className="text-white font-semibold">
               Global Enterprise Revenue & Contracts
             </span>
-            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            <span className="render-pill">
               100,000 Rows
             </span>
           </div>
@@ -60,20 +60,20 @@ export default function Header() {
               placeholder="Search 100k records (title, company, SKU)..."
               value={globalQuery}
               onChange={(e) => dispatch(setGlobalQuery(e.target.value))}
-              className="w-full pl-9 pr-12 py-1.5 rounded-lg bg-[#121622] border border-[#202738] text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-mono"
+              className="w-full pl-9 pr-12 py-1.5 rounded-lg bg-[#121622] border border-[#202738] text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] focus:ring-1 focus:ring-[#6c35f5] transition-all font-mono"
             />
             <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-zinc-400 px-1 py-0.5 rounded border border-[#262e42] bg-[#161c2a]">
               ⌘K
             </span>
           </div>
 
-          {/* AI Search Assistant Button */}
+          {/* AI Search Assistant Button (Mistral Amber Signature) */}
           <button
             onClick={() => setIsAiModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-indigo-600/20 to-cyan-600/20 hover:from-indigo-600/30 hover:to-cyan-600/30 border border-indigo-500/30 text-indigo-300 hover:text-white text-xs font-medium transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#ff8204]/15 hover:bg-[#ff8204]/25 border border-[#ff8204]/35 text-[#ffa033] hover:text-white text-xs font-semibold transition-all shadow-sm"
             title="Ask AI to construct search query in natural language"
           >
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 text-[#ff8204] animate-pulse" />
             <span className="hidden sm:inline">AI Search</span>
           </button>
 
@@ -98,13 +98,13 @@ export default function Header() {
             </span>
           )}
 
-          {/* Public Landing Page Link */}
+          {/* Public Landing Page Link (Render Iris Signature) */}
           <Link
             href="/"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600/15 hover:bg-indigo-600/25 border border-indigo-500/30 text-indigo-300 hover:text-white text-xs font-medium transition-all"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#6c35f5]/15 hover:bg-[#6c35f5]/25 border border-[#968dfa]/30 text-[#b193e0] hover:text-white text-xs font-medium transition-all"
             title="Go to Public Landing Page"
           >
-            <Globe className="w-3.5 h-3.5 text-indigo-400" />
+            <Globe className="w-3.5 h-3.5 text-[#968dfa]" />
             <span className="hidden md:inline">Landing Page</span>
           </Link>
         </div>

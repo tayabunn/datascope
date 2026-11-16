@@ -79,7 +79,7 @@ export default function Sidebar() {
           title="Return to Public Landing Page"
         >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 text-white font-bold text-lg group-hover:scale-105 transition-transform p-2">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#6c35f5] to-[#581ccb] border border-[#968dfa]/30 flex items-center justify-center shadow-lg shadow-[#6c35f5]/25 text-white font-bold text-lg group-hover:scale-105 transition-transform p-2">
               <DataScopeLogo className="w-full h-full text-white" />
             </div>
             <div>
@@ -87,7 +87,7 @@ export default function Sidebar() {
                 <span className="font-semibold text-white tracking-tight text-base">
                   DataScope
                 </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 font-semibold">
                   PRO
                 </span>
               </div>
@@ -117,7 +117,7 @@ export default function Sidebar() {
                 href={item.href}
                 className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all group ${
                   isActive
-                    ? "bg-indigo-600/15 text-indigo-300 border border-indigo-500/30 shadow-sm"
+                    ? "bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 shadow-sm"
                     : "text-zinc-400 hover:text-zinc-200 hover:bg-[#141926]"
                 }`}
               >
@@ -125,7 +125,7 @@ export default function Sidebar() {
                   <Icon
                     className={`w-4 h-4 transition-colors ${
                       isActive
-                        ? "text-indigo-400"
+                        ? "text-[#968dfa]"
                         : "text-zinc-500 group-hover:text-zinc-300"
                     }`}
                   />
@@ -136,7 +136,7 @@ export default function Sidebar() {
                     Admin
                   </span>
                 ) : item.badge ? (
-                  <span className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                  <span className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-[#6c35f5]/20 text-[#b193e0] border border-[#968dfa]/30">
                     {item.badge}
                   </span>
                 ) : null}
@@ -152,13 +152,13 @@ export default function Sidebar() {
             href="/"
             className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all group ${
               pathname === "/"
-                ? "bg-indigo-600/15 text-indigo-300 border border-indigo-500/30 shadow-sm"
+                ? "bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 shadow-sm"
                 : "text-zinc-400 hover:text-zinc-200 hover:bg-[#141926]"
             }`}
             title="View the public marketing & features landing page"
           >
             <div className="flex items-center gap-2.5">
-              <Globe className="w-4 h-4 text-indigo-400" />
+              <Globe className="w-4 h-4 text-[#968dfa]" />
               <span>Public Landing Page</span>
             </div>
             <ExternalLink className="w-3 h-3 text-zinc-500 group-hover:text-zinc-300" />
@@ -187,7 +187,7 @@ export default function Sidebar() {
                     onClick={() => handleRoleChange(r)}
                     className={`text-[9px] py-1 px-1 rounded font-medium text-center transition-all ${
                       isSelected
-                        ? "bg-indigo-600 text-white font-semibold shadow"
+                        ? "bg-[#6c35f5] text-white font-semibold shadow"
                         : "bg-[#181e2e] text-zinc-400 hover:text-zinc-200 hover:bg-[#20283d]"
                     }`}
                     title={`Switch session to ${r}`}
@@ -205,7 +205,7 @@ export default function Sidebar() {
 
           <div className="pt-1.5 flex items-center justify-between border-t border-[#1d2436]/60">
             <div className="flex items-center gap-2 overflow-hidden">
-              <div className="w-7 h-7 rounded-full bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-xs font-semibold text-indigo-300 flex-shrink-0">
+              <div className="w-7 h-7 rounded-full bg-[#6c35f5]/20 border border-[#968dfa]/40 flex items-center justify-center text-xs font-semibold text-[#b193e0] flex-shrink-0">
                 {user?.fullName?.charAt(0) || "U"}
               </div>
               <div className="overflow-hidden">

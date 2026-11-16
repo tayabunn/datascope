@@ -10,13 +10,56 @@
 }
 
 :root {
-  --background: #090b10;
-  --foreground: #f8fafc;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --card: #0e111a;
-  --card-border: #1b2030;
-  --accent: #6366f1;
+  /* Surface Foundations (Render Obsidian & Mistral Dark) */
+  --background: #080a10;
+  --foreground: #fafaf4;
+  --card: #0c0f18;
+  --card-border: #1a2030;
+  --popover: #0c0f18;
+
+  /* Render Color Tokens */
+  --color-iris-700: #581ccb;
+  --color-hills-mid: #6c35f5;
+  --color-hills-warm: #968dfa;
+  --color-hills-warm-2: #b193e0;
+  --color-product-success: #0b7d55;
+  --color-lime-600: #306605;
+  --color-blue-600: #005e9e;
+
+  /* Mistral Color Tokens */
+  --color-mistral-amber: #ff8204;
+  --color-mistral-amber-light: #ffa033;
+  --color-mistral-dark: #1a1a1e;
+  --color-mistral-gray: #a1a1aa;
+  --color-mistral-paper: #fafaf4;
+  --color-mistral-bg: #f1f1f3;
+
+  /* Semantic UI Tokens */
+  --primary: #6c35f5; /* Render Iris */
+  --primary-foreground: #ffffff;
+  --secondary: #141926;
+  --secondary-foreground: #fafaf4;
+  --accent: #ff8204; /* Mistral Amber */
+  --accent-foreground: #ffffff;
+  --muted: #151b2a;
+  --muted-foreground: #a1a1aa;
+  --border: #1a2030;
+  --ring: #968dfa;
+
+  /* Render Inset Elevation Shadows */
+  --shadow-render-sm: 0 0 0 1px rgba(150, 141, 250, 0.22) inset;
+  --shadow-render-md: 0 0 0 1px rgba(150, 141, 250, 0.26) inset, 0 10px 24px -12px rgba(0, 0, 0, 0.7);
+  --shadow-render-lg: 0 0 0 1px rgba(150, 141, 250, 0.35) inset, 0 16px 32px -12px rgba(108, 53, 245, 0.35);
+
+  /* Mistral Amber Inset Elevation Shadows */
+  --shadow-mistral-sm: 0 0 0 1px rgba(255, 130, 4, 0.3) inset;
+  --shadow-mistral-md: 0 0 0 1px rgba(255, 130, 4, 0.35) inset, 0 10px 24px -10px rgba(255, 130, 4, 0.25);
+
+  /* Motion & Easing Curves */
+  --ease-render: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
 }
 
 *, *::before, *::after {
@@ -71,6 +114,111 @@ button:not(.rounded-full),
 .btn,
 .card {
   border-radius: 0.5rem !important;
+}
+
+/* =========================================================================
+   Render x Mistral Design System Components & Elevation Utilities
+   ========================================================================= */
+
+/* Render Iris Elevation Cards */
+.render-card {
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-render-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.render-card:hover {
+  border-color: rgba(150, 141, 250, 0.45);
+  box-shadow: var(--shadow-render-md);
+  transform: translateY(-2px);
+}
+
+/* Mistral Amber Elevation Cards */
+.mistral-card {
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-mistral-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mistral-card:hover {
+  border-color: rgba(255, 130, 4, 0.5);
+  box-shadow: var(--shadow-mistral-md);
+  transform: translateY(-2px);
+}
+
+/* Render Iris Primary CTA Button */
+.btn-render-primary {
+  background: linear-gradient(135deg, #6c35f5 0%, #581ccb 100%);
+  color: #ffffff;
+  border: 1px solid rgba(150, 141, 250, 0.35);
+  box-shadow: 0 0 0 1px rgba(150, 141, 250, 0.2) inset, 0 8px 18px -4px rgba(108, 53, 245, 0.4);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-render-primary:hover {
+  background: linear-gradient(135deg, #7c48f7 0%, #6c35f5 100%);
+  border-color: rgba(150, 141, 250, 0.65);
+  box-shadow: 0 0 0 1px rgba(150, 141, 250, 0.4) inset, 0 12px 26px -4px rgba(108, 53, 245, 0.55);
+  transform: translateY(-1px);
+}
+
+/* Mistral Amber Energy CTA Button */
+.btn-mistral-amber {
+  background: linear-gradient(135deg, #ff8204 0%, #e66f00 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 130, 4, 0.45);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22) inset, 0 8px 18px -4px rgba(255, 130, 4, 0.45);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-mistral-amber:hover {
+  background: linear-gradient(135deg, #ffa033 0%, #ff8204 100%);
+  border-color: rgba(255, 130, 4, 0.75);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35) inset, 0 12px 26px -4px rgba(255, 130, 4, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Developer Secondary Ghost Button */
+.btn-render-secondary {
+  background-color: #121624;
+  color: #fafaf4;
+  border: 1px solid #1f273c;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-render-secondary:hover {
+  background-color: #1a2033;
+  border-color: #2e3b59;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Badges & Status Pills */
+.mistral-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 130, 4, 0.12);
+  color: #ffa033;
+  border: 1px solid rgba(255, 130, 4, 0.32);
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.render-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  background-color: rgba(108, 53, 245, 0.12);
+  color: #b193e0;
+  border: 1px solid rgba(150, 141, 250, 0.3);
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 /* =========================================================================

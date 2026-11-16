@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: "DataScope – Enterprise Data Discovery & Intelligence Platform",
   description:
     "Explore, search, filter, analyze, and manage large-scale business datasets with sub-20ms query performance and server-side state synchronization.",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
