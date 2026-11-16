@@ -11,8 +11,11 @@ export const metadata: Metadata = {
   description:
     "Explore, search, filter, analyze, and manage large-scale business datasets with sub-20ms query performance and server-side state synchronization.",
   icons: {
-    icon: "/logo.svg",
-    shortcut: "/logo.svg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
     apple: "/logo.png",
   },
 };

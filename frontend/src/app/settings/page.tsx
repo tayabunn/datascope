@@ -55,7 +55,7 @@ export default function SettingsPage() {
         <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
           <Header />
           <main className="p-6 max-w-xl mx-auto w-full my-auto text-center space-y-4">
-            <div className="p-8 rounded-lg bg-[#0d101a] border border-[#232c42] shadow-2xl space-y-4">
+            <div className="p-8 rounded-lg mistral-card shadow-2xl space-y-4">
               <div className="w-14 h-14 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mx-auto shadow-inner">
                 <ShieldAlert className="w-7 h-7" />
               </div>
@@ -63,20 +63,20 @@ export default function SettingsPage() {
                 <div className="inline-block px-2.5 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-[10px] font-mono text-rose-400 font-semibold uppercase tracking-wider">
                   403 Forbidden • Admin Authority Required
                 </div>
-                <h2 className="text-lg font-bold text-white tracking-tight">
+                <h2 className="text-lg font-bold text-[#fafaf4] tracking-tight">
                   System Configuration Restricted
                 </h2>
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-[#a1a1aa]">
                   Database engine telemetry, connection pooling parameters, and platform architecture controls are restricted strictly to platform <span className="text-rose-400 font-semibold">Administrators</span>.
                 </p>
                 <p className="text-[11px] font-mono text-zinc-500 pt-1">
-                  Your current session role is: <span className="text-indigo-400 font-semibold">{user?.role || "Viewer"}</span>
+                  Your current session role is: <span className="text-[#b193e0] font-semibold">{user?.role || "Viewer"}</span>
                 </p>
               </div>
               <div className="pt-2 flex justify-center">
                 <Link
                   href="/explorer"
-                  className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/20 transition-all flex items-center gap-2"
+                  className="px-5 py-2.5 rounded-lg btn-render-primary text-xs font-semibold flex items-center gap-2"
                 >
                   <ArrowRight className="w-4 h-4" />
                   <span>Return to Data Explorer</span>
@@ -99,30 +99,30 @@ export default function SettingsPage() {
         <main className="p-6 space-y-6 max-w-4xl mx-auto w-full">
           <div>
             <div className="flex items-center gap-2.5">
-              <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
                 System & Workspace Preferences
               </h1>
-              <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">
+              <span className="render-pill text-xs py-0.5 px-2.5 font-semibold">
                 Configuration
               </span>
             </div>
-            <p className="text-sm text-zinc-400 mt-1">
+            <p className="text-sm text-[#a1a1aa] mt-1">
               Customize table viewport densities, manage connection pool parameters, and review system diagnostics.
             </p>
           </div>
 
           {statusMessage && (
-            <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2 animate-in fade-in">
+            <div className="p-3 rounded-lg bg-[#0b7d55]/15 border border-[#0b7d55]/30 text-[#0b7d55] text-xs flex items-center gap-2 animate-in fade-in">
               <CheckCircle2 className="w-4 h-4" />
               <span>{statusMessage}</span>
             </div>
           )}
 
           {/* Table Display Preferences */}
-          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4">
-            <div className="flex items-center gap-2 border-b border-[#1b2234] pb-3">
-              <Sliders className="w-4 h-4 text-indigo-400" />
-              <h2 className="text-xs font-semibold uppercase font-mono tracking-wider text-white">
+          <div className="p-5 rounded-lg render-card space-y-4">
+            <div className="flex items-center gap-2 border-b border-[#1a2030] pb-3">
+              <Sliders className="w-4 h-4 text-[#968dfa]" />
+              <h2 className="text-xs font-semibold uppercase font-mono tracking-wider text-[#fafaf4]">
                 Data Explorer Viewport Preferences
               </h2>
             </div>
@@ -131,19 +131,19 @@ export default function SettingsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="font-semibold text-zinc-200">Table Row Density</div>
-                  <div className="text-zinc-500 text-[11px]">
+                  <div className="text-[#a1a1aa] text-[11px]">
                     Controls padding and vertical space between records in the table.
                   </div>
                 </div>
-                <div className="flex items-center gap-1.5 bg-[#141926] p-1 rounded-lg border border-[#222a3d]">
+                <div className="flex items-center gap-1.5 bg-[#121624] p-1 rounded-lg border border-[#1f273c]">
                   {(["compact", "comfortable", "spacious"] as const).map((density) => (
                     <button
                       key={density}
                       onClick={() => dispatch(setTableDensity(density))}
-                      className={`px-3 py-1 rounded text-xs font-mono capitalize transition-all ${
+                      className={`px-3 py-1 rounded-lg text-xs font-mono capitalize transition-all ${
                         tableDensity === density
-                          ? "bg-indigo-600 text-white font-semibold shadow"
-                          : "text-zinc-400 hover:text-zinc-200"
+                          ? "bg-[#6c35f5] text-white font-semibold shadow"
+                          : "text-[#a1a1aa] hover:text-zinc-200"
                       }`}
                     >
                       {density}
@@ -152,17 +152,17 @@ export default function SettingsPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between border-t border-[#171d2e] pt-3">
+              <div className="flex items-center justify-between border-t border-[#1a2030] pt-3">
                 <div>
                   <div className="font-semibold text-zinc-200">Default Page Size</div>
-                  <div className="text-zinc-500 text-[11px]">
+                  <div className="text-[#a1a1aa] text-[11px]">
                     Number of rows returned per server-side pagination slice.
                   </div>
                 </div>
                 <select
                   value={pageSize}
                   onChange={(e) => dispatch(setPageSize(Number(e.target.value)))}
-                  className="px-3 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-zinc-200 font-mono focus:outline-none focus:border-indigo-500 cursor-pointer"
+                  className="px-3 py-1.5 rounded-lg bg-[#121624] border border-[#1f273c] text-zinc-200 font-mono focus:outline-none focus:border-[#968dfa] cursor-pointer"
                 >
                   <option value={25}>25 rows</option>
                   <option value={50}>50 rows (Standard)</option>
@@ -173,7 +173,7 @@ export default function SettingsPage() {
               <div className="flex justify-end pt-2">
                 <button
                   onClick={handleResetDefaults}
-                  className="px-3 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white transition-all text-xs"
+                  className="px-4 py-2 rounded-lg btn-render-secondary text-xs font-medium"
                 >
                   Reset to Default Layout
                 </button>
@@ -182,25 +182,25 @@ export default function SettingsPage() {
           </div>
 
           {/* Database Diagnostics */}
-          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4">
-            <div className="flex items-center gap-2 border-b border-[#1b2234] pb-3">
-              <Database className="w-4 h-4 text-cyan-400" />
-              <h2 className="text-xs font-semibold uppercase font-mono tracking-wider text-white">
+          <div className="p-5 rounded-lg render-card space-y-4">
+            <div className="flex items-center gap-2 border-b border-[#1a2030] pb-3">
+              <Database className="w-4 h-4 text-[#968dfa]" />
+              <h2 className="text-xs font-semibold uppercase font-mono tracking-wider text-[#fafaf4]">
                 Database Engine Status (PostgreSQL + Drizzle)
               </h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-              <div className="p-3 rounded-lg bg-[#121624] border border-[#1c2438] space-y-1">
-                <span className="text-zinc-500">PostgreSQL Connection Pool</span>
-                <div className="text-zinc-200 font-bold">20 Concurrent Sockets</div>
-                <div className="text-[10px] text-emerald-400">Idle Timeout: 30,000ms</div>
+              <div className="p-3 rounded-lg bg-[#121624] border border-[#1f273c] space-y-1">
+                <span className="text-[#a1a1aa]">PostgreSQL Connection Pool</span>
+                <div className="text-[#fafaf4] font-bold">20 Concurrent Sockets</div>
+                <div className="text-[10px] text-[#0b7d55] font-semibold">Idle Timeout: 30,000ms</div>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#121624] border border-[#1c2438] space-y-1">
-                <span className="text-zinc-500">Indexing Engines Active</span>
-                <div className="text-zinc-200 font-bold">B-Tree + GIN Trigram</div>
-                <div className="text-[10px] text-cyan-400">pg_trgm Extension Enabled</div>
+              <div className="p-3 rounded-lg bg-[#121624] border border-[#1f273c] space-y-1">
+                <span className="text-[#a1a1aa]">Indexing Engines Active</span>
+                <div className="text-[#fafaf4] font-bold">B-Tree + GIN Trigram</div>
+                <div className="text-[10px] text-[#ffa033] font-semibold">pg_trgm Extension Enabled</div>
               </div>
             </div>
           </div>

@@ -103,7 +103,7 @@ export default function FilterBuilder() {
     (maxRevenue != null ? 1 : 0);
 
   return (
-    <div className="bg-[#0e121c] border border-[#1b2234] rounded-lg p-4 space-y-3 shadow-sm">
+    <div className="render-card rounded-lg p-4 space-y-3 shadow-sm">
       {/* Top Filter Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2.5">
@@ -166,14 +166,14 @@ export default function FilterBuilder() {
             onClick={() => dispatch(toggleAdvancedBuilder())}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
               isAdvancedBuilderOpen
-                ? "bg-indigo-600/20 text-indigo-300 border-indigo-500/40"
-                : "bg-[#141926] text-zinc-300 border-[#222a3d] hover:border-zinc-600"
+                ? "bg-[#6c35f5]/20 text-[#b193e0] border-[#968dfa]/40"
+                : "btn-render-secondary"
             }`}
           >
-            <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-400" />
+            <SlidersHorizontal className="w-3.5 h-3.5 text-[#968dfa]" />
             <span>Range Filters</span>
             {activeFiltersCount > 0 && (
-              <span className="w-4 h-4 rounded-full bg-indigo-500 text-white font-mono text-[10px] flex items-center justify-center font-bold">
+              <span className="w-4 h-4 rounded-full bg-[#6c35f5] text-white font-mono text-[10px] flex items-center justify-center font-bold">
                 {activeFiltersCount}
               </span>
             )}
@@ -193,7 +193,7 @@ export default function FilterBuilder() {
                 }}
                 defaultValue=""
                 aria-label="Load a saved search view"
-                className="appearance-none pl-7 pr-8 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-xs text-zinc-300 font-medium hover:border-indigo-500/50 focus:outline-none focus:border-indigo-500 cursor-pointer"
+                className="appearance-none pl-7 pr-8 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-xs text-[#fafaf4] font-medium hover:border-[#968dfa]/50 focus:outline-none focus:border-[#968dfa] cursor-pointer"
                 title="Select and apply a saved search configuration"
               >
                 <option value="" disabled>
@@ -205,7 +205,7 @@ export default function FilterBuilder() {
                   </option>
                 ))}
               </select>
-              <BookmarkCheck className="w-3.5 h-3.5 text-indigo-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <BookmarkCheck className="w-3.5 h-3.5 text-[#968dfa] absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <ChevronDown className="w-3.5 h-3.5 text-zinc-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
           )}
@@ -213,17 +213,17 @@ export default function FilterBuilder() {
           {/* Quick Link to Search History */}
           <Link
             href="/history"
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-medium transition-all"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg btn-render-secondary text-xs font-medium"
             title="View recent search query history"
           >
-            <History className="w-3.5 h-3.5 text-zinc-400" />
+            <History className="w-3.5 h-3.5 text-[#968dfa]" />
             <span className="hidden sm:inline">History</span>
           </Link>
 
           {activeFiltersCount > 0 && (
             <button
               onClick={() => dispatch(clearAllFilters())}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs text-zinc-400 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs text-[#a1a1aa] hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset</span>
@@ -232,9 +232,9 @@ export default function FilterBuilder() {
 
           <button
             onClick={() => dispatch(openSaveModal())}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium shadow-md shadow-indigo-600/20 transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg btn-render-primary text-xs font-semibold shadow-md"
           >
-            <BookmarkPlus className="w-3.5 h-3.5" />
+            <BookmarkPlus className="w-3.5 h-3.5 text-[#b193e0]" />
             <span>Save View</span>
           </button>
         </div>

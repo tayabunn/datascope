@@ -128,31 +128,31 @@ export default function AdvancedSearchPage() {
         <main className="p-6 space-y-6 max-w-5xl mx-auto w-full">
           <div>
             <div className="flex items-center gap-2.5">
-              <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
                 Visual Query Builder
               </h1>
-              <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">
+              <span className="mistral-pill text-xs py-0.5 px-2.5 font-semibold">
                 AST Query Engine
               </span>
             </div>
-            <p className="text-sm text-zinc-400 mt-1">
+            <p className="text-sm text-[#a1a1aa] mt-1">
               Construct complex, multi-variable relational queries with custom logical predicates without writing raw SQL.
             </p>
           </div>
 
-          {/* Builder Panel */}
-          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4 shadow-xl">
-            <div className="flex items-center justify-between border-b border-[#1b2234] pb-3">
-              <span className="text-xs font-mono uppercase text-zinc-400 font-semibold flex items-center gap-1.5">
-                <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-400" />
+          {/* Builder Panel (Render Iris Inset Card) */}
+          <div className="p-5 rounded-lg render-card space-y-4">
+            <div className="flex items-center justify-between border-b border-[#1a2030] pb-3">
+              <span className="text-xs font-mono uppercase text-[#a1a1aa] font-semibold flex items-center gap-1.5">
+                <SlidersHorizontal className="w-3.5 h-3.5 text-[#968dfa]" />
                 Active Predicate Conditions ({conditions.length})
               </span>
 
               <button
                 onClick={addCondition}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-medium transition-all"
+                className="flex items-center gap-1 px-3 py-1.5 rounded-lg btn-render-secondary text-xs font-medium"
               >
-                <Plus className="w-3.5 h-3.5 text-indigo-400" />
+                <Plus className="w-3.5 h-3.5 text-[#968dfa]" />
                 <span>Add Condition</span>
               </button>
             </div>
@@ -162,9 +162,9 @@ export default function AdvancedSearchPage() {
               {conditions.map((cond, index) => (
                 <div
                   key={cond.id}
-                  className="flex flex-wrap items-center gap-2 p-2.5 rounded-lg bg-[#121624] border border-[#1e273b] text-xs"
+                  className="flex flex-wrap items-center gap-2 p-2.5 rounded-lg bg-[#121624] border border-[#1f273c] text-xs"
                 >
-                  <span className="font-mono text-[10px] text-zinc-500 w-12 text-center font-bold">
+                  <span className="font-mono text-[10px] text-[#ffa033] w-12 text-center font-bold">
                     {index === 0 ? "WHERE" : "AND"}
                   </span>
 
@@ -174,7 +174,7 @@ export default function AdvancedSearchPage() {
                     onChange={(e) =>
                       updateCondition(cond.id, "field", e.target.value)
                     }
-                    className="px-2.5 py-1.5 rounded bg-[#161c2c] border border-[#232c42] text-zinc-200 focus:outline-none focus:border-indigo-500 cursor-pointer"
+                    className="px-2.5 py-1.5 rounded-lg bg-[#161c2c] border border-[#232c42] text-[#fafaf4] focus:outline-none focus:border-[#968dfa] cursor-pointer"
                   >
                     {AVAILABLE_FIELDS.map((f) => (
                       <option key={f.key} value={f.key} className="bg-[#121624]">
@@ -189,7 +189,7 @@ export default function AdvancedSearchPage() {
                     onChange={(e) =>
                       updateCondition(cond.id, "operator", e.target.value)
                     }
-                    className="px-2.5 py-1.5 rounded bg-[#161c2c] border border-[#232c42] text-zinc-200 focus:outline-none focus:border-indigo-500 cursor-pointer"
+                    className="px-2.5 py-1.5 rounded-lg bg-[#161c2c] border border-[#232c42] text-[#fafaf4] focus:outline-none focus:border-[#968dfa] cursor-pointer"
                   >
                     {OPERATORS.map((op) => (
                       <option key={op.key} value={op.key} className="bg-[#121624]">
@@ -206,13 +206,13 @@ export default function AdvancedSearchPage() {
                       updateCondition(cond.id, "value", e.target.value)
                     }
                     placeholder="Enter value..."
-                    className="flex-1 min-w-[140px] px-3 py-1.5 rounded bg-[#161c2c] border border-[#232c42] text-white placeholder-zinc-500 font-mono focus:outline-none focus:border-indigo-500"
+                    className="flex-1 min-w-[140px] px-3 py-1.5 rounded-lg bg-[#161c2c] border border-[#232c42] text-[#fafaf4] placeholder-zinc-500 font-mono focus:outline-none focus:border-[#968dfa]"
                   />
 
                   {/* Remove Button */}
                   <button
                     onClick={() => removeCondition(cond.id)}
-                    className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded transition-colors"
+                    className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
                     title="Remove rule"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -221,25 +221,25 @@ export default function AdvancedSearchPage() {
               ))}
             </div>
 
-            {/* Execute Query Button */}
+            {/* Execute Query Button (Mistral Amber Energy Button) */}
             <div className="flex justify-end pt-2">
               <button
                 onClick={handleExecute}
-                className="flex items-center gap-1.5 px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/20 transition-all"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg btn-mistral-amber text-xs font-semibold group"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
-                <span>Execute & View Results</span>
+                <span>Execute & View in Data Explorer</span>
               </button>
             </div>
           </div>
 
-          {/* Dynamic SQL Compiler Preview */}
-          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase text-zinc-400 font-semibold">
-              <Code2 className="w-4 h-4 text-cyan-400" />
+          {/* Dynamic SQL Compiler Preview (Mistral Obsidian + Amber AST card) */}
+          <div className="p-5 rounded-lg mistral-card space-y-2">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase text-[#ffa033] font-semibold">
+              <Code2 className="w-4 h-4 text-[#ff8204]" />
               <span>Compiled PostgreSQL Abstract Syntax Tree (AST)</span>
             </div>
-            <pre className="p-3.5 rounded-lg bg-[#0a0d14] border border-[#1a2133] text-xs font-mono text-cyan-300 overflow-x-auto leading-relaxed">
+            <pre className="p-3.5 rounded-lg bg-[#1a1a1e] border border-[#2a2a30] text-xs font-mono text-[#ffa033] overflow-x-auto leading-relaxed">
               {sqlPreview}
             </pre>
           </div>

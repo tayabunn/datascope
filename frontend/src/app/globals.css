@@ -46,14 +46,14 @@
   --border: #1a2030;
   --ring: #968dfa;
 
-  /* Render Inset Elevation Shadows */
-  --shadow-render-sm: 0 0 0 1px rgba(150, 141, 250, 0.22) inset;
-  --shadow-render-md: 0 0 0 1px rgba(150, 141, 250, 0.26) inset, 0 10px 24px -12px rgba(0, 0, 0, 0.7);
-  --shadow-render-lg: 0 0 0 1px rgba(150, 141, 250, 0.35) inset, 0 16px 32px -12px rgba(108, 53, 245, 0.35);
+  /* Render Elevation Shadows (from Render Specification) */
+  --shadow-render-sm: 0 0 0 1px rgba(150, 141, 250, 0.34) inset;
+  --shadow-render-md: 0 0 0 3px rgba(150, 141, 250, 0.14), 0 10px 24px -14px rgba(0, 0, 0, 0.7);
+  --shadow-render-lg: 0 1px 1px 0px rgba(0, 0, 0, 0.3), 0 10px 12px 0px rgba(0, 0, 0, 0.7);
 
-  /* Mistral Amber Inset Elevation Shadows */
+  /* Mistral Amber Elevation Shadows */
   --shadow-mistral-sm: 0 0 0 1px rgba(255, 130, 4, 0.3) inset;
-  --shadow-mistral-md: 0 0 0 1px rgba(255, 130, 4, 0.35) inset, 0 10px 24px -10px rgba(255, 130, 4, 0.25);
+  --shadow-mistral-md: 0 0 0 3px rgba(255, 130, 4, 0.15), 0 10px 24px -10px rgba(255, 130, 4, 0.25);
 
   /* Motion & Easing Curves */
   --ease-render: cubic-bezier(0.16, 1, 0.3, 1);

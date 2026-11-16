@@ -113,11 +113,11 @@ export default function RegisterPage() {
         </button>
       </div>
 
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient Radial Background Glows (Render Iris & Mistral Amber) */}
+      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-[#6c35f5]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-[#ff8204]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-md w-full bg-[#0d101a] border border-[#1d263b] rounded-lg p-8 shadow-2xl space-y-6 relative z-10">
+      <div className="max-w-md w-full render-card rounded-lg p-8 shadow-2xl space-y-6 relative z-10">
         {/* Brand Header with In-Card Back Arrow */}
         <div className="relative text-center space-y-2">
           <button
@@ -131,22 +131,22 @@ export default function RegisterPage() {
 
           <Link
             href="/"
-            className="inline-flex w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 items-center justify-center mx-auto shadow-lg shadow-indigo-500/20 text-white hover:scale-105 transition-transform p-2.5"
+            className="inline-flex w-12 h-12 rounded-lg bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] items-center justify-center mx-auto shadow-lg shadow-[#6c35f5]/30 text-white hover:scale-105 transition-transform p-2.5"
           >
             <DataScopeLogo className="w-full h-full text-white" />
           </Link>
-          <h2 className="text-2xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl font-bold text-[#fafaf4] tracking-tight">
             Create an Enterprise Account
           </h2>
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-[#a1a1aa]">
             Join the centralized DataScope platform for high-performance discovery
           </p>
         </div>
 
         {/* Evaluation Role Presets */}
         <div className="space-y-1.5">
-          <label className="text-[11px] font-mono uppercase text-zinc-400 font-semibold flex items-center gap-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+          <label className="text-[11px] font-mono uppercase text-[#a1a1aa] font-semibold flex items-center gap-1">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#ff8204]" />
             Quick Demo Provisioning
           </label>
           <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#121624] border border-[#1f283d] rounded-lg">
@@ -177,8 +177,8 @@ export default function RegisterPage() {
                 }
                 className={`py-1.5 px-2 rounded-lg text-xs font-medium transition-all text-center ${
                   selectedRole === item.role
-                    ? "bg-indigo-600 text-white font-semibold shadow"
-                    : "text-zinc-400 hover:text-white"
+                    ? "bg-[#6c35f5] text-white font-semibold shadow"
+                    : "text-[#a1a1aa] hover:text-white"
                 }`}
               >
                 {item.role === "Administrator"
@@ -195,18 +195,18 @@ export default function RegisterPage() {
         <button
           type="button"
           onClick={handleGoogleSignUp}
-          className="w-full py-2.5 px-4 rounded-lg bg-[#131726] hover:bg-[#181e30] border border-[#232b40] hover:border-[#384566] text-white text-xs font-medium flex items-center justify-center gap-2.5 transition-all shadow-sm group"
+          className="w-full py-2.5 px-4 rounded-lg btn-render-secondary text-xs font-semibold flex items-center justify-center gap-2.5 transition-all group"
         >
           <GoogleIcon className="w-4 h-4" />
           <span>Sign up with Google as {selectedRole}</span>
         </button>
 
         <div className="relative flex items-center justify-center">
-          <div className="border-t border-[#1e2538] w-full" />
-          <span className="bg-[#0d101a] px-2.5 text-[10px] font-mono uppercase tracking-wider text-zinc-500 whitespace-nowrap">
+          <div className="border-t border-[#1a2030] w-full" />
+          <span className="bg-[#0c0f18] px-2.5 text-[10px] font-mono uppercase tracking-wider text-[#a1a1aa] whitespace-nowrap">
             Or register with credentials
           </span>
-          <div className="border-t border-[#1e2538] w-full" />
+          <div className="border-t border-[#1a2030] w-full" />
         </div>
 
         {/* Registration Form */}
@@ -221,7 +221,7 @@ export default function RegisterPage() {
                 required
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
                 placeholder="Sarah Connor"
               />
               <User className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -238,7 +238,7 @@ export default function RegisterPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
                 placeholder="user@enterprise.internal"
               />
               <Mail className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -255,7 +255,7 @@ export default function RegisterPage() {
                 required
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
                 placeholder="Global Corp Inc"
               />
               <Building2 className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -272,7 +272,7 @@ export default function RegisterPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
               />
               <Lock className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
             </div>
@@ -280,19 +280,19 @@ export default function RegisterPage() {
 
           <button
             type="submit"
-            className="w-full py-2.5 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 transition-all mt-2 group"
+            className="w-full py-2.5 px-4 rounded-lg btn-render-primary text-white text-xs font-semibold shadow-lg flex items-center justify-center gap-2 transition-all mt-2 group"
           >
             <span>Complete Registration</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </form>
 
-        <div className="text-center pt-2 border-t border-[#1a2236]">
-          <p className="text-xs text-zinc-400">
+        <div className="text-center pt-2 border-t border-[#1a2030]">
+          <p className="text-xs text-[#a1a1aa]">
             Already have an enterprise account?{" "}
             <Link
               href="/login"
-              className="text-indigo-400 hover:text-indigo-300 font-semibold underline underline-offset-4"
+              className="text-[#968dfa] hover:text-[#b193e0] font-semibold underline underline-offset-4"
             >
               Sign In
             </Link>

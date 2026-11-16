@@ -113,14 +113,14 @@ export default function HistoryPage() {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <div className="flex items-center gap-2.5">
-                <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                <h1 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
                   Search & Query Execution History
                 </h1>
-                <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">
+                <span className="render-pill text-xs py-0.5 px-2.5 font-semibold">
                   {historyEntries.length} Recorded Queries
                 </span>
               </div>
-              <p className="text-sm text-zinc-400 mt-1">
+              <p className="text-sm text-[#a1a1aa] mt-1">
                 Automatically maintained audit trail of recently executed queries, filter combinations, and query execution times.
               </p>
             </div>
@@ -138,7 +138,7 @@ export default function HistoryPage() {
           </div>
 
           {/* History List Container */}
-          <div className="rounded-lg bg-[#0f131f] border border-[#1d2538] overflow-hidden shadow-lg">
+          <div className="rounded-lg render-card overflow-hidden shadow-lg">
             {isLoading ? (
               <div className="p-8 space-y-4">
                 {Array.from({ length: 4 }).map((_, i) => (
@@ -206,10 +206,10 @@ export default function HistoryPage() {
                       {/* Right: Matches, Latency & Rerun Button */}
                       <div className="flex items-center gap-3">
                         <div className="text-right">
-                          <div className="text-zinc-200 font-semibold text-xs">
+                          <div className="text-[#fafaf4] font-semibold text-xs">
                             {item.totalMatches.toLocaleString()} matches
                           </div>
-                          <div className="text-[11px] text-emerald-400 flex items-center justify-end gap-1">
+                          <div className="text-[11px] text-[#0b7d55] flex items-center justify-end gap-1 font-semibold">
                             <Zap className="w-3 h-3" />
                             <span>{item.executionTimeMs} ms</span>
                           </div>
@@ -217,7 +217,7 @@ export default function HistoryPage() {
 
                         <button
                           onClick={(e) => handleDeleteItem(item.id, e)}
-                          className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded transition-colors opacity-0 group-hover:opacity-100"
+                          className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors opacity-0 group-hover:opacity-100"
                           title="Remove from history"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -225,7 +225,7 @@ export default function HistoryPage() {
 
                         <button
                           onClick={() => handleRerun(item)}
-                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#161c2c] hover:bg-indigo-600 border border-[#232c42] hover:border-indigo-500 text-zinc-300 hover:text-white transition-all shadow-sm"
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg btn-render-primary text-xs font-semibold"
                           title="Load this search configuration into Data Explorer"
                         >
                           <span>Rerun</span>

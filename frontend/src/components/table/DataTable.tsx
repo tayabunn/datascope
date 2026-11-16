@@ -219,12 +219,12 @@ const MemoizedTableRow = React.memo(
             <span
               className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border ${
                 record.status === "Active"
-                  ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25"
+                  ? "bg-[#0b7d55]/15 text-[#0b7d55] border-[#0b7d55]/30"
                   : record.status === "Pending"
-                  ? "bg-amber-500/10 text-amber-400 border-amber-500/25"
+                  ? "bg-[#ff8204]/15 text-[#ffa033] border-[#ff8204]/30"
                   : record.status === "Inactive"
-                  ? "bg-rose-500/10 text-rose-400 border-rose-500/25"
-                  : "bg-zinc-700/20 text-zinc-400 border-zinc-600/30"
+                  ? "bg-[#af1d27]/15 text-rose-400 border-rose-500/30"
+                  : "bg-zinc-700/20 text-[#a1a1aa] border-zinc-600/30"
               }`}
             >
               {record.status}

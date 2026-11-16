@@ -40,13 +40,21 @@ interface AnalyticsChartsProps {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-  Active: "#10b981", // Emerald
-  Pending: "#f59e0b", // Amber
-  Inactive: "#f43f5e", // Rose
-  Archived: "#64748b", // Slate
+  Active: "#0B7D55", // Render Product Success
+  Pending: "#FF8204", // Mistral Amber
+  Inactive: "#AF1D27", // Render Red
+  Archived: "#6B6B6B", // Render Slate Gray
 };
 
-const CATEGORY_COLORS = ["#6366f1", "#06b6d4", "#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b"];
+const CATEGORY_COLORS = [
+  "#6C35F5", // Render Iris
+  "#FF8204", // Mistral Amber
+  "#968DFA", // Render Hills Warm
+  "#0B7D55", // Render Product Success
+  "#005E9E", // Render Blue
+  "#8A05FF", // Render Purple
+  "#FFA033", // Mistral Amber Light
+];
 
 export default function AnalyticsCharts({
   data,
@@ -76,59 +84,59 @@ export default function AnalyticsCharts({
       {/* 1. Summary Metric Cards: Total Records & Key Financials */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Records */}
-        <div className="p-4 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
-          <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
+        <div className="p-4 rounded-lg render-card space-y-1">
+          <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
             <span>TOTAL RECORDS</span>
-            <Layers className="w-4 h-4 text-cyan-400" />
+            <Layers className="w-4 h-4 text-[#968dfa]" />
           </div>
-          <div className="text-2xl font-bold font-mono text-white">
+          <div className="text-2xl font-bold font-mono text-[#fafaf4]">
             {summary.totalRecords.toLocaleString()}
           </div>
-          <div className="text-[11px] text-emerald-400 flex items-center gap-1 font-mono">
+          <div className="text-[11px] text-[#0b7d55] flex items-center gap-1 font-mono">
             <CheckCircle2 className="w-3 h-3" />
             <span>100% Indexed & Verified</span>
           </div>
         </div>
 
         {/* Total Revenue */}
-        <div className="p-4 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
-          <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
+        <div className="p-4 rounded-lg render-card space-y-1">
+          <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
             <span>TOTAL REVENUE (SQL SUM)</span>
-            <DollarSign className="w-4 h-4 text-emerald-400" />
+            <DollarSign className="w-4 h-4 text-[#0b7d55]" />
           </div>
-          <div className="text-2xl font-bold font-mono text-emerald-400">
+          <div className="text-2xl font-bold font-mono text-[#0b7d55]">
             ${(summary.totalRevenue / 1000000).toFixed(1)}M
           </div>
-          <div className="text-[11px] text-zinc-500 font-mono">
+          <div className="text-[11px] text-[#a1a1aa] font-mono">
             Aggregated on PostgreSQL
           </div>
         </div>
 
         {/* Average Profit Margin */}
-        <div className="p-4 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
-          <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
+        <div className="p-4 rounded-lg render-card space-y-1">
+          <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
             <span>AVG PROFIT MARGIN</span>
-            <TrendingUp className="w-4 h-4 text-indigo-400" />
+            <TrendingUp className="w-4 h-4 text-[#968dfa]" />
           </div>
-          <div className="text-2xl font-bold font-mono text-indigo-300">
+          <div className="text-2xl font-bold font-mono text-[#b193e0]">
             {summary.avgProfitMargin}%
           </div>
-          <div className="text-[11px] text-zinc-500 font-mono">
+          <div className="text-[11px] text-[#a1a1aa] font-mono">
             Across 100k business deals
           </div>
         </div>
 
         {/* Active Accounts & Search Metrics */}
-        <div className="p-4 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-1 shadow-sm">
-          <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
+        <div className="p-4 rounded-lg mistral-card space-y-1">
+          <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
             <span>ACTIVE RECORDS</span>
-            <Activity className="w-4 h-4 text-amber-400" />
+            <Activity className="w-4 h-4 text-[#ff8204]" />
           </div>
-          <div className="text-2xl font-bold font-mono text-white">
+          <div className="text-2xl font-bold font-mono text-[#fafaf4]">
             {summary.activeCount.toLocaleString()}
           </div>
-          <div className="text-[11px] text-zinc-400 font-mono flex items-center gap-1">
-            <Zap className="w-3 h-3 text-emerald-400" />
+          <div className="text-[11px] text-[#ffa033] font-mono flex items-center gap-1">
+            <Zap className="w-3 h-3 text-[#ff8204]" />
             <span>Avg Query Latency: {summary.avgQueryLatencyMs || 12.6}ms</span>
           </div>
         </div>
@@ -137,55 +145,56 @@ export default function AnalyticsCharts({
       {/* 2 & 3. Category Breakdown & Status Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 1: Records by Category (Bar Chart) */}
-        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+        <div className="p-5 rounded-lg render-card space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <BarChart2 className="w-4 h-4 text-indigo-400" />
-              <h3 className="text-xs font-semibold text-white uppercase font-mono tracking-wider">
+              <BarChart2 className="w-4 h-4 text-[#968dfa]" />
+              <h3 className="text-xs font-semibold text-[#fafaf4] uppercase font-mono tracking-wider">
                 Records by Category
               </h3>
             </div>
-            <span className="text-[10px] font-mono text-zinc-500">GROUP BY category</span>
+            <span className="text-[10px] font-mono text-[#a1a1aa]">GROUP BY category</span>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={byCategory} margin={{ top: 10, right: 10, left: -15, bottom: 25 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1d2538" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#1a2030" />
                 <XAxis
                   dataKey="category"
-                  stroke="#64748b"
+                  stroke="#a1a1aa"
                   fontSize={10}
                   tickLine={false}
                   angle={-15}
                   textAnchor="end"
                 />
-                <YAxis stroke="#64748b" fontSize={10} tickLine={false} />
+                <YAxis stroke="#a1a1aa" fontSize={10} tickLine={false} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#121624",
-                    borderColor: "#232c42",
+                    backgroundColor: "#0c0f18",
+                    borderColor: "#1a2030",
                     borderRadius: "8px",
-                    color: "#fff",
+                    boxShadow: "0 0 0 1px rgba(150, 141, 250, 0.25) inset",
+                    color: "#fafaf4",
                     fontSize: "11px",
                   }}
                   formatter={(val: any) => [`${Number(val).toLocaleString()} records`, "Record Count"]}
                 />
-                <Bar dataKey="count" fill="#6366f1" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="count" fill="#6c35f5" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Chart 2: Records by Status (Donut Pie Chart) */}
-        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+        <div className="p-5 rounded-lg mistral-card space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <PieIcon className="w-4 h-4 text-emerald-400" />
-              <h3 className="text-xs font-semibold text-white uppercase font-mono tracking-wider">
+              <PieIcon className="w-4 h-4 text-[#ff8204]" />
+              <h3 className="text-xs font-semibold text-[#fafaf4] uppercase font-mono tracking-wider">
                 Records by Status
               </h3>
             </div>
-            <span className="text-[10px] font-mono text-zinc-500">GROUP BY status</span>
+            <span className="text-[10px] font-mono text-[#a1a1aa]">GROUP BY status</span>
           </div>
           <div className="h-64 w-full flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
@@ -229,15 +238,15 @@ export default function AnalyticsCharts({
       </div>
 
       {/* 4. Data Growth Trends (Area Chart) */}
-      <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+      <div className="p-5 rounded-lg render-card space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-cyan-400" />
-            <h3 className="text-xs font-semibold text-white uppercase font-mono tracking-wider">
+            <Calendar className="w-4 h-4 text-[#968dfa]" />
+            <h3 className="text-xs font-semibold text-[#fafaf4] uppercase font-mono tracking-wider">
               Data Growth Trends (Monthly Record Ingestion)
             </h3>
           </div>
-          <span className="text-[11px] font-mono text-zinc-500">
+          <span className="text-[11px] font-mono text-[#a1a1aa]">
             Past 12 Months Time-Series Aggregation
           </span>
         </div>
@@ -246,19 +255,20 @@ export default function AnalyticsCharts({
             <AreaChart data={growthTrends} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
               <defs>
                 <linearGradient id="growthGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
-                  <stop offset="95%" stopColor="#06b6d4" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#6c35f5" stopOpacity={0.4} />
+                  <stop offset="95%" stopColor="#6c35f5" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1d2538" />
-              <XAxis dataKey="month" stroke="#64748b" fontSize={10} tickLine={false} />
-              <YAxis stroke="#64748b" fontSize={10} tickLine={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#1a2030" />
+              <XAxis dataKey="month" stroke="#a1a1aa" fontSize={10} tickLine={false} />
+              <YAxis stroke="#a1a1aa" fontSize={10} tickLine={false} />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#121624",
-                  borderColor: "#232c42",
+                  backgroundColor: "#0c0f18",
+                  borderColor: "#1a2030",
                   borderRadius: "8px",
-                  color: "#fff",
+                  boxShadow: "0 0 0 1px rgba(150, 141, 250, 0.25) inset",
+                  color: "#fafaf4",
                   fontSize: "11px",
                 }}
                 formatter={(val: any) => [`${Number(val).toLocaleString()} records`, "Ingestion Volume"]}
@@ -266,7 +276,7 @@ export default function AnalyticsCharts({
               <Area
                 type="monotone"
                 dataKey="recordCount"
-                stroke="#06b6d4"
+                stroke="#6c35f5"
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#growthGrad)"
@@ -279,55 +289,56 @@ export default function AnalyticsCharts({
       {/* 5 & 6. Search Activity & Most Frequently Used Filters */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 5: Search Activity & Query Latency (Composed Chart) */}
-        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+        <div className="p-5 rounded-lg mistral-card space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Search className="w-4 h-4 text-cyan-400" />
-              <h3 className="text-xs font-semibold text-white uppercase font-mono tracking-wider">
+              <Search className="w-4 h-4 text-[#ff8204]" />
+              <h3 className="text-xs font-semibold text-[#fafaf4] uppercase font-mono tracking-wider">
                 Search Activity & Query Latency
               </h3>
             </div>
-            <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+            <span className="mistral-pill text-[10px] py-0.5 px-2">
               Sub-15ms Latency
             </span>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={searchActivity} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1d2538" />
-                <XAxis dataKey="time" stroke="#64748b" fontSize={10} tickLine={false} />
-                <YAxis yAxisId="left" stroke="#64748b" fontSize={10} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#1a2030" />
+                <XAxis dataKey="time" stroke="#a1a1aa" fontSize={10} tickLine={false} />
+                <YAxis yAxisId="left" stroke="#a1a1aa" fontSize={10} tickLine={false} />
                 <YAxis
                   yAxisId="right"
                   orientation="right"
-                  stroke="#10b981"
+                  stroke="#0b7d55"
                   fontSize={10}
                   tickLine={false}
                   unit="ms"
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#121624",
-                    borderColor: "#232c42",
+                    backgroundColor: "#0c0f18",
+                    borderColor: "#1a2030",
                     borderRadius: "8px",
-                    color: "#fff",
+                    boxShadow: "0 0 0 1px rgba(255, 130, 4, 0.25) inset",
+                    color: "#fafaf4",
                     fontSize: "11px",
                   }}
                 />
                 <Legend
                   verticalAlign="top"
                   height={30}
-                  formatter={(value) => <span className="text-[11px] text-zinc-300 font-mono">{value}</span>}
+                  formatter={(value) => <span className="text-[11px] text-[#fafaf4] font-mono">{value}</span>}
                 />
-                <Bar yAxisId="left" dataKey="queryCount" name="Query Volume" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                <Bar yAxisId="left" dataKey="queryCount" name="Query Volume" fill="#ff8204" radius={[4, 4, 0, 0]} />
                 <Line
                   yAxisId="right"
                   type="monotone"
                   dataKey="avgLatencyMs"
                   name="Avg Latency (ms)"
-                  stroke="#10b981"
+                  stroke="#0b7d55"
                   strokeWidth={2}
-                  dot={{ r: 3, fill: "#10b981" }}
+                  dot={{ r: 3, fill: "#0b7d55" }}
                 />
               </ComposedChart>
             </ResponsiveContainer>
@@ -335,15 +346,15 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Chart 6: Most Frequently Used Filters (Horizontal Bar Chart) */}
-        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 shadow-md">
+        <div className="p-5 rounded-lg render-card space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Filter className="w-4 h-4 text-purple-400" />
-              <h3 className="text-xs font-semibold text-white uppercase font-mono tracking-wider">
+              <Filter className="w-4 h-4 text-[#968dfa]" />
+              <h3 className="text-xs font-semibold text-[#fafaf4] uppercase font-mono tracking-wider">
                 Most Frequently Used Filters
               </h3>
             </div>
-            <span className="text-[10px] font-mono text-zinc-500">Usage Distribution</span>
+            <span className="text-[10px] font-mono text-[#a1a1aa]">Usage Distribution</span>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -352,31 +363,32 @@ export default function AnalyticsCharts({
                 data={mostFrequentFilters}
                 margin={{ top: 10, right: 20, left: 20, bottom: 0 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#1d2538" horizontal={false} />
-                <XAxis type="number" stroke="#64748b" fontSize={10} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#1a2030" horizontal={false} />
+                <XAxis type="number" stroke="#a1a1aa" fontSize={10} tickLine={false} />
                 <YAxis
                   type="category"
                   dataKey="filterName"
-                  stroke="#64748b"
+                  stroke="#a1a1aa"
                   fontSize={9}
                   tickLine={false}
                   width={140}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#121624",
-                    borderColor: "#232c42",
+                    backgroundColor: "#0c0f18",
+                    borderColor: "#1a2030",
                     borderRadius: "8px",
-                    color: "#fff",
+                    boxShadow: "0 0 0 1px rgba(150, 141, 250, 0.25) inset",
+                    color: "#fafaf4",
                     fontSize: "11px",
                   }}
                   formatter={(val: any) => [`${Number(val).toLocaleString()} times`, "Frequency"]}
                 />
-                <Bar dataKey="usageCount" fill="#8b5cf6" radius={[0, 4, 4, 0]}>
+                <Bar dataKey="usageCount" fill="#6c35f5" radius={[0, 4, 4, 0]}>
                   {mostFrequentFilters.map((_, index) => (
                     <Cell
                       key={`filter-cell-${index}`}
-                      fill={index === 0 ? "#8b5cf6" : index === 1 ? "#6366f1" : index === 2 ? "#06b6d4" : "#ec4899"}
+                      fill={index === 0 ? "#6c35f5" : index === 1 ? "#968dfa" : index === 2 ? "#ff8204" : "#0b7d55"}
                     />
                   ))}
                 </Bar>
