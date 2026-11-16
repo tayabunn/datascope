@@ -158,7 +158,7 @@ ON business_records (revenue DESC NULLS LAST);`,
 
       {/* Hero Section */}
       <main className="flex-1">
-        <section className="relative pt-16 pb-14 px-6 max-w-6xl mx-auto text-center space-y-5">
+        <section className="relative pt-16 pb-14 px-4 w-[90%] mx-auto text-center space-y-5">
           <div className="mistral-pill mb-2 shadow-sm inline-flex items-center gap-2">
             <Cpu className="w-3.5 h-3.5 text-[#ff8204] animate-pulse" />
             <span>PostgreSQL 16 & Sub-18ms Query Architecture</span>
@@ -195,7 +195,7 @@ ON business_records (revenue DESC NULLS LAST);`,
         </section>
 
         {/* 5-Layer System Architecture Section */}
-        <section className="py-12 px-6 max-w-5xl mx-auto space-y-8">
+        <section className="py-12 px-4 w-[90%] mx-auto space-y-8">
           <div className="text-center space-y-2">
             <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
               End-To-End Topology
@@ -244,7 +244,7 @@ ON business_records (revenue DESC NULLS LAST);`,
         </section>
 
         {/* PostgreSQL Indexing Strategies Section */}
-        <section className="py-16 px-6 max-w-6xl mx-auto space-y-10">
+        <section className="py-16 px-4 w-[90%] mx-auto space-y-10">
           <div className="text-center space-y-2">
             <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold">
               PostgreSQL 16 Optimization
@@ -293,7 +293,7 @@ ON business_records (revenue DESC NULLS LAST);`,
         </section>
 
         {/* Benchmark Comparison Table */}
-        <section className="py-12 px-6 max-w-5xl mx-auto space-y-8">
+        <section className="py-12 px-4 w-[90%] mx-auto space-y-8">
           <div className="text-center space-y-2">
             <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
               Empirical Latency Data
@@ -349,7 +349,7 @@ ON business_records (revenue DESC NULLS LAST);`,
         </section>
 
         {/* CTA Bottom Banner */}
-        <section className="py-16 px-6 max-w-5xl mx-auto text-center">
+        <section className="py-16 px-4 w-[90%] mx-auto text-center">
           <div className="p-10 sm:p-12 rounded-lg render-card space-y-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
               Experience the Architecture in Real Time
