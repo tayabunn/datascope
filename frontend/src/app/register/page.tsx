@@ -78,7 +78,11 @@ export default function RegisterPage() {
       })
     );
 
-    router.push("/explorer");
+    if (selectedRole === "Administrator") {
+      router.push("/overview");
+    } else {
+      router.push("/explorer");
+    }
   };
 
   const handleQuickPreset = (role: UserRole, name: string, mail: string) => {
