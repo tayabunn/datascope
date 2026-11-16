@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useAppDispatch } from "@/store/hooks";
 import { setCredentials, UserRole } from "@/store/slices/authSlice";
 import { addToast } from "@/store/slices/toastSlice";
+import DataScopeLogo from "@/components/common/DataScopeLogo";
 import {
   Layers,
   ShieldCheck,
@@ -191,7 +192,7 @@ function LoginContent() {
         <button
           type="button"
           onClick={() => router.push("/")}
-          className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0e121d]/90 hover:bg-[#151c2c] border border-[#1e2538] hover:border-indigo-500/40 text-zinc-300 hover:text-white text-xs font-medium transition-all shadow-md group backdrop-blur-md"
+          className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#0e121d]/90 hover:bg-[#151c2c] border border-[#1e2538] hover:border-indigo-500/40 text-zinc-300 hover:text-white text-xs font-medium transition-all shadow-md group backdrop-blur-md"
           title="Return to Public Landing Page"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform text-indigo-400" />
@@ -203,20 +204,20 @@ function LoginContent() {
       <div className="absolute top-1/4 -left-48 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-md w-full bg-[#0d101a] border border-[#1d263b] rounded-2xl p-8 shadow-2xl space-y-6 relative z-10">
+      <div className="max-w-md w-full bg-[#0d101a] border border-[#1d263b] rounded-lg p-8 shadow-2xl space-y-6 relative z-10">
         {/* Brand Header with In-Card Back Arrow */}
         <div className="relative text-center space-y-2">
           <button
             type="button"
             onClick={() => router.push("/")}
-            className="absolute left-0 top-0 p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-[#141926] border border-transparent hover:border-[#222a3d] transition-all"
+            className="absolute left-0 top-0 p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-[#141926] border border-transparent hover:border-[#222a3d] transition-all"
             title="Return to Landing Page"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
 
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center mx-auto shadow-lg shadow-indigo-500/20 text-white">
-            <Layers className="w-6 h-6" />
+          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center mx-auto shadow-lg shadow-indigo-500/20 text-white p-2.5">
+            <DataScopeLogo className="w-full h-full text-white" />
           </div>
           <h2 className="text-2xl font-bold text-white tracking-tight">
             Sign In to DataScope
@@ -232,7 +233,7 @@ function LoginContent() {
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
             Select Demo Evaluation Role
           </label>
-          <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#121624] border border-[#1f283d] rounded-xl">
+          <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#121624] border border-[#1f283d] rounded-lg">
             {(
               [
                 { role: "Administrator", email: "admin@datascope.internal" },
@@ -264,7 +265,7 @@ function LoginContent() {
         <button
           type="button"
           onClick={handleGoogleSignIn}
-          className="w-full py-2.5 px-4 rounded-xl bg-[#131726] hover:bg-[#181e30] border border-[#232b40] hover:border-[#384566] text-white text-xs font-medium flex items-center justify-center gap-2.5 transition-all shadow-sm group"
+          className="w-full py-2.5 px-4 rounded-lg bg-[#131726] hover:bg-[#181e30] border border-[#232b40] hover:border-[#384566] text-white text-xs font-medium flex items-center justify-center gap-2.5 transition-all shadow-sm group"
         >
           <GoogleIcon className="w-4 h-4" />
           <span>Continue with Google as {selectedRole}</span>
@@ -311,7 +312,7 @@ function LoginContent() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition-all"
+            className="w-full py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition-all"
           >
             {isSubmitting ? (
               <>
