@@ -18,7 +18,7 @@ export default function AnalyticsPage() {
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         <Header />
 
-        <main className="p-6 space-y-6 max-w-7xl mx-auto w-full">
+        <main className="p-6 space-y-6 w-full">
           {/* Header */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>

@@ -273,7 +273,7 @@ function ExplorerContent() {
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         <Header />
 
-        <main className="p-6 space-y-5 max-w-7xl mx-auto w-full">
+        <main className="p-6 space-y-5 w-full">
           {/* Page Title & Quick Refresh */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>

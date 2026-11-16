@@ -89,7 +89,7 @@ export default function OverviewDashboardPage() {
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         <Header />
 
-        <main className="p-6 space-y-6 max-w-7xl mx-auto w-full">
+        <main className="p-6 space-y-6 w-full">
           {/* ========================================================================= */}
           {/* 1. ADMINISTRATOR DASHBOARD VIEW (Root Access & Infrastructure Telemetry)   */}
           {/* ========================================================================= */}

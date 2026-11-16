@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { useAppSelector } from "@/store/hooks";
-import DataScopeLogo from "@/components/common/DataScopeLogo";
+import PublicHeader from "@/components/layout/PublicHeader";
+import PublicFooter from "@/components/layout/PublicFooter";
 import {
   Layers,
   Database,
@@ -24,99 +24,24 @@ import {
   SlidersHorizontal,
   ChevronRight,
   ExternalLink,
+  TableProperties,
 } from "lucide-react";
 
 export default function LandingPage() {
-  const { isAuthenticated, user } = useAppSelector((state) => state.auth);
-
   return (
     <div className="min-h-screen bg-[#07090e] text-[#f1f3f7] flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
       {/* Ambient Radial Background Glows (Render Iris & Mistral Amber) */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[#6c35f5]/15 blur-[160px] pointer-events-none rounded-full" />
       <div className="fixed top-[400px] right-0 w-[500px] h-[500px] bg-[#ff8204]/10 blur-[150px] pointer-events-none rounded-full" />
 
-      {/* Public Navigation Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#080a10]/85 border-b border-[#1a2030]">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] flex items-center justify-center shadow-lg shadow-[#6c35f5]/30 text-white font-bold group-hover:scale-105 transition-transform p-2">
-              <DataScopeLogo className="w-full h-full text-white" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-[#fafaf4] tracking-tight text-lg">
-                  DataScope
-                </span>
-                <span className="mistral-pill text-[10px] py-0.5 px-2">
-                  v2.4 Enterprise
-                </span>
-              </div>
-              <p className="text-[11px] text-[#a1a1aa] font-mono">
-                Data Discovery & Intelligence
-              </p>
-            </div>
-          </Link>
-
-          {/* Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-medium text-zinc-400">
-            <a href="#features" className="hover:text-white transition-colors">
-              Platform Features
-            </a>
-            <a href="#preview" className="hover:text-white transition-colors">
-              Data Explorer
-            </a>
-            <a href="#architecture" className="hover:text-white transition-colors">
-              Architecture & Indexing
-            </a>
-            <Link href="/overview" className="hover:text-white transition-colors flex items-center gap-1">
-              <span>Overview Dashboard</span>
-              <ChevronRight className="w-3 h-3 text-zinc-500" />
-            </Link>
-          </nav>
-
-          {/* Action CTAs: Dynamic based on Session State */}
-          <div className="flex items-center gap-3">
-            {isAuthenticated ? (
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-zinc-400 font-mono hidden sm:inline">
-                  Signed in as <span className="text-indigo-400 font-semibold">{user?.fullName?.split(" ")[0] || "User"}</span>
-                </span>
-                <Link
-                  href="/explorer"
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
-                >
-                  <Database className="w-3.5 h-3.5 text-indigo-200" />
-                  <span>Go to Explorer</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Link
-                  href="/login"
-                  className="text-xs font-semibold text-zinc-300 hover:text-white px-3.5 py-2 rounded-lg hover:bg-[#121724] transition-all"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="/register"
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
-                >
-                  <span>Get Started</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-      </header>
+      {/* Public Navigation Header (Shared across /features, /data-explorer, /architecture) */}
+      <PublicHeader />
 
       {/* Main Content */}
       <main className="flex-1">
         {/* Hero Section (Render Cloud Atmosphere + Mistral Editorial Typography) */}
         <section className="relative pt-20 pb-16 px-6 max-w-6xl mx-auto text-center space-y-6">
-          <div className="mistral-pill mb-2 shadow-sm">
+          <div className="mistral-pill mb-2 shadow-sm inline-flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5 text-[#ff8204] animate-pulse" />
             <span>100,000+ Business Records • Sub-18ms GIN Indexing</span>
           </div>
@@ -135,7 +60,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-4">
             <Link
               href="/explorer"
-              className="flex items-center gap-2.5 px-6 py-3.5 rounded-lg btn-render-primary text-sm font-semibold group"
+              className="flex items-center gap-2.5 px-6 py-3.5 rounded-lg btn-render-primary text-sm font-semibold group shadow-lg shadow-[#6c35f5]/25"
             >
               <Database className="w-4 h-4 text-[#b193e0]" />
               <span>Launch Live Data Explorer (100k Rows)</span>
@@ -143,19 +68,19 @@ export default function LandingPage() {
             </Link>
 
             <Link
-              href="/overview"
+              href="/features"
               className="flex items-center gap-2 px-5 py-3.5 rounded-lg btn-render-secondary text-sm font-semibold"
             >
-              <Activity className="w-4 h-4 text-[#968dfa]" />
-              <span>Overview Dashboard</span>
+              <Layers className="w-4 h-4 text-[#968dfa]" />
+              <span>Platform Features</span>
             </Link>
 
             <Link
-              href="/login"
+              href="/architecture"
               className="flex items-center gap-2 px-5 py-3.5 rounded-lg btn-render-secondary text-sm font-semibold"
             >
-              <ShieldCheck className="w-4 h-4 text-[#0b7d55]" />
-              <span>Evaluate Demo Roles</span>
+              <Cpu className="w-4 h-4 text-[#ffa033]" />
+              <span>Architecture & Indexing</span>
             </Link>
           </div>
 
@@ -200,17 +125,26 @@ export default function LandingPage() {
         </section>
 
         {/* Live Interactive Explorer Preview Section */}
-        <section id="preview" className="py-16 px-6 max-w-6xl mx-auto">
-          <div className="text-center space-y-3 mb-8">
-            <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
-              The Central Application Experience
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Enterprise Data Explorer
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">
-              Dynamic multi-column sorting, column show/hide management, instant trigram filtering, and slide-over audit drawers.
-            </p>
+        <section className="py-16 px-6 max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
+            <div className="space-y-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+                The Central Application Experience
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Enterprise Data Explorer
+              </h2>
+              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl">
+                Dynamic multi-column sorting, column show/hide management, instant trigram filtering, and slide-over audit drawers.
+              </p>
+            </div>
+            <Link
+              href="/data-explorer"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#202738] text-xs font-semibold text-[#968dfa] hover:text-white transition-all shrink-0"
+            >
+              <span>Explore Data Explorer Capabilities</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
           {/* Mock Interactive Data Table Graphic */}
@@ -224,7 +158,7 @@ export default function LandingPage() {
                 </span>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                  14ms Latency
+                  14.2ms Latency
                 </span>
               </div>
 
@@ -294,14 +228,23 @@ export default function LandingPage() {
         </section>
 
         {/* Platform Capabilities Grid */}
-        <section id="features" className="py-16 px-6 max-w-6xl mx-auto space-y-12">
-          <div className="text-center space-y-3">
-            <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">
-              Engineered For Scale
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Six Core Architectural Pillars
-            </h2>
+        <section className="py-16 px-6 max-w-6xl mx-auto space-y-12">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">
+                Engineered For Scale
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Six Core Architectural Pillars
+              </h2>
+            </div>
+            <Link
+              href="/features"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#202738] text-xs font-semibold text-[#968dfa] hover:text-white transition-all shrink-0"
+            >
+              <span>View Full Features & RBAC Matrix</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -406,32 +349,8 @@ export default function LandingPage() {
         </section>
       </main>
 
-      {/* Public Footer */}
-      <footer className="border-t border-[#161d2d] bg-[#06080c] py-10 px-6 text-xs text-zinc-400">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <DataScopeLogo className="w-4 h-4 text-indigo-400" />
-            <span className="text-white font-semibold">DataScope Enterprise Platform</span>
-            <span>•</span>
-            <span>PostgreSQL 16 & Drizzle ORM • Next.js 15 & Redux Toolkit</span>
-          </div>
-
-          <div className="flex items-center gap-6">
-            <Link href="/overview" className="hover:text-white transition-colors">
-              Overview
-            </Link>
-            <Link href="/explorer" className="hover:text-white transition-colors">
-              Data Explorer
-            </Link>
-            <Link href="/search" className="hover:text-white transition-colors">
-              Advanced Search
-            </Link>
-            <Link href="/login" className="hover:text-white transition-colors">
-              Sign In
-            </Link>
-          </div>
-        </div>
-      </footer>
+      {/* Shared Public Footer */}
+      <PublicFooter />
     </div>
   );
 }
