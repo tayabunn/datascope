@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { switchRole, logout, UserRole } from "@/store/slices/authSlice";
 import { addToast } from "@/store/slices/toastSlice";
+import DataScopeLogo from "@/components/common/DataScopeLogo";
 import {
   LayoutDashboard,
   Database,
@@ -78,8 +79,8 @@ export default function Sidebar() {
           title="Return to Public Landing Page"
         >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 text-white font-bold text-lg group-hover:scale-105 transition-transform">
-              <Layers className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 text-white font-bold text-lg group-hover:scale-105 transition-transform p-2">
+              <DataScopeLogo className="w-full h-full text-white" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
