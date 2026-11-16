@@ -35,7 +35,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="h-16 bg-[#0c0f17]/90 backdrop-blur-md border-b border-[#1a2030] px-6 flex items-center justify-between sticky top-0 z-30">
+      <header className="h-16 shrink-0 bg-[#0c0f17]/90 backdrop-blur-md border-b border-[#1a2030] px-6 py-3 flex items-center justify-between sticky top-0 z-30">
         {/* Left Section: Active Dataset & Telemetry */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#141926] border border-[#1d2436] text-xs">
