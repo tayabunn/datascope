@@ -1,12 +1,45 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
-import AnalyticsCharts from "@/components/analytics/AnalyticsCharts";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
+import { CardSkeleton, Skeleton } from "@/components/common/LoadingSkeleton";
 import { useGetAnalyticsQuery } from "@/store/api/recordsApi";
 import { BarChart3, RefreshCw, Cpu, Activity, Database } from "lucide-react";
+
+// Dynamically lazy-load heavy Recharts charting bundle with skeleton placeholder
+const AnalyticsCharts = dynamic(
+  () => import("@/components/analytics/AnalyticsCharts"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="space-y-6 animate-in fade-in duration-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] h-80 space-y-4 animate-shimmer">
+            <Skeleton className="h-4 w-40" />
+            <Skeleton className="h-56 w-full rounded-lg" />
+          </div>
+          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] h-80 space-y-4 animate-shimmer">
+            <Skeleton className="h-4 w-40" />
+            <Skeleton className="h-56 w-full rounded-lg" />
+          </div>
+        </div>
+        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] h-64 space-y-4 animate-shimmer">
+          <Skeleton className="h-4 w-56" />
+          <Skeleton className="h-44 w-full rounded-lg" />
+        </div>
+      </div>
+    ),
+  }
+);
 
 export default function AnalyticsPage() {
   const { data, isLoading, isFetching, refetch } = useGetAnalyticsQuery({});

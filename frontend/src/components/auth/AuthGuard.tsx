@@ -6,7 +6,14 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { initAuthFromStorage } from "@/store/slices/authSlice";
 import { ShieldCheck, Lock, Loader2 } from "lucide-react";
 
-const PUBLIC_ROUTES = ["/", "/login", "/register"];
+const PUBLIC_ROUTES = [
+  "/",
+  "/login",
+  "/register",
+  "/features",
+  "/data-explorer",
+  "/architecture",
+];
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

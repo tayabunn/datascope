@@ -555,9 +555,9 @@ export default function DataTable({
           )}
 
           {isFetching && (
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 animate-pulse flex items-center gap-1">
+            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 animate-pulse flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-              Syncing
+              <span>Syncing Data...</span>
             </span>
           )}
 
@@ -717,6 +717,13 @@ export default function DataTable({
         onScroll={handleContainerScroll}
         className="overflow-x-auto max-h-[580px] overflow-y-auto relative divide-y divide-[#171d2e]"
       >
+        {/* Top Indeterminate Lazy Loading Progress Bar */}
+        {isFetching && !isLoading && (
+          <div className="sticky top-0 left-0 right-0 h-1 bg-[#141926] z-30 overflow-hidden">
+            <div className="animate-progress-fast" />
+          </div>
+        )}
+
         <table className="w-full text-left text-xs border-collapse">
           {/* Table Header */}
           <thead className="bg-[#0f1320] text-zinc-400 font-mono text-[11px] uppercase tracking-wider sticky top-0 z-20 border-b border-[#1b2234] shadow-sm select-none">
@@ -799,7 +806,11 @@ export default function DataTable({
           </thead>
 
           {/* Table Body */}
-          <tbody className="divide-y divide-[#171d2e] text-zinc-300">
+          <tbody
+            className={`divide-y divide-[#171d2e] text-zinc-300 transition-opacity duration-200 ${
+              isFetching && !isLoading ? "opacity-60" : "opacity-100"
+            }`}
+          >
             {isLoading ? (
               // Loading Skeleton Rows
               Array.from({ length: 12 }).map((_, i) => (

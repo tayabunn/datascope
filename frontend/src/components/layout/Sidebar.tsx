@@ -27,8 +27,13 @@ export default function Sidebar() {
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+  const [mounted, setMounted] = React.useState(false);
 
-  const isAdmin = user?.role === "Administrator";
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isAdmin = mounted && user?.role === "Administrator";
 
   const navItems = [
     {
@@ -190,12 +195,12 @@ export default function Sidebar() {
               className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded ${
                 isAdmin
                   ? "bg-[#6c35f5]/25 text-[#b193e0] border border-[#968dfa]/40"
-                  : user?.role === "Data Analyst"
+                  : mounted && user?.role === "Data Analyst"
                   ? "bg-[#0b7d55]/15 text-[#0b7d55] border border-[#0b7d55]/30"
                   : "bg-zinc-800 text-zinc-400 border border-zinc-700"
               }`}
             >
-              {user?.role || "Viewer"}
+              {mounted ? (user?.role || "Viewer") : "Session"}
             </span>
           </div>
 
@@ -205,19 +210,19 @@ export default function Sidebar() {
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${
                   isAdmin
                     ? "bg-[#6c35f5]/20 border border-[#968dfa]/40 text-[#b193e0]"
-                    : user?.role === "Data Analyst"
+                    : mounted && user?.role === "Data Analyst"
                     ? "bg-[#0b7d55]/20 border border-[#0b7d55]/40 text-[#0b7d55]"
                     : "bg-zinc-800 border border-zinc-700 text-zinc-300"
                 }`}
               >
-                {user?.fullName?.charAt(0) || "U"}
+                {mounted ? (user?.fullName?.charAt(0) || "U") : "D"}
               </div>
               <div className="overflow-hidden">
                 <div className="text-xs font-medium text-zinc-200 truncate">
-                  {user?.fullName || "Authenticated User"}
+                  {mounted ? (user?.fullName || "Authenticated User") : "DataScope User"}
                 </div>
                 <div className="text-[10px] text-zinc-400 font-mono truncate">
-                  {user?.email || "user@datascope.internal"}
+                  {mounted ? (user?.email || "user@datascope.internal") : "user@datascope.internal"}
                 </div>
               </div>
             </div>

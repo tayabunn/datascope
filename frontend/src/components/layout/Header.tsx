@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setGlobalQuery } from "@/store/slices/searchConfigSlice";
 import { toggleExportModal } from "@/store/slices/uiPreferenceSlice";
@@ -14,7 +15,11 @@ import {
   SlidersHorizontal,
   Globe,
 } from "lucide-react";
-import AiSearchModal from "@/components/filters/AiSearchModal";
+
+// Dynamically lazy-load AI Search Modal on demand
+const AiSearchModal = dynamic(() => import("@/components/filters/AiSearchModal"), {
+  ssr: false,
+});
 
 export default function Header() {
   const dispatch = useAppDispatch();
@@ -22,6 +27,11 @@ export default function Header() {
   const { performanceTelemetry } = useAppSelector((state) => state.uiPreference);
   const { user } = useAppSelector((state) => state.auth);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -78,7 +88,15 @@ export default function Header() {
           </button>
 
           {/* Export CSV Button (RBAC: Admin & Analyst only, Viewer read-only) */}
-          {user?.role !== "Viewer" ? (
+          {mounted && user?.role === "Viewer" ? (
+            <span
+              className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#121622] border border-[#1b2234] text-zinc-500 text-xs font-medium cursor-not-allowed opacity-60"
+              title="Export restricted: Requires Data Analyst or Admin role"
+            >
+              <Download className="w-3.5 h-3.5 text-zinc-600" />
+              <span>Export Locked</span>
+            </span>
+          ) : (
             <a
               href="/api/export"
               download
@@ -88,14 +106,6 @@ export default function Header() {
               <Download className="w-3.5 h-3.5 text-zinc-400" />
               <span className="hidden sm:inline">Export CSV</span>
             </a>
-          ) : (
-            <span
-              className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#121622] border border-[#1b2234] text-zinc-500 text-xs font-medium cursor-not-allowed opacity-60"
-              title="Export restricted: Requires Data Analyst or Admin role"
-            >
-              <Download className="w-3.5 h-3.5 text-zinc-600" />
-              <span>Export Locked</span>
-            </span>
           )}
 
           {/* Public Landing Page Link (Render Iris Signature) */}

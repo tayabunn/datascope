@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addToast } from "@/store/slices/toastSlice";
@@ -30,15 +30,26 @@ import {
   AlertTriangle,
   Terminal,
 } from "lucide-react";
+import OverviewLoading from "./loading";
 
 export default function OverviewDashboardPage() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const isAdmin = user?.role === "Administrator";
 
   const [isFlushingCache, setIsFlushingCache] = useState(false);
   const [isVacuuming, setIsVacuuming] = useState(false);
   const [isReindexing, setIsReindexing] = useState(false);
+
+  if (!mounted) {
+    return <OverviewLoading />;
+  }
 
   const handleFlushCache = () => {
     setIsFlushingCache(true);

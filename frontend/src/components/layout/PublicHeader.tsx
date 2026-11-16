@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/store/hooks";
@@ -19,6 +19,11 @@ export default function PublicHeader() {
   const pathname = usePathname();
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navItems = [
     {
@@ -85,7 +90,7 @@ export default function PublicHeader() {
 
         {/* Action CTAs: Dynamic based on Session State */}
         <div className="hidden sm:flex items-center gap-3">
-          {isAuthenticated ? (
+          {mounted && isAuthenticated ? (
             <div className="flex items-center gap-3">
               <span className="text-xs text-zinc-400 font-mono hidden lg:inline">
                 Signed in as{" "}
@@ -171,7 +176,7 @@ export default function PublicHeader() {
           </nav>
 
           <div className="pt-3 border-t border-[#1a2030] flex flex-col gap-2">
-            {isAuthenticated ? (
+            {mounted && isAuthenticated ? (
               <div className="flex items-center justify-between text-xs text-zinc-400 py-1 font-mono">
                 <span>Signed in as <strong className="text-white">{user?.fullName}</strong></span>
                 <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">

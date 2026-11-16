@@ -23,6 +23,7 @@ import {
   setRevenueRange,
 } from "@/store/slices/searchConfigSlice";
 import { RefreshCw, Sparkles, Filter } from "lucide-react";
+import ExplorerLoading from "./loading";
 
 function ExplorerContent() {
   const router = useRouter();
@@ -334,13 +335,7 @@ function ExplorerContent() {
 
 export default function ExplorerPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="h-screen bg-[#090b10] flex items-center justify-center text-zinc-400 font-mono text-xs">
-          Loading Data Explorer...
-        </div>
-      }
-    >
+    <Suspense fallback={<ExplorerLoading />}>
       <ExplorerContent />
     </Suspense>
   );
