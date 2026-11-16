@@ -112,15 +112,15 @@ export default function HistoryPage() {
           {/* Header & Clear History Button */}
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold text-white tracking-tight">
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Search & Query Execution History
                 </h1>
                 <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold">
                   {historyEntries.length} Recorded Queries
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-sm text-zinc-400 mt-1">
                 Automatically maintained audit trail of recently executed queries, filter combinations, and query execution times.
               </p>
             </div>
@@ -138,7 +138,7 @@ export default function HistoryPage() {
           </div>
 
           {/* History List Container */}
-          <div className="rounded-xl bg-[#0f131f] border border-[#1d2538] overflow-hidden shadow-lg">
+          <div className="rounded-lg bg-[#0f131f] border border-[#1d2538] overflow-hidden shadow-lg">
             {isLoading ? (
               <div className="p-8 space-y-4">
                 {Array.from({ length: 4 }).map((_, i) => (
