@@ -4,11 +4,16 @@
 @theme {
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: 'Outfit', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.5rem;
+  --radius-3xl: 0.5rem;
 }
 
 :root {
   --background: #090b10;
-  --foreground: #f1f3f7;
+  --foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
   --card: #0e111a;
   --card-border: #1b2030;
   --accent: #6366f1;
@@ -52,4 +57,141 @@ input, button, select, textarea {
 /* Data Table High-Density Row Hover */
 .table-row-hover:hover {
   background-color: rgba(30, 41, 59, 0.45);
+}
+
+/* Ensure font-black and font-extrabold strictly map to standard clean bold (font-weight: 700) */
+.font-black,
+.font-extrabold {
+  font-weight: 700 !important;
+}
+
+/* Enforce rounded-lg (8px / 0.5rem) border radius for all buttons and cards */
+button:not(.rounded-full),
+[role="button"]:not(.rounded-full),
+.btn,
+.card {
+  border-radius: 0.5rem !important;
+}
+
+/* =========================================================================
+   shadcn/ui Typography Specifications & Hierarchy
+   Reference: https://ui.shadcn.com/docs/components/typography
+   ========================================================================= */
+
+/* Heading 1 (Page Title / Hero) */
+h1, .typography-h1 {
+  font-size: 2rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  h1, .typography-h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  h1, .typography-h1 {
+    font-size: 2.75rem;
+    line-height: 1.15;
+  }
+}
+
+/* Heading 2 (Section Titles) */
+h2, .typography-h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  h2, .typography-h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+/* Heading 3 (Card Titles / Subsections) */
+h3, .typography-h3 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  h3, .typography-h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+/* Heading 4 (Widget Headers) */
+h4, .typography-h4 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+/* Paragraphs */
+p, .typography-p {
+  line-height: 1.625;
+}
+
+/* Lead Subtitle */
+.typography-lead {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: var(--muted-foreground);
+}
+@media (min-width: 768px) {
+  .typography-lead {
+    font-size: 1.25rem;
+  }
+}
+
+/* Large Text */
+.typography-large {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+/* Small Subtext */
+small, .typography-small {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+/* Muted Text */
+.typography-muted {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--muted-foreground);
+}
+
+/* Inline Code */
+code, .typography-code {
+  position: relative;
+  border-radius: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Blockquote */
+blockquote, .typography-blockquote {
+  border-left: 2px solid #334155;
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--muted-foreground);
 }
