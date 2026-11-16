@@ -95,7 +95,7 @@ export default function RecordDetailPage({
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         <Header />
 
-        <main className="p-6 space-y-6 max-w-5xl mx-auto w-full">
+        <main className="p-6 space-y-6 w-full">
           {/* Top Back Action Bar */}
           <div className="flex items-center justify-between">
             <Link
