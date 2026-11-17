@@ -15,7 +15,7 @@ export function Skeleton({ className, ...props }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "animate-shimmer rounded-lg bg-[#141926]/80 border border-[#1f283d]/40",
+        "animate-shimmer rounded-none bg-[#141926]/80 border border-[#1f283d]/40",
         className
       )}
       {...props}
@@ -74,7 +74,7 @@ export function DataScopeSpinner({ size = "md", label }: { size?: "sm" | "md" | 
  */
 export function CardSkeleton() {
   return (
-    <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3 animate-shimmer">
+    <div className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] space-y-3 animate-shimmer">
       <div className="flex items-center justify-between">
         <Skeleton className="h-4 w-28" />
         <Skeleton className="h-4 w-4 rounded-full" />
@@ -98,7 +98,7 @@ export function PageHeaderSkeleton() {
         </div>
         <Skeleton className="h-3.5 w-72 sm:w-96" />
       </div>
-      <Skeleton className="h-9 w-32 rounded-lg" />
+      <Skeleton className="h-9 w-32 rounded-none" />
     </div>
   );
 }
@@ -108,17 +108,17 @@ export function PageHeaderSkeleton() {
  */
 export function FilterBarSkeleton() {
   return (
-    <div className="render-card rounded-lg p-3.5 sm:p-4 shadow-md space-y-3.5">
+    <div className="render-card rounded-none p-3.5 sm:p-4 shadow-md space-y-3.5">
       <div className="flex flex-wrap items-center gap-3.5">
-        <Skeleton className="h-9 w-36 sm:w-40 rounded-lg" />
-        <Skeleton className="h-9 w-36 sm:w-44 rounded-lg" />
-        <Skeleton className="h-9 w-36 sm:w-44 rounded-lg" />
-        <Skeleton className="h-9 w-28 sm:w-32 rounded-lg" />
+        <Skeleton className="h-9 w-36 sm:w-40 rounded-none" />
+        <Skeleton className="h-9 w-36 sm:w-44 rounded-none" />
+        <Skeleton className="h-9 w-36 sm:w-44 rounded-none" />
+        <Skeleton className="h-9 w-28 sm:w-32 rounded-none" />
       </div>
       <div className="flex flex-wrap items-center gap-3.5 pt-1 border-t border-[#1a2133]">
-        <Skeleton className="h-8 w-36 rounded-lg" />
-        <Skeleton className="h-8 w-24 rounded-lg" />
-        <Skeleton className="h-8 w-24 rounded-lg" />
+        <Skeleton className="h-8 w-36 rounded-none" />
+        <Skeleton className="h-8 w-24 rounded-none" />
+        <Skeleton className="h-8 w-24 rounded-none" />
       </div>
     </div>
   );
@@ -132,7 +132,7 @@ export function TableSkeletonRows({ rows = 10, cols = 8 }: { rows?: number; cols
     <div className="divide-y divide-[#171d2e] w-full">
       {Array.from({ length: rows }).map((_, r) => (
         <div key={r} className="flex items-center gap-4 px-4 py-3.5 animate-shimmer">
-          <Skeleton className="w-4 h-4 rounded" />
+          <Skeleton className="w-4 h-4 rounded-none" />
           {Array.from({ length: cols }).map((_, c) => (
             <Skeleton
               key={c}
@@ -151,7 +151,7 @@ export function TableSkeletonRows({ rows = 10, cols = 8 }: { rows?: number; cols
  */
 export function TableSkeleton({ rows = 12 }: { rows?: number }) {
   return (
-    <div className="rounded-lg bg-[#0e121c] border border-[#1b2234] overflow-hidden shadow-lg space-y-0">
+    <div className="rounded-none bg-[#0e121c] border border-[#1b2234] overflow-hidden shadow-lg space-y-0">
       {/* Table Toolbar */}
       <div className="p-3.5 bg-[#0b0e17] border-b border-[#1b2234] flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
@@ -159,15 +159,15 @@ export function TableSkeleton({ rows = 12 }: { rows?: number }) {
           <Skeleton className="h-5 w-44 rounded-full hidden sm:block" />
         </div>
         <div className="flex items-center gap-2">
-          <Skeleton className="h-7 w-32 rounded-lg" />
-          <Skeleton className="h-7 w-20 rounded-lg" />
-          <Skeleton className="h-7 w-24 rounded-lg" />
+          <Skeleton className="h-7 w-32 rounded-none" />
+          <Skeleton className="h-7 w-20 rounded-none" />
+          <Skeleton className="h-7 w-24 rounded-none" />
         </div>
       </div>
 
       {/* Table Header Row */}
       <div className="bg-[#0f1320] border-b border-[#1b2234] px-4 py-3 flex items-center gap-4">
-        <Skeleton className="w-4 h-4 rounded" />
+        <Skeleton className="w-4 h-4 rounded-none" />
         <Skeleton className="h-3.5 w-24" />
         <Skeleton className="h-3.5 w-48 flex-1" />
         <Skeleton className="h-3.5 w-32" />
@@ -184,11 +184,11 @@ export function TableSkeleton({ rows = 12 }: { rows?: number }) {
       <div className="p-3 bg-[#0b0e17] border-t border-[#1b2234] flex flex-wrap items-center justify-between gap-3">
         <Skeleton className="h-4 w-36" />
         <div className="flex items-center gap-2">
-          <Skeleton className="h-7 w-24 rounded-lg" />
-          <Skeleton className="h-7 w-8 rounded-lg" />
-          <Skeleton className="h-7 w-8 rounded-lg" />
-          <Skeleton className="h-7 w-8 rounded-lg" />
-          <Skeleton className="h-7 w-20 rounded-lg" />
+          <Skeleton className="h-7 w-24 rounded-none" />
+          <Skeleton className="h-7 w-8 rounded-none" />
+          <Skeleton className="h-7 w-8 rounded-none" />
+          <Skeleton className="h-7 w-8 rounded-none" />
+          <Skeleton className="h-7 w-20 rounded-none" />
         </div>
       </div>
     </div>
@@ -213,7 +213,7 @@ export function AnalyticsSkeleton() {
 
       {/* 2 Middle Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4">
+        <div className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] space-y-4">
           <div className="flex items-center justify-between">
             <Skeleton className="h-4 w-40" />
             <Skeleton className="h-3 w-20" />
@@ -222,14 +222,14 @@ export function AnalyticsSkeleton() {
             {[45, 60, 75, 50, 85, 65].map((h, i) => (
               <Skeleton
                 key={i}
-                className="flex-1 rounded-t-lg"
+                className="flex-1 rounded-none"
                 style={{ height: `${h}%` }}
               />
             ))}
           </div>
         </div>
 
-        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4">
+        <div className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] space-y-4">
           <div className="flex items-center justify-between">
             <Skeleton className="h-4 w-40" />
             <Skeleton className="h-3 w-20" />
@@ -243,21 +243,21 @@ export function AnalyticsSkeleton() {
       </div>
 
       {/* Bottom Area Trend Chart */}
-      <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4">
+      <div className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] space-y-4">
         <div className="flex items-center justify-between">
           <Skeleton className="h-4 w-52" />
           <Skeleton className="h-3 w-28" />
         </div>
-        <Skeleton className="h-48 w-full rounded-lg" />
+        <Skeleton className="h-48 w-full rounded-none" />
       </div>
 
       {/* Database Index Telemetry Cards */}
-      <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4">
+      <div className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] space-y-4">
         <Skeleton className="h-4 w-60" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Skeleton className="h-24 rounded-lg" />
-          <Skeleton className="h-24 rounded-lg" />
-          <Skeleton className="h-24 rounded-lg" />
+          <Skeleton className="h-24 rounded-none" />
+          <Skeleton className="h-24 rounded-none" />
+          <Skeleton className="h-24 rounded-none" />
         </div>
       </div>
     </div>
@@ -273,25 +273,25 @@ export function QueryBuilderSkeleton() {
       <PageHeaderSkeleton />
 
       {/* Active Predicate Builder Box */}
-      <div className="render-card rounded-lg p-5 space-y-4 shadow-md">
+      <div className="render-card rounded-none p-5 space-y-4 shadow-md">
         <div className="flex items-center justify-between border-b border-[#1d2538] pb-3">
           <Skeleton className="h-4 w-48" />
-          <Skeleton className="h-8 w-32 rounded-lg" />
+          <Skeleton className="h-8 w-32 rounded-none" />
         </div>
         <div className="space-y-3">
-          <Skeleton className="h-12 w-full rounded-lg" />
-          <Skeleton className="h-12 w-full rounded-lg" />
-          <Skeleton className="h-12 w-full rounded-lg" />
+          <Skeleton className="h-12 w-full rounded-none" />
+          <Skeleton className="h-12 w-full rounded-none" />
+          <Skeleton className="h-12 w-full rounded-none" />
         </div>
         <div className="flex justify-end pt-2">
-          <Skeleton className="h-10 w-44 rounded-lg" />
+          <Skeleton className="h-10 w-44 rounded-none" />
         </div>
       </div>
 
       {/* Compiled AST Box */}
-      <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-3">
+      <div className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] space-y-3">
         <Skeleton className="h-4 w-56" />
-        <Skeleton className="h-36 w-full rounded-lg" />
+        <Skeleton className="h-36 w-full rounded-none" />
       </div>
     </div>
   );
@@ -308,7 +308,7 @@ export function CardGridSkeleton({ count = 6 }: { count?: number }) {
         {Array.from({ length: count }).map((_, i) => (
           <div
             key={i}
-            className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] space-y-4 animate-shimmer"
+            className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] space-y-4 animate-shimmer"
           >
             <div className="flex items-center justify-between">
               <Skeleton className="h-5 w-24 rounded-full" />
@@ -318,12 +318,12 @@ export function CardGridSkeleton({ count = 6 }: { count?: number }) {
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-2/3" />
             <div className="flex items-center gap-2 pt-2">
-              <Skeleton className="h-6 w-16 rounded" />
-              <Skeleton className="h-6 w-20 rounded" />
-              <Skeleton className="h-6 w-16 rounded" />
+              <Skeleton className="h-6 w-16 rounded-none" />
+              <Skeleton className="h-6 w-20 rounded-none" />
+              <Skeleton className="h-6 w-16 rounded-none" />
             </div>
             <div className="pt-3 border-t border-[#1a2133] flex justify-end">
-              <Skeleton className="h-8 w-28 rounded-lg" />
+              <Skeleton className="h-8 w-28 rounded-none" />
             </div>
           </div>
         ))}
@@ -343,7 +343,7 @@ export function DashboardPageSkeleton({ children }: { children: React.ReactNode 
       <aside className="w-64 bg-[#0c0f18] border-r border-[#1a2030] p-4 flex flex-col justify-between hidden md:flex shrink-0">
         <div className="space-y-6">
           <div className="flex items-center gap-3 px-2 py-2">
-            <Skeleton className="w-8 h-8 rounded-lg" />
+            <Skeleton className="w-8 h-8 rounded-none" />
             <div className="space-y-1.5">
               <Skeleton className="h-4 w-24" />
               <Skeleton className="h-2.5 w-16" />
@@ -351,12 +351,12 @@ export function DashboardPageSkeleton({ children }: { children: React.ReactNode 
           </div>
           <div className="space-y-2 pt-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <Skeleton key={i} className="h-9 w-full rounded-lg" />
+              <Skeleton key={i} className="h-9 w-full rounded-none" />
             ))}
           </div>
         </div>
         <div className="pt-4 border-t border-[#1a2030]">
-          <Skeleton className="h-12 w-full rounded-lg" />
+          <Skeleton className="h-12 w-full rounded-none" />
         </div>
       </aside>
 
@@ -365,13 +365,13 @@ export function DashboardPageSkeleton({ children }: { children: React.ReactNode 
         {/* Header Placeholder */}
         <header className="h-18 bg-[#0c0f17]/90 border-b border-[#1a2030] px-6 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-4">
-            <Skeleton className="h-9 w-64 rounded-lg" />
-            <Skeleton className="h-9 w-44 rounded-lg hidden lg:block" />
+            <Skeleton className="h-9 w-64 rounded-none" />
+            <Skeleton className="h-9 w-44 rounded-none hidden lg:block" />
           </div>
           <div className="flex items-center gap-3">
-            <Skeleton className="h-9 w-48 sm:w-64 rounded-lg" />
-            <Skeleton className="h-9 w-24 rounded-lg hidden sm:block" />
-            <Skeleton className="h-9 w-28 rounded-lg" />
+            <Skeleton className="h-9 w-48 sm:w-64 rounded-none" />
+            <Skeleton className="h-9 w-24 rounded-none hidden sm:block" />
+            <Skeleton className="h-9 w-28 rounded-none" />
           </div>
         </header>
 
