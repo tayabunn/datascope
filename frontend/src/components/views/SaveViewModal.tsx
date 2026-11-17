@@ -149,11 +149,11 @@ export default function SaveViewModal() {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
-      <div className="bg-[#0f131d] border border-[#232c42] rounded-lg max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div className="bg-[#0f131d] border border-[#232c42] rounded-none max-w-lg w-full p-6 shadow-2xl space-y-4">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#1f273b] pb-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="w-8 h-8 rounded-none bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <BookmarkPlus className="w-4 h-4" />
             </div>
             <div>
@@ -169,7 +169,7 @@ export default function SaveViewModal() {
           </div>
           <button
             onClick={() => dispatch(closeSaveModal())}
-            className="p-1 rounded text-zinc-400 hover:text-white hover:bg-[#1a2133] transition-colors"
+            className="p-1 rounded-none text-zinc-400 hover:text-white hover:bg-[#1a2133] transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -177,7 +177,7 @@ export default function SaveViewModal() {
 
         {/* Snapshot Summary Preview */}
         {!isEditing && (
-          <div className="p-3 rounded-lg bg-[#141926] border border-[#1f273b] space-y-2 text-xs font-mono">
+          <div className="p-3 rounded-none bg-[#141926] border border-[#1f273b] space-y-2 text-xs font-mono">
             <div className="text-[10px] uppercase font-semibold text-zinc-400 flex items-center gap-1">
               <Database className="w-3 h-3 text-cyan-400" />
               <span>Captured Configuration Snapshot</span>
@@ -226,7 +226,7 @@ export default function SaveViewModal() {
               placeholder="e.g. Q4 High-Margin EMEA Enterprise"
               value={viewName}
               onChange={(e) => setViewName(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-[#141a29] border border-[#252f47] text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full px-3 py-2 rounded-none bg-[#141a29] border border-[#252f47] text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 transition-colors"
             />
           </div>
 
@@ -239,7 +239,7 @@ export default function SaveViewModal() {
               placeholder="Provide context on when to use this saved configuration..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-[#141a29] border border-[#252f47] text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 resize-none transition-colors"
+              className="w-full px-3 py-2 rounded-none bg-[#141a29] border border-[#252f47] text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 resize-none transition-colors"
             />
           </div>
 
@@ -258,12 +258,12 @@ export default function SaveViewModal() {
                 id="isSharedToggle"
                 checked={isShared}
                 onChange={(e) => setIsShared(e.target.checked)}
-                className="w-4 h-4 rounded bg-[#141a29] border-[#252f47] text-indigo-600 focus:ring-0 cursor-pointer"
+                className="w-4 h-4 rounded-none bg-[#141a29] border-[#252f47] text-indigo-600 focus:ring-0 cursor-pointer"
               />
             </div>
 
             {isShared && (
-              <div className="p-2.5 rounded-lg bg-[#121622] border border-[#1e2638] space-y-1.5">
+              <div className="p-2.5 rounded-none bg-[#121622] border border-[#1e2638] space-y-1.5">
                 <span className="text-[11px] text-zinc-400 block">
                   Select team roles with access to this view:
                 </span>
@@ -275,7 +275,7 @@ export default function SaveViewModal() {
                         key={role}
                         type="button"
                         onClick={() => toggleRole(role)}
-                        className={`px-2.5 py-1 rounded text-[11px] font-mono border transition-all ${
+                        className={`px-2.5 py-1 rounded-none text-[11px] font-mono border transition-all ${
                           isChecked
                             ? "bg-indigo-600/20 text-indigo-300 border-indigo-500/40 font-semibold"
                             : "bg-[#161c2a] text-zinc-500 border-[#222a3a] hover:text-zinc-300"
@@ -295,14 +295,14 @@ export default function SaveViewModal() {
             <button
               type="button"
               onClick={() => dispatch(closeSaveModal())}
-              className="px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-[#1a2133] transition-colors"
+              className="px-3.5 py-1.5 rounded-none text-zinc-400 hover:text-white hover:bg-[#1a2133] transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSaving || isUpdating || !viewName.trim()}
-              className="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-medium flex items-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all"
+              className="px-4 py-1.5 rounded-none bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-medium flex items-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all"
             >
               <Check className="w-3.5 h-3.5" />
               <span>
