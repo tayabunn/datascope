@@ -17,32 +17,27 @@ import {
   BookmarkCheck,
   CheckCircle2,
   Lock,
-  Server,
   Activity,
-  Cpu,
   Globe,
   SlidersHorizontal,
-  ChevronRight,
   ChevronDown,
-  Terminal,
-  Code2,
-  RefreshCw,
-  Eye,
-  Download,
-  Shield,
-  Check,
-  Play,
-  ArrowUpRight,
-  FileCode,
-  Sliders,
-  Radio,
   FileSpreadsheet,
+  Users,
+  Briefcase,
+  Share2,
+  Download,
+  AlertTriangle,
+  Clock,
+  ShieldAlert,
+  ArrowUpRight,
+  Check,
+  HelpCircle,
 } from "lucide-react";
 
 export default function LandingPage() {
-  // Interactive Product Showcase State
+  // Interactive Product Showcase State (Focused on User Workflows)
   const [activeTab, setActiveTab] = useState<
-    "explorer" | "queryBuilder" | "aiCopilot" | "telemetry"
+    "explorer" | "queryBuilder" | "aiCopilot" | "collaboration"
   >("explorer");
 
   // Mock search query in Interactive Explorer
@@ -52,67 +47,67 @@ export default function LandingPage() {
   // Interactive FAQ Toggle state
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  // Mock dataset records for interactive table
+  // Realistic Business Records for the Interactive Explorer
   const allMockRows = [
     {
       id: "REC-055594",
       title: "Healthcare Regulatory EHR Integration Pipeline",
       company: "Orion Technologies",
-      category: "Enterprise",
+      category: "Healthcare",
       status: "Active",
       country: "Canada",
       revenue: "$364,054.88",
       profit: "+$90,131.40",
       rating: "4.8",
-      latency: "11.2ms",
+      priority: "Urgent",
     },
     {
       id: "REC-031706",
       title: "High-Frequency Algorithmic Execution Platform",
       company: "Jupiter Industries",
-      category: "SMB",
+      category: "Fintech",
       status: "Active",
       country: "Brazil",
       revenue: "$222,098.33",
       profit: "+$83,112.00",
       rating: "4.9",
-      latency: "12.4ms",
+      priority: "High",
     },
     {
       id: "REC-028237",
       title: "Telecom 5G Core Network Analytics Framework",
       company: "Summit Analytics",
-      category: "Financial Services",
+      category: "Telecommunications",
       status: "Active",
       country: "Netherlands",
       revenue: "$938,246.02",
       profit: "+$258,521.55",
       rating: "4.7",
-      latency: "14.1ms",
+      priority: "Urgent",
     },
     {
       id: "REC-031027",
       title: "Predictive AI Demand Forecasting Engine",
       company: "Luminary Logistics",
-      category: "Public Sector",
+      category: "Supply Chain",
       status: "Pending",
       country: "France",
       revenue: "$1,536,104.86",
       profit: "+$522,805.64",
       rating: "4.6",
-      latency: "13.8ms",
+      priority: "Low",
     },
     {
       id: "REC-099182",
       title: "Enterprise Data Warehouse Consolidation",
       company: "Nova Solutions",
-      category: "Enterprise",
+      category: "Cloud Infrastructure",
       status: "Active",
       country: "Germany",
       revenue: "$841,366.54",
       profit: "+$229,549.95",
       rating: "5.0",
-      latency: "10.9ms",
+      priority: "Urgent",
     },
     {
       id: "REC-095869",
@@ -124,7 +119,7 @@ export default function LandingPage() {
       revenue: "$984,137.51",
       profit: "+$497,868.74",
       rating: "4.9",
-      latency: "15.0ms",
+      priority: "High",
     },
   ];
 
@@ -133,6 +128,7 @@ export default function LandingPage() {
       row.title.toLowerCase().includes(mockSearch.toLowerCase()) ||
       row.company.toLowerCase().includes(mockSearch.toLowerCase()) ||
       row.country.toLowerCase().includes(mockSearch.toLowerCase()) ||
+      row.category.toLowerCase().includes(mockSearch.toLowerCase()) ||
       row.id.toLowerCase().includes(mockSearch.toLowerCase())
   );
 
@@ -148,23 +144,23 @@ export default function LandingPage() {
       {/* Main Content */}
       <main className="flex-1 space-y-24 pb-20">
         {/* =========================================================================
-            1. HERO SECTION & TELEMETRY STRIP
+            1. HERO SECTION: PURPOSE & CORE BUSINESS VALUE
             ========================================================================= */}
         <section className="relative pt-20 pb-8 px-4 w-[90%] mx-auto text-center space-y-6">
-          <div className="mistral-pill mb-2 shadow-sm inline-flex items-center gap-2 rounded-none px-3 py-1 bg-[#1a140f] border border-[#ff8204]/30 text-[#ffa033] text-xs font-mono">
-            <span className="w-2 h-2 rounded-none bg-[#ff8204] animate-pulse" />
-            <span>PostgreSQL 16 Engine • 100,000+ Records • Sub-18ms GIN Indexing</span>
+          <div className="mistral-pill mb-2 shadow-sm inline-flex items-center gap-2 rounded-none px-3.5 py-1.5 bg-[#1a140f] border border-[#ff8204]/30 text-[#ffa033] text-xs font-mono">
+            <Sparkles className="w-3.5 h-3.5 text-[#ff8204]" />
+            <span>The Enterprise Hub for High-Volume Revenue, Contracts & Deal Intelligence</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-[#fafaf4] tracking-tight leading-[1.1]">
-            Next-Generation Enterprise <br />
+            Instant Data Discovery. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#968dfa] via-[#6c35f5] to-[#ff8204]">
-              Data Discovery & Intelligence
+              Zero Spreadsheets Crashing.
             </span>
           </h1>
 
           <p className="max-w-3xl mx-auto text-[#a1a1aa] text-sm sm:text-base leading-relaxed font-sans">
-            Engineered for high-volume tabular discovery. Query hundreds of thousands of records with PostgreSQL B-Tree & GIN trigram indexing, AST visual query synthesis, windowed virtual scrolling, and sub-20ms P95 query execution.
+            Give your revenue, finance, and operations teams the power to search, filter, and analyze <strong>100,000+ business contracts</strong> in milliseconds. Eliminate slow exports, engineering query bottlenecks, and outdated files with one centralized, audit-ready data platform.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-4">
@@ -173,7 +169,7 @@ export default function LandingPage() {
               className="flex items-center gap-2.5 px-6 py-3.5 rounded-none btn-render-primary text-sm font-semibold group shadow-lg shadow-[#6c35f5]/25"
             >
               <Database className="w-4 h-4 text-[#b193e0]" />
-              <span>Launch Live Data Explorer</span>
+              <span>Explore Live Demo (100k Contracts)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
 
@@ -181,57 +177,57 @@ export default function LandingPage() {
               href="/search"
               className="flex items-center gap-2 px-5 py-3.5 rounded-none btn-render-secondary text-sm font-semibold"
             >
-              <Code2 className="w-4 h-4 text-[#968dfa]" />
-              <span>Visual Query Builder</span>
+              <SlidersHorizontal className="w-4 h-4 text-[#968dfa]" />
+              <span>Try Visual Query Builder</span>
             </Link>
 
             <Link
-              href="/architecture"
+              href="/features"
               className="flex items-center gap-2 px-5 py-3.5 rounded-none btn-render-secondary text-sm font-semibold"
             >
-              <Cpu className="w-4 h-4 text-[#ffa033]" />
-              <span>Architecture & Indexing</span>
+              <ShieldCheck className="w-4 h-4 text-[#ffa033]" />
+              <span>Security & Governance</span>
             </Link>
           </div>
 
-          {/* Metric Telemetry Cards */}
+          {/* Business Impact Metrics */}
           <div className="pt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 w-full mx-auto">
             <div className="p-5 rounded-none render-card text-center space-y-1.5">
               <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-                <Database className="w-3.5 h-3.5 text-indigo-400" />
-                <span>Dataset Volume</span>
+                <Zap className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Search Latency</span>
+              </div>
+              <div className="text-3xl sm:text-4xl font-bold font-mono text-emerald-400">
+                &lt; 20ms
+              </div>
+              <div className="text-[11px] text-[#a1a1aa] font-mono">
+                Instant Sub-Second Lookups
+              </div>
+            </div>
+
+            <div className="p-5 rounded-none render-card text-center space-y-1.5">
+              <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
+                <FileSpreadsheet className="w-3.5 h-3.5 text-indigo-400" />
+                <span>Data Capacity</span>
               </div>
               <div className="text-3xl sm:text-4xl font-bold font-mono text-[#fafaf4]">
                 100,000+
               </div>
               <div className="text-[11px] text-[#a1a1aa] font-mono">
-                Indexed Records Loaded
+                Records Handled Smoothly
               </div>
             </div>
 
             <div className="p-5 rounded-none render-card text-center space-y-1.5">
               <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-                <Zap className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Latency Benchmark</span>
-              </div>
-              <div className="text-3xl sm:text-4xl font-bold font-mono text-emerald-400">
-                14.2ms
-              </div>
-              <div className="text-[11px] text-[#a1a1aa] font-mono">
-                P95 GIN Trigram Speed
-              </div>
-            </div>
-
-            <div className="p-5 rounded-none render-card text-center space-y-1.5">
-              <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-                <Activity className="w-3.5 h-3.5 text-[#968dfa]" />
-                <span>Virtual Viewport</span>
+                <Users className="w-3.5 h-3.5 text-[#968dfa]" />
+                <span>Self-Serve Access</span>
               </div>
               <div className="text-3xl sm:text-4xl font-bold font-mono text-[#968dfa]">
-                60 FPS
+                0 Code
               </div>
               <div className="text-[11px] text-[#a1a1aa] font-mono">
-                Zero DOM Layout Thrashing
+                No SQL or Engineers Needed
               </div>
             </div>
 
@@ -244,27 +240,99 @@ export default function LandingPage() {
                 100%
               </div>
               <div className="text-[11px] text-[#a1a1aa] font-mono">
-                Immutable Ledger Logging
+                Tracked & Immutable Logs
               </div>
             </div>
           </div>
         </section>
 
         {/* =========================================================================
-            2. INTERACTIVE MULTI-MODULE PRODUCT SHOWCASE (Tier-1 Sandbox Experience)
+            2. THE PROBLEM WE SOLVE: SPREADSHEET CHAOS VS DATASCOPE
+            ========================================================================= */}
+        <section className="px-4 w-[90%] mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <span className="text-xs font-mono uppercase tracking-wider text-rose-400 font-semibold flex items-center justify-center gap-1.5">
+              <AlertTriangle className="w-3.5 h-3.5" />
+              <span>Why Enterprise Teams Replace Spreadsheets</span>
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Traditional Spreadsheets Weren&apos;t Built for Modern Data Scale
+            </h2>
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl mx-auto font-sans">
+              See how DataScope transforms painful data bottlenecks into instant, self-serve business answers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* The Old Way */}
+            <div className="p-6 rounded-none bg-[#120e11] border border-rose-500/20 space-y-4">
+              <div className="flex items-center gap-2 text-rose-400 text-sm font-semibold font-mono">
+                <ShieldAlert className="w-4 h-4" />
+                <span>The Traditional Problem (Excel & Clunky CSVs)</span>
+              </div>
+              <ul className="space-y-3 text-xs text-zinc-300 font-sans leading-relaxed">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose-400 font-bold shrink-0 mt-0.5">✕</span>
+                  <span><strong>Browser & App Crashes:</strong> Excel or Google Sheets freezes and crashes whenever your dataset reaches 50,000+ customer records or invoices.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose-400 font-bold shrink-0 mt-0.5">✕</span>
+                  <span><strong>Engineering Bottlenecks:</strong> Business users have to wait days for data engineers to write SQL queries just to answer a simple quarterly question.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose-400 font-bold shrink-0 mt-0.5">✕</span>
+                  <span><strong>Outdated Versions:</strong> Team members circulate conflicting CSV files over email and Slack, resulting in decision-making based on stale data.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose-400 font-bold shrink-0 mt-0.5">✕</span>
+                  <span><strong>Zero Compliance or Audit Log:</strong> Anyone can accidentally overwrite a multi-million-dollar figure with no record of who changed what or when.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* The DataScope Way */}
+            <div className="p-6 rounded-none bg-[#0c1318] border border-emerald-500/25 space-y-4">
+              <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold font-mono">
+                <CheckCircle2 className="w-4 h-4" />
+                <span>The DataScope Solution (Modern Data Intelligence)</span>
+              </div>
+              <ul className="space-y-3 text-xs text-zinc-300 font-sans leading-relaxed">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Zero-Lag Virtualized Tables:</strong> Smoothly scroll through 100,000+ records at a locked 60 FPS without your browser using more than a few megabytes.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Self-Serve Point-and-Click:</strong> Non-technical business users can filter, slice, and cross-reference data in seconds without writing a line of SQL.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>One Shared Source of Truth:</strong> Save custom views, share bookmarked URLs, and ensure everyone looks at identical live database records.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>100% Immutable Audit History:</strong> Every status update, approval, and modification is permanently logged with user ID, timestamp, and previous state.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            3. INTERACTIVE PRODUCT SHOWCASE (Workflow-Driven)
             ========================================================================= */}
         <section className="px-4 w-[90%] mx-auto space-y-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-1.5">
               <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-none bg-indigo-500" />
-                Live Interactive Workspace
+                Interactive Experience
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Inspect The DataScope Enterprise Stack
+                How Your Team Uses DataScope Every Day
               </h2>
               <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl font-sans">
-                Switch between core platform modules to test live virtualized data filtering, visual AST query synthesis, natural language AI tool-calling, and cluster telemetry.
+                Experience the 4 primary workflows that make revenue discovery, custom filtering, and decision-making effortless.
               </p>
             </div>
 
@@ -272,65 +340,65 @@ export default function LandingPage() {
               href="/explorer"
               className="flex items-center gap-1.5 px-4 py-2 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#202738] text-xs font-semibold text-[#968dfa] hover:text-white transition-all shrink-0"
             >
-              <span>Open Production App</span>
+              <span>Open Full Application</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          {/* Module Switcher Tabs (Inspired by Supabase & PostHog) */}
+          {/* Module Switcher Tabs (Focused on User Goals) */}
           <div className="flex flex-wrap items-center gap-2 p-1 bg-[#0c0f18] border border-[#1a2030] rounded-none">
             <button
               onClick={() => setActiveTab("explorer")}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold font-mono transition-all ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold transition-all ${
                 activeTab === "explorer"
                   ? "bg-[#6c35f5] text-white shadow-md shadow-[#6c35f5]/30"
                   : "text-zinc-400 hover:text-zinc-200 hover:bg-[#121624]"
               }`}
             >
               <Database className="w-3.5 h-3.5" />
-              <span>1. Virtualized Data Explorer</span>
+              <span>1. Instant Search & Data Discovery</span>
             </button>
 
             <button
               onClick={() => setActiveTab("queryBuilder")}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold font-mono transition-all ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold transition-all ${
                 activeTab === "queryBuilder"
                   ? "bg-[#6c35f5] text-white shadow-md shadow-[#6c35f5]/30"
                   : "text-zinc-400 hover:text-zinc-200 hover:bg-[#121624]"
               }`}
             >
-              <Code2 className="w-3.5 h-3.5" />
-              <span>2. Visual AST Query Engine</span>
+              <SlidersHorizontal className="w-3.5 h-3.5" />
+              <span>2. Visual Query Builder (No SQL)</span>
             </button>
 
             <button
               onClick={() => setActiveTab("aiCopilot")}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold font-mono transition-all ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold transition-all ${
                 activeTab === "aiCopilot"
                   ? "bg-[#ff8204] text-white shadow-md shadow-[#ff8204]/30"
                   : "text-zinc-400 hover:text-zinc-200 hover:bg-[#121624]"
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>3. AI Natural Language Copilot</span>
+              <span>3. Ask Questions in Plain English (AI)</span>
             </button>
 
             <button
-              onClick={() => setActiveTab("telemetry")}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold font-mono transition-all ${
-                activeTab === "telemetry"
+              onClick={() => setActiveTab("collaboration")}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold transition-all ${
+                activeTab === "collaboration"
                   ? "bg-[#6c35f5] text-white shadow-md shadow-[#6c35f5]/30"
                   : "text-zinc-400 hover:text-zinc-200 hover:bg-[#121624]"
               }`}
             >
-              <Activity className="w-3.5 h-3.5" />
-              <span>4. Mission Control & Telemetry</span>
+              <BookmarkCheck className="w-3.5 h-3.5" />
+              <span>4. Saved Views & Team Collaboration</span>
             </button>
           </div>
 
           {/* Module Container Box */}
           <div className="rounded-none bg-[#0c0f18] border border-[#1b2234] shadow-2xl overflow-hidden min-h-[460px]">
-            {/* ================= TAB 1: DATA EXPLORER ================= */}
+            {/* ================= TAB 1: INSTANT SEARCH & EXPLORER ================= */}
             {activeTab === "explorer" && (
               <div className="space-y-0 animate-in fade-in duration-200">
                 {/* Live Interactive Filter Bar */}
@@ -340,15 +408,15 @@ export default function LandingPage() {
                       <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
                       <input
                         type="text"
-                        placeholder="Live filter mock rows (Orion, Canada, REC-031...)"
+                        placeholder="Type to filter contracts (e.g. Healthcare, Canada, Orion)..."
                         value={mockSearch}
                         onChange={(e) => setMockSearch(e.target.value)}
-                        className="w-full pl-9 pr-3 py-1.5 rounded-none bg-[#121624] border border-[#222a3d] text-xs text-white placeholder-zinc-500 font-mono focus:outline-none focus:border-indigo-500"
+                        className="w-full pl-9 pr-3 py-1.5 rounded-none bg-[#121624] border border-[#222a3d] text-xs text-white placeholder-zinc-500 font-sans focus:outline-none focus:border-indigo-500"
                       />
                     </div>
                     <span className="hidden sm:flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-none bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
                       <span className="w-1.5 h-1.5 rounded-none bg-emerald-400 animate-ping" />
-                      GIN Index Active • 14.2ms
+                      14.2ms Instant Response
                     </span>
                   </div>
 
@@ -380,7 +448,7 @@ export default function LandingPage() {
                       href="/explorer"
                       className="flex items-center gap-1 px-3 py-1.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors"
                     >
-                      <span>Full 100k Explorer</span>
+                      <span>Open 100k Dataset</span>
                       <ArrowRight className="w-3 h-3" />
                     </Link>
                   </div>
@@ -391,22 +459,22 @@ export default function LandingPage() {
                   <table className="w-full text-left text-xs font-mono">
                     <thead className="bg-[#0f1320] text-zinc-400 uppercase text-[10px] border-b border-[#1b2234]">
                       <tr>
-                        <th className="px-4 py-3">Record ID</th>
-                        <th className="px-4 py-3">Deal Title</th>
-                        <th className="px-4 py-3">Company</th>
-                        <th className="px-4 py-3">Category</th>
-                        <th className="px-4 py-3">Status</th>
-                        <th className="px-4 py-3">Country</th>
+                        <th className="px-4 py-3">Contract Code</th>
+                        <th className="px-4 py-3 font-sans">Deal Title</th>
+                        <th className="px-4 py-3 font-sans">Client Company</th>
+                        <th className="px-4 py-3 font-sans">Industry</th>
+                        <th className="px-4 py-3 font-sans">Status</th>
+                        <th className="px-4 py-3 font-sans">Region</th>
                         <th className="px-4 py-3">Revenue (USD)</th>
                         <th className="px-4 py-3">Net Profit</th>
-                        <th className="px-4 py-3">Rating</th>
+                        <th className="px-4 py-3 font-sans">Priority</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-[#171d2e] text-zinc-300">
                       {filteredMockRows.length === 0 ? (
                         <tr>
-                          <td colSpan={9} className="py-12 text-center text-zinc-500">
-                            No records matching query &quot;{mockSearch}&quot;. Try another keyword.
+                          <td colSpan={9} className="py-12 text-center text-zinc-500 font-sans">
+                            No deals match &quot;{mockSearch}&quot;. Try typing &quot;Healthcare&quot;, &quot;Canada&quot;, or &quot;Orion&quot;.
                           </td>
                         </tr>
                       ) : (
@@ -421,13 +489,13 @@ export default function LandingPage() {
                             <td className="px-4 py-3 font-sans text-white font-medium">
                               {row.title}
                             </td>
-                            <td className="px-4 py-3 text-zinc-300">{row.company}</td>
-                            <td className="px-4 py-3">
+                            <td className="px-4 py-3 font-sans text-zinc-300">{row.company}</td>
+                            <td className="px-4 py-3 font-sans">
                               <span className="px-2 py-0.5 rounded-none bg-zinc-800 text-zinc-300 text-[10px]">
                                 {row.category}
                               </span>
                             </td>
-                            <td className="px-4 py-3">
+                            <td className="px-4 py-3 font-sans">
                               <span
                                 className={`px-2 py-0.5 rounded-none border text-[10px] ${
                                   row.status === "Active"
@@ -438,10 +506,16 @@ export default function LandingPage() {
                                 {row.status}
                               </span>
                             </td>
-                            <td className="px-4 py-3 text-zinc-400">{row.country}</td>
+                            <td className="px-4 py-3 font-sans text-zinc-400">{row.country}</td>
                             <td className="px-4 py-3 text-white font-semibold">{row.revenue}</td>
                             <td className="px-4 py-3 text-emerald-400 font-semibold">{row.profit}</td>
-                            <td className="px-4 py-3 text-amber-400">★ {row.rating}</td>
+                            <td className="px-4 py-3 font-sans">
+                              <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-none ${
+                                row.priority === "Urgent" ? "text-rose-400 bg-rose-500/10" : "text-amber-400 bg-amber-500/10"
+                              }`}>
+                                {row.priority}
+                              </span>
+                            </td>
                           </tr>
                         ))
                       )}
@@ -449,253 +523,219 @@ export default function LandingPage() {
                   </table>
                 </div>
 
-                <div className="p-3 bg-[#0b0e17] border-t border-[#1b2234] flex items-center justify-between text-[11px] font-mono text-zinc-400">
+                <div className="p-3.5 bg-[#0b0e17] border-t border-[#1b2234] flex flex-wrap items-center justify-between text-xs text-zinc-400 font-sans">
                   <span>
-                    Showing {filteredMockRows.length} of {allMockRows.length} displayed rows (Virtualized Engine caches 100,000 records)
+                    💡 <strong>Pro Tip:</strong> Click any record in the live app to slide open its full audit drawer, company background, and deal timeline.
                   </span>
-                  <span className="text-indigo-400">
-                    Row Virtualization Engine active • Windowed Viewport
-                  </span>
+                  <Link href="/explorer" className="text-indigo-400 hover:text-indigo-300 font-medium">
+                    Try it with 100,000 real rows &rarr;
+                  </Link>
                 </div>
               </div>
             )}
 
-            {/* ================= TAB 2: VISUAL AST QUERY BUILDER ================= */}
+            {/* ================= TAB 2: VISUAL QUERY BUILDER ================= */}
             {activeTab === "queryBuilder" && (
               <div className="p-6 space-y-6 animate-in fade-in duration-200">
                 <div className="flex items-center justify-between border-b border-[#1f283d] pb-4">
                   <div>
-                    <h3 className="text-sm font-semibold text-white font-mono flex items-center gap-2">
-                      <Code2 className="w-4 h-4 text-[#968dfa]" />
-                      <span>Abstract Syntax Tree (AST) Condition Evaluator</span>
+                    <h3 className="text-sm font-semibold text-white flex items-center gap-2">
+                      <SlidersHorizontal className="w-4 h-4 text-[#968dfa]" />
+                      <span>Visual Predicate Query Builder</span>
                     </h3>
-                    <p className="text-xs text-zinc-400 mt-0.5">
-                      Construct relational filter predicates without writing raw SQL. Auto-compiles to indexed PostgreSQL statements.
+                    <p className="text-xs text-zinc-400 mt-0.5 font-sans">
+                      Build sophisticated multi-condition business logic with simple point-and-click dropdowns. Zero SQL required.
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                    SQL AST Engine
+                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-none bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    Business Friendly
                   </span>
                 </div>
 
-                {/* Predicate Condition Cards */}
-                <div className="space-y-2.5">
-                  <div className="p-3 rounded-none bg-[#121624] border border-[#20293d] flex flex-wrap items-center gap-3 text-xs font-mono">
-                    <span className="px-2 py-1 rounded-none bg-indigo-600/30 text-indigo-300 font-bold">
+                {/* Point and click filter visual rows */}
+                <div className="space-y-3">
+                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#20293d] flex flex-wrap items-center gap-3 text-xs">
+                    <span className="px-2.5 py-1 rounded-none bg-indigo-600/30 text-indigo-300 font-bold font-mono">
                       WHERE
                     </span>
-                    <span className="text-white">Status (Enum)</span>
-                    <span className="text-zinc-500">=</span>
-                    <span className="text-emerald-400 font-semibold">&apos;Active&apos;</span>
-                    <span className="ml-auto text-[10px] text-zinc-500">Indexed (B-Tree)</span>
+                    <span className="text-white font-medium">Deal Status</span>
+                    <span className="text-zinc-500">is exactly</span>
+                    <span className="px-2 py-0.5 rounded-none bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">
+                      Active
+                    </span>
                   </div>
 
-                  <div className="p-3 rounded-none bg-[#121624] border border-[#20293d] flex flex-wrap items-center gap-3 text-xs font-mono">
-                    <span className="px-2 py-1 rounded-none bg-amber-600/30 text-amber-300 font-bold">
+                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#20293d] flex flex-wrap items-center gap-3 text-xs">
+                    <span className="px-2.5 py-1 rounded-none bg-amber-600/30 text-amber-300 font-bold font-mono">
                       AND
                     </span>
-                    <span className="text-white">Revenue (Numeric)</span>
-                    <span className="text-zinc-500">&gt;=</span>
-                    <span className="text-white font-semibold">$50,000.00</span>
-                    <span className="ml-auto text-[10px] text-zinc-500">Range Scan</span>
+                    <span className="text-white font-medium">Contract Revenue</span>
+                    <span className="text-zinc-500">is greater than or equal to</span>
+                    <span className="px-2 py-0.5 rounded-none bg-zinc-800 text-white font-mono font-semibold">
+                      $50,000.00
+                    </span>
                   </div>
 
-                  <div className="p-3 rounded-none bg-[#121624] border border-[#20293d] flex flex-wrap items-center gap-3 text-xs font-mono">
-                    <span className="px-2 py-1 rounded-none bg-amber-600/30 text-amber-300 font-bold">
+                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#20293d] flex flex-wrap items-center gap-3 text-xs">
+                    <span className="px-2.5 py-1 rounded-none bg-amber-600/30 text-amber-300 font-bold font-mono">
                       AND
                     </span>
-                    <span className="text-white">Company Name</span>
-                    <span className="text-zinc-500">ILIKE</span>
-                    <span className="text-cyan-400 font-semibold">&apos;%Technologies%&apos;</span>
-                    <span className="ml-auto text-[10px] text-emerald-400">GIN Trigram Search</span>
+                    <span className="text-white font-medium">Geographic Region</span>
+                    <span className="text-zinc-500">is in</span>
+                    <span className="px-2 py-0.5 rounded-none bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-semibold">
+                      Canada, Germany, Netherlands
+                    </span>
                   </div>
                 </div>
 
-                {/* Live Compiled PostgreSQL Code Window */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
-                    <span className="flex items-center gap-1.5">
-                      <Terminal className="w-3.5 h-3.5 text-[#ff8204]" />
-                      <span>Compiled PostgreSQL DDL / Query Output</span>
-                    </span>
-                    <span className="text-emerald-400 text-[11px]">Execution Time: 12.8ms (EXPLAIN Plan Verified)</span>
+                {/* Visual benefit callout */}
+                <div className="p-4 rounded-none bg-[#0e1320] border border-indigo-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <div className="text-xs font-semibold text-white flex items-center gap-1.5">
+                      <Zap className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Instant Results (1,240 Matching Contracts Found in 11.4ms)</span>
+                    </div>
+                    <p className="text-[11px] text-zinc-400 font-sans">
+                      Any member of your sales, finance, or executive team can create these filters in under 10 seconds.
+                    </p>
                   </div>
-                  <pre className="p-4 rounded-none bg-[#090b10] border border-[#1f283d] text-xs font-mono text-indigo-300 overflow-x-auto leading-relaxed">
-{`SELECT id, record_code, title, company_name, revenue, status, country
-FROM dataset_records
-WHERE status = 'Active'
-  AND revenue >= 50000.00
-  AND company_name %> 'Technologies' -- GIN pg_trgm similarity match
-ORDER BY revenue DESC
-LIMIT 50 OFFSET 0;`}
-                  </pre>
+
+                  <Link
+                    href="/search"
+                    className="px-4 py-2 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors shrink-0"
+                  >
+                    Launch Visual Query Builder
+                  </Link>
                 </div>
               </div>
             )}
 
-            {/* ================= TAB 3: AI NATURAL LANGUAGE COPILOT ================= */}
+            {/* ================= TAB 3: AI COPILOT ================= */}
             {activeTab === "aiCopilot" && (
               <div className="p-6 space-y-6 animate-in fade-in duration-200">
                 <div className="flex items-center justify-between border-b border-[#1f283d] pb-4">
                   <div>
-                    <h3 className="text-sm font-semibold text-white font-mono flex items-center gap-2">
+                    <h3 className="text-sm font-semibold text-white flex items-center gap-2">
                       <Sparkles className="w-4 h-4 text-[#ff8204]" />
-                      <span>Autonomous Natural Language to Structured Query Translator</span>
+                      <span>AI Natural Language Search Assistant</span>
                     </h3>
-                    <p className="text-xs text-zinc-400 mt-0.5">
-                      Leverages schema-aware LLM tool calling with strict parameter guardrails to prevent SQL injection.
+                    <p className="text-xs text-zinc-400 mt-0.5 font-sans">
+                      Ask business questions in normal, plain English. DataScope automatically translates your question into precise, validated data filters.
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    Safe Tool Calling
+                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-none bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    AI-Powered
                   </span>
                 </div>
 
-                {/* Simulated Prompt Box */}
-                <div className="p-4 rounded-none bg-[#121624] border border-[#222a3d] space-y-3">
-                  <div className="text-[11px] font-mono text-zinc-400 uppercase">
-                    Natural Language Input Prompt:
-                  </div>
-                  <div className="p-3 bg-[#0c0f18] border border-[#1e2638] text-xs text-white font-mono">
-                    &quot;Find all active healthcare and enterprise contracts in Canada with profit exceeding $80,000&quot;
+                {/* Plain english input sample */}
+                <div className="space-y-2">
+                  <label className="text-xs text-zinc-400 font-medium">You type in plain English:</label>
+                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#222a3d] text-white text-xs font-sans">
+                    &quot;Show me all active enterprise contracts in Canada or Germany with net profit over $80,000&quot;
                   </div>
                 </div>
 
-                {/* Tool Calling Execution Payload Preview */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-none bg-[#0e121d] border border-[#1f283d] space-y-2">
-                    <div className="text-xs font-semibold text-emerald-400 font-mono flex items-center gap-1.5">
+                {/* Translation Result */}
+                <div className="p-4 rounded-none bg-[#0e121d] border border-indigo-500/30 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>Schema Tool-Call Synthesized</span>
-                    </div>
-                    <pre className="text-[11px] font-mono text-zinc-300 overflow-x-auto p-2 bg-[#080a10] border border-[#1a2030]">
-{`{
-  "tool": "query_dataset_records",
-  "arguments": {
-    "status": "Active",
-    "country": "Canada",
-    "minProfit": 80000,
-    "category": ["Healthcare", "Enterprise"]
-  }
-}`}
-                    </pre>
+                      <span>AI Understood & Applied 4 Verified Filters Automatically</span>
+                    </span>
+                    <span className="text-[10px] font-mono text-zinc-400">Response time: 0.2s</span>
                   </div>
 
-                  <div className="p-4 rounded-none bg-[#0e121d] border border-[#1f283d] space-y-3">
-                    <div className="text-xs font-semibold text-indigo-300 font-mono flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
-                      <span>Guardrail Verification Checks</span>
-                    </div>
-                    <ul className="space-y-1.5 text-xs text-zinc-300 font-mono">
-                      <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>SQL Injection AST Filter: Passed</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>Numeric Boundaries Validation: Passed</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>Execution Safety: Read-Only Transaction</span>
-                      </li>
-                    </ul>
+                  <div className="flex flex-wrap gap-2 text-xs">
+                    <span className="px-2.5 py-1 bg-[#141926] border border-[#202738] text-zinc-200">
+                      Status: <strong>Active</strong>
+                    </span>
+                    <span className="px-2.5 py-1 bg-[#141926] border border-[#202738] text-zinc-200">
+                      Countries: <strong>Canada, Germany</strong>
+                    </span>
+                    <span className="px-2.5 py-1 bg-[#141926] border border-[#202738] text-zinc-200">
+                      Category: <strong>Enterprise</strong>
+                    </span>
+                    <span className="px-2.5 py-1 bg-[#141926] border border-[#202738] text-emerald-400">
+                      Min Profit: <strong>&gt; $80,000</strong>
+                    </span>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* ================= TAB 4: MISSION CONTROL & TELEMETRY ================= */}
-            {activeTab === "telemetry" && (
+            {/* ================= TAB 4: SAVED VIEWS & COLLABORATION ================= */}
+            {activeTab === "collaboration" && (
               <div className="p-6 space-y-6 animate-in fade-in duration-200">
                 <div className="flex items-center justify-between border-b border-[#1f283d] pb-4">
                   <div>
-                    <h3 className="text-sm font-semibold text-white font-mono flex items-center gap-2">
-                      <Activity className="w-4 h-4 text-emerald-400" />
-                      <span>Cluster Infrastructure & Connection Pool Telemetry</span>
+                    <h3 className="text-sm font-semibold text-white flex items-center gap-2">
+                      <BookmarkCheck className="w-4 h-4 text-[#968dfa]" />
+                      <span>Team Saved Views & Live URL Sharing</span>
                     </h3>
-                    <p className="text-xs text-zinc-400 mt-0.5">
-                      Real-time operational monitoring of PGBouncer connection pools, Redis/RTK cache hit ratios, and security audit logs.
+                    <p className="text-xs text-zinc-400 mt-0.5 font-sans">
+                      Never rebuild a filter twice. Save complex views for weekly standups, share links across departments, and export with one click.
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    Live Cluster Status: NOMINAL
+                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-none bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    Team Productivity
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="p-4 rounded-none bg-[#121624] border border-[#1e273b] space-y-2">
-                    <span className="text-xs font-mono text-zinc-400 uppercase">
-                      PGBouncer Connection Pool
-                    </span>
-                    <div className="text-2xl font-bold font-mono text-white">
-                      18 / 20 <span className="text-xs text-zinc-400 font-normal">Active Clients</span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-white">Q4 High-Margin EMEA</span>
+                      <span className="text-[10px] font-mono text-emerald-400">🌐 Shared</span>
                     </div>
-                    <div className="w-full bg-[#1b2336] h-2 rounded-none overflow-hidden">
-                      <div className="bg-indigo-500 h-full w-[90%]" />
+                    <p className="text-[11px] text-zinc-400 font-sans">
+                      Filtered by 4 European territories with profit &gt; $100k. Used weekly by Sales Leadership.
+                    </p>
+                    <div className="pt-2 flex items-center justify-between text-[11px] text-indigo-400">
+                      <span>420 matching deals</span>
+                      <span className="underline">Apply View &rarr;</span>
                     </div>
-                    <span className="text-[10px] text-zinc-500 font-mono">
-                      Transaction Pooling Mode • Zero Saturation
-                    </span>
                   </div>
 
                   <div className="p-4 rounded-none bg-[#121624] border border-[#1e273b] space-y-2">
-                    <span className="text-xs font-mono text-zinc-400 uppercase">
-                      Server Cache Hit Ratio
-                    </span>
-                    <div className="text-2xl font-bold font-mono text-emerald-400">
-                      99.4%
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-white">Pending Executive Review</span>
+                      <span className="text-[10px] font-mono text-amber-400">🔒 Finance Only</span>
                     </div>
-                    <div className="w-full bg-[#1b2336] h-2 rounded-none overflow-hidden">
-                      <div className="bg-emerald-500 h-full w-[99.4%]" />
+                    <p className="text-[11px] text-zinc-400 font-sans">
+                      Deals flagged with pending regulatory review or missing tax clearances.
+                    </p>
+                    <div className="pt-2 flex items-center justify-between text-[11px] text-indigo-400">
+                      <span>38 flagged deals</span>
+                      <span className="underline">Apply View &rarr;</span>
                     </div>
-                    <span className="text-[10px] text-zinc-500 font-mono">
-                      300s TTL Normalized Client Invalidation
-                    </span>
                   </div>
 
                   <div className="p-4 rounded-none bg-[#121624] border border-[#1e273b] space-y-2">
-                    <span className="text-xs font-mono text-zinc-400 uppercase">
-                      Heap Memory Allocation
-                    </span>
-                    <div className="text-2xl font-bold font-mono text-[#ffa033]">
-                      42.8 MB
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-white">Top Tier-1 Tech Accounts</span>
+                      <span className="text-[10px] font-mono text-indigo-400">🌐 Shared</span>
                     </div>
-                    <div className="w-full bg-[#1b2336] h-2 rounded-none overflow-hidden">
-                      <div className="bg-[#ff8204] h-full w-[28%]" />
+                    <p className="text-[11px] text-zinc-400 font-sans">
+                      Enterprise technology contracts generating &gt; $500,000 annual recurring revenue.
+                    </p>
+                    <div className="pt-2 flex items-center justify-between text-[11px] text-indigo-400">
+                      <span>180 accounts</span>
+                      <span className="underline">Apply View &rarr;</span>
                     </div>
-                    <span className="text-[10px] text-zinc-500 font-mono">
-                      Streamed Cursor Seeder • Flat GC Curve
-                    </span>
                   </div>
                 </div>
 
-                {/* Audit Log Stream */}
-                <div className="p-4 rounded-none bg-[#090b10] border border-[#1f283d] space-y-2 text-xs font-mono">
-                  <div className="text-zinc-400 uppercase text-[10px] font-semibold border-b border-[#1b2336] pb-1.5 flex items-center justify-between">
-                    <span>Recent Security Audit Stream (SHA-256 Verified)</span>
-                    <span className="text-indigo-400">Streaming Live</span>
+                <div className="p-4 rounded-none bg-[#090b10] border border-[#1f283d] flex flex-wrap items-center justify-between gap-3 text-xs font-sans">
+                  <div className="flex items-center gap-2">
+                    <Share2 className="w-4 h-4 text-cyan-400" />
+                    <span className="text-zinc-300">
+                      URL synchronizes with your active filters. Copy and send the link on Slack or email—your colleague sees the exact same data slice.
+                    </span>
                   </div>
-                  <div className="space-y-1 text-zinc-300">
-                    <div className="flex items-center justify-between py-1 border-b border-[#161c2a]">
-                      <span className="text-emerald-400 font-semibold">UPDATE_RECORD_STATUS</span>
-                      <span className="text-zinc-400">REC-055594 &rarr; Active</span>
-                      <span className="text-zinc-500">Alex Rivera (CDO)</span>
-                      <span className="text-zinc-600">2s ago</span>
-                    </div>
-                    <div className="flex items-center justify-between py-1 border-b border-[#161c2a]">
-                      <span className="text-indigo-400 font-semibold">EXPORT_CSV_TRIGGER</span>
-                      <span className="text-zinc-400">Filtered Set (1,240 rows)</span>
-                      <span className="text-zinc-500">Sarah Connor (Analyst)</span>
-                      <span className="text-zinc-600">14s ago</span>
-                    </div>
-                    <div className="flex items-center justify-between py-1">
-                      <span className="text-amber-400 font-semibold">APPLY_SAVED_VIEW</span>
-                      <span className="text-zinc-400">&quot;Q4 High-Margin EMEA&quot;</span>
-                      <span className="text-zinc-500">Marcus Vance (Viewer)</span>
-                      <span className="text-zinc-600">42s ago</span>
-                    </div>
-                  </div>
+                  <Link href="/saved-views" className="px-3.5 py-1.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs">
+                    Explore Saved Views
+                  </Link>
                 </div>
               </div>
             )}
@@ -703,379 +743,215 @@ LIMIT 50 OFFSET 0;`}
         </section>
 
         {/* =========================================================================
-            3. PERFORMANCE BENCHMARKS: Sequential Scan vs GIN Trigram
+            4. WHO BENEFITS: 3 CORE ENTERPRISE PERSONAS
             ========================================================================= */}
         <section className="px-4 w-[90%] mx-auto space-y-8">
           <div className="text-center space-y-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#ffa033] font-semibold">
-              Empirical Benchmarks
+            <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">
+              Tailored For Enterprise Roles
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-white tracking-tight">
-              PostgreSQL 16 Indexing vs Traditional Relational Scans
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Designed For High-Performance Cross-Functional Teams
             </h2>
             <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl mx-auto font-sans">
-              Tested on 100,000 denormalized enterprise records under concurrent load. Substring fuzzy matching and range filtering executed without disk thrashing.
+              From business leaders reviewing margins to operational analysts verifying contract terms.
             </p>
           </div>
 
-          <div className="rounded-none bg-[#0c0f18] border border-[#1b2234] shadow-2xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-mono">
-                <thead className="bg-[#0f1320] text-zinc-400 uppercase text-[10px] border-b border-[#1b2234]">
-                  <tr>
-                    <th className="px-5 py-3.5">Query Evaluation Type</th>
-                    <th className="px-5 py-3.5">Traditional Sequential Scan</th>
-                    <th className="px-5 py-3.5 text-indigo-400">DataScope (B-Tree + GIN Trigram)</th>
-                    <th className="px-5 py-3.5 text-emerald-400">Performance Delta</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#171d2e] text-zinc-300">
-                  <tr className="hover:bg-[#121624] transition-colors">
-                    <td className="px-5 py-3.5 font-sans font-medium text-white">
-                      Substring Search (`ILIKE &apos;%corp%&apos;`)
-                    </td>
-                    <td className="px-5 py-3.5 text-rose-400">
-                      480.4ms (Full Table Scan)
-                    </td>
-                    <td className="px-5 py-3.5 text-indigo-300 font-bold">
-                      14.2ms (GIN Index Lookup)
-                    </td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">
-                      97.0% Faster Execution ⚡
-                    </td>
-                  </tr>
-
-                  <tr className="hover:bg-[#121624] transition-colors">
-                    <td className="px-5 py-3.5 font-sans font-medium text-white">
-                      Multi-Column Range (`status = &apos;Active&apos; AND revenue &gt; 50k`)
-                    </td>
-                    <td className="px-5 py-3.5 text-rose-400">
-                      214.1ms (Filter on Scan)
-                    </td>
-                    <td className="px-5 py-3.5 text-indigo-300 font-bold">
-                      8.6ms (Composite B-Tree)
-                    </td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">
-                      95.9% Faster Execution ⚡
-                    </td>
-                  </tr>
-
-                  <tr className="hover:bg-[#121624] transition-colors">
-                    <td className="px-5 py-3.5 font-sans font-medium text-white">
-                      Client-Side DOM Rendering (50k rows)
-                    </td>
-                    <td className="px-5 py-3.5 text-rose-400">
-                      Browser Freeze (50k active DOM nodes)
-                    </td>
-                    <td className="px-5 py-3.5 text-indigo-300 font-bold">
-                      Flat 60 FPS (Virtual window ~25 DOM nodes)
-                    </td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">
-                      Zero Client Lag ⚡
-                    </td>
-                  </tr>
-
-                  <tr className="hover:bg-[#121624] transition-colors">
-                    <td className="px-5 py-3.5 font-sans font-medium text-white">
-                      Connection Saturation (200 concurrent users)
-                    </td>
-                    <td className="px-5 py-3.5 text-rose-400">
-                      Connection Refused (Postgres Max Limit)
-                    </td>
-                    <td className="px-5 py-3.5 text-indigo-300 font-bold">
-                      PGBouncer Connection Pooling (20 pool limit)
-                    </td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">
-                      Zero Dropped Queries ⚡
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            4. SIX CORE ARCHITECTURAL PILLARS (Detailed Engineering Breakdown)
-            ========================================================================= */}
-        <section className="px-4 w-[90%] mx-auto space-y-12">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
-            <div className="space-y-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">
-                Engineered For Scale
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Architectural Foundations
-              </h2>
-            </div>
-            <Link
-              href="/features"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#202738] text-xs font-semibold text-[#968dfa] hover:text-white transition-all shrink-0"
-            >
-              <span>View Full Features & RBAC Matrix</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-6 rounded-none render-card space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Persona 1: Executive Leadership */}
+            <div className="p-6 rounded-none render-card space-y-4">
               <div className="w-10 h-10 rounded-none bg-[#6c35f5]/15 border border-[#968dfa]/30 flex items-center justify-center text-[#968dfa]">
-                <Database className="w-5 h-5" />
+                <Briefcase className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-[#fafaf4]">
-                100,000+ Record Streaming Seeder
+                Executive Leadership (CFO, CDO, COO)
               </h3>
-              <p className="text-xs text-[#a1a1aa] leading-relaxed">
-                Chunked batch insertion streams 100k synthetic enterprise records directly through parameterized transactions—preventing server memory spikes or OOM errors.
+              <p className="text-xs text-[#a1a1aa] leading-relaxed font-sans">
+                Get an instant bird&apos;s-eye view of enterprise revenues, net margins, and operational deal health without waiting for analysts to assemble weekly spreadsheets.
               </p>
+              <ul className="space-y-2 text-xs text-zinc-300 font-sans border-t border-[#1a2030] pt-3">
+                <li className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Real-time portfolio revenue aggregates</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Permanent compliance audit history</span>
+                </li>
+              </ul>
             </div>
 
-            <div className="p-6 rounded-none mistral-card space-y-3">
+            {/* Persona 2: Revenue Operations & Sales Leaders */}
+            <div className="p-6 rounded-none mistral-card space-y-4">
               <div className="w-10 h-10 rounded-none bg-[#ff8204]/15 border border-[#ff8204]/35 flex items-center justify-center text-[#ffa033]">
-                <Search className="w-5 h-5" />
+                <TrendingUp className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-[#fafaf4]">
-                GIN Trigram Fuzzy Indexing
+                Revenue Operations & Deal Desks
               </h3>
-              <p className="text-xs text-[#a1a1aa] leading-relaxed">
-                Powered by PostgreSQL <code className="text-[#ffa033] font-mono">pg_trgm</code> GIN indexes and composite B-Trees. Executes arbitrary substring matches in sub-20ms without table scans.
+              <p className="text-xs text-[#a1a1aa] leading-relaxed font-sans">
+                Track enterprise contract pipelines, filter accounts by geography and deal priority, and pinpoint margin discrepancies before quarter-end.
               </p>
+              <ul className="space-y-2 text-xs text-zinc-300 font-sans border-t border-[#1a2030] pt-3">
+                <li className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Instant contract lookup by title or client code</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>One-click status updates with audit stamps</span>
+                </li>
+              </ul>
             </div>
 
-            <div className="p-6 rounded-none render-card space-y-3">
+            {/* Persona 3: Data Analysts & Operations */}
+            <div className="p-6 rounded-none render-card space-y-4">
               <div className="w-10 h-10 rounded-none bg-[#0b7d55]/15 border border-[#0b7d55]/35 flex items-center justify-center text-[#0b7d55]">
-                <Zap className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-semibold text-[#fafaf4]">
-                Windowed Viewport Virtualization
-              </h3>
-              <p className="text-xs text-[#a1a1aa] leading-relaxed">
-                Only the 25–30 DOM rows currently inside the viewport are rendered in memory. Scroll through 100k records at a locked 60 frames per second without memory leaks.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-none render-card space-y-3">
-              <div className="w-10 h-10 rounded-none bg-[#968dfa]/15 border border-[#968dfa]/30 flex items-center justify-center text-[#968dfa]">
                 <BarChart3 className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-[#fafaf4]">
-                Push-Down SQL Aggregations
+                Data & Business Analysts
               </h3>
-              <p className="text-xs text-[#a1a1aa] leading-relaxed">
-                Computes portfolio sums, profit margins, and distribution curves entirely inside the PostgreSQL engine, avoiding client-side serialization overhead.
+              <p className="text-xs text-[#a1a1aa] leading-relaxed font-sans">
+                Slice and dice 100k+ records without writing boilerplate SQL. Create custom views, export clean data subsets to CSV, and share findings with stakeholders.
               </p>
-            </div>
-
-            <div className="p-6 rounded-none render-card space-y-3">
-              <div className="w-10 h-10 rounded-none bg-[#005e9e]/15 border border-[#005e9e]/35 flex items-center justify-center text-[#38bdf8]">
-                <BookmarkCheck className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-semibold text-[#fafaf4]">
-                Saved Views & URL Deep Linking
-              </h3>
-              <p className="text-xs text-[#a1a1aa] leading-relaxed">
-                Multi-condition filters, visible columns, and sorting states synchronize with URL search params. Bookmark, reload, or share exact filtered viewports with team members.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-none render-card space-y-3">
-              <div className="w-10 h-10 rounded-none bg-[#8a05ff]/15 border border-[#8a05ff]/35 flex items-center justify-center text-[#c084fc]">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-semibold text-[#fafaf4]">
-                Role-Based Access Control (RBAC)
-              </h3>
-              <p className="text-xs text-[#a1a1aa] leading-relaxed">
-                Strict isolation between Administrator (full schema DDL/DML), Data Analyst (query, filter, export), and Viewer (read-only) roles with immutable change logs.
-              </p>
+              <ul className="space-y-2 text-xs text-zinc-300 font-sans border-t border-[#1a2030] pt-3">
+                <li className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Multi-column sorting and column customization</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Fast, streaming CSV exports without crashes</span>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
 
         {/* =========================================================================
-            5. ENTERPRISE RBAC PERMISSIONS MATRIX
-            ========================================================================= */}
-        <section className="px-4 w-[90%] mx-auto space-y-8">
-          <div className="text-center space-y-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
-              Governance & Security
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Enterprise Role-Based Access Control (RBAC) Matrix
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl mx-auto font-sans">
-              Built for enterprise data teams with granular permission enforcement across all read, write, export, and administrative endpoints.
-            </p>
-          </div>
-
-          <div className="rounded-none bg-[#0c0f18] border border-[#1b2234] shadow-2xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-mono">
-                <thead className="bg-[#0f1320] text-zinc-400 uppercase text-[10px] border-b border-[#1b2234]">
-                  <tr>
-                    <th className="px-5 py-3.5">Capability / Operation</th>
-                    <th className="px-5 py-3.5 text-indigo-400">Administrator</th>
-                    <th className="px-5 py-3.5 text-[#ffa033]">Data Analyst</th>
-                    <th className="px-5 py-3.5 text-zinc-400">Viewer</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#171d2e] text-zinc-300">
-                  <tr className="hover:bg-[#121624] transition-colors">
-                    <td className="px-5 py-3.5 font-sans font-medium text-white">
-                      Live Data Explorer & Trigram Search
-                    </td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Full Access (All 100k Rows)</td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Full Access (All 100k Rows)</td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Full Access (Read-Only)</td>
-                  </tr>
-
-                  <tr className="hover:bg-[#121624] transition-colors">
-                    <td className="px-5 py-3.5 font-sans font-medium text-white">
-                      Visual AST Query Builder & AI Copilot
-                    </td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Granted (Unlimited)</td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Granted (Unlimited)</td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Granted (Read-Only AST)</td>
-                  </tr>
-
-                  <tr className="hover:bg-[#121624] transition-colors">
-                    <td className="px-5 py-3.5 font-sans font-medium text-white">
-                      CSV / Dataset Bulk Streaming Export
-                    </td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Enabled (Unlimited Size)</td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Enabled (Filtered Viewports)</td>
-                    <td className="px-5 py-3.5 text-zinc-500 font-semibold">Restricted (Export Blocked)</td>
-                  </tr>
-
-                  <tr className="hover:bg-[#121624] transition-colors">
-                    <td className="px-5 py-3.5 font-sans font-medium text-white">
-                      Record Modification & Status Mutator
-                    </td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Allowed (Audit Logged)</td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">Allowed (Status Mutator)</td>
-                    <td className="px-5 py-3.5 text-rose-400 font-semibold">Disabled (HTTP 403 Forbidden)</td>
-                  </tr>
-
-                  <tr className="hover:bg-[#121624] transition-colors">
-                    <td className="px-5 py-3.5 font-sans font-medium text-white">
-                      Database Maintenance & Cluster Index Rebuilding
-                    </td>
-                    <td className="px-5 py-3.5 text-emerald-400 font-semibold">VACUUM / REINDEX / Sync</td>
-                    <td className="px-5 py-3.5 text-rose-400 font-semibold">Restricted</td>
-                    <td className="px-5 py-3.5 text-rose-400 font-semibold">Restricted</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            6. DEVELOPER INTEGRATION: REST API & SQL PAYLOAD
-            ========================================================================= */}
-        <section className="px-4 w-[90%] mx-auto space-y-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div className="space-y-1.5">
-              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
-                Developer Integration
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                RESTful API & Programmatic AST Querying
-              </h2>
-              <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl font-sans">
-                Every filter, search predicate, and saved view in DataScope is backed by a fully typed HTTP JSON endpoint.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* cURL API Request */}
-            <div className="rounded-none bg-[#090b10] border border-[#1b2234] p-5 space-y-3 font-mono text-xs">
-              <div className="flex items-center justify-between text-zinc-400 text-[11px] border-b border-[#1b2234] pb-2">
-                <span className="flex items-center gap-1.5 text-white">
-                  <Terminal className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>cURL Command Execution</span>
-                </span>
-                <span className="text-zinc-500">HTTP GET /api/records</span>
-              </div>
-              <pre className="text-zinc-300 overflow-x-auto leading-relaxed">
-{`curl -X GET "https://datascope.internal/api/records" \\
-  -H "Authorization: Bearer ds_live_sec_99a8x" \\
-  -d '{
-    "query": "Technologies",
-    "status": "Active",
-    "minRevenue": 50000,
-    "page": 1,
-    "pageSize": 50,
-    "sortBy": "revenue",
-    "sortDesc": true
-  }'`}
-              </pre>
-            </div>
-
-            {/* JSON Response */}
-            <div className="rounded-none bg-[#090b10] border border-[#1b2234] p-5 space-y-3 font-mono text-xs">
-              <div className="flex items-center justify-between text-zinc-400 text-[11px] border-b border-[#1b2234] pb-2">
-                <span className="flex items-center gap-1.5 text-emerald-400">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>200 OK — Sub-20ms Streamed Response</span>
-                </span>
-                <span className="text-zinc-500">JSON Payload</span>
-              </div>
-              <pre className="text-indigo-300 overflow-x-auto leading-relaxed">
-{`{
-  "status": "success",
-  "meta": {
-    "totalCount": 100000,
-    "filteredCount": 1240,
-    "latencyMs": 14.2,
-    "indexUsed": "idx_records_title_trgm_gin"
-  },
-  "data": [
-    {
-      "id": "REC-055594",
-      "title": "Healthcare Regulatory EHR Pipeline",
-      "company": "Orion Technologies",
-      "revenue": 364054.88,
-      "status": "Active"
-    }
-  ]
-}`}
-              </pre>
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            7. FREQUENTLY ASKED QUESTIONS (Interactive Accordion)
+            5. CORE TANGIBLE BENEFITS (Why Companies Adopt DataScope)
             ========================================================================= */}
         <section className="px-4 w-[90%] mx-auto space-y-8">
           <div className="text-center space-y-2">
             <span className="text-xs font-mono uppercase tracking-wider text-[#968dfa] font-semibold">
-              Frequently Asked Questions
+              The DataScope Advantage
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Architectural & Operational Details
+              Six Key Benefits For Modern Enterprises
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="p-6 rounded-none render-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                <Zap className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-semibold text-white">
+                Sub-Second Speed at Scale
+              </h3>
+              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+                Search, sort, and slice through 100,000+ contracts in less than 20 milliseconds. No waiting for loading spinners or spinning wheels.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-none mistral-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                <SlidersHorizontal className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-semibold text-white">
+                Zero Engineering Dependency
+              </h3>
+              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+                Business users can build intricate multi-variable queries and filters independently. Free up engineering teams to focus on core product features.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-none render-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-semibold text-white">
+                Role-Based Governance (RBAC)
+              </h3>
+              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+                Keep sensitive financial data secure. Control exactly who can view, mutate, approve, or export records across your entire organization.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-none render-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                <Clock className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-semibold text-white">
+                100% Immutable Audit Trail
+              </h3>
+              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+                Every single record update is captured with the user identity, timestamp, and previous values—ensuring total audit compliance.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-none render-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                <Share2 className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-semibold text-white">
+                Frictionless Team Sharing
+              </h3>
+              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+                Save team views and share bookmarked URLs instantly. Team members open the exact same filtered dataset without emailing CSV attachments.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-none render-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
+                <Download className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-semibold text-white">
+                Clean Streaming CSV Export
+              </h3>
+              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+                Export filtered segments directly to CSV with one click. Ideal for offline audits, executive slide presentations, and board reporting.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            6. FREQUENTLY ASKED QUESTIONS (Business & Workflow Centric)
+            ========================================================================= */}
+        <section className="px-4 w-[90%] mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+              Got Questions?
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Frequently Asked Questions
             </h2>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-3">
             {[
               {
-                q: "How does DataScope maintain sub-20ms latency on 100,000+ records?",
-                a: "DataScope leverages PostgreSQL 16 trigram extension (pg_trgm) with Generalized Inverted Indexes (GIN) on string columns and composite B-Trees on financial ranges. Substring searches bypass full table sequential scans completely.",
+                q: "What exact purpose does DataScope fulfill for an enterprise?",
+                a: "DataScope serves as a centralized, lightning-fast data exploration hub. When companies have tens of thousands of revenue contracts, invoices, or customer accounts, traditional tools like Excel crash and slow down. DataScope lets any business user search, filter, and analyze 100,000+ records in under 20ms without needing engineering assistance.",
               },
               {
-                q: "How does the Virtualized Viewport prevent browser tab crashes?",
-                a: "Rather than injecting 100,000 DOM rows into the browser (which consumes over 800MB of RAM and causes layout thrashing), our virtualized scroll container calculates scroll offsets dynamically and only mounts ~25 active DOM elements into the viewport.",
+                q: "Do non-technical team members need to know SQL or code?",
+                a: "Not at all. DataScope was built specifically so business users can apply multi-condition filters using simple dropdowns, or even ask questions in plain English using the built-in AI assistant. Everything is point-and-click.",
               },
               {
-                q: "Is the Natural Language AI Copilot safe against SQL Injection?",
-                a: "Yes. The AI Copilot does not write or execute freeform SQL text directly. Instead, it generates a strongly-typed JSON schema payload through OpenAI / Anthropic Tool Calling with strict Pydantic / Zod guardrail filters before running parameterized PostgreSQL queries.",
+                q: "How does DataScope replace traditional Excel or Google Sheets?",
+                a: "Instead of emailing stale, unverified CSV files that crash on 50k rows, DataScope provides a single, live, shared source of truth. Multiple team members can access 100,000+ records simultaneously, customize their columns, save shared views, and see real-time updates.",
               },
               {
-                q: "What role does PGBouncer connection pooling play?",
-                a: "PGBouncer acts as a high-speed reverse proxy between the Next.js API route workers and the underlying PostgreSQL database. In transaction pooling mode, hundreds of incoming concurrent client queries are multiplexed across 20 persistent database connections.",
+                q: "How does role-based access control (RBAC) protect sensitive revenue data?",
+                a: "DataScope enforces three distinct permission levels: Administrators have full control over data and maintenance; Data Analysts can query, filter, and export; and Viewers can only explore and read without ability to edit or export confidential records.",
+              },
+              {
+                q: "Can I export filtered datasets to CSV or external tools?",
+                a: "Yes. Once you apply your search and filters, you can export either the entire filtered dataset or only selected rows with a single click.",
               },
             ].map((faq, index) => (
               <div
@@ -1104,7 +980,7 @@ LIMIT 50 OFFSET 0;`}
         </section>
 
         {/* =========================================================================
-            8. FINAL CTA BANNER
+            7. FINAL CTA BANNER
             ========================================================================= */}
         <section className="px-4 w-[90%] mx-auto text-center">
           <div className="p-10 sm:p-14 rounded-none render-card space-y-6 relative overflow-hidden">
@@ -1112,10 +988,10 @@ LIMIT 50 OFFSET 0;`}
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#ff8204]/10 blur-3xl pointer-events-none" />
 
             <h2 className="text-3xl sm:text-5xl font-bold text-[#fafaf4] tracking-tight relative z-10">
-              Ready to Discover Enterprise Intelligence?
+              Transform How Your Team Explores Enterprise Data
             </h2>
             <p className="text-xs sm:text-sm text-[#a1a1aa] max-w-xl mx-auto relative z-10 font-sans">
-              Test sub-18ms queries, multi-variable AST query building, and audit trail validation across 100,000 records right now.
+              Experience instant sub-second search, visual point-and-click filtering, and audit-ready governance across 100,000 business contracts right now.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2 relative z-10">
@@ -1130,7 +1006,7 @@ LIMIT 50 OFFSET 0;`}
                 href="/register"
                 className="px-6 py-3.5 rounded-none btn-render-secondary text-xs font-semibold"
               >
-                Provision Demo Account
+                Provision Free Demo Account
               </Link>
             </div>
           </div>
