@@ -14,6 +14,7 @@ import {
   setTableDensity,
 } from "@/store/slices/uiPreferenceSlice";
 import { clearAllFilters } from "@/store/slices/searchConfigSlice";
+import { addToast } from "@/store/slices/toastSlice";
 import { RecordItem } from "@/store/api/recordsApi";
 import {
   ArrowUpDown,
@@ -36,6 +37,8 @@ import {
   Info,
   Maximize2,
   Minimize2,
+  Copy,
+  ExternalLink,
 } from "lucide-react";
 
 export interface ColumnDef {
@@ -92,7 +95,7 @@ function HighlightMatch({ text, query }: { text: string; query?: string }) {
           terms.some((t) => new RegExp(`^${t}$`, "i").test(part)) ? (
             <mark
               key={i}
-              className="bg-amber-400/25 text-amber-200 px-0.5 py-0.5 rounded font-semibold border-b border-amber-400/60"
+              className="bg-amber-400/25 text-amber-200 px-0.5 py-0.5 rounded-none font-semibold border-b border-amber-400/60"
             >
               {part}
             </mark>
@@ -120,6 +123,7 @@ interface MemoizedTableRowProps {
   searchQuery: string;
   onRowClick: (id: string) => void;
   onToggleSelect: (id: string) => void;
+  onCopyRecordCode: (code: string) => void;
 }
 
 const MemoizedTableRow = React.memo(
@@ -132,6 +136,7 @@ const MemoizedTableRow = React.memo(
     searchQuery,
     onRowClick,
     onToggleSelect,
+    onCopyRecordCode,
   }: MemoizedTableRowProps) {
     const densityClass =
       tableDensity === "compact"
@@ -174,7 +179,22 @@ const MemoizedTableRow = React.memo(
             style={{ width: `${columnWidths.recordCode || 125}px` }}
             className={`px-3 font-mono font-medium text-indigo-300 truncate ${densityClass}`}
           >
-            <HighlightMatch text={record.recordCode} query={searchQuery} />
+            <div className="flex items-center justify-between gap-1">
+              <span className="truncate">
+                <HighlightMatch text={record.recordCode} query={searchQuery} />
+              </span>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onCopyRecordCode(record.recordCode);
+                }}
+                title="Copy Record Code"
+                className="opacity-0 group-hover:opacity-100 p-0.5 text-zinc-400 hover:text-indigo-300 hover:bg-indigo-500/20 transition-all rounded-none"
+              >
+                <Copy className="w-3 h-3" />
+              </button>
+            </div>
           </td>
         )}
 
@@ -184,7 +204,22 @@ const MemoizedTableRow = React.memo(
             style={{ width: `${columnWidths.title || 270}px` }}
             className={`px-3 text-zinc-100 font-medium truncate group-hover:text-indigo-300 transition-colors ${densityClass}`}
           >
-            <HighlightMatch text={record.title} query={searchQuery} />
+            <div className="flex items-center justify-between gap-2">
+              <span className="truncate">
+                <HighlightMatch text={record.title} query={searchQuery} />
+              </span>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onRowClick(record.id);
+                }}
+                title="Open Record Details Drawer"
+                className="opacity-0 group-hover:opacity-100 p-0.5 text-zinc-400 hover:text-white hover:bg-zinc-700/50 transition-all rounded-none shrink-0"
+              >
+                <ExternalLink className="w-3 h-3" />
+              </button>
+            </div>
           </td>
         )}
 
@@ -204,7 +239,7 @@ const MemoizedTableRow = React.memo(
             style={{ width: `${columnWidths.category || 140}px` }}
             className={`px-3 truncate ${densityClass}`}
           >
-            <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800/90 text-zinc-300 border border-zinc-700/60">
+            <span className="text-[11px] font-mono px-2 py-0.5 rounded-none bg-zinc-800/90 text-zinc-300 border border-zinc-700/60">
               <HighlightMatch text={record.category} query={searchQuery} />
             </span>
           </td>
@@ -217,7 +252,7 @@ const MemoizedTableRow = React.memo(
             className={`px-3 ${densityClass}`}
           >
             <span
-              className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border ${
+              className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-none border ${
                 record.status === "Active"
                   ? "bg-[#0b7d55]/15 text-[#0b7d55] border-[#0b7d55]/30"
                   : record.status === "Pending"
@@ -252,17 +287,40 @@ const MemoizedTableRow = React.memo(
           </td>
         )}
 
-        {/* Profit */}
-        {visibleColumns.includes("profit") && (
-          <td
-            style={{ width: `${columnWidths.profit || 140}px` }}
-            className={`px-3 font-mono text-right font-medium ${
-              record.profit >= 0 ? "text-emerald-400" : "text-rose-400"
-            } ${densityClass}`}
-          >
-            ${record.profit.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-          </td>
-        )}
+        {/* Profit with Margin % */}
+        {visibleColumns.includes("profit") && (() => {
+          const margin =
+            record.revenue > 0
+              ? ((record.profit / record.revenue) * 100).toFixed(1)
+              : "0.0";
+          const isPositive = record.profit >= 0;
+          return (
+            <td
+              style={{ width: `${columnWidths.profit || 140}px` }}
+              className={`px-3 font-mono text-right ${densityClass}`}
+            >
+              <div className="flex flex-col items-end leading-tight">
+                <span
+                  className={`font-semibold ${
+                    isPositive ? "text-emerald-400" : "text-rose-400"
+                  }`}
+                >
+                  {isPositive ? "+" : ""}$
+                  {record.profit.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                  })}
+                </span>
+                <span
+                  className={`text-[10px] ${
+                    isPositive ? "text-emerald-500/80" : "text-rose-500/80"
+                  }`}
+                >
+                  {margin}% margin
+                </span>
+              </div>
+            </td>
+          );
+        })()}
 
         {/* Rating */}
         {visibleColumns.includes("rating") && (
@@ -274,21 +332,26 @@ const MemoizedTableRow = React.memo(
           </td>
         )}
 
-        {/* Priority */}
+        {/* Priority Badge */}
         {visibleColumns.includes("priority") && (
           <td
             style={{ width: `${columnWidths.priority || 110}px` }}
             className={`px-3 font-mono text-[11px] text-center ${densityClass}`}
           >
             <span
-              className={`${
+              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-none font-semibold uppercase tracking-wider text-[10px] border ${
                 record.priority === "Urgent"
-                  ? "text-rose-400 font-bold bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/25"
+                  ? "text-rose-300 bg-rose-500/15 border-rose-500/40"
                   : record.priority === "High"
-                  ? "text-amber-400 font-semibold bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/25"
-                  : "text-zinc-400"
+                  ? "text-amber-300 bg-amber-500/15 border-amber-500/40"
+                  : record.priority === "Medium"
+                  ? "text-indigo-300 bg-indigo-500/10 border-indigo-500/30"
+                  : "text-zinc-400 bg-zinc-800/40 border-zinc-700/50"
               }`}
             >
+              {record.priority === "Urgent" && (
+                <span className="w-1.5 h-1.5 rounded-none bg-rose-400 animate-pulse" />
+              )}
               {record.priority}
             </span>
           </td>
@@ -314,7 +377,8 @@ const MemoizedTableRow = React.memo(
       prev.tableDensity === next.tableDensity &&
       prev.searchQuery === next.searchQuery &&
       prev.visibleColumns === next.visibleColumns &&
-      prev.columnWidths === next.columnWidths
+      prev.columnWidths === next.columnWidths &&
+      prev.onCopyRecordCode === next.onCopyRecordCode
     );
   }
 );
@@ -507,6 +571,50 @@ export default function DataTable({
     window.open(`/api/export?ids=${encodeURIComponent(idsParam)}`, "_blank");
   };
 
+  const handleCopyRecordCode = useCallback(
+    (code: string) => {
+      if (typeof navigator !== "undefined" && navigator.clipboard) {
+        navigator.clipboard.writeText(code);
+        dispatch(
+          addToast({
+            type: "success",
+            title: "Copied to Clipboard",
+            message: `Record code "${code}" copied.`,
+          })
+        );
+      }
+    },
+    [dispatch]
+  );
+
+  const selectedRecords = useMemo(
+    () => records.filter((r) => selectedRowIds.includes(r.id)),
+    [records, selectedRowIds]
+  );
+  const selectedRevenue = useMemo(
+    () => selectedRecords.reduce((acc, r) => acc + (r.revenue || 0), 0),
+    [selectedRecords]
+  );
+  const selectedProfit = useMemo(
+    () => selectedRecords.reduce((acc, r) => acc + (r.profit || 0), 0),
+    [selectedRecords]
+  );
+
+  const handleCopySelectedIds = () => {
+    if (selectedRowIds.length === 0) return;
+    const codes = selectedRecords.map((r) => r.recordCode).join(", ");
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(codes);
+      dispatch(
+        addToast({
+          type: "success",
+          title: "Selected IDs Copied",
+          message: `${selectedRowIds.length} record code(s) copied to clipboard.`,
+        })
+      );
+    }
+  };
+
   const activeColumns = ALL_COLUMNS.filter((col) => visibleColumns.includes(col.key));
 
   return (
@@ -516,23 +624,53 @@ export default function DataTable({
         {/* Left: Row Stats or Selection Banner */}
         <div className="flex items-center gap-3">
           {selectedRowIds.length > 0 ? (
-            <div className="flex items-center gap-2.5 px-3 py-1 rounded-none bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono">
-              <CheckSquare className="w-4 h-4 text-indigo-400" />
-              <span className="font-semibold">{selectedRowIds.length} row(s) selected</span>
-              <button
-                onClick={handleExportSelected}
-                className="flex items-center gap-1 ml-2 px-2 py-0.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-sans font-medium transition-colors"
-                title="Download CSV for only selected rows"
-              >
-                <Download className="w-3 h-3" />
-                Export Selected
-              </button>
-              <button
-                onClick={() => dispatch(clearRowSelection())}
-                className="text-zinc-400 hover:text-white underline ml-1 text-[11px]"
-              >
-                Clear
-              </button>
+            <div className="flex flex-wrap items-center gap-2.5 px-3 py-1.5 rounded-none bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono text-xs">
+              <div className="flex items-center gap-1.5">
+                <CheckSquare className="w-4 h-4 text-indigo-400" />
+                <span className="font-semibold text-white">
+                  {selectedRowIds.length} row(s) selected
+                </span>
+              </div>
+              <span className="text-zinc-600">|</span>
+              <span className="text-zinc-300 text-[11px]">
+                Rev:{" "}
+                <strong className="text-emerald-400">
+                  ${selectedRevenue.toLocaleString("en-US", { maximumFractionDigits: 0 })}
+                </strong>
+              </span>
+              <span className="text-zinc-300 text-[11px]">
+                Profit:{" "}
+                <strong className="text-emerald-400">
+                  ${selectedProfit.toLocaleString("en-US", { maximumFractionDigits: 0 })}
+                </strong>
+              </span>
+              <div className="flex items-center gap-1.5 ml-2">
+                <button
+                  type="button"
+                  onClick={handleExportSelected}
+                  className="flex items-center gap-1 px-2.5 py-1 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-sans font-semibold transition-colors cursor-pointer"
+                  title="Download CSV for only selected rows"
+                >
+                  <Download className="w-3 h-3" />
+                  Export CSV
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCopySelectedIds}
+                  className="flex items-center gap-1 px-2.5 py-1 rounded-none bg-[#182032] hover:bg-[#202b44] border border-[#273554] text-zinc-200 hover:text-white text-[11px] font-sans font-medium transition-colors cursor-pointer"
+                  title="Copy selected record codes to clipboard"
+                >
+                  <Copy className="w-3 h-3" />
+                  Copy IDs
+                </button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(clearRowSelection())}
+                  className="text-zinc-400 hover:text-rose-400 underline ml-1 text-[11px] cursor-pointer"
+                >
+                  Clear
+                </button>
+              </div>
             </div>
           ) : (
             <div className="text-zinc-400 font-mono text-[11px] flex items-center gap-2">
@@ -555,15 +693,15 @@ export default function DataTable({
           )}
 
           {isFetching && (
-            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 animate-pulse flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-none bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 animate-pulse flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-none bg-cyan-400 animate-ping" />
               <span>Syncing Data...</span>
             </span>
           )}
 
           {/* Virtualization Active Pill */}
           {isVirtualizationEnabled && records.length > 15 && (
-            <span className="hidden sm:flex items-center gap-1 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/25">
+            <span className="hidden sm:flex items-center gap-1 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-none border border-emerald-500/25">
               <Zap className="w-3 h-3 text-emerald-400" />
               Virtualized Viewport (Rendering {visibleRecords.length} / {records.length} DOM rows)
             </span>
@@ -766,9 +904,9 @@ export default function DataTable({
 
                       {/* Sort Direction & Priority Indicator */}
                       {sortInfo ? (
-                        <div className="flex items-center gap-1 text-indigo-400 bg-indigo-500/15 px-1 py-0.5 rounded border border-indigo-500/30">
+                        <div className="flex items-center gap-1 text-indigo-400 bg-indigo-500/15 px-1 py-0.5 rounded-none border border-indigo-500/30">
                           {sortInfo.priority && (
-                            <span className="text-[9px] bg-indigo-600 text-white rounded-full w-3.5 h-3.5 flex items-center justify-center font-bold">
+                            <span className="text-[9px] bg-indigo-600 text-white rounded-none w-3.5 h-3.5 flex items-center justify-center font-bold">
                               {sortInfo.priority}
                             </span>
                           )}
@@ -816,12 +954,12 @@ export default function DataTable({
               Array.from({ length: 12 }).map((_, i) => (
                 <tr key={i} className="animate-pulse bg-[#0e121c]/50">
                   <td className="px-3 py-3 text-center">
-                    <div className="w-4 h-4 rounded bg-[#1e273b] mx-auto" />
+                    <div className="w-4 h-4 rounded-none bg-[#1e273b] mx-auto" />
                   </td>
                   {activeColumns.map((c, j) => (
                     <td key={j} className="px-3 py-3">
                       <div
-                        className="h-3.5 bg-[#1a2336] rounded"
+                        className="h-3.5 bg-[#1a2336] rounded-none"
                         style={{ width: `${55 + ((j * 19) % 40)}%` }}
                       />
                     </td>
@@ -878,6 +1016,7 @@ export default function DataTable({
                       searchQuery={globalQuery}
                       onRowClick={handleRowClick}
                       onToggleSelect={handleToggleSelect}
+                      onCopyRecordCode={handleCopyRecordCode}
                     />
                   );
                 })}
