@@ -109,7 +109,7 @@ export default function RegisterPage() {
         <button
           type="button"
           onClick={() => router.push("/")}
-          className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#0e121d]/90 hover:bg-[#151c2c] border border-[#1e2538] hover:border-indigo-500/40 text-zinc-300 hover:text-white text-xs font-medium transition-all shadow-md group backdrop-blur-md"
+          className="flex items-center gap-2 px-3.5 py-2 rounded-none bg-[#0e121d]/90 hover:bg-[#151c2c] border border-[#1e2538] hover:border-indigo-500/40 text-zinc-300 hover:text-white text-xs font-medium transition-all shadow-md group backdrop-blur-md"
           title="Return to Public Landing Page"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform text-indigo-400" />
@@ -121,13 +121,13 @@ export default function RegisterPage() {
       <div className="absolute top-1/4 -left-48 w-96 h-96 bg-[#6c35f5]/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-[#ff8204]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-md w-full render-card rounded-lg p-8 shadow-2xl space-y-6 relative z-10">
+      <div className="max-w-md w-full render-card rounded-none p-8 shadow-2xl space-y-6 relative z-10">
         {/* Brand Header with In-Card Back Arrow */}
         <div className="relative text-center space-y-2">
           <button
             type="button"
             onClick={() => router.push("/")}
-            className="absolute left-0 top-0 p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-[#141926] border border-transparent hover:border-[#222a3d] transition-all"
+            className="absolute left-0 top-0 p-2 rounded-none text-zinc-400 hover:text-white hover:bg-[#141926] border border-transparent hover:border-[#222a3d] transition-all"
             title="Return to Landing Page"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -135,7 +135,7 @@ export default function RegisterPage() {
 
           <Link
             href="/"
-            className="inline-flex w-12 h-12 rounded-lg bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] items-center justify-center mx-auto shadow-lg shadow-[#6c35f5]/30 text-white hover:scale-105 transition-transform p-2.5"
+            className="inline-flex w-12 h-12 rounded-none bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] items-center justify-center mx-auto shadow-lg shadow-[#6c35f5]/30 text-white hover:scale-105 transition-transform p-2.5"
           >
             <DataScopeLogo className="w-full h-full text-white" />
           </Link>
@@ -153,7 +153,7 @@ export default function RegisterPage() {
             <ShieldCheck className="w-3.5 h-3.5 text-[#ff8204]" />
             Quick Demo Provisioning
           </label>
-          <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#121624] border border-[#1f283d] rounded-lg">
+          <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#121624] border border-[#1f283d] rounded-none">
             {(
               [
                 {
@@ -179,7 +179,7 @@ export default function RegisterPage() {
                 onClick={() =>
                   handleQuickPreset(item.role, item.name, item.email)
                 }
-                className={`py-1.5 px-2 rounded-lg text-xs font-medium transition-all text-center ${
+                className={`py-1.5 px-2 rounded-none text-xs font-medium transition-all text-center ${
                   selectedRole === item.role
                     ? "bg-[#6c35f5] text-white font-semibold shadow"
                     : "text-[#a1a1aa] hover:text-white"
@@ -199,7 +199,7 @@ export default function RegisterPage() {
         <button
           type="button"
           onClick={handleGoogleSignUp}
-          className="w-full py-2.5 px-4 rounded-lg btn-render-secondary text-xs font-semibold flex items-center justify-center gap-2.5 transition-all group"
+          className="w-full py-2.5 px-4 rounded-none btn-render-secondary text-xs font-semibold flex items-center justify-center gap-2.5 transition-all group"
         >
           <GoogleIcon className="w-4 h-4" />
           <span>Sign up with Google as {selectedRole}</span>
@@ -225,7 +225,7 @@ export default function RegisterPage() {
                 required
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
                 placeholder="Sarah Connor"
               />
               <User className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -242,7 +242,7 @@ export default function RegisterPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
                 placeholder="user@enterprise.internal"
               />
               <Mail className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -259,7 +259,7 @@ export default function RegisterPage() {
                 required
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
                 placeholder="Global Corp Inc"
               />
               <Building2 className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -276,7 +276,7 @@ export default function RegisterPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-lg bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
               />
               <Lock className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
             </div>
@@ -284,7 +284,7 @@ export default function RegisterPage() {
 
           <button
             type="submit"
-            className="w-full py-2.5 px-4 rounded-lg btn-render-primary text-white text-xs font-semibold shadow-lg flex items-center justify-center gap-2 transition-all mt-2 group"
+            className="w-full py-2.5 px-4 rounded-none btn-render-primary text-white text-xs font-semibold shadow-lg flex items-center justify-center gap-2 transition-all mt-2 group"
           >
             <span>Complete Registration</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
