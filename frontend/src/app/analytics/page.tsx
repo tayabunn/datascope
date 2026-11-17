@@ -23,18 +23,18 @@ const AnalyticsCharts = dynamic(
           <CardSkeleton />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] h-80 space-y-4 animate-shimmer">
+          <div className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] h-80 space-y-4 animate-shimmer">
             <Skeleton className="h-4 w-40" />
-            <Skeleton className="h-56 w-full rounded-lg" />
+            <Skeleton className="h-56 w-full rounded-none" />
           </div>
-          <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] h-80 space-y-4 animate-shimmer">
+          <div className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] h-80 space-y-4 animate-shimmer">
             <Skeleton className="h-4 w-40" />
-            <Skeleton className="h-56 w-full rounded-lg" />
+            <Skeleton className="h-56 w-full rounded-none" />
           </div>
         </div>
-        <div className="p-5 rounded-lg bg-[#0f131f] border border-[#1d2538] h-64 space-y-4 animate-shimmer">
+        <div className="p-5 rounded-none bg-[#0f131f] border border-[#1d2538] h-64 space-y-4 animate-shimmer">
           <Skeleton className="h-4 w-56" />
-          <Skeleton className="h-44 w-full rounded-lg" />
+          <Skeleton className="h-44 w-full rounded-none" />
         </div>
       </div>
     ),
@@ -71,7 +71,7 @@ export default function AnalyticsPage() {
             <button
               onClick={() => refetch()}
               disabled={isFetching}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-medium transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-medium transition-all"
             >
               <RefreshCw
                 className={`w-3.5 h-3.5 text-zinc-400 ${
@@ -88,7 +88,7 @@ export default function AnalyticsPage() {
           </ErrorBoundary>
 
           {/* Search Performance Monitoring Section (Bonus Challenge F) */}
-          <div className="rounded-lg bg-[#0f131f] border border-[#1d2538] p-5 space-y-4">
+          <div className="rounded-none bg-[#0f131f] border border-[#1d2538] p-5 space-y-4">
             <div className="flex items-center gap-2 border-b border-[#1d2538] pb-3">
               <Cpu className="w-4 h-4 text-emerald-400" />
               <h3 className="text-xs font-semibold text-white uppercase font-mono tracking-wider">
@@ -97,7 +97,7 @@ export default function AnalyticsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
-              <div className="p-3 rounded-lg bg-[#121624] border border-[#1e263a] space-y-1">
+              <div className="p-3 rounded-none bg-[#121624] border border-[#1e263a] space-y-1">
                 <span className="text-zinc-500">Average GIN Trigram Search Time</span>
                 <div className="text-base font-bold text-emerald-400">12.4 ms</div>
                 <p className="text-[10px] text-zinc-500 font-sans">
@@ -105,7 +105,7 @@ export default function AnalyticsPage() {
                 </p>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#121624] border border-[#1e263a] space-y-1">
+              <div className="p-3 rounded-none bg-[#121624] border border-[#1e263a] space-y-1">
                 <span className="text-zinc-500">B-Tree Numeric Range Seek Time</span>
                 <div className="text-base font-bold text-cyan-400">6.2 ms</div>
                 <p className="text-[10px] text-zinc-500 font-sans">
@@ -113,7 +113,7 @@ export default function AnalyticsPage() {
                 </p>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#121624] border border-[#1e263a] space-y-1">
+              <div className="p-3 rounded-none bg-[#121624] border border-[#1e263a] space-y-1">
                 <span className="text-zinc-500">RTK Query Cache Hit Ratio</span>
                 <div className="text-base font-bold text-indigo-400">84.7%</div>
                 <p className="text-[10px] text-zinc-500 font-sans">
