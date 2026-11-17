@@ -48,7 +48,7 @@ export default function PublicHeader() {
       <div className="w-[90%] mx-auto h-18 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] flex items-center justify-center shadow-lg shadow-[#6c35f5]/30 text-white font-bold group-hover:scale-105 transition-transform p-2">
+          <div className="w-10 h-10 rounded-none bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] flex items-center justify-center shadow-lg shadow-[#6c35f5]/30 text-white font-bold group-hover:scale-105 transition-transform p-2">
             <DataScopeLogo className="w-full h-full text-white" />
           </div>
           <div>
@@ -75,7 +75,7 @@ export default function PublicHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-none transition-all ${
                   isActive
                     ? "text-[#fafaf4] bg-[#1a2030]/80 border border-[#968dfa]/30 shadow-sm shadow-[#6c35f5]/20 font-semibold"
                     : "text-zinc-400 hover:text-white hover:bg-[#121622]/60"
@@ -97,13 +97,13 @@ export default function PublicHeader() {
                 <span className="text-indigo-400 font-semibold">
                   {user?.fullName?.split(" ")[0] || "User"}
                 </span>{" "}
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                <span className="text-[10px] px-1.5 py-0.5 rounded-none bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
                   {user?.role}
                 </span>
               </span>
               <Link
                 href="/explorer"
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-none bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
               >
                 <Database className="w-3.5 h-3.5 text-indigo-200" />
                 <span>Go to Explorer</span>
@@ -114,13 +114,13 @@ export default function PublicHeader() {
             <div className="flex items-center gap-2">
               <Link
                 href="/login"
-                className="text-xs font-semibold text-zinc-300 hover:text-white px-3.5 py-2 rounded-lg hover:bg-[#121724] transition-all"
+                className="text-xs font-semibold text-zinc-300 hover:text-white px-3.5 py-2 rounded-none hover:bg-[#121724] transition-all"
               >
                 Sign In
               </Link>
               <Link
                 href="/register"
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all group"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -134,7 +134,7 @@ export default function PublicHeader() {
           {isAuthenticated && (
             <Link
               href="/explorer"
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-600 text-white text-xs font-semibold"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-none bg-indigo-600 text-white text-xs font-semibold"
             >
               <Database className="w-3 h-3" />
               <span>Explorer</span>
@@ -142,7 +142,7 @@ export default function PublicHeader() {
           )}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg bg-[#141926] border border-[#202738] text-zinc-300 hover:text-white focus:outline-none"
+            className="p-2 rounded-none bg-[#141926] border border-[#202738] text-zinc-300 hover:text-white focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -162,7 +162,7 @@ export default function PublicHeader() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                  className={`flex items-center gap-2.5 px-3 py-2 rounded-none text-xs font-medium transition-all ${
                     isActive
                       ? "text-[#fafaf4] bg-[#1a2030] border border-[#968dfa]/30 font-semibold"
                       : "text-zinc-400 hover:text-white hover:bg-[#141926]"
@@ -179,7 +179,7 @@ export default function PublicHeader() {
             {mounted && isAuthenticated ? (
               <div className="flex items-center justify-between text-xs text-zinc-400 py-1 font-mono">
                 <span>Signed in as <strong className="text-white">{user?.fullName}</strong></span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                <span className="text-[10px] px-1.5 py-0.5 rounded-none bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
                   {user?.role}
                 </span>
               </div>
@@ -188,14 +188,14 @@ export default function PublicHeader() {
                 <Link
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-center py-2 rounded-lg bg-[#141926] border border-[#202738] text-xs font-semibold text-zinc-300"
+                  className="text-center py-2 rounded-none bg-[#141926] border border-[#202738] text-xs font-semibold text-zinc-300"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-center py-2 rounded-lg bg-indigo-600 text-xs font-semibold text-white"
+                  className="text-center py-2 rounded-none bg-indigo-600 text-xs font-semibold text-white"
                 >
                   Get Started
                 </Link>
