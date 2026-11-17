@@ -129,7 +129,7 @@ export default function HistoryPage() {
               <button
                 onClick={handleClearAll}
                 disabled={isClearing}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 text-rose-300 hover:text-white text-xs font-medium transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 text-rose-300 hover:text-white text-xs font-medium transition-all"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Clear History</span>
@@ -138,11 +138,11 @@ export default function HistoryPage() {
           </div>
 
           {/* History List Container */}
-          <div className="rounded-lg render-card overflow-hidden shadow-lg">
+          <div className="rounded-none render-card overflow-hidden shadow-lg">
             {isLoading ? (
               <div className="p-8 space-y-4">
                 {Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="h-14 bg-[#141a29] rounded-lg animate-pulse" />
+                  <div key={i} className="h-14 bg-[#141a29] rounded-none animate-pulse" />
                 ))}
               </div>
             ) : historyEntries.length === 0 ? (
@@ -192,7 +192,7 @@ export default function HistoryPage() {
                                 {filterEntries.map(([k, v]) => (
                                   <span
                                     key={k}
-                                    className="px-1.5 py-0.2 rounded bg-[#161c2c] text-zinc-300 border border-[#242d44] text-[10px] font-mono"
+                                    className="px-1.5 py-0.2 rounded-none bg-[#161c2c] text-zinc-300 border border-[#242d44] text-[10px] font-mono"
                                   >
                                     {k}: {String(v)}
                                   </span>
@@ -217,7 +217,7 @@ export default function HistoryPage() {
 
                         <button
                           onClick={(e) => handleDeleteItem(item.id, e)}
-                          className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors opacity-0 group-hover:opacity-100"
+                          className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-none transition-colors opacity-0 group-hover:opacity-100"
                           title="Remove from history"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -225,7 +225,7 @@ export default function HistoryPage() {
 
                         <button
                           onClick={() => handleRerun(item)}
-                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg btn-render-primary text-xs font-semibold"
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-none btn-render-primary text-xs font-semibold"
                           title="Load this search configuration into Data Explorer"
                         >
                           <span>Rerun</span>
