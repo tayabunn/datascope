@@ -18,7 +18,13 @@ import {
   ShieldCheck,
   AlertTriangle,
   Cpu,
+  Mic,
 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const VoiceSearchModal = dynamic(() => import("./VoiceSearchModal"), {
+  ssr: false,
+});
 
 interface AiSearchModalProps {
   onClose: () => void;
@@ -37,6 +43,7 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isVoiceOpen, setIsVoiceOpen] = useState(false);
 
   const handleGenerate = async (queryText: string) => {
     if (!queryText.trim()) return;
@@ -126,12 +133,20 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
               placeholder="e.g. Find active customers from Germany with revenue greater than $50,000..."
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-none bg-[#141a29] border border-[#252f47] text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 font-sans pr-24"
+              className="w-full pl-9 pr-24 py-2.5 rounded-none bg-[#141a29] border border-[#252f47] text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 font-sans"
             />
+            <button
+              type="button"
+              onClick={() => setIsVoiceOpen(true)}
+              title="Speak prompt using OpenAI Whisper"
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 p-1 text-zinc-400 hover:text-indigo-400 transition-colors cursor-pointer"
+            >
+              <Mic className="w-4 h-4 text-indigo-400 animate-pulse" />
+            </button>
             <button
               type="submit"
               disabled={isLoading || !prompt.trim()}
-              className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-none bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-medium flex items-center gap-1 transition-all"
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-none bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-medium flex items-center gap-1 transition-all cursor-pointer"
             >
               {isLoading ? "Analyzing..." : "Translate"}
               <CornerDownLeft className="w-3 h-3" />
@@ -211,6 +226,18 @@ export default function AiSearchModal({ onClose }: AiSearchModalProps) {
           </div>
         )}
       </div>
+
+      {/* Voice Search Modal integration */}
+      {isVoiceOpen && (
+        <VoiceSearchModal
+          onClose={() => setIsVoiceOpen(false)}
+          onTranscriptionSuccess={(transcribedText) => {
+            setPrompt(transcribedText);
+            handleGenerate(transcribedText);
+            setIsVoiceOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 }

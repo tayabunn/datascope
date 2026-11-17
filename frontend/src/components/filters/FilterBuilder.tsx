@@ -29,7 +29,13 @@ import {
   Tag,
   Activity,
   Sparkles,
+  Mic,
 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const VoiceSearchModal = dynamic(() => import("./VoiceSearchModal"), {
+  ssr: false,
+});
 
 interface BusinessPreset {
   id: string;
@@ -116,6 +122,8 @@ export default function FilterBuilder() {
     maxRevenue,
     isAdvancedBuilderOpen,
   } = useAppSelector((state) => state.searchConfig);
+
+  const [isVoiceModalOpen, setIsVoiceModalOpen] = React.useState(false);
 
   const { data: savedViewsData } = useGetSavedViewsQuery();
   const savedViews: SavedViewItem[] = savedViewsData?.data || [];
@@ -334,6 +342,16 @@ export default function FilterBuilder() {
           )}
 
           <button
+            type="button"
+            onClick={() => setIsVoiceModalOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-none bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/35 text-indigo-300 hover:text-white text-xs font-semibold shadow-sm transition-all cursor-pointer"
+            title="Voice Search with OpenAI Whisper"
+          >
+            <Mic className="w-3.5 h-3.5 text-indigo-400" />
+            <span className="hidden sm:inline">Voice Search</span>
+          </button>
+
+          <button
             onClick={() => dispatch(openSaveModal())}
             className="flex items-center gap-2 px-4 py-2 rounded-none btn-render-primary text-xs font-semibold shadow-md"
           >
@@ -455,6 +473,11 @@ export default function FilterBuilder() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Voice Search Modal */}
+      {isVoiceModalOpen && (
+        <VoiceSearchModal onClose={() => setIsVoiceModalOpen(false)} />
       )}
     </div>
   );

@@ -8,6 +8,7 @@ import exportRouter from "./routes/export.js";
 import aiSearchRouter from "./routes/aiSearch.js";
 import searchHistoryRouter from "./routes/searchHistory.js";
 import datasetsRouter from "./routes/datasets.js";
+import voiceTranscribeRouter from "./routes/voiceTranscribe.js";
 
 dotenv.config({ path: ".env.local" });
 dotenv.config();
@@ -24,7 +25,8 @@ app.use(
   })
 );
 
-app.use(express.json());
+app.use(express.json({ limit: "25mb" }));
+app.use(express.urlencoded({ extended: true, limit: "25mb" }));
 
 // Health & API Index Check
 app.get(["/", "/api"], (req: express.Request, res: express.Response) => {
@@ -40,6 +42,7 @@ app.get(["/", "/api"], (req: express.Request, res: express.Response) => {
       savedViews: "/api/saved-views",
       exportCsv: "/api/export",
       aiSearch: "/api/ai-search",
+      voiceTranscribe: "/api/voice-transcribe",
     },
     database: "Neon PostgreSQL (100,000+ indexed records)",
     timestamp: new Date().toISOString(),
@@ -63,6 +66,7 @@ app.use("/api/export", exportRouter);
 app.use("/api/ai-search", aiSearchRouter);
 app.use("/api/search-history", searchHistoryRouter);
 app.use("/api/datasets", datasetsRouter);
+app.use("/api/voice-transcribe", voiceTranscribeRouter);
 
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {

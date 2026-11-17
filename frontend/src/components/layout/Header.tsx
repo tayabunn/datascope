@@ -14,10 +14,16 @@ import {
   Database,
   SlidersHorizontal,
   Globe,
+  Mic,
 } from "lucide-react";
 
 // Dynamically lazy-load AI Search Modal on demand
 const AiSearchModal = dynamic(() => import("@/components/filters/AiSearchModal"), {
+  ssr: false,
+});
+
+// Dynamically lazy-load Voice Search Modal on demand
+const VoiceSearchModal = dynamic(() => import("@/components/filters/VoiceSearchModal"), {
   ssr: false,
 });
 
@@ -27,6 +33,7 @@ export default function Header() {
   const { performanceTelemetry } = useAppSelector((state) => state.uiPreference);
   const { user } = useAppSelector((state) => state.auth);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
+  const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -77,6 +84,16 @@ export default function Header() {
             </span>
           </div>
 
+          {/* Voice Search with OpenAI Whisper */}
+          <button
+            onClick={() => setIsVoiceModalOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/35 text-indigo-300 hover:text-white text-xs font-semibold transition-all shadow-sm cursor-pointer"
+            title="Voice Search powered by OpenAI Whisper-1"
+          >
+            <Mic className="w-3.5 h-3.5 text-indigo-400" />
+            <span className="hidden md:inline">Voice Search</span>
+          </button>
+
           {/* AI Search Assistant Button (Mistral Amber Signature) */}
           <button
             onClick={() => setIsAiModalOpen(true)}
@@ -123,6 +140,11 @@ export default function Header() {
       {/* Natural Language AI Search Modal */}
       {isAiModalOpen && (
         <AiSearchModal onClose={() => setIsAiModalOpen(false)} />
+      )}
+
+      {/* Voice Search Modal powered by OpenAI Whisper */}
+      {isVoiceModalOpen && (
+        <VoiceSearchModal onClose={() => setIsVoiceModalOpen(false)} />
       )}
     </>
   );

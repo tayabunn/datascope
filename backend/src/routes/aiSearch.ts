@@ -21,7 +21,7 @@ const PROMPT_INJECTION_PATTERNS = [
   /;\s*drop\b/i,
 ];
 
-function checkInputGuardrails(input: string): { passed: boolean; reason?: string } {
+export function checkInputGuardrails(input: string): { passed: boolean; reason?: string } {
   if (input.length > 500) {
     return { passed: false, reason: "Query exceeds maximum allowed length of 500 characters." };
   }
@@ -159,7 +159,7 @@ Output: {"priority": "Urgent", "country": "United States", "minRevenue": 100000}
 // 4. DETERMINISTIC TOOL-CALLING PARSER & PLANNER (ZERO-DEPENDENCY ENGINE)
 // ============================================================================
 
-function parseWithSemanticEngine(prompt: string): Record<string, unknown> {
+export function parseWithSemanticEngine(prompt: string): Record<string, unknown> {
   const lower = prompt.toLowerCase();
   const args: Record<string, unknown> = {};
 
