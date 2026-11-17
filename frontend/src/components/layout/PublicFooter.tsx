@@ -12,7 +12,7 @@ export default function PublicFooter() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-[#141a29]">
           <div className="space-y-2">
             <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] flex items-center justify-center p-1.5 shadow-md shadow-[#6c35f5]/20">
+              <div className="w-7 h-7 rounded-none bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] flex items-center justify-center p-1.5 shadow-md shadow-[#6c35f5]/20">
                 <DataScopeLogo className="w-full h-full text-white" />
               </div>
               <span className="text-white font-bold tracking-tight text-sm">
