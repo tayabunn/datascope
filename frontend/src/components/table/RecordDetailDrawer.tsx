@@ -81,7 +81,7 @@ export default function RecordDetailDrawer() {
 
           <button
             onClick={() => dispatch(closeRecordDrawer())}
-            className="p-1.5 rounded-lg text-[#a1a1aa] hover:text-white hover:bg-[#1a2030] transition-colors"
+            className="p-1.5 rounded-none text-[#a1a1aa] hover:text-white hover:bg-[#1a2030] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -91,15 +91,15 @@ export default function RecordDetailDrawer() {
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {isLoading || !record ? (
             <div className="space-y-4 animate-pulse">
-              <div className="h-20 bg-[#121624] rounded-lg" />
-              <div className="h-40 bg-[#121624] rounded-lg" />
-              <div className="h-40 bg-[#121624] rounded-lg" />
+              <div className="h-20 bg-[#121624] rounded-none" />
+              <div className="h-40 bg-[#121624] rounded-none" />
+              <div className="h-40 bg-[#121624] rounded-none" />
             </div>
           ) : (
             <>
               {/* Financial Metrics Cards */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="p-3.5 rounded-lg render-card space-y-1">
+                <div className="p-3.5 rounded-none render-card space-y-1">
                   <div className="text-[11px] font-mono text-[#a1a1aa] flex items-center gap-1">
                     <DollarSign className="w-3.5 h-3.5 text-[#0b7d55]" />
                     Revenue
@@ -109,7 +109,7 @@ export default function RecordDetailDrawer() {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-lg render-card space-y-1">
+                <div className="p-3.5 rounded-none render-card space-y-1">
                   <div className="text-[11px] font-mono text-[#a1a1aa] flex items-center gap-1">
                     <TrendingUp className="w-3.5 h-3.5 text-[#968dfa]" />
                     Net Profit
@@ -119,7 +119,7 @@ export default function RecordDetailDrawer() {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-lg mistral-card space-y-1">
+                <div className="p-3.5 rounded-none mistral-card space-y-1">
                   <div className="text-[11px] font-mono text-[#a1a1aa] flex items-center gap-1">
                     <Shield className="w-3.5 h-3.5 text-[#ff8204]" />
                     Priority
@@ -132,7 +132,7 @@ export default function RecordDetailDrawer() {
 
               {/* Status Update Quick Action (RBAC: Admin & Analyst only) */}
               {user?.role !== "Viewer" && (
-                <div className="p-3.5 rounded-lg render-card flex items-center justify-between">
+                <div className="p-3.5 rounded-none render-card flex items-center justify-between">
                   <div>
                     <div className="text-xs font-semibold text-[#fafaf4]">
                       Update Operational Status
@@ -147,7 +147,7 @@ export default function RecordDetailDrawer() {
                         key={st}
                         disabled={isUpdating || record.status === st}
                         onClick={() => handleStatusChange(st)}
-                        className={`text-xs px-2.5 py-1 rounded-lg font-mono font-medium transition-all ${
+                        className={`text-xs px-2.5 py-1 rounded-none font-mono font-medium transition-all ${
                           record.status === st
                             ? "bg-[#6c35f5] text-white shadow-sm font-semibold"
                             : "bg-[#141926] text-[#a1a1aa] hover:text-white hover:bg-[#1a2133]"
@@ -161,7 +161,7 @@ export default function RecordDetailDrawer() {
               )}
 
               {/* Core Information Grid */}
-              <div className="rounded-lg render-card p-4 space-y-3">
+              <div className="rounded-none render-card p-4 space-y-3">
                 <h3 className="text-xs font-mono uppercase tracking-wider text-[#a1a1aa] font-semibold border-b border-[#1a2030] pb-2">
                   Entity Metadata
                 </h3>
@@ -197,7 +197,7 @@ export default function RecordDetailDrawer() {
                     {record.tags.map((t, i) => (
                       <span
                         key={i}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30"
+                        className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30"
                       >
                         #{t}
                       </span>
@@ -207,7 +207,7 @@ export default function RecordDetailDrawer() {
               </div>
 
               {/* Related Records (Connected Graph) */}
-              <div className="rounded-lg render-card p-4 space-y-3">
+              <div className="rounded-none render-card p-4 space-y-3">
                 <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#a1a1aa] font-semibold border-b border-[#1a2030] pb-2">
                   <LinkIcon className="w-3.5 h-3.5 text-[#968dfa]" />
                   <span>Related Business Records</span>
@@ -216,7 +216,7 @@ export default function RecordDetailDrawer() {
                   {related.map((rel, idx) => (
                     <div
                       key={idx}
-                      className="p-2.5 rounded-lg bg-[#0e121d] border border-[#1a2030] flex items-center justify-between text-xs hover:border-[#968dfa]/40 transition-colors"
+                      className="p-2.5 rounded-none bg-[#0e121d] border border-[#1a2030] flex items-center justify-between text-xs hover:border-[#968dfa]/40 transition-colors"
                     >
                       <div>
                         <div className="font-medium text-[#fafaf4]">
@@ -235,7 +235,7 @@ export default function RecordDetailDrawer() {
               </div>
 
               {/* Historical Audit Trail Timeline */}
-              <div className="rounded-lg render-card p-4 space-y-3">
+              <div className="rounded-none render-card p-4 space-y-3">
                 <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#a1a1aa] font-semibold border-b border-[#1a2030] pb-2">
                   <History className="w-3.5 h-3.5 text-[#ff8204]" />
                   <span>Historical Change Audit Log</span>
@@ -256,7 +256,7 @@ export default function RecordDetailDrawer() {
                         Changed by <span className="text-[#ffa033] font-medium">{log.changedBy}</span>
                       </p>
                       {Object.keys(log.newValues || {}).length > 0 && (
-                        <pre className="p-2 rounded-lg bg-[#1a1a1e] text-[10px] font-mono text-[#ffa033] border border-[#2a2a30] overflow-x-auto">
+                        <pre className="p-2 rounded-none bg-[#1a1a1e] text-[10px] font-mono text-[#ffa033] border border-[#2a2a30] overflow-x-auto">
                           {JSON.stringify(log.newValues, null, 2)}
                         </pre>
                       )}
