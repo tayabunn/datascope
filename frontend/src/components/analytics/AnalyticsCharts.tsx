@@ -64,7 +64,7 @@ export default function AnalyticsCharts({
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 animate-pulse">
         {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="h-28 bg-[#121624] rounded-lg border border-[#1d2538]" />
+          <div key={i} className="h-28 bg-[#121624] rounded-none border border-[#1d2538]" />
         ))}
       </div>
     );
@@ -84,7 +84,7 @@ export default function AnalyticsCharts({
       {/* 1. Summary Metric Cards: Total Records & Key Financials */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Records */}
-        <div className="p-4 rounded-lg render-card space-y-1">
+        <div className="p-4 rounded-none render-card space-y-1">
           <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
             <span>TOTAL RECORDS</span>
             <Layers className="w-4 h-4 text-[#968dfa]" />
@@ -99,7 +99,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Total Revenue */}
-        <div className="p-4 rounded-lg render-card space-y-1">
+        <div className="p-4 rounded-none render-card space-y-1">
           <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
             <span>TOTAL REVENUE (SQL SUM)</span>
             <DollarSign className="w-4 h-4 text-[#0b7d55]" />
@@ -113,7 +113,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Average Profit Margin */}
-        <div className="p-4 rounded-lg render-card space-y-1">
+        <div className="p-4 rounded-none render-card space-y-1">
           <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
             <span>AVG PROFIT MARGIN</span>
             <TrendingUp className="w-4 h-4 text-[#968dfa]" />
@@ -127,7 +127,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Active Accounts & Search Metrics */}
-        <div className="p-4 rounded-lg mistral-card space-y-1">
+        <div className="p-4 rounded-none mistral-card space-y-1">
           <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
             <span>ACTIVE RECORDS</span>
             <Activity className="w-4 h-4 text-[#ff8204]" />
@@ -145,7 +145,7 @@ export default function AnalyticsCharts({
       {/* 2 & 3. Category Breakdown & Status Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 1: Records by Category (Bar Chart) */}
-        <div className="p-5 rounded-lg render-card space-y-3">
+        <div className="p-5 rounded-none render-card space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <BarChart2 className="w-4 h-4 text-[#968dfa]" />
@@ -187,7 +187,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Chart 2: Records by Status (Donut Pie Chart) */}
-        <div className="p-5 rounded-lg mistral-card space-y-3">
+        <div className="p-5 rounded-none mistral-card space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <PieIcon className="w-4 h-4 text-[#ff8204]" />
@@ -204,7 +204,7 @@ export default function AnalyticsCharts({
                   contentStyle={{
                     backgroundColor: "#121624",
                     borderColor: "#232c42",
-                    borderRadius: "8px",
+                    borderRadius: "0px",
                     color: "#fff",
                     fontSize: "11px",
                   }}
@@ -241,7 +241,7 @@ export default function AnalyticsCharts({
       </div>
 
       {/* 4. Data Growth Trends (Area Chart) */}
-      <div className="p-5 rounded-lg render-card space-y-3">
+      <div className="p-5 rounded-none render-card space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-[#968dfa]" />
@@ -270,7 +270,7 @@ export default function AnalyticsCharts({
                 contentStyle={{
                   backgroundColor: "#0c0f18",
                   borderColor: "#1a2030",
-                  borderRadius: "8px",
+                  borderRadius: "0px",
                   boxShadow: "0 0 0 1px rgba(150, 141, 250, 0.25) inset",
                   color: "#fafaf4",
                   fontSize: "11px",
@@ -293,7 +293,7 @@ export default function AnalyticsCharts({
       {/* 5 & 6. Search Activity & Most Frequently Used Filters */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 5: Search Activity & Query Latency (Composed Chart) */}
-        <div className="p-5 rounded-lg mistral-card space-y-3">
+        <div className="p-5 rounded-none mistral-card space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Search className="w-4 h-4 text-[#ff8204]" />
@@ -324,7 +324,7 @@ export default function AnalyticsCharts({
                   contentStyle={{
                     backgroundColor: "#0c0f18",
                     borderColor: "#1a2030",
-                    borderRadius: "8px",
+                    borderRadius: "0px",
                     boxShadow: "0 0 0 1px rgba(255, 130, 4, 0.25) inset",
                     color: "#fafaf4",
                     fontSize: "11px",
@@ -335,7 +335,7 @@ export default function AnalyticsCharts({
                   height={30}
                   formatter={(value) => <span className="text-[11px] text-[#fafaf4] font-mono">{value}</span>}
                 />
-                <Bar yAxisId="left" dataKey="queryCount" name="Query Volume" fill="#ff8204" radius={[4, 4, 0, 0]} />
+                <Bar yAxisId="left" dataKey="queryCount" name="Query Volume" fill="#ff8204" />
                 <Line
                   yAxisId="right"
                   type="monotone"
@@ -351,7 +351,7 @@ export default function AnalyticsCharts({
         </div>
 
         {/* Chart 6: Most Frequently Used Filters (Horizontal Bar Chart) */}
-        <div className="p-5 rounded-lg render-card space-y-3">
+        <div className="p-5 rounded-none render-card space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Filter className="w-4 h-4 text-[#968dfa]" />
