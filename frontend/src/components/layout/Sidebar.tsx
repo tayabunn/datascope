@@ -79,7 +79,7 @@ export default function Sidebar() {
           title="Return to Public Landing Page"
         >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#6c35f5] to-[#581ccb] border border-[#968dfa]/30 flex items-center justify-center shadow-lg shadow-[#6c35f5]/25 text-white font-bold text-lg group-hover:scale-105 transition-transform p-2">
+            <div className="w-9 h-9 rounded-none bg-gradient-to-br from-[#6c35f5] to-[#581ccb] border border-[#968dfa]/30 flex items-center justify-center shadow-lg shadow-[#6c35f5]/25 text-white font-bold text-lg group-hover:scale-105 transition-transform p-2">
               <DataScopeLogo className="w-full h-full text-white" />
             </div>
             <div>
@@ -87,7 +87,7 @@ export default function Sidebar() {
                 <span className="font-semibold text-white tracking-tight text-base">
                   DataScope
                 </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 font-semibold">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-none bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 font-semibold">
                   PRO
                 </span>
               </div>
@@ -115,7 +115,7 @@ export default function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all group ${
+                className={`flex items-center justify-between px-3 py-2 rounded-none text-xs font-medium transition-all group ${
                   isActive
                     ? "bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 shadow-sm"
                     : "text-zinc-400 hover:text-zinc-200 hover:bg-[#141926]"
@@ -132,12 +132,12 @@ export default function Sidebar() {
                   <span>{item.label}</span>
                 </div>
                 {item.adminOnly && !isAdmin ? (
-                  <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                  <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded-none bg-rose-500/10 text-rose-400 border border-rose-500/20">
                     Admin
                   </span>
                 ) : item.badge ? (
                   <span
-                    className={`text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded ${
+                    className={`text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded-none ${
                       isAdmin && item.badge === "Admin"
                         ? "bg-[#6c35f5]/25 text-[#b193e0] border border-[#968dfa]/40"
                         : isAdmin && item.badge === "Full Access"
@@ -158,7 +158,7 @@ export default function Sidebar() {
           </div>
           <Link
             href="/"
-            className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all group ${
+            className={`flex items-center justify-between px-3 py-2 rounded-none text-xs font-medium transition-all group ${
               pathname === "/"
                 ? "bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 shadow-sm"
                 : "text-zinc-400 hover:text-zinc-200 hover:bg-[#141926]"
@@ -176,7 +176,7 @@ export default function Sidebar() {
 
       {/* Authenticated User Profile & Fixed Role Identity */}
       <div className="p-3 border-t border-[#1a2030] bg-[#090b12]">
-        <div className="p-2.5 rounded-lg bg-[#121622] border border-[#1d2436] space-y-2">
+        <div className="p-2.5 rounded-none bg-[#121622] border border-[#1d2436] space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 flex items-center gap-1 font-semibold">
               <ShieldCheck
@@ -192,7 +192,7 @@ export default function Sidebar() {
             </span>
 
             <span
-              className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded ${
+              className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-none ${
                 isAdmin
                   ? "bg-[#6c35f5]/25 text-[#b193e0] border border-[#968dfa]/40"
                   : mounted && user?.role === "Data Analyst"
@@ -230,7 +230,7 @@ export default function Sidebar() {
             {/* Logout Action Button */}
             <button
               onClick={handleLogout}
-              className="p-1.5 rounded-lg text-zinc-400 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all flex-shrink-0"
+              className="p-1.5 rounded-none text-zinc-400 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all flex-shrink-0"
               title="Sign out of DataScope"
             >
               <LogOut className="w-3.5 h-3.5" />
