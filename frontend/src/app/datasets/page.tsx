@@ -97,7 +97,7 @@ export default function DatasetsPage() {
             </div>
 
             {user?.role === "Administrator" && (
-              <button className="flex items-center gap-1.5 px-4 py-2 rounded-lg btn-render-primary text-xs font-semibold shadow-md">
+              <button className="flex items-center gap-1.5 px-4 py-2 rounded-none btn-render-primary text-xs font-semibold shadow-md">
                 <Plus className="w-3.5 h-3.5 text-[#b193e0]" />
                 <span>Register New Dataset</span>
               </button>
@@ -111,7 +111,7 @@ export default function DatasetsPage() {
               placeholder="Filter datasets by name or vertical..."
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
-              className="w-full px-3.5 py-2 rounded-lg bg-[#0c0f18] border border-[#1a2030] text-xs text-[#fafaf4] placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-all"
+              className="w-full px-3.5 py-2 rounded-none bg-[#0c0f18] border border-[#1a2030] text-xs text-[#fafaf4] placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-all"
             />
           </div>
 
@@ -120,11 +120,11 @@ export default function DatasetsPage() {
             {filtered.map((d) => (
               <div
                 key={d.id}
-                className="p-5 rounded-lg render-card flex flex-col justify-between space-y-4 group"
+                className="p-5 rounded-none render-card flex flex-col justify-between space-y-4 group"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30">
                       {d.category}
                     </span>
                     <span
@@ -176,7 +176,7 @@ export default function DatasetsPage() {
                   </span>
                   <Link
                     href="/explorer"
-                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg btn-render-primary text-xs font-semibold"
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-none btn-render-primary text-xs font-semibold"
                   >
                     <span>Explore Data</span>
                     <ArrowRight className="w-3.5 h-3.5" />
