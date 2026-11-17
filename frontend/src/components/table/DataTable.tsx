@@ -510,18 +510,18 @@ export default function DataTable({
   const activeColumns = ALL_COLUMNS.filter((col) => visibleColumns.includes(col.key));
 
   return (
-    <div className="bg-[#0c0f17] border border-[#1b2234] rounded-lg shadow-2xl flex flex-col overflow-hidden">
+    <div className="bg-[#0c0f17] border border-[#1b2234] rounded-none shadow-2xl flex flex-col overflow-hidden">
       {/* Table Action Bar */}
       <div className="p-3 bg-[#0f131f] border-b border-[#1b2234] flex flex-wrap items-center justify-between gap-3 text-xs">
         {/* Left: Row Stats or Selection Banner */}
         <div className="flex items-center gap-3">
           {selectedRowIds.length > 0 ? (
-            <div className="flex items-center gap-2.5 px-3 py-1 rounded-lg bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono">
+            <div className="flex items-center gap-2.5 px-3 py-1 rounded-none bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono">
               <CheckSquare className="w-4 h-4 text-indigo-400" />
               <span className="font-semibold">{selectedRowIds.length} row(s) selected</span>
               <button
                 onClick={handleExportSelected}
-                className="flex items-center gap-1 ml-2 px-2 py-0.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-sans font-medium transition-colors"
+                className="flex items-center gap-1 ml-2 px-2 py-0.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-sans font-medium transition-colors"
                 title="Download CSV for only selected rows"
               >
                 <Download className="w-3 h-3" />
@@ -573,10 +573,10 @@ export default function DataTable({
         {/* Right Controls: Density, Virtualization, Columns */}
         <div className="flex items-center gap-2">
           {/* Table Density Switcher */}
-          <div className="flex items-center bg-[#141926] border border-[#222a3d] rounded-lg p-0.5">
+          <div className="flex items-center bg-[#141926] border border-[#222a3d] rounded-none p-0.5">
             <button
               onClick={() => dispatch(setTableDensity("compact"))}
-              className={`px-2 py-1 rounded text-[11px] font-medium transition-colors ${
+              className={`px-2 py-1 rounded-none text-[11px] font-medium transition-colors ${
                 tableDensity === "compact"
                   ? "bg-indigo-600 text-white"
                   : "text-zinc-400 hover:text-zinc-200"
@@ -587,7 +587,7 @@ export default function DataTable({
             </button>
             <button
               onClick={() => dispatch(setTableDensity("comfortable"))}
-              className={`px-2 py-1 rounded text-[11px] font-medium transition-colors ${
+              className={`px-2 py-1 rounded-none text-[11px] font-medium transition-colors ${
                 tableDensity === "comfortable"
                   ? "bg-indigo-600 text-white"
                   : "text-zinc-400 hover:text-zinc-200"
@@ -598,7 +598,7 @@ export default function DataTable({
             </button>
             <button
               onClick={() => dispatch(setTableDensity("spacious"))}
-              className={`px-2 py-1 rounded text-[11px] font-medium transition-colors ${
+              className={`px-2 py-1 rounded-none text-[11px] font-medium transition-colors ${
                 tableDensity === "spacious"
                   ? "bg-indigo-600 text-white"
                   : "text-zinc-400 hover:text-zinc-200"
@@ -612,7 +612,7 @@ export default function DataTable({
           {/* Virtualization Toggle */}
           <button
             onClick={() => setIsVirtualizationEnabled(!isVirtualizationEnabled)}
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-all ${
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-none border text-xs font-medium transition-all ${
               isVirtualizationEnabled
                 ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
                 : "bg-[#141926] border-[#222a3d] text-zinc-400 hover:text-zinc-200"
@@ -627,7 +627,7 @@ export default function DataTable({
           {sortFields.length > 1 && (
             <button
               onClick={() => onSortChange("createdAt", false)}
-              className="flex items-center gap-1 px-2 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono"
+              className="flex items-center gap-1 px-2 py-1.5 rounded-none bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono"
               title="Reset multi-column sort to default"
             >
               <RotateCcw className="w-3 h-3" />
@@ -639,14 +639,14 @@ export default function DataTable({
           <div className="relative">
             <button
               onClick={() => setIsColumnDropdownOpen(!isColumnDropdownOpen)}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white transition-all font-medium"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white transition-all font-medium"
             >
               <Eye className="w-3.5 h-3.5 text-zinc-400" />
               <span>Columns ({visibleColumns.length})</span>
             </button>
 
             {isColumnDropdownOpen && (
-              <div className="absolute right-0 top-full mt-1.5 w-60 bg-[#121624] border border-[#232c42] rounded-lg p-2.5 shadow-2xl z-50 space-y-1 animate-in fade-in duration-100">
+              <div className="absolute right-0 top-full mt-1.5 w-60 bg-[#121624] border border-[#232c42] rounded-none p-2.5 shadow-2xl z-50 space-y-1 animate-in fade-in duration-100">
                 <div className="flex items-center justify-between px-2 py-1 border-b border-[#1f273b] text-[10px] uppercase font-mono text-zinc-400">
                   <span>Toggle Columns</span>
                   <div className="flex items-center gap-1.5">
@@ -675,11 +675,11 @@ export default function DataTable({
                       <button
                         key={col.key}
                         onClick={() => dispatch(toggleColumnVisibility(col.key))}
-                        className="w-full flex items-center justify-between px-2 py-1.5 rounded text-xs text-left hover:bg-[#1a2236] text-zinc-300 hover:text-white transition-colors"
+                        className="w-full flex items-center justify-between px-2 py-1.5 rounded-none text-xs text-left hover:bg-[#1a2236] text-zinc-300 hover:text-white transition-colors"
                       >
                         <div className="flex items-center gap-2">
                           <div
-                            className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${
+                            className={`w-3.5 h-3.5 rounded-none border flex items-center justify-center ${
                               isChecked
                                 ? "bg-indigo-600 border-indigo-500 text-white"
                                 : "border-zinc-700"
@@ -700,7 +700,7 @@ export default function DataTable({
                 <div className="pt-1.5 border-t border-[#1f273b]">
                   <button
                     onClick={handleResetAllWidths}
-                    className="w-full text-center text-[11px] text-zinc-400 hover:text-white py-1 hover:bg-[#182033] rounded transition-colors"
+                    className="w-full text-center text-[11px] text-zinc-400 hover:text-white py-1 hover:bg-[#182033] rounded-none transition-colors"
                   >
                     Reset Column Widths
                   </button>
@@ -846,7 +846,7 @@ export default function DataTable({
                     </p>
                     <button
                       onClick={() => dispatch(clearAllFilters())}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       Reset All Filters
@@ -903,7 +903,7 @@ export default function DataTable({
             value={pageSize}
             onChange={(e) => dispatch(setPageSize(Number(e.target.value)))}
             aria-label="Records per page"
-            className="px-2 py-1 rounded bg-[#141926] border border-[#222a3d] text-zinc-200 text-xs focus:outline-none focus:border-indigo-500 cursor-pointer"
+            className="px-2 py-1 rounded-none bg-[#141926] border border-[#222a3d] text-zinc-200 text-xs focus:outline-none focus:border-indigo-500 cursor-pointer"
           >
             {[25, 50, 100].map((sz) => (
               <option key={sz} value={sz} className="bg-[#141926]">
@@ -923,7 +923,7 @@ export default function DataTable({
             placeholder={String(page)}
             value={jumpPageInput}
             onChange={(e) => setJumpPageInput(e.target.value)}
-            className="w-14 px-2 py-1 rounded bg-[#141926] border border-[#222a3d] text-center text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500"
+            className="w-14 px-2 py-1 rounded-none bg-[#141926] border border-[#222a3d] text-center text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500"
           />
           <span className="text-zinc-500">/ {totalPages.toLocaleString()}</span>
         </form>
@@ -933,7 +933,7 @@ export default function DataTable({
           <button
             onClick={() => onPageChange(1)}
             disabled={page <= 1 || isLoading}
-            className="p-1.5 rounded-lg bg-[#141926] hover:bg-[#1b2133] border border-[#222a3d] disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300"
+            className="p-1.5 rounded-none bg-[#141926] hover:bg-[#1b2133] border border-[#222a3d] disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300"
             title="First page"
           >
             <ChevronsLeft className="w-4 h-4" />
@@ -941,20 +941,20 @@ export default function DataTable({
           <button
             onClick={() => onPageChange(page - 1)}
             disabled={page <= 1 || isLoading}
-            className="p-1.5 rounded-lg bg-[#141926] hover:bg-[#1b2133] border border-[#222a3d] disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300"
+            className="p-1.5 rounded-none bg-[#141926] hover:bg-[#1b2133] border border-[#222a3d] disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300"
             title="Previous page"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
 
-          <span className="px-3 py-1 text-zinc-300 font-semibold bg-[#141926] border border-[#222a3d] rounded-lg">
+          <span className="px-3 py-1 text-zinc-300 font-semibold bg-[#141926] border border-[#222a3d] rounded-none">
             Page {page} of {totalPages.toLocaleString()}
           </span>
 
           <button
             onClick={() => onPageChange(page + 1)}
             disabled={page >= totalPages || isLoading}
-            className="p-1.5 rounded-lg bg-[#141926] hover:bg-[#1b2133] border border-[#222a3d] disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300"
+            className="p-1.5 rounded-none bg-[#141926] hover:bg-[#1b2133] border border-[#222a3d] disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300"
             title="Next page"
           >
             <ChevronRight className="w-4 h-4" />
@@ -962,7 +962,7 @@ export default function DataTable({
           <button
             onClick={() => onPageChange(totalPages)}
             disabled={page >= totalPages || isLoading}
-            className="p-1.5 rounded-lg bg-[#141926] hover:bg-[#1b2133] border border-[#222a3d] disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300"
+            className="p-1.5 rounded-none bg-[#141926] hover:bg-[#1b2133] border border-[#222a3d] disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300"
             title="Last page"
           >
             <ChevronsRight className="w-4 h-4" />
