@@ -164,7 +164,7 @@ export default function DataExplorerShowcasePage() {
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-3">
             <Link
               href="/explorer"
-              className="flex items-center gap-2 px-6 py-3.5 rounded-lg btn-render-primary text-xs font-semibold group shadow-lg shadow-[#6c35f5]/25"
+              className="flex items-center gap-2 px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold group shadow-lg shadow-[#6c35f5]/25"
             >
               <Database className="w-4 h-4 text-[#b193e0]" />
               <span>Launch Live Data Explorer (100k Rows)</span>
@@ -172,7 +172,7 @@ export default function DataExplorerShowcasePage() {
             </Link>
             <Link
               href="/features"
-              className="flex items-center gap-2 px-5 py-3.5 rounded-lg btn-render-secondary text-xs font-semibold"
+              className="flex items-center gap-2 px-5 py-3.5 rounded-none btn-render-secondary text-xs font-semibold"
             >
               <Layers className="w-4 h-4 text-[#968dfa]" />
               <span>Review Platform Features</span>
@@ -191,7 +191,7 @@ export default function DataExplorerShowcasePage() {
             </h2>
           </div>
 
-          <div className="rounded-lg bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
+          <div className="rounded-none bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
             {/* Control Bar: Filter Tabs & Telemetry */}
             <div className="p-4 bg-[#0e121d] border-b border-[#1b2234] flex flex-wrap items-center justify-between gap-3 text-xs">
               <div className="flex flex-wrap items-center gap-2">
@@ -200,10 +200,10 @@ export default function DataExplorerShowcasePage() {
                 </span>
 
                 {/* Category Filter Tabs */}
-                <div className="flex items-center gap-1 bg-[#141926] p-1 rounded-lg border border-[#202738]">
+                <div className="flex items-center gap-1 bg-[#141926] p-1 rounded-none border border-[#202738]">
                   <button
                     onClick={() => setActiveTab("all")}
-                    className={`px-2.5 py-1 rounded text-[11px] font-medium transition-colors ${
+                    className={`px-2.5 py-1 rounded-none text-[11px] font-medium transition-colors ${
                       activeTab === "all"
                         ? "bg-[#6c35f5] text-white"
                         : "text-zinc-400 hover:text-white"
@@ -213,7 +213,7 @@ export default function DataExplorerShowcasePage() {
                   </button>
                   <button
                     onClick={() => setActiveTab("enterprise")}
-                    className={`px-2.5 py-1 rounded text-[11px] font-medium transition-colors ${
+                    className={`px-2.5 py-1 rounded-none text-[11px] font-medium transition-colors ${
                       activeTab === "enterprise"
                         ? "bg-[#6c35f5] text-white"
                         : "text-zinc-400 hover:text-white"
@@ -223,7 +223,7 @@ export default function DataExplorerShowcasePage() {
                   </button>
                   <button
                     onClick={() => setActiveTab("finance")}
-                    className={`px-2.5 py-1 rounded text-[11px] font-medium transition-colors ${
+                    className={`px-2.5 py-1 rounded-none text-[11px] font-medium transition-colors ${
                       activeTab === "finance"
                         ? "bg-[#6c35f5] text-white"
                         : "text-zinc-400 hover:text-white"
@@ -233,7 +233,7 @@ export default function DataExplorerShowcasePage() {
                   </button>
                   <button
                     onClick={() => setActiveTab("tech")}
-                    className={`px-2.5 py-1 rounded text-[11px] font-medium transition-colors ${
+                    className={`px-2.5 py-1 rounded-none text-[11px] font-medium transition-colors ${
                       activeTab === "tech"
                         ? "bg-[#6c35f5] text-white"
                         : "text-zinc-400 hover:text-white"
@@ -252,10 +252,10 @@ export default function DataExplorerShowcasePage() {
 
               {/* Density Switcher & Live Explorer Action */}
               <div className="flex items-center gap-2.5">
-                <div className="flex items-center gap-1 bg-[#141926] p-1 rounded-lg border border-[#202738] text-[11px] font-mono">
+                <div className="flex items-center gap-1 bg-[#141926] p-1 rounded-none border border-[#202738] text-[11px] font-mono">
                   <button
                     onClick={() => setSelectedDensity("compact")}
-                    className={`px-2 py-0.5 rounded transition-colors ${
+                    className={`px-2 py-0.5 rounded-none transition-colors ${
                       selectedDensity === "compact"
                         ? "bg-[#252f47] text-white font-semibold"
                         : "text-zinc-400 hover:text-zinc-200"
@@ -265,7 +265,7 @@ export default function DataExplorerShowcasePage() {
                   </button>
                   <button
                     onClick={() => setSelectedDensity("normal")}
-                    className={`px-2 py-0.5 rounded transition-colors ${
+                    className={`px-2 py-0.5 rounded-none transition-colors ${
                       selectedDensity === "normal"
                         ? "bg-[#252f47] text-white font-semibold"
                         : "text-zinc-400 hover:text-zinc-200"
@@ -275,7 +275,7 @@ export default function DataExplorerShowcasePage() {
                   </button>
                   <button
                     onClick={() => setSelectedDensity("spacious")}
-                    className={`px-2 py-0.5 rounded transition-colors ${
+                    className={`px-2 py-0.5 rounded-none transition-colors ${
                       selectedDensity === "spacious"
                         ? "bg-[#252f47] text-white font-semibold"
                         : "text-zinc-400 hover:text-zinc-200"
@@ -287,7 +287,7 @@ export default function DataExplorerShowcasePage() {
 
                 <Link
                   href="/explorer"
-                  className="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center gap-1 transition-all"
+                  className="px-3 py-1.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center gap-1 transition-all"
                 >
                   <span>Open Full Explorer</span>
                   <ArrowRight className="w-3 h-3" />
@@ -394,10 +394,10 @@ export default function DataExplorerShowcasePage() {
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-lg render-card space-y-3 flex flex-col justify-between"
+                  className="p-6 rounded-none render-card space-y-3 flex flex-col justify-between"
                 >
                   <div className="space-y-3">
-                    <div className="w-10 h-10 rounded-lg bg-[#6c35f5]/15 border border-[#968dfa]/30 flex items-center justify-center text-[#968dfa]">
+                    <div className="w-10 h-10 rounded-none bg-[#6c35f5]/15 border border-[#968dfa]/30 flex items-center justify-center text-[#968dfa]">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h3 className="text-base font-semibold text-[#fafaf4]">
@@ -415,7 +415,7 @@ export default function DataExplorerShowcasePage() {
 
         {/* CTA Bottom Banner */}
         <section className="py-16 px-4 w-[90%] mx-auto text-center">
-          <div className="p-10 sm:p-12 rounded-lg render-card space-y-6">
+          <div className="p-10 sm:p-12 rounded-none render-card space-y-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
               Ready to Query 100,000 Records?
             </h2>
@@ -425,7 +425,7 @@ export default function DataExplorerShowcasePage() {
             <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
               <Link
                 href="/explorer"
-                className="px-6 py-3.5 rounded-lg btn-render-primary text-xs font-semibold flex items-center gap-2"
+                className="px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold flex items-center gap-2"
               >
                 <Database className="w-4 h-4 text-[#b193e0]" />
                 <span>Launch Live Data Explorer</span>
@@ -433,7 +433,7 @@ export default function DataExplorerShowcasePage() {
               </Link>
               <Link
                 href="/architecture"
-                className="px-6 py-3.5 rounded-lg btn-render-secondary text-xs font-semibold"
+                className="px-6 py-3.5 rounded-none btn-render-secondary text-xs font-semibold"
               >
                 View Indexing Benchmarks
               </Link>
