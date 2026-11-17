@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#07090e] text-[#f1f3f7] flex flex-col items-center justify-center p-6 text-center">
-      <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-indigo-500 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-xl shadow-indigo-500/25 text-white mb-6 p-3">
+      <div className="w-14 h-14 rounded-none bg-gradient-to-br from-indigo-500 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-xl shadow-indigo-500/25 text-white mb-6 p-3">
         <DataScopeLogo className="w-full h-full text-white" />
       </div>
 
@@ -23,7 +23,7 @@ export default function NotFound() {
 
       <Link
         href="/explorer"
-        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all"
+        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all"
       >
         <ArrowLeft className="w-4 h-4" />
         Return to Data Explorer
