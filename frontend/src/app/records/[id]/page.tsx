@@ -108,7 +108,7 @@ export default function RecordDetailPage({
 
             <button
               onClick={handleCopyLink}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-medium transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-medium transition-all"
             >
               <Share2 className="w-3.5 h-3.5" />
               <span>Share Record</span>
@@ -117,12 +117,12 @@ export default function RecordDetailPage({
 
           {isLoading ? (
             <div className="space-y-4 animate-pulse">
-              <div className="h-28 bg-[#121624] rounded-lg" />
-              <div className="h-44 bg-[#121624] rounded-lg" />
-              <div className="h-44 bg-[#121624] rounded-lg" />
+              <div className="h-28 bg-[#121624] rounded-none" />
+              <div className="h-44 bg-[#121624] rounded-none" />
+              <div className="h-44 bg-[#121624] rounded-none" />
             </div>
           ) : isError || !record ? (
-            <div className="p-8 rounded-lg bg-[#0f131f] border border-rose-500/30 text-center space-y-3">
+            <div className="p-8 rounded-none bg-[#0f131f] border border-rose-500/30 text-center space-y-3">
               <AlertCircle className="w-8 h-8 text-rose-400 mx-auto" />
               <h3 className="text-sm font-semibold text-white">Record Not Found</h3>
               <p className="text-xs text-zinc-400">
@@ -132,10 +132,10 @@ export default function RecordDetailPage({
           ) : (
             <div className="space-y-6">
               {/* Main Record Header Card */}
-              <div className="p-6 rounded-lg bg-[#0e121d] border border-[#1d263b] shadow-xl space-y-4">
+              <div className="p-6 rounded-none bg-[#0e121d] border border-[#1d263b] shadow-xl space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
-                    <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-none bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
                       {record.recordCode}
                     </span>
                     <span
@@ -149,7 +149,7 @@ export default function RecordDetailPage({
                     >
                       {record.status}
                     </span>
-                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700/50">
+                    <span className="text-xs font-mono px-2 py-0.5 rounded-none bg-zinc-800 text-zinc-400 border border-zinc-700/50">
                       Priority: {record.priority}
                     </span>
                   </div>
@@ -166,7 +166,7 @@ export default function RecordDetailPage({
                           )
                         }
                         disabled={isUpdating}
-                        className="px-2.5 py-1 rounded-lg bg-[#141926] border border-[#222a3d] text-zinc-200 text-xs focus:outline-none focus:border-indigo-500 cursor-pointer"
+                        className="px-2.5 py-1 rounded-none bg-[#141926] border border-[#222a3d] text-zinc-200 text-xs focus:outline-none focus:border-indigo-500 cursor-pointer"
                       >
                         <option value="Active">Active</option>
                         <option value="Pending">Pending</option>
@@ -195,7 +195,7 @@ export default function RecordDetailPage({
 
                 {/* Financial KPI Cards */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                  <div className="p-3.5 rounded-lg bg-[#121624] border border-[#1f283d] space-y-0.5">
+                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#1f283d] space-y-0.5">
                     <span className="text-[10px] uppercase font-mono text-zinc-500">
                       Revenue
                     </span>
@@ -204,7 +204,7 @@ export default function RecordDetailPage({
                     </div>
                   </div>
 
-                  <div className="p-3.5 rounded-lg bg-[#121624] border border-[#1f283d] space-y-0.5">
+                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#1f283d] space-y-0.5">
                     <span className="text-[10px] uppercase font-mono text-zinc-500">
                       Cost
                     </span>
@@ -213,7 +213,7 @@ export default function RecordDetailPage({
                     </div>
                   </div>
 
-                  <div className="p-3.5 rounded-lg bg-[#121624] border border-[#1f283d] space-y-0.5">
+                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#1f283d] space-y-0.5">
                     <span className="text-[10px] uppercase font-mono text-zinc-500">
                       Net Profit
                     </span>
@@ -226,7 +226,7 @@ export default function RecordDetailPage({
                     </div>
                   </div>
 
-                  <div className="p-3.5 rounded-lg bg-[#121624] border border-[#1f283d] space-y-0.5">
+                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#1f283d] space-y-0.5">
                     <span className="text-[10px] uppercase font-mono text-zinc-500">
                       Deal Rating
                     </span>
@@ -239,7 +239,7 @@ export default function RecordDetailPage({
               </div>
 
               {/* Historical Changes & Audit Trail */}
-              <div className="p-6 rounded-lg bg-[#0e121d] border border-[#1d263b] shadow-xl space-y-4">
+              <div className="p-6 rounded-none bg-[#0e121d] border border-[#1d263b] shadow-xl space-y-4">
                 <div className="flex items-center gap-2 border-b border-[#1b2234] pb-3">
                   <History className="w-4 h-4 text-cyan-400" />
                   <h2 className="text-xs font-semibold text-white uppercase font-mono tracking-wider">
@@ -289,7 +289,7 @@ export default function RecordDetailPage({
 
               {/* Related Records Section */}
               {related.length > 0 && (
-                <div className="p-6 rounded-lg bg-[#0e121d] border border-[#1d263b] shadow-xl space-y-4">
+                <div className="p-6 rounded-none bg-[#0e121d] border border-[#1d263b] shadow-xl space-y-4">
                   <div className="flex items-center gap-2 border-b border-[#1b2234] pb-3">
                     <LinkIcon className="w-4 h-4 text-indigo-400" />
                     <h2 className="text-xs font-semibold text-white uppercase font-mono tracking-wider">
@@ -301,7 +301,7 @@ export default function RecordDetailPage({
                     {related.map((rel, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 rounded-lg bg-[#121624] border border-[#1f283d] flex items-center justify-between"
+                        className="p-3.5 rounded-none bg-[#121624] border border-[#1f283d] flex items-center justify-between"
                       >
                         <div className="space-y-0.5">
                           <span className="text-[10px] uppercase font-mono text-indigo-400 font-semibold">
