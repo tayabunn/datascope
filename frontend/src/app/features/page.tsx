@@ -219,7 +219,7 @@ providesTags: (result) => [
           <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
             <Link
               href="/explorer"
-              className="flex items-center gap-2 px-6 py-3 rounded-lg btn-render-primary text-xs font-semibold group"
+              className="flex items-center gap-2 px-6 py-3 rounded-none btn-render-primary text-xs font-semibold group"
             >
               <Database className="w-4 h-4 text-[#b193e0]" />
               <span>Launch Live Data Explorer</span>
@@ -227,7 +227,7 @@ providesTags: (result) => [
             </Link>
             <Link
               href="/architecture"
-              className="flex items-center gap-2 px-5 py-3 rounded-lg btn-render-secondary text-xs font-semibold"
+              className="flex items-center gap-2 px-5 py-3 rounded-none btn-render-secondary text-xs font-semibold"
             >
               <Cpu className="w-4 h-4 text-[#968dfa]" />
               <span>Explore Architecture & Indexing</span>
@@ -255,12 +255,12 @@ providesTags: (result) => [
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-lg render-card flex flex-col justify-between space-y-5"
+                  className="p-6 rounded-none render-card flex flex-col justify-between space-y-5"
                 >
                   <div className="space-y-4">
                     <div className="flex items-start justify-between gap-3">
                       <div
-                        className={`w-11 h-11 rounded-lg ${feat.bgBorder} border flex items-center justify-center`}
+                        className={`w-11 h-11 rounded-none ${feat.bgBorder} border flex items-center justify-center`}
                         style={{ color: feat.color }}
                       >
                         <Icon className="w-5 h-5" />
@@ -293,7 +293,7 @@ providesTags: (result) => [
                   </div>
 
                   {/* Code snippet block */}
-                  <div className="p-3 rounded-lg bg-[#080a10] border border-[#1a2030] font-mono text-[11px] text-zinc-400 overflow-x-auto">
+                  <div className="p-3 rounded-none bg-[#080a10] border border-[#1a2030] font-mono text-[11px] text-zinc-400 overflow-x-auto">
                     <pre className="text-indigo-300 leading-tight">
                       <code>{feat.codeSnippet}</code>
                     </pre>
@@ -318,24 +318,24 @@ providesTags: (result) => [
             </p>
           </div>
 
-          <div className="rounded-lg bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
+          <div className="rounded-none bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs font-mono">
                 <thead className="bg-[#0f1320] text-zinc-400 uppercase text-[11px] border-b border-[#1b2234]">
                   <tr>
                     <th className="px-5 py-3.5">Platform Capability</th>
                     <th className="px-5 py-3.5 text-center">
-                      <span className="px-2 py-0.5 rounded bg-zinc-800 text-zinc-300">
+                      <span className="px-2 py-0.5 rounded-none bg-zinc-800 text-zinc-300">
                         Viewer
                       </span>
                     </th>
                     <th className="px-5 py-3.5 text-center">
-                      <span className="px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-700/40">
+                      <span className="px-2 py-0.5 rounded-none bg-indigo-950 text-indigo-300 border border-indigo-700/40">
                         Data Analyst
                       </span>
                     </th>
                     <th className="px-5 py-3.5 text-center">
-                      <span className="px-2 py-0.5 rounded bg-[#6c35f5]/20 text-[#968dfa] border border-[#6c35f5]/40 font-bold">
+                      <span className="px-2 py-0.5 rounded-none bg-[#6c35f5]/20 text-[#968dfa] border border-[#6c35f5]/40 font-bold">
                         Administrator
                       </span>
                     </th>
@@ -381,7 +381,7 @@ providesTags: (result) => [
 
         {/* CTA Banner */}
         <section className="py-16 px-4 w-[90%] mx-auto text-center">
-          <div className="p-10 sm:p-12 rounded-lg render-card space-y-6">
+          <div className="p-10 sm:p-12 rounded-none render-card space-y-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
               Test These Capabilities Live
             </h2>
@@ -391,14 +391,14 @@ providesTags: (result) => [
             <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
               <Link
                 href="/explorer"
-                className="px-6 py-3 rounded-lg btn-render-primary text-xs font-semibold flex items-center gap-2"
+                className="px-6 py-3 rounded-none btn-render-primary text-xs font-semibold flex items-center gap-2"
               >
                 <Database className="w-3.5 h-3.5" />
                 <span>Launch Data Explorer</span>
               </Link>
               <Link
                 href="/login"
-                className="px-6 py-3 rounded-lg btn-render-secondary text-xs font-semibold"
+                className="px-6 py-3 rounded-none btn-render-secondary text-xs font-semibold"
               >
                 Sign In to Test Admin Role
               </Link>
