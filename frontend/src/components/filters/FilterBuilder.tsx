@@ -28,7 +28,60 @@ import {
   Globe,
   Tag,
   Activity,
+  Sparkles,
 } from "lucide-react";
+
+interface BusinessPreset {
+  id: string;
+  label: string;
+  icon: string;
+  description: string;
+  filters: {
+    status?: string;
+    category?: string;
+    country?: string;
+    minRevenue?: number | null;
+    maxRevenue?: number | null;
+  };
+}
+
+const BUSINESS_PRESETS: BusinessPreset[] = [
+  {
+    id: "tier1-enterprise",
+    label: "Tier-1 Enterprise ($500k+)",
+    icon: "🌟",
+    description: "Enterprise tier contracts with minimum revenue $500,000",
+    filters: { category: "Enterprise", minRevenue: 500000, maxRevenue: null },
+  },
+  {
+    id: "active-high-value",
+    label: "Active High-Value ($100k+)",
+    icon: "⚡",
+    description: "Active contracts generating over $100,000",
+    filters: { status: "Active", minRevenue: 100000, maxRevenue: null },
+  },
+  {
+    id: "pending-review",
+    label: "Pending Review",
+    icon: "⏳",
+    description: "Pipeline deals pending legal or stakeholder review",
+    filters: { status: "Pending" },
+  },
+  {
+    id: "na-canada",
+    label: "North America (Canada)",
+    icon: "🍁",
+    description: "Canadian market accounts and contracts",
+    filters: { country: "Canada" },
+  },
+  {
+    id: "emea-germany",
+    label: "EMEA (Germany)",
+    icon: "🇩🇪",
+    description: "German market enterprise operations",
+    filters: { country: "Germany" },
+  },
+];
 
 const STATUS_OPTIONS = ["all", "Active", "Pending", "Inactive", "Archived"];
 const CATEGORY_OPTIONS = [
@@ -91,6 +144,55 @@ export default function FilterBuilder() {
         type: "success",
         title: "Preset Applied",
         message: `Loaded saved configuration "${view.viewName}".`,
+      })
+    );
+  };
+
+  const isPresetActive = (p: BusinessPreset) => {
+    if (p.filters.status && statusFilter !== p.filters.status) return false;
+    if (p.filters.category && categoryFilter !== p.filters.category) return false;
+    if (p.filters.country && countryFilter !== p.filters.country) return false;
+    if (p.filters.minRevenue !== undefined && minRevenue !== p.filters.minRevenue) return false;
+    if (p.filters.maxRevenue !== undefined && maxRevenue !== p.filters.maxRevenue) return false;
+    return true;
+  };
+
+  const handleApplyPreset = (preset: BusinessPreset) => {
+    if (isPresetActive(preset)) {
+      dispatch(clearAllFilters());
+      dispatch(
+        addToast({
+          type: "info",
+          title: "Preset Cleared",
+          message: "Filters have been reset to default.",
+        })
+      );
+      return;
+    }
+
+    if (preset.filters.status !== undefined) {
+      dispatch(setStatusFilter(preset.filters.status));
+    }
+    if (preset.filters.category !== undefined) {
+      dispatch(setCategoryFilter(preset.filters.category));
+    }
+    if (preset.filters.country !== undefined) {
+      dispatch(setCountryFilter(preset.filters.country));
+    }
+    if (preset.filters.minRevenue !== undefined || preset.filters.maxRevenue !== undefined) {
+      dispatch(
+        setRevenueRange({
+          min: preset.filters.minRevenue ?? null,
+          max: preset.filters.maxRevenue ?? null,
+        })
+      );
+    }
+
+    dispatch(
+      addToast({
+        type: "success",
+        title: `Preset Applied: ${preset.label}`,
+        message: preset.description,
       })
     );
   };
@@ -174,7 +276,7 @@ export default function FilterBuilder() {
             <SlidersHorizontal className="w-4 h-4 text-[#968dfa]" />
             <span>Range Filters</span>
             {activeFiltersCount > 0 && (
-              <span className="w-4 h-4 rounded-full bg-[#6c35f5] text-white font-mono text-[10px] flex items-center justify-center font-bold">
+              <span className="w-4 h-4 rounded-none bg-[#6c35f5] text-white font-mono text-[10px] flex items-center justify-center font-bold">
                 {activeFiltersCount}
               </span>
             )}
@@ -239,6 +341,49 @@ export default function FilterBuilder() {
             <span>Save View</span>
           </button>
         </div>
+      </div>
+
+      {/* 1-Click Business Preset Chips */}
+      <div className="pt-3 border-t border-[#1b2234] flex flex-wrap items-center justify-between gap-2.5">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-[11px] font-mono uppercase text-zinc-400 flex items-center gap-1.5 mr-1 select-none">
+            <Sparkles className="w-3.5 h-3.5 text-[#ffa033]" />
+            <span>Quick Presets:</span>
+          </span>
+          {BUSINESS_PRESETS.map((preset) => {
+            const isActive = isPresetActive(preset);
+            return (
+              <button
+                key={preset.id}
+                type="button"
+                onClick={() => handleApplyPreset(preset)}
+                title={preset.description}
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono transition-all border rounded-none shadow-sm cursor-pointer ${
+                  isActive
+                    ? "bg-[#6c35f5]/25 text-[#fafaf4] border-[#968dfa] shadow-[0_0_12px_rgba(108,53,245,0.25)] font-semibold"
+                    : "bg-[#141926] hover:bg-[#182032] text-zinc-300 hover:text-white border-[#202738] hover:border-zinc-500"
+                }`}
+              >
+                <span>{preset.icon}</span>
+                <span>{preset.label}</span>
+                {isActive && (
+                  <span className="ml-1 w-1.5 h-1.5 rounded-none bg-[#968dfa]" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {BUSINESS_PRESETS.some((p) => isPresetActive(p)) && (
+          <button
+            type="button"
+            onClick={() => dispatch(clearAllFilters())}
+            className="text-[11px] font-mono text-zinc-400 hover:text-rose-400 underline flex items-center gap-1 cursor-pointer"
+          >
+            <RotateCcw className="w-3 h-3" />
+            Clear Preset
+          </button>
+        )}
       </div>
 
       {/* Advanced Range Drawer (Collapsible) */}
