@@ -3,9 +3,12 @@
 @theme {
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: 'Outfit', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --radius-xl: 0.5rem;
-  --radius-2xl: 0.5rem;
-  --radius-3xl: 0.5rem;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
 }
 
 :root {
@@ -107,12 +110,20 @@ input, button, select, textarea {
   font-weight: 700 !important;
 }
 
-/* Enforce rounded-lg (8px / 0.5rem) border radius for all buttons and cards */
+/* Enforce rounded-none (0px) border radius for all buttons, links, inputs, and cards */
 button:not(.rounded-full),
 [role="button"]:not(.rounded-full),
+input:not(.rounded-full),
+select:not(.rounded-full),
+textarea:not(.rounded-full),
 .btn,
-.card {
-  border-radius: 0.5rem !important;
+.card,
+.render-card,
+.mistral-card,
+.btn-render-primary,
+.btn-render-secondary,
+.btn-mistral-amber {
+  border-radius: 0 !important;
 }
 
 /* =========================================================================
