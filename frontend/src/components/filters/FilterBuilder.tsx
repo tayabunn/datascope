@@ -103,7 +103,7 @@ export default function FilterBuilder() {
     (maxRevenue != null ? 1 : 0);
 
   return (
-    <div className="render-card rounded-lg p-5 space-y-4 shadow-md">
+    <div className="render-card rounded-none p-5 space-y-4 shadow-md">
       {/* Top Filter Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         {/* Left Filter Controls */}
@@ -114,7 +114,7 @@ export default function FilterBuilder() {
               value={statusFilter}
               onChange={(e) => dispatch(setStatusFilter(e.target.value))}
               aria-label="Filter records by status"
-              className="appearance-none pl-9 pr-9 py-2 rounded-lg bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-zinc-500 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
+              className="appearance-none pl-9 pr-9 py-2 rounded-none bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-zinc-500 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
             >
               {STATUS_OPTIONS.map((st) => (
                 <option key={st} value={st} className="bg-[#141926]">
@@ -132,7 +132,7 @@ export default function FilterBuilder() {
               value={categoryFilter}
               onChange={(e) => dispatch(setCategoryFilter(e.target.value))}
               aria-label="Filter records by sector category"
-              className="appearance-none pl-9 pr-9 py-2 rounded-lg bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-zinc-500 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
+              className="appearance-none pl-9 pr-9 py-2 rounded-none bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-zinc-500 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
             >
               {CATEGORY_OPTIONS.map((cat) => (
                 <option key={cat} value={cat} className="bg-[#141926]">
@@ -150,7 +150,7 @@ export default function FilterBuilder() {
               value={countryFilter}
               onChange={(e) => dispatch(setCountryFilter(e.target.value))}
               aria-label="Filter records by country"
-              className="appearance-none pl-9 pr-9 py-2 rounded-lg bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-zinc-500 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
+              className="appearance-none pl-9 pr-9 py-2 rounded-none bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-zinc-500 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
             >
               {COUNTRY_OPTIONS.map((ct) => (
                 <option key={ct} value={ct} className="bg-[#141926]">
@@ -165,7 +165,7 @@ export default function FilterBuilder() {
           {/* Toggle Advanced Ranges */}
           <button
             onClick={() => dispatch(toggleAdvancedBuilder())}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold border transition-all shadow-sm ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-none text-xs font-semibold border transition-all shadow-sm ${
               isAdvancedBuilderOpen
                 ? "bg-[#6c35f5]/20 text-[#b193e0] border-[#968dfa]/40"
                 : "btn-render-secondary"
@@ -194,7 +194,7 @@ export default function FilterBuilder() {
                 }}
                 defaultValue=""
                 aria-label="Load a saved search view"
-                className="appearance-none pl-9 pr-9 py-2 rounded-lg bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-[#968dfa]/50 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
+                className="appearance-none pl-9 pr-9 py-2 rounded-none bg-[#141926] hover:bg-[#182032] border border-[#202738] text-xs text-[#fafaf4] font-semibold hover:border-[#968dfa]/50 focus:outline-none focus:border-[#968dfa] cursor-pointer shadow-sm transition-all"
                 title="Select and apply a saved search configuration"
               >
                 <option value="" disabled>
@@ -214,7 +214,7 @@ export default function FilterBuilder() {
           {/* Quick Link to Search History */}
           <Link
             href="/history"
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg btn-render-secondary text-xs font-semibold shadow-sm"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-none btn-render-secondary text-xs font-semibold shadow-sm"
             title="View recent search query history"
           >
             <History className="w-4 h-4 text-[#968dfa]" />
@@ -224,7 +224,7 @@ export default function FilterBuilder() {
           {activeFiltersCount > 0 && (
             <button
               onClick={() => dispatch(clearAllFilters())}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-[#a1a1aa] hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-none text-xs font-medium text-[#a1a1aa] hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset</span>
@@ -233,7 +233,7 @@ export default function FilterBuilder() {
 
           <button
             onClick={() => dispatch(openSaveModal())}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg btn-render-primary text-xs font-semibold shadow-md"
+            className="flex items-center gap-2 px-4 py-2 rounded-none btn-render-primary text-xs font-semibold shadow-md"
           >
             <BookmarkPlus className="w-4 h-4 text-[#b193e0]" />
             <span>Save View</span>
@@ -263,7 +263,7 @@ export default function FilterBuilder() {
                     })
                   )
                 }
-                className="w-full px-3 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-xs text-zinc-200 placeholder-zinc-500 font-mono focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-1.5 rounded-none bg-[#141926] border border-[#222a3d] text-xs text-zinc-200 placeholder-zinc-500 font-mono focus:outline-none focus:border-indigo-500"
               />
               <span className="text-zinc-600 text-xs">to</span>
               <input
@@ -278,7 +278,7 @@ export default function FilterBuilder() {
                     })
                   )
                 }
-                className="w-full px-3 py-1.5 rounded-lg bg-[#141926] border border-[#222a3d] text-xs text-zinc-200 placeholder-zinc-500 font-mono focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-1.5 rounded-none bg-[#141926] border border-[#222a3d] text-xs text-zinc-200 placeholder-zinc-500 font-mono focus:outline-none focus:border-indigo-500"
               />
             </div>
           </div>
@@ -302,7 +302,7 @@ export default function FilterBuilder() {
                       setRevenueRange({ min: preset.min, max: preset.max })
                     )
                   }
-                  className="px-2.5 py-1 rounded bg-[#161c2b] border border-[#222b40] text-[11px] font-mono text-zinc-300 hover:text-white hover:border-indigo-500/50 transition-all"
+                  className="px-2.5 py-1 rounded-none bg-[#161c2b] border border-[#222b40] text-[11px] font-mono text-zinc-300 hover:text-white hover:border-indigo-500/50 transition-all"
                 >
                   {preset.label}
                 </button>
