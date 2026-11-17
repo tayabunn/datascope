@@ -295,7 +295,7 @@ function ExplorerContent() {
               <button
                 onClick={handleManualRefresh}
                 disabled={isFetching}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg btn-render-secondary text-xs font-semibold shadow-sm transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded-none btn-render-secondary text-xs font-semibold shadow-sm transition-all"
                 title="Force background cache invalidation & refetch"
               >
                 <RefreshCw
