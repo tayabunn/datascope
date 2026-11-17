@@ -18,7 +18,7 @@ export default function GlobalError({
 
   return (
     <div className="min-h-screen bg-[#07090e] text-[#f1f3f7] flex flex-col items-center justify-center p-6 text-center">
-      <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-indigo-500 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-xl shadow-indigo-500/25 text-white mb-6 p-3">
+      <div className="w-14 h-14 rounded-none bg-gradient-to-br from-indigo-500 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-xl shadow-indigo-500/25 text-white mb-6 p-3">
         <DataScopeLogo className="w-full h-full text-white" />
       </div>
 
@@ -36,7 +36,7 @@ export default function GlobalError({
       <div className="flex items-center gap-3">
         <button
           onClick={() => reset()}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 transition-all"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           Reload Component
@@ -44,7 +44,7 @@ export default function GlobalError({
 
         <Link
           href="/explorer"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-semibold transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-semibold transition-all"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           Data Explorer
