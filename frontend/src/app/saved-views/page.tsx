@@ -165,10 +165,10 @@ export default function SavedViewsPage() {
 
             <div className="flex items-center gap-3">
               {/* Category Filter Tabs */}
-              <div className="flex items-center bg-[#141926] border border-[#1f273c] rounded-lg p-0.5 text-xs font-medium">
+              <div className="flex items-center bg-[#141926] border border-[#1f273c] rounded-none p-0.5 text-xs font-medium">
                 <button
                   onClick={() => setActiveFilterTab("all")}
-                  className={`px-3 py-1 rounded-lg transition-colors ${
+                  className={`px-3 py-1 rounded-none transition-colors ${
                     activeFilterTab === "all"
                       ? "bg-[#6c35f5] text-white shadow-sm font-semibold"
                       : "text-[#a1a1aa] hover:text-[#fafaf4]"
@@ -178,7 +178,7 @@ export default function SavedViewsPage() {
                 </button>
                 <button
                   onClick={() => setActiveFilterTab("shared")}
-                  className={`px-3 py-1 rounded-lg transition-colors ${
+                  className={`px-3 py-1 rounded-none transition-colors ${
                     activeFilterTab === "shared"
                       ? "bg-[#6c35f5] text-white shadow-sm font-semibold"
                       : "text-[#a1a1aa] hover:text-[#fafaf4]"
@@ -188,7 +188,7 @@ export default function SavedViewsPage() {
                 </button>
                 <button
                   onClick={() => setActiveFilterTab("private")}
-                  className={`px-3 py-1 rounded-lg transition-colors ${
+                  className={`px-3 py-1 rounded-none transition-colors ${
                     activeFilterTab === "private"
                       ? "bg-[#6c35f5] text-white shadow-sm font-semibold"
                       : "text-[#a1a1aa] hover:text-[#fafaf4]"
@@ -201,7 +201,7 @@ export default function SavedViewsPage() {
               {/* Create View Button */}
               <button
                 onClick={() => dispatch(openSaveModal())}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg btn-render-primary text-xs font-semibold shadow-md"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-none btn-render-primary text-xs font-semibold shadow-md"
               >
                 <BookmarkPlus className="w-3.5 h-3.5 text-[#b193e0]" />
                 <span>Save Current View</span>
@@ -213,10 +213,10 @@ export default function SavedViewsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {isLoading ? (
               Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="h-56 bg-[#0c0f18] rounded-lg animate-pulse border border-[#1a2030]" />
+                <div key={i} className="h-56 bg-[#0c0f18] rounded-none animate-pulse border border-[#1a2030]" />
               ))
             ) : filteredViews.length === 0 ? (
-              <div className="col-span-full text-center py-20 text-[#a1a1aa] rounded-lg render-card">
+              <div className="col-span-full text-center py-20 text-[#a1a1aa] rounded-none render-card">
                 <BookmarkCheck className="w-10 h-10 text-zinc-600 mx-auto mb-2" />
                 <h4 className="text-sm font-semibold text-[#fafaf4]">No Saved Views Found</h4>
                 <p className="text-xs text-[#a1a1aa] mt-1">
@@ -229,7 +229,7 @@ export default function SavedViewsPage() {
               filteredViews.map((v) => (
                 <div
                   key={v.id}
-                  className="p-5 rounded-lg render-card flex flex-col justify-between space-y-4 group shadow-md"
+                  className="p-5 rounded-none render-card flex flex-col justify-between space-y-4 group shadow-md"
                 >
                   {/* Top: Header & Sharing Badge */}
                   <div className="space-y-2">
@@ -317,7 +317,7 @@ export default function SavedViewsPage() {
                       <div className="flex items-center gap-1">
                         <button
                           onClick={() => dispatch(openEditModal(v))}
-                          className="p-1.5 text-[#a1a1aa] hover:text-white hover:bg-[#1a2236] rounded-lg transition-colors"
+                          className="p-1.5 text-[#a1a1aa] hover:text-white hover:bg-[#1a2236] rounded-none transition-colors"
                           title="Edit view details"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
@@ -325,7 +325,7 @@ export default function SavedViewsPage() {
 
                         <button
                           onClick={() => handleDeleteView(v.id, v.viewName)}
-                          className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
+                          className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-none transition-colors"
                           title="Delete view"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -334,7 +334,7 @@ export default function SavedViewsPage() {
 
                       <button
                         onClick={() => handleApplyView(v)}
-                        className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg btn-render-primary text-xs font-semibold"
+                        className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-none btn-render-primary text-xs font-semibold"
                       >
                         <span>Open in Explorer</span>
                         <ArrowRight className="w-3.5 h-3.5" />
