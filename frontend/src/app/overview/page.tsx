@@ -130,7 +130,7 @@ export default function OverviewDashboardPage() {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/settings"
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg btn-render-primary text-xs font-semibold shadow-md group"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-none btn-render-primary text-xs font-semibold shadow-md group"
                   >
                     <Settings className="w-3.5 h-3.5 text-[#b193e0] group-hover:rotate-45 transition-transform" />
                     <span>System Settings</span>
@@ -138,7 +138,7 @@ export default function OverviewDashboardPage() {
 
                   <Link
                     href="/explorer"
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg btn-render-secondary text-xs font-semibold shadow-md group"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-none btn-render-secondary text-xs font-semibold shadow-md group"
                   >
                     <Database className="w-3.5 h-3.5 text-[#968dfa]" />
                     <span>Inspect Records</span>
@@ -148,7 +148,7 @@ export default function OverviewDashboardPage() {
 
               {/* 4 Core Administrator KPI Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-5 rounded-lg render-card space-y-2">
+                <div className="p-5 rounded-none render-card space-y-2">
                   <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
                     <span>SECURITY & RBAC POSTURE</span>
                     <Lock className="w-4 h-4 text-[#968dfa]" />
@@ -162,7 +162,7 @@ export default function OverviewDashboardPage() {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-lg render-card space-y-2">
+                <div className="p-5 rounded-none render-card space-y-2">
                   <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
                     <span>POSTGRES CONNECTION POOL</span>
                     <Cpu className="w-4 h-4 text-[#0b7d55]" />
@@ -175,7 +175,7 @@ export default function OverviewDashboardPage() {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-lg mistral-card space-y-2">
+                <div className="p-5 rounded-none mistral-card space-y-2">
                   <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
                     <span>QUERY EXECUTION LATENCY</span>
                     <Zap className="w-4 h-4 text-[#ff8204]" />
@@ -189,7 +189,7 @@ export default function OverviewDashboardPage() {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-lg render-card space-y-2">
+                <div className="p-5 rounded-none render-card space-y-2">
                   <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
                     <span>CACHE HIT RATIO (REDIS)</span>
                     <HardDrive className="w-4 h-4 text-[#968dfa]" />
@@ -204,7 +204,7 @@ export default function OverviewDashboardPage() {
               </div>
 
               {/* Administrator Quick Maintenance Command Bar */}
-              <div className="p-4 rounded-lg render-card space-y-3">
+              <div className="p-4 rounded-none render-card space-y-3">
                 <div className="flex items-center justify-between border-b border-[#1a2030] pb-2">
                   <div className="flex items-center gap-2">
                     <Terminal className="w-4 h-4 text-[#968dfa]" />
@@ -221,14 +221,14 @@ export default function OverviewDashboardPage() {
                   <button
                     onClick={handleFlushCache}
                     disabled={isFlushingCache}
-                    className="p-3 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#202738] hover:border-[#968dfa]/40 text-left transition-all group disabled:opacity-50"
+                    className="p-3 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#202738] hover:border-[#968dfa]/40 text-left transition-all group disabled:opacity-50"
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-semibold text-zinc-200 group-hover:text-white flex items-center gap-1.5">
                         <RefreshCw className={`w-3.5 h-3.5 text-[#968dfa] ${isFlushingCache ? "animate-spin" : ""}`} />
                         Flush Redis L2 Cache
                       </span>
-                      <span className="text-[9px] font-mono text-[#0b7d55] bg-[#0b7d55]/10 px-1 rounded">Safe</span>
+                      <span className="text-[9px] font-mono text-[#0b7d55] bg-[#0b7d55]/10 px-1 rounded-none">Safe</span>
                     </div>
                     <p className="text-[10px] text-zinc-400">
                       Evict in-memory compiled AST queries and force fresh PostgreSQL execution.
@@ -238,14 +238,14 @@ export default function OverviewDashboardPage() {
                   <button
                     onClick={handleVacuumAnalyze}
                     disabled={isVacuuming}
-                    className="p-3 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#202738] hover:border-[#0b7d55]/40 text-left transition-all group disabled:opacity-50"
+                    className="p-3 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#202738] hover:border-[#0b7d55]/40 text-left transition-all group disabled:opacity-50"
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-semibold text-zinc-200 group-hover:text-white flex items-center gap-1.5">
                         <Activity className={`w-3.5 h-3.5 text-[#0b7d55] ${isVacuuming ? "animate-spin" : ""}`} />
                         Run VACUUM ANALYZE
                       </span>
-                      <span className="text-[9px] font-mono text-[#0b7d55] bg-[#0b7d55]/10 px-1 rounded">Optimize</span>
+                      <span className="text-[9px] font-mono text-[#0b7d55] bg-[#0b7d55]/10 px-1 rounded-none">Optimize</span>
                     </div>
                     <p className="text-[10px] text-zinc-400">
                       Reclaim database dead tuples and update PostgreSQL query planner statistics.
@@ -255,14 +255,14 @@ export default function OverviewDashboardPage() {
                   <button
                     onClick={handleReindex}
                     disabled={isReindexing}
-                    className="p-3 rounded-lg bg-[#141926] hover:bg-[#1a2133] border border-[#202738] hover:border-[#ff8204]/40 text-left transition-all group disabled:opacity-50"
+                    className="p-3 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#202738] hover:border-[#ff8204]/40 text-left transition-all group disabled:opacity-50"
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-semibold text-zinc-200 group-hover:text-white flex items-center gap-1.5">
                         <Zap className={`w-3.5 h-3.5 text-[#ff8204] ${isReindexing ? "animate-pulse" : ""}`} />
                         Re-index GIN Trigrams
                       </span>
-                      <span className="text-[9px] font-mono text-[#ffa033] bg-[#ff8204]/10 px-1 rounded">Sub-20ms</span>
+                      <span className="text-[9px] font-mono text-[#ffa033] bg-[#ff8204]/10 px-1 rounded-none">Sub-20ms</span>
                     </div>
                     <p className="text-[10px] text-zinc-400">
                       Synchronize fuzzy text index trees across deal titles and SKU codes.
@@ -273,7 +273,7 @@ export default function OverviewDashboardPage() {
 
               {/* Subsystem Health Matrix */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="p-4 rounded-lg bg-[#121622] border border-[#1d2436] space-y-1.5">
+                <div className="p-4 rounded-none bg-[#121622] border border-[#1d2436] space-y-1.5">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-zinc-300">PostgreSQL 16 Primary</span>
                     <span className="w-2 h-2 rounded-full bg-[#0b7d55]" />
@@ -286,7 +286,7 @@ export default function OverviewDashboardPage() {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-lg bg-[#121622] border border-[#1d2436] space-y-1.5">
+                <div className="p-4 rounded-none bg-[#121622] border border-[#1d2436] space-y-1.5">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-zinc-300">Redis Query Cache</span>
                     <span className="w-2 h-2 rounded-full bg-[#0b7d55]" />
@@ -299,7 +299,7 @@ export default function OverviewDashboardPage() {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-lg bg-[#121622] border border-[#1d2436] space-y-1.5">
+                <div className="p-4 rounded-none bg-[#121622] border border-[#1d2436] space-y-1.5">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-zinc-300">Fastify API Gateway</span>
                     <span className="w-2 h-2 rounded-full bg-[#0b7d55]" />
@@ -312,7 +312,7 @@ export default function OverviewDashboardPage() {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-lg bg-[#121622] border border-[#1d2436] space-y-1.5">
+                <div className="p-4 rounded-none bg-[#121622] border border-[#1d2436] space-y-1.5">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-zinc-300">Search Inverted Index</span>
                     <span className="w-2 h-2 rounded-full bg-[#0b7d55]" />
@@ -327,7 +327,7 @@ export default function OverviewDashboardPage() {
               </div>
 
               {/* Security & RBAC Audit Stream Table */}
-              <div className="rounded-lg render-card p-5 space-y-4">
+              <div className="rounded-none render-card p-5 space-y-4">
                 <div className="flex items-center justify-between border-b border-[#1a2030] pb-3">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-[#968dfa]" />
@@ -415,7 +415,7 @@ export default function OverviewDashboardPage() {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/explorer"
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg btn-render-primary text-xs font-semibold shadow-md group"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-none btn-render-primary text-xs font-semibold shadow-md group"
                   >
                     <Database className="w-3.5 h-3.5 text-[#b193e0]" />
                     <span>Launch Data Explorer</span>
@@ -426,7 +426,7 @@ export default function OverviewDashboardPage() {
 
               {/* 4 Standard Metrics Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-5 rounded-lg render-card space-y-2">
+                <div className="p-5 rounded-none render-card space-y-2">
                   <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
                     <span>TOTAL INDEXED RECORDS</span>
                     <Database className="w-4 h-4 text-[#968dfa]" />
@@ -440,7 +440,7 @@ export default function OverviewDashboardPage() {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-lg render-card space-y-2">
+                <div className="p-5 rounded-none render-card space-y-2">
                   <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
                     <span>PORTFOLIO REVENUE</span>
                     <TrendingUp className="w-4 h-4 text-[#0b7d55]" />
@@ -453,7 +453,7 @@ export default function OverviewDashboardPage() {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-lg mistral-card space-y-2">
+                <div className="p-5 rounded-none mistral-card space-y-2">
                   <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
                     <span>QUERY EXECUTION P95</span>
                     <Zap className="w-4 h-4 text-[#ff8204]" />
@@ -467,7 +467,7 @@ export default function OverviewDashboardPage() {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-lg render-card space-y-2">
+                <div className="p-5 rounded-none render-card space-y-2">
                   <div className="flex items-center justify-between text-xs text-[#a1a1aa] font-mono">
                     <span>CONNECTED LAKES</span>
                     <Layers className="w-4 h-4 text-[#968dfa]" />
@@ -485,9 +485,9 @@ export default function OverviewDashboardPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Link
                   href="/explorer"
-                  className="p-5 rounded-lg render-card space-y-3 group"
+                  className="p-5 rounded-none render-card space-y-3 group"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-[#6c35f5]/15 border border-[#968dfa]/30 flex items-center justify-center text-[#968dfa] group-hover:scale-105 transition-transform">
+                  <div className="w-9 h-9 rounded-none bg-[#6c35f5]/15 border border-[#968dfa]/30 flex items-center justify-center text-[#968dfa] group-hover:scale-105 transition-transform">
                     <Database className="w-5 h-5" />
                   </div>
                   <div>
@@ -502,9 +502,9 @@ export default function OverviewDashboardPage() {
 
                 <Link
                   href="/search"
-                  className="p-5 rounded-lg mistral-card space-y-3 group"
+                  className="p-5 rounded-none mistral-card space-y-3 group"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-[#ff8204]/15 border border-[#ff8204]/35 flex items-center justify-center text-[#ffa033] group-hover:scale-105 transition-transform">
+                  <div className="w-9 h-9 rounded-none bg-[#ff8204]/15 border border-[#ff8204]/35 flex items-center justify-center text-[#ffa033] group-hover:scale-105 transition-transform">
                     <Search className="w-5 h-5" />
                   </div>
                   <div>
@@ -519,9 +519,9 @@ export default function OverviewDashboardPage() {
 
                 <Link
                   href="/analytics"
-                  className="p-5 rounded-lg render-card space-y-3 group"
+                  className="p-5 rounded-none render-card space-y-3 group"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-[#0b7d55]/15 border border-[#0b7d55]/30 flex items-center justify-center text-[#0b7d55] group-hover:scale-105 transition-transform">
+                  <div className="w-9 h-9 rounded-none bg-[#0b7d55]/15 border border-[#0b7d55]/30 flex items-center justify-center text-[#0b7d55] group-hover:scale-105 transition-transform">
                     <BarChart3 className="w-5 h-5" />
                   </div>
                   <div>
@@ -538,7 +538,7 @@ export default function OverviewDashboardPage() {
           )}
 
           {/* Connected Data Lakes & Health Status Table (Visible to All) */}
-          <div className="rounded-lg render-card p-5 space-y-4">
+          <div className="rounded-none render-card p-5 space-y-4">
             <div className="flex items-center justify-between border-b border-[#1a2030] pb-3">
               <div className="flex items-center gap-2">
                 <Server className="w-4 h-4 text-[#968dfa]" />
