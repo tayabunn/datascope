@@ -6,6 +6,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import FilterBuilder from "@/components/filters/FilterBuilder";
 import DataTable from "@/components/table/DataTable";
+import ExplorerSummaryBar from "@/components/explorer/ExplorerSummaryBar";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
@@ -307,6 +308,13 @@ function ExplorerContent() {
               </button>
             </div>
           </div>
+
+          {/* Executive KPI & Revenue Summary Bar */}
+          <ExplorerSummaryBar
+            records={records}
+            totalCount={pagination.totalCount}
+            isLoading={isLoading}
+          />
 
           {/* Filter Builder Component */}
           <FilterBuilder />
