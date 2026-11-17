@@ -178,7 +178,7 @@ ON business_records (revenue DESC NULLS LAST);`,
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-3">
             <Link
               href="/explorer"
-              className="flex items-center gap-2 px-6 py-3.5 rounded-lg btn-render-primary text-xs font-semibold group shadow-lg shadow-[#6c35f5]/25"
+              className="flex items-center gap-2 px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold group shadow-lg shadow-[#6c35f5]/25"
             >
               <Database className="w-4 h-4 text-[#b193e0]" />
               <span>Test Live in Data Explorer</span>
@@ -186,7 +186,7 @@ ON business_records (revenue DESC NULLS LAST);`,
             </Link>
             <Link
               href="/overview"
-              className="flex items-center gap-2 px-5 py-3.5 rounded-lg btn-render-secondary text-xs font-semibold"
+              className="flex items-center gap-2 px-5 py-3.5 rounded-none btn-render-secondary text-xs font-semibold"
             >
               <Activity className="w-4 h-4 text-[#968dfa]" />
               <span>Inspect Mission Control Telemetry</span>
@@ -212,10 +212,10 @@ ON business_records (revenue DESC NULLS LAST);`,
             {architecturalLayers.map((layer, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-lg render-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
+                className="p-6 rounded-none render-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
               >
                 <div className="flex items-start gap-4">
-                  <div className="text-xl font-mono font-bold text-zinc-600 px-2 py-1 rounded bg-[#090b11] border border-[#1a2030]">
+                  <div className="text-xl font-mono font-bold text-zinc-600 px-2 py-1 rounded-none bg-[#090b11] border border-[#1a2030]">
                     {layer.step}
                   </div>
                   <div className="space-y-1.5">
@@ -261,7 +261,7 @@ ON business_records (revenue DESC NULLS LAST);`,
             {indexingStrategies.map((idxItem, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-lg render-card flex flex-col justify-between space-y-4"
+                className="p-6 rounded-none render-card flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between gap-2">
@@ -282,7 +282,7 @@ ON business_records (revenue DESC NULLS LAST);`,
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-lg bg-[#080a10] border border-[#1a2030] font-mono text-[11px] text-indigo-300 overflow-x-auto">
+                <div className="p-3.5 rounded-none bg-[#080a10] border border-[#1a2030] font-mono text-[11px] text-indigo-300 overflow-x-auto">
                   <pre>
                     <code>{idxItem.sql}</code>
                   </pre>
@@ -306,7 +306,7 @@ ON business_records (revenue DESC NULLS LAST);`,
             </p>
           </div>
 
-          <div className="rounded-lg bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
+          <div className="rounded-none bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs font-mono">
                 <thead className="bg-[#0f1320] text-zinc-400 uppercase text-[10px] border-b border-[#1b2234]">
@@ -350,7 +350,7 @@ ON business_records (revenue DESC NULLS LAST);`,
 
         {/* CTA Bottom Banner */}
         <section className="py-16 px-4 w-[90%] mx-auto text-center">
-          <div className="p-10 sm:p-12 rounded-lg render-card space-y-6">
+          <div className="p-10 sm:p-12 rounded-none render-card space-y-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
               Experience the Architecture in Real Time
             </h2>
@@ -360,7 +360,7 @@ ON business_records (revenue DESC NULLS LAST);`,
             <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
               <Link
                 href="/explorer"
-                className="px-6 py-3.5 rounded-lg btn-render-primary text-xs font-semibold flex items-center gap-2"
+                className="px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold flex items-center gap-2"
               >
                 <Database className="w-4 h-4 text-[#b193e0]" />
                 <span>Launch Live Data Explorer</span>
@@ -368,7 +368,7 @@ ON business_records (revenue DESC NULLS LAST);`,
               </Link>
               <Link
                 href="/overview"
-                className="px-6 py-3.5 rounded-lg btn-render-secondary text-xs font-semibold"
+                className="px-6 py-3.5 rounded-none btn-render-secondary text-xs font-semibold"
               >
                 Admin Mission Control
               </Link>
