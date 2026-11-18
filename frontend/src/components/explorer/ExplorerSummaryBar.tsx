@@ -96,17 +96,17 @@ export default function ExplorerSummaryBar({
       <div className="p-3.5 rounded-none render-card space-y-1">
         <div className="flex items-center justify-between text-zinc-400 text-[10px] font-mono uppercase tracking-wider">
           <span className="flex items-center gap-1">
-            <Activity className="w-3 h-3 text-[#968dfa]" />
+            <Activity className="w-3 h-3 text-[#38bdf8]" />
             <span>Active vs Pending</span>
           </span>
-          <span className="text-indigo-400 font-semibold">
+          <span className="text-[#38bdf8] font-semibold">
             {records.length > 0 ? Math.round((activeCount / records.length) * 100) : 0}% Active
           </span>
         </div>
         <div className="text-xl sm:text-2xl font-bold font-mono text-white">
           {activeCount}{" "}
           <span className="text-xs font-normal text-zinc-500 font-sans">Active</span> /{" "}
-          <span className="text-amber-400">{pendingCount}</span>{" "}
+          <span className="text-[#38bdf8]">{pendingCount}</span>{" "}
           <span className="text-xs font-normal text-zinc-500 font-sans">Pending</span>
         </div>
         <div className="w-full bg-[#161c2a] h-1.5 rounded-none overflow-hidden flex">
@@ -117,7 +117,7 @@ export default function ExplorerSummaryBar({
             }}
           />
           <div
-            className="bg-amber-500 h-full"
+            className="bg-[#1e6aff] h-full"
             style={{
               width: `${records.length > 0 ? (pendingCount / records.length) * 100 : 0}%`,
             }}
@@ -126,15 +126,15 @@ export default function ExplorerSummaryBar({
       </div>
 
       {/* 4. Actionable Priority Alert */}
-      <div className="p-3.5 rounded-none mistral-card space-y-1">
+      <div className="p-3.5 rounded-none genesis-card space-y-1">
         <div className="flex items-center justify-between text-zinc-400 text-[10px] font-mono uppercase tracking-wider">
           <span className="flex items-center gap-1">
-            <AlertTriangle className="w-3 h-3 text-[#ff8204]" />
+            <AlertTriangle className="w-3 h-3 text-[#38bdf8]" />
             <span>Priority Deals</span>
           </span>
-          <span className="text-[#ffa033] font-semibold">{urgentCount} Urgent</span>
+          <span className="text-[#38bdf8] font-semibold">{urgentCount} Urgent</span>
         </div>
-        <div className="text-xl sm:text-2xl font-bold font-mono text-[#ffa033]">
+        <div className="text-xl sm:text-2xl font-bold font-mono text-[#38bdf8]">
           {urgentCount + highCount}{" "}
           <span className="text-xs font-normal text-zinc-400 font-sans">require focus</span>
         </div>

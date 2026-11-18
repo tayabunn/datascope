@@ -134,10 +134,10 @@ export default function DataExplorerShowcasePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-[#f1f3f7] flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
-      {/* Background Glows */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1050px] h-[520px] bg-[#6c35f5]/15 blur-[160px] pointer-events-none rounded-full" />
-      <div className="fixed top-[450px] right-0 w-[480px] h-[480px] bg-[#ff8204]/10 blur-[150px] pointer-events-none rounded-full" />
+    <div className="min-h-screen bg-[#001225] text-[#ffffff] flex flex-col selection:bg-[#1e6aff]/30 selection:text-[#38bdf8]">
+      {/* Background Glows (GENESIS Architectural Electric Blue & Deep Midnight) */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1050px] h-[520px] bg-[#1e6aff]/15 blur-[160px] pointer-events-none rounded-full" />
+      <div className="fixed top-[450px] right-0 w-[480px] h-[480px] bg-[#002b5c]/25 blur-[150px] pointer-events-none rounded-full" />
 
       {/* Shared Navigation Header */}
       <PublicHeader />
@@ -145,28 +145,28 @@ export default function DataExplorerShowcasePage() {
       {/* Hero Section */}
       <main className="flex-1">
         <section className="relative pt-16 pb-14 px-4 w-[90%] mx-auto text-center space-y-5">
-          <div className="mistral-pill mb-2 shadow-sm inline-flex items-center gap-2">
-            <Sparkles className="w-3.5 h-3.5 text-[#ff8204] animate-pulse" />
+          <div className="genesis-badge mb-2 shadow-sm inline-flex items-center gap-2">
+            <Sparkles className="w-3.5 h-3.5 text-[#38bdf8] animate-pulse" />
             <span>Application Experience</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#fafaf4] tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-bold text-[#ffffff] tracking-tight leading-tight">
             High-Throughput Enterprise <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#968dfa] via-[#6c35f5] to-[#ff8204]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#38bdf8] to-[#1e6aff]">
               Data Explorer
             </span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-[#a1a1aa] text-sm sm:text-base leading-relaxed">
+          <p className="max-w-2xl mx-auto text-[#878787] text-sm sm:text-base leading-relaxed">
             Purpose-built to inspect, query, and dissect 100,000+ enterprise deals with instantaneous responsiveness, dynamic column virtualization, and sub-20ms database queries.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-3">
             <Link
               href="/explorer"
-              className="flex items-center gap-2 px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold group shadow-lg shadow-[#6c35f5]/25"
+              className="flex items-center gap-2 px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold group shadow-lg shadow-[#1e6aff]/25 text-white"
             >
-              <Database className="w-4 h-4 text-[#b193e0]" />
+              <Database className="w-4 h-4 text-white" />
               <span>Launch Live Data Explorer (100k Rows)</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </Link>
@@ -174,7 +174,7 @@ export default function DataExplorerShowcasePage() {
               href="/features"
               className="flex items-center gap-2 px-5 py-3.5 rounded-none btn-render-secondary text-xs font-semibold"
             >
-              <Layers className="w-4 h-4 text-[#968dfa]" />
+              <Layers className="w-4 h-4 text-[#38bdf8]" />
               <span>Review Platform Features</span>
             </Link>
           </div>
@@ -183,7 +183,7 @@ export default function DataExplorerShowcasePage() {
         {/* Interactive Mock Table Preview with Controls */}
         <section className="py-8 px-4 w-[90%] mx-auto">
           <div className="text-center space-y-2 mb-6">
-            <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#38bdf8] font-semibold">
               Live Interactive Interface
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -191,21 +191,21 @@ export default function DataExplorerShowcasePage() {
             </h2>
           </div>
 
-          <div className="rounded-none bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
+          <div className="rounded-none bg-[#051329] border border-[#132a4a] shadow-2xl overflow-hidden">
             {/* Control Bar: Filter Tabs & Telemetry */}
-            <div className="p-4 bg-[#0e121d] border-b border-[#1b2234] flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div className="p-4 bg-[#001225] border-b border-[#132a4a] flex flex-wrap items-center justify-between gap-3 text-xs">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-mono text-zinc-400 text-xs mr-2">
                   Dataset: <strong className="text-white">100,000 Records</strong>
                 </span>
 
                 {/* Category Filter Tabs */}
-                <div className="flex items-center gap-1 bg-[#141926] p-1 rounded-none border border-[#202738]">
+                <div className="flex items-center gap-1 bg-[#051329] p-1 rounded-none border border-[#132a4a]">
                   <button
                     onClick={() => setActiveTab("all")}
                     className={`px-2.5 py-1 rounded-none text-[11px] font-medium transition-colors ${
                       activeTab === "all"
-                        ? "bg-[#6c35f5] text-white"
+                        ? "bg-[#1e6aff] text-white"
                         : "text-zinc-400 hover:text-white"
                     }`}
                   >
@@ -215,7 +215,7 @@ export default function DataExplorerShowcasePage() {
                     onClick={() => setActiveTab("enterprise")}
                     className={`px-2.5 py-1 rounded-none text-[11px] font-medium transition-colors ${
                       activeTab === "enterprise"
-                        ? "bg-[#6c35f5] text-white"
+                        ? "bg-[#1e6aff] text-white"
                         : "text-zinc-400 hover:text-white"
                     }`}
                   >
@@ -225,7 +225,7 @@ export default function DataExplorerShowcasePage() {
                     onClick={() => setActiveTab("finance")}
                     className={`px-2.5 py-1 rounded-none text-[11px] font-medium transition-colors ${
                       activeTab === "finance"
-                        ? "bg-[#6c35f5] text-white"
+                        ? "bg-[#1e6aff] text-white"
                         : "text-zinc-400 hover:text-white"
                     }`}
                   >
@@ -235,7 +235,7 @@ export default function DataExplorerShowcasePage() {
                     onClick={() => setActiveTab("tech")}
                     className={`px-2.5 py-1 rounded-none text-[11px] font-medium transition-colors ${
                       activeTab === "tech"
-                        ? "bg-[#6c35f5] text-white"
+                        ? "bg-[#1e6aff] text-white"
                         : "text-zinc-400 hover:text-white"
                     }`}
                   >
@@ -244,8 +244,8 @@ export default function DataExplorerShowcasePage() {
                 </div>
 
                 {/* Telemetry Indicator */}
-                <span className="text-[10px] font-mono px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 flex items-center gap-1.5 ml-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <span className="genesis-badge-emerald ml-2">
+                  <span className="w-1.5 h-1.5 rounded-none bg-emerald-400 animate-pulse" />
                   P95: 14.2ms
                 </span>
               </div>
@@ -345,7 +345,7 @@ export default function DataExplorerShowcasePage() {
                       </td>
                       <td className="px-4">
                         <span
-                          className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${
+                          className={`px-2 py-0.5 rounded-none text-[10px] font-semibold border ${
                             rec.status === "Active"
                               ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25"
                               : rec.status === "Pending"
@@ -394,10 +394,10 @@ export default function DataExplorerShowcasePage() {
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-none render-card space-y-3 flex flex-col justify-between"
+                  className="p-6 rounded-none genesis-card space-y-3 flex flex-col justify-between"
                 >
                   <div className="space-y-3">
-                    <div className="w-10 h-10 rounded-none bg-[#6c35f5]/15 border border-[#968dfa]/30 flex items-center justify-center text-[#968dfa]">
+                    <div className="w-10 h-10 rounded-none bg-[#001225] border border-[#1e6aff]/40 flex items-center justify-center text-[#38bdf8]">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h3 className="text-base font-semibold text-[#fafaf4]">
@@ -415,7 +415,7 @@ export default function DataExplorerShowcasePage() {
 
         {/* CTA Bottom Banner */}
         <section className="py-16 px-4 w-[90%] mx-auto text-center">
-          <div className="p-10 sm:p-12 rounded-none render-card space-y-6">
+          <div className="p-10 sm:p-12 rounded-none genesis-card space-y-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
               Ready to Query 100,000 Records?
             </h2>
@@ -425,9 +425,9 @@ export default function DataExplorerShowcasePage() {
             <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
               <Link
                 href="/explorer"
-                className="px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold flex items-center gap-2"
+                className="px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold flex items-center gap-2 text-white"
               >
-                <Database className="w-4 h-4 text-[#b193e0]" />
+                <Database className="w-4 h-4 text-white" />
                 <span>Launch Live Data Explorer</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>

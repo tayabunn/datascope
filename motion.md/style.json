@@ -1,0 +1,134 @@
+{
+  "background": {
+    "color": "#101013",
+    "status": "inferred"
+  },
+  "objects": [
+    {
+      "id": "text-0",
+      "parent": null,
+      "role": "OCR 观测：b Lovable",
+      "kind": "text",
+      "anchor": "center",
+      "coordinateSpace": "canvas",
+      "appearance": {
+        "status": "unknown"
+      },
+      "motionMechanism": "OCR samples explain only text and combined bounding boxes, without inferring visibility or layer identity.",
+      "replaceable": [],
+      "visualGroup": null
+    },
+    {
+      "id": "text-1",
+      "parent": null,
+      "role": "OCR 观测：CREATE",
+      "kind": "text",
+      "anchor": "center",
+      "coordinateSpace": "canvas",
+      "appearance": {
+        "status": "unknown"
+      },
+      "motionMechanism": "OCR samples explain only text and combined bounding boxes, without inferring visibility or layer identity.",
+      "replaceable": [],
+      "visualGroup": null
+    },
+    {
+      "id": "text-2",
+      "parent": null,
+      "role": "OCR 观测：Hey Lovable, design",
+      "kind": "text",
+      "anchor": "center",
+      "coordinateSpace": "canvas",
+      "appearance": {
+        "status": "unknown"
+      },
+      "motionMechanism": "OCR samples explain only text and combined bounding boxes, without inferring visibility or layer identity.",
+      "replaceable": [],
+      "visualGroup": null
+    },
+    {
+      "id": "role-0",
+      "parent": null,
+      "kind": "semantic-role",
+      "role": "大标题",
+      "status": "inferred"
+    },
+    {
+      "id": "role-1",
+      "parent": null,
+      "kind": "semantic-role",
+      "role": "材质片段",
+      "status": "inferred"
+    },
+    {
+      "id": "role-2",
+      "parent": null,
+      "kind": "semantic-role",
+      "role": "网页卡片",
+      "status": "inferred"
+    },
+    {
+      "id": "role-3",
+      "parent": null,
+      "kind": "semantic-role",
+      "role": "输入框",
+      "status": "inferred"
+    },
+    {
+      "id": "role-4",
+      "parent": null,
+      "kind": "semantic-role",
+      "role": "选项组",
+      "status": "inferred"
+    },
+    {
+      "id": "role-5",
+      "parent": null,
+      "kind": "semantic-role",
+      "role": "批注",
+      "status": "inferred"
+    }
+  ],
+  "palette": [
+    {
+      "hex": "#101013",
+      "status": "inferred"
+    },
+    {
+      "hex": "#ffffff",
+      "status": "inferred"
+    },
+    {
+      "hex": "#ed3b99",
+      "status": "inferred"
+    },
+    {
+      "hex": "#778df2",
+      "status": "inferred"
+    },
+    {
+      "hex": "#fb6740",
+      "status": "inferred"
+    }
+  ],
+  "typography": {
+    "description": "Sans-serif interface text with a clear size hierarchy",
+    "status": "inferred",
+    "fontFiles": [],
+    "fallback": "Arial / Georgia / monospace"
+  },
+  "relationships": [
+    {
+      "rule": "The first section builds aesthetic expectations through different design dimensions, and the second explains how they are achieved through actual interactions",
+      "status": "inferred"
+    },
+    {
+      "rule": "Alternate large design images with small input cards; show the corresponding revision only after the interaction",
+      "status": "inferred"
+    },
+    {
+      "rule": "The ending reconnects with the opening message about time to create contrast",
+      "status": "inferred"
+    }
+  ]
+}

@@ -469,7 +469,7 @@ export default function VoiceSearchModal({
               {filterConfig && (
                 <div className="space-y-1.5">
                   <span className="text-[11px] font-mono uppercase text-zinc-400 flex items-center gap-1">
-                    <Sparkles className="w-3.5 h-3.5 text-[#ffa033]" />
+                    <Sparkles className="w-3.5 h-3.5 text-[#38bdf8]" />
                     Generated Query Conditions:
                   </span>
                   <div className="flex flex-wrap gap-1.5 p-3 rounded-none bg-[#111624] border border-[#1b2234]">
@@ -499,7 +499,7 @@ export default function VoiceSearchModal({
                       </span>
                     )}
                     {filterConfig.search && (
-                      <span className="text-[11px] font-mono px-2 py-0.5 rounded-none bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded-none bg-[#1e6aff]/20 text-[#38bdf8] border border-[#1e6aff]/40">
                         Keyword: <strong>{filterConfig.search}</strong>
                       </span>
                     )}

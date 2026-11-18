@@ -12,50 +12,49 @@
 }
 
 :root {
-  /* Surface Foundations (Render Obsidian & Mistral Dark) */
-  --background: #080a10;
-  --foreground: #fafaf4;
-  --card: #0c0f18;
-  --card-border: #1a2030;
-  --popover: #0c0f18;
+  /* Surface Foundations (GENESIS High-Performance Digital Architecture) */
+  --background: #001225;
+  --foreground: #ffffff;
+  --card: #051329;
+  --card-border: #132a4a;
+  --popover: #051329;
 
-  /* Render Color Tokens */
-  --color-iris-700: #581ccb;
-  --color-hills-mid: #6c35f5;
-  --color-hills-warm: #968dfa;
-  --color-hills-warm-2: #b193e0;
-  --color-product-success: #0b7d55;
-  --color-lime-600: #306605;
-  --color-blue-600: #005e9e;
-
-  /* Mistral Color Tokens */
-  --color-mistral-amber: #ff8204;
-  --color-mistral-amber-light: #ffa033;
-  --color-mistral-dark: #1a1a1e;
-  --color-mistral-gray: #a1a1aa;
-  --color-mistral-paper: #fafaf4;
-  --color-mistral-bg: #f1f1f3;
+  /* GENESIS Architectural Color Tokens */
+  --color-genesis-navy: #001225;
+  --color-genesis-navy-dark: #000a17;
+  --color-genesis-navy-surface: #051329;
+  --color-genesis-navy-border: #132a4a;
+  --color-genesis-blue: #1e6aff;
+  --color-genesis-blue-electric: #0055ff;
+  --color-genesis-blue-deep: #0000ee;
+  --color-genesis-sky: #38bdf8;
+  --color-genesis-slate: #878787;
+  --color-genesis-light: #f7f7f7;
+  --color-product-success: #10b981;
 
   /* Semantic UI Tokens */
-  --primary: #6c35f5; /* Render Iris */
+  --primary: #1e6aff; /* GENESIS Electric Blue */
   --primary-foreground: #ffffff;
-  --secondary: #141926;
-  --secondary-foreground: #fafaf4;
-  --accent: #ff8204; /* Mistral Amber */
-  --accent-foreground: #ffffff;
-  --muted: #151b2a;
-  --muted-foreground: #a1a1aa;
-  --border: #1a2030;
-  --ring: #968dfa;
+  --secondary: #091b36;
+  --secondary-foreground: #f7f7f7;
+  --accent: #38bdf8; /* GENESIS Sky Accent */
+  --accent-foreground: #001225;
+  --muted: #0c203d;
+  --muted-foreground: #878787;
+  --border: #132a4a;
+  --ring: #1e6aff;
 
-  /* Render Elevation Shadows (from Render Specification) */
-  --shadow-render-sm: 0 0 0 1px rgba(150, 141, 250, 0.34) inset;
-  --shadow-render-md: 0 0 0 3px rgba(150, 141, 250, 0.14), 0 10px 24px -14px rgba(0, 0, 0, 0.7);
-  --shadow-render-lg: 0 1px 1px 0px rgba(0, 0, 0, 0.3), 0 10px 12px 0px rgba(0, 0, 0, 0.7);
+  /* GENESIS Elevation Shadows (Precision 1px Architectural Insets) */
+  --shadow-genesis-sm: 0 0 0 1px rgba(30, 106, 255, 0.25) inset;
+  --shadow-genesis-md: 0 0 0 1px rgba(56, 189, 248, 0.35) inset, 0 8px 24px -6px rgba(0, 18, 37, 0.85);
+  --shadow-genesis-lg: 0 1px 3px 0 rgba(0, 18, 37, 0.6), 0 12px 28px -6px rgba(0, 18, 37, 0.9);
 
-  /* Mistral Amber Elevation Shadows */
-  --shadow-mistral-sm: 0 0 0 1px rgba(255, 130, 4, 0.3) inset;
-  --shadow-mistral-md: 0 0 0 3px rgba(255, 130, 4, 0.15), 0 10px 24px -10px rgba(255, 130, 4, 0.25);
+  /* Legacy Binding Maps for Component Compatibility */
+  --shadow-render-sm: var(--shadow-genesis-sm);
+  --shadow-render-md: var(--shadow-genesis-md);
+  --shadow-render-lg: var(--shadow-genesis-lg);
+  --shadow-mistral-sm: var(--shadow-genesis-sm);
+  --shadow-mistral-md: var(--shadow-genesis-md);
 
   /* Motion & Easing Curves */
   --ease-render: cubic-bezier(0.16, 1, 0.3, 1);
@@ -110,125 +109,151 @@ input, button, select, textarea {
   font-weight: 700 !important;
 }
 
-/* Enforce rounded-none (0px) border radius for all buttons, links, inputs, and cards */
-button:not(.rounded-full),
-[role="button"]:not(.rounded-full),
-input:not(.rounded-full),
-select:not(.rounded-full),
-textarea:not(.rounded-full),
+/* Enforce rounded-none (0px) border radius globally across all elements */
+button,
+[role="button"],
+input,
+select,
+textarea,
 .btn,
 .card,
 .render-card,
 .mistral-card,
+.genesis-card,
 .btn-render-primary,
 .btn-render-secondary,
-.btn-mistral-amber {
+.btn-mistral-amber,
+.btn-genesis-primary,
+.btn-genesis-secondary,
+.mistral-pill,
+.render-pill,
+.genesis-badge,
+.badge,
+.chip,
+.rounded,
+.rounded-sm,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-full {
   border-radius: 0 !important;
 }
 
 /* =========================================================================
-   Render x Mistral Design System Components & Elevation Utilities
+   GENESIS High-Performance Digital Architecture Components & Utilities
    ========================================================================= */
 
-/* Render Iris Elevation Cards */
-.render-card {
+/* GENESIS Architectural Elevation Cards */
+.render-card,
+.genesis-card {
   background-color: var(--card);
   border: 1px solid var(--card-border);
-  box-shadow: var(--shadow-render-sm);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-genesis-sm);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.render-card:hover {
-  border-color: rgba(150, 141, 250, 0.45);
-  box-shadow: var(--shadow-render-md);
+.render-card:hover,
+.genesis-card:hover {
+  border-color: rgba(30, 106, 255, 0.55);
+  box-shadow: var(--shadow-genesis-md);
   transform: translateY(-2px);
 }
 
-/* Mistral Amber Elevation Cards */
+/* GENESIS Contrast Elevation Cards */
 .mistral-card {
   background-color: var(--card);
   border: 1px solid var(--card-border);
-  box-shadow: var(--shadow-mistral-sm);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-genesis-sm);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .mistral-card:hover {
-  border-color: rgba(255, 130, 4, 0.5);
-  box-shadow: var(--shadow-mistral-md);
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: var(--shadow-genesis-md);
   transform: translateY(-2px);
 }
 
-/* Render Iris Primary CTA Button */
-.btn-render-primary {
-  background: linear-gradient(135deg, #6c35f5 0%, #581ccb 100%);
+/* GENESIS Electric Blue Primary CTA Button */
+.btn-render-primary,
+.btn-genesis-primary {
+  background: linear-gradient(135deg, #1e6aff 0%, #0047d4 100%);
   color: #ffffff;
-  border: 1px solid rgba(150, 141, 250, 0.35);
-  box-shadow: 0 0 0 1px rgba(150, 141, 250, 0.2) inset, 0 8px 18px -4px rgba(108, 53, 245, 0.4);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.25) inset, 0 8px 18px -4px rgba(30, 106, 255, 0.45);
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  font-weight: 600;
 }
-.btn-render-primary:hover {
-  background: linear-gradient(135deg, #7c48f7 0%, #6c35f5 100%);
-  border-color: rgba(150, 141, 250, 0.65);
-  box-shadow: 0 0 0 1px rgba(150, 141, 250, 0.4) inset, 0 12px 26px -4px rgba(108, 53, 245, 0.55);
+.btn-render-primary:hover,
+.btn-genesis-primary:hover {
+  background: linear-gradient(135deg, #2b74ff 0%, #1e6aff 100%);
+  border-color: rgba(56, 189, 248, 0.75);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4) inset, 0 12px 24px -4px rgba(30, 106, 255, 0.55);
   transform: translateY(-1px);
 }
 
-/* Mistral Amber Energy CTA Button */
+/* GENESIS Sky / Technical Accent Button */
 .btn-mistral-amber {
-  background: linear-gradient(135deg, #ff8204 0%, #e66f00 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   color: #ffffff;
-  border: 1px solid rgba(255, 130, 4, 0.45);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22) inset, 0 8px 18px -4px rgba(255, 130, 4, 0.45);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22) inset, 0 8px 18px -4px rgba(2, 132, 199, 0.45);
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  font-weight: 600;
 }
 .btn-mistral-amber:hover {
-  background: linear-gradient(135deg, #ffa033 0%, #ff8204 100%);
-  border-color: rgba(255, 130, 4, 0.75);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35) inset, 0 12px 26px -4px rgba(255, 130, 4, 0.6);
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+  border-color: rgba(56, 189, 248, 0.75);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35) inset, 0 12px 24px -4px rgba(2, 132, 199, 0.6);
   transform: translateY(-1px);
 }
 
-/* Developer Secondary Ghost Button */
-.btn-render-secondary {
-  background-color: #121624;
-  color: #fafaf4;
-  border: 1px solid #1f273c;
+/* GENESIS Developer Secondary Ghost Button */
+.btn-render-secondary,
+.btn-genesis-secondary {
+  background-color: #071529;
+  color: #f7f7f7;
+  border: 1px solid #183359;
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  font-weight: 500;
 }
-.btn-render-secondary:hover {
-  background-color: #1a2033;
-  border-color: #2e3b59;
+.btn-render-secondary:hover,
+.btn-genesis-secondary:hover {
+  background-color: #0d2445;
+  border-color: #38bdf8;
   color: #ffffff;
   transform: translateY(-1px);
 }
 
-/* Badges & Status Pills */
-.mistral-pill {
+/* Badges & Status Pills (Strictly rounded-none) */
+.mistral-pill,
+.render-pill,
+.genesis-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
   padding: 0.25rem 0.625rem;
-  border-radius: 9999px;
-  background-color: rgba(255, 130, 4, 0.12);
-  color: #ffa033;
-  border: 1px solid rgba(255, 130, 4, 0.32);
+  border-radius: 0 !important;
+  background-color: rgba(0, 18, 37, 0.85);
+  color: #38bdf8;
+  border: 1px solid rgba(30, 106, 255, 0.35);
   font-size: 0.6875rem;
   font-family: var(--font-mono);
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 
-.render-pill {
+.genesis-badge-emerald {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.25rem 0.625rem;
-  border-radius: 9999px;
-  background-color: rgba(108, 53, 245, 0.12);
-  color: #b193e0;
-  border: 1px solid rgba(150, 141, 250, 0.3);
+  padding: 0.2rem 0.55rem;
+  border-radius: 0 !important;
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.35);
   font-size: 0.6875rem;
   font-family: var(--font-mono);
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 /* =========================================================================
@@ -424,7 +449,7 @@ blockquote, .typography-blockquote {
 .animate-progress-fast {
   position: absolute;
   height: 100%;
-  background: linear-gradient(90deg, #6c35f5, #968dfa, #ff8204);
+  background: linear-gradient(90deg, #1e6aff, #38bdf8, #0055ff);
   animation: progress-indeterminate 1.5s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
 }
 

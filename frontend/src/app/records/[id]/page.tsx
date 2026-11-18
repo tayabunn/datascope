@@ -139,7 +139,7 @@ export default function RecordDetailPage({
                       {record.recordCode}
                     </span>
                     <span
-                      className={`text-xs font-mono font-semibold px-2.5 py-1 rounded-full border ${
+                      className={`text-xs font-mono font-semibold px-2.5 py-1 rounded-none border ${
                         record.status === "Active"
                           ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25"
                           : record.status === "Pending"

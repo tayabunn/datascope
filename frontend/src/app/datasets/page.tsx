@@ -98,7 +98,7 @@ export default function DatasetsPage() {
 
             {user?.role === "Administrator" && (
               <button className="flex items-center gap-1.5 px-4 py-2 rounded-none btn-render-primary text-xs font-semibold shadow-md">
-                <Plus className="w-3.5 h-3.5 text-[#b193e0]" />
+                <Plus className="w-3.5 h-3.5 text-[#38bdf8]" />
                 <span>Register New Dataset</span>
               </button>
             )}
@@ -111,7 +111,7 @@ export default function DatasetsPage() {
               placeholder="Filter datasets by name or vertical..."
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
-              className="w-full px-3.5 py-2 rounded-none bg-[#0c0f18] border border-[#1a2030] text-xs text-[#fafaf4] placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-all"
+              className="w-full px-3.5 py-2 rounded-none bg-[#051329] border border-[#132a4a] text-xs text-[#fafaf4] placeholder-zinc-500 focus:outline-none focus:border-[#1e6aff] transition-all"
             />
           </div>
 
@@ -120,19 +120,19 @@ export default function DatasetsPage() {
             {filtered.map((d) => (
               <div
                 key={d.id}
-                className="p-5 rounded-none render-card flex flex-col justify-between space-y-4 group"
+                className="p-5 rounded-none genesis-card flex flex-col justify-between space-y-4 group"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-[#001225] text-[#38bdf8] border border-[#1e6aff]/40">
                       {d.category}
                     </span>
                     <span
-                      className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full flex items-center gap-1 border ${
+                      className={`text-[10px] font-mono px-2.5 py-0.5 rounded-none flex items-center gap-1 border ${
                         d.accessLevel === "Public"
                           ? "bg-[#0b7d55]/15 text-[#0b7d55] border-[#0b7d55]/30 font-semibold"
                           : d.accessLevel === "Internal"
-                          ? "bg-[#ff8204]/15 text-[#ffa033] border-[#ff8204]/30 font-semibold"
+                          ? "bg-[#001225] text-[#38bdf8] border border-[#38bdf8]/40 font-semibold"
                           : "bg-rose-500/15 text-rose-400 border-rose-500/30 font-semibold"
                       }`}
                     >
@@ -142,7 +142,7 @@ export default function DatasetsPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-base font-semibold text-[#fafaf4] group-hover:text-[#b193e0] transition-colors">
+                    <h3 className="text-base font-semibold text-[#fafaf4] group-hover:text-[#38bdf8] transition-colors">
                       {d.name}
                     </h3>
                     <p className="text-xs text-[#a1a1aa] mt-1 line-clamp-2">
@@ -153,7 +153,7 @@ export default function DatasetsPage() {
                   <div className="space-y-1 text-xs font-mono text-[#a1a1aa] pt-1">
                     <div className="flex items-center justify-between">
                       <span className="text-zinc-500">Total Volume:</span>
-                      <span className="text-[#968dfa] font-bold">
+                      <span className="text-[#38bdf8] font-bold">
                         {d.totalRecords.toLocaleString()} Records
                       </span>
                     </div>

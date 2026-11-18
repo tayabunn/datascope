@@ -59,7 +59,7 @@ export default function AnalyticsPage() {
                 <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Portfolio & Search Analytics
                 </h1>
-                <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-semibold">
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded-none bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-semibold">
                   Server-Side SQL Aggregations
                 </span>
               </div>

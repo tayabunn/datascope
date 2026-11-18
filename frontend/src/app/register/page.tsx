@@ -117,11 +117,11 @@ export default function RegisterPage() {
         </button>
       </div>
 
-      {/* Ambient Radial Background Glows (Render Iris & Mistral Amber) */}
-      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-[#6c35f5]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-[#ff8204]/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient Radial Background Glows (GENESIS Architectural Electric Blue & Deep Midnight) */}
+      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-[#1e6aff]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-[#002b5c]/25 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-md w-full render-card rounded-none p-8 shadow-2xl space-y-6 relative z-10">
+      <div className="max-w-md w-full genesis-card rounded-none p-8 shadow-2xl space-y-6 relative z-10">
         {/* Brand Header with In-Card Back Arrow */}
         <div className="relative text-center space-y-2">
           <button
@@ -135,7 +135,7 @@ export default function RegisterPage() {
 
           <Link
             href="/"
-            className="inline-flex w-12 h-12 rounded-none bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] items-center justify-center mx-auto shadow-lg shadow-[#6c35f5]/30 text-white hover:scale-105 transition-transform p-2.5"
+            className="inline-flex w-12 h-12 rounded-none bg-[#001225] border border-[#1e6aff] items-center justify-center mx-auto shadow-lg shadow-[#1e6aff]/30 text-white hover:scale-105 transition-transform p-2.5"
           >
             <DataScopeLogo className="w-full h-full text-white" />
           </Link>
@@ -150,7 +150,7 @@ export default function RegisterPage() {
         {/* Evaluation Role Presets */}
         <div className="space-y-1.5">
           <label className="text-[11px] font-mono uppercase text-[#a1a1aa] font-semibold flex items-center gap-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#ff8204]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#38bdf8]" />
             Quick Demo Provisioning
           </label>
           <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#121624] border border-[#1f283d] rounded-none">
@@ -181,7 +181,7 @@ export default function RegisterPage() {
                 }
                 className={`py-1.5 px-2 rounded-none text-xs font-medium transition-all text-center ${
                   selectedRole === item.role
-                    ? "bg-[#6c35f5] text-white font-semibold shadow"
+                    ? "bg-[#1e6aff] text-white font-semibold shadow"
                     : "text-[#a1a1aa] hover:text-white"
                 }`}
               >
@@ -225,7 +225,7 @@ export default function RegisterPage() {
                 required
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#051329] border border-[#132a4a] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#1e6aff] transition-colors"
                 placeholder="Sarah Connor"
               />
               <User className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -242,7 +242,7 @@ export default function RegisterPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#051329] border border-[#132a4a] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#1e6aff] transition-colors"
                 placeholder="user@enterprise.internal"
               />
               <Mail className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -259,7 +259,7 @@ export default function RegisterPage() {
                 required
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#051329] border border-[#132a4a] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#1e6aff] transition-colors"
                 placeholder="Global Corp Inc"
               />
               <Building2 className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -276,7 +276,7 @@ export default function RegisterPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#121624] border border-[#1f283d] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-none bg-[#051329] border border-[#132a4a] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#1e6aff] transition-colors"
               />
               <Lock className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
             </div>
@@ -291,12 +291,12 @@ export default function RegisterPage() {
           </button>
         </form>
 
-        <div className="text-center pt-2 border-t border-[#1a2030]">
+        <div className="text-center pt-2 border-t border-[#132a4a]">
           <p className="text-xs text-[#a1a1aa]">
             Already have an enterprise account?{" "}
             <Link
               href="/login"
-              className="text-[#968dfa] hover:text-[#b193e0] font-semibold underline underline-offset-4"
+              className="text-[#38bdf8] hover:text-white font-semibold underline underline-offset-4"
             >
               Sign In
             </Link>

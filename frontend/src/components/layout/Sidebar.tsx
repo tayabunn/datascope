@@ -75,11 +75,11 @@ export default function Sidebar() {
       <div>
         <Link
           href="/"
-          className="h-16 flex items-center gap-3 px-5 border-b border-[#1a2030] hover:bg-[#121622] transition-colors group cursor-pointer block"
+          className="h-16 flex items-center gap-3 px-5 border-b border-[#132a4a] hover:bg-[#071529] transition-colors group cursor-pointer block"
           title="Return to Public Landing Page"
         >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-none bg-gradient-to-br from-[#6c35f5] to-[#581ccb] border border-[#968dfa]/30 flex items-center justify-center shadow-lg shadow-[#6c35f5]/25 text-white font-bold text-lg group-hover:scale-105 transition-transform p-2">
+            <div className="w-9 h-9 rounded-none bg-[#001225] border border-[#1e6aff] flex items-center justify-center shadow-lg shadow-[#1e6aff]/25 text-white font-bold text-lg group-hover:scale-105 transition-transform p-2">
               <DataScopeLogo className="w-full h-full text-white" />
             </div>
             <div>
@@ -87,7 +87,7 @@ export default function Sidebar() {
                 <span className="font-semibold text-white tracking-tight text-base">
                   DataScope
                 </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-none bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 font-semibold">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-none bg-[#001225] text-[#38bdf8] border border-[#1e6aff]/40 font-semibold">
                   PRO
                 </span>
               </div>
@@ -117,15 +117,15 @@ export default function Sidebar() {
                 href={item.href}
                 className={`flex items-center justify-between px-3 py-2 rounded-none text-xs font-medium transition-all group ${
                   isActive
-                    ? "bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 shadow-sm"
-                    : "text-zinc-400 hover:text-zinc-200 hover:bg-[#141926]"
+                    ? "bg-[#091b36] text-[#ffffff] border border-[#1e6aff]/40 shadow-sm"
+                    : "text-zinc-400 hover:text-zinc-200 hover:bg-[#071529]"
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <Icon
                     className={`w-4 h-4 transition-colors ${
                       isActive
-                        ? "text-[#968dfa]"
+                        ? "text-[#38bdf8]"
                         : "text-zinc-500 group-hover:text-zinc-300"
                     }`}
                   />
@@ -139,10 +139,10 @@ export default function Sidebar() {
                   <span
                     className={`text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded-none ${
                       isAdmin && item.badge === "Admin"
-                        ? "bg-[#6c35f5]/25 text-[#b193e0] border border-[#968dfa]/40"
+                        ? "bg-[#1e6aff]/20 text-[#38bdf8] border border-[#1e6aff]/40"
                         : isAdmin && item.badge === "Full Access"
                         ? "bg-[#0b7d55]/15 text-[#0b7d55] border border-[#0b7d55]/30"
-                        : "bg-[#6c35f5]/20 text-[#b193e0] border border-[#968dfa]/30"
+                        : "bg-[#1e6aff]/15 text-[#38bdf8] border border-[#1e6aff]/30"
                     }`}
                   >
                     {item.badge}
@@ -160,13 +160,13 @@ export default function Sidebar() {
             href="/"
             className={`flex items-center justify-between px-3 py-2 rounded-none text-xs font-medium transition-all group ${
               pathname === "/"
-                ? "bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30 shadow-sm"
-                : "text-zinc-400 hover:text-zinc-200 hover:bg-[#141926]"
+                ? "bg-[#091b36] text-[#ffffff] border border-[#1e6aff]/40 shadow-sm"
+                : "text-zinc-400 hover:text-zinc-200 hover:bg-[#071529]"
             }`}
             title="View the public marketing & features landing page"
           >
             <div className="flex items-center gap-2.5">
-              <Globe className="w-4 h-4 text-[#968dfa]" />
+              <Globe className="w-4 h-4 text-[#38bdf8]" />
               <span>Public Landing Page</span>
             </div>
             <ExternalLink className="w-3 h-3 text-zinc-500 group-hover:text-zinc-300" />
@@ -175,14 +175,14 @@ export default function Sidebar() {
       </div>
 
       {/* Authenticated User Profile & Fixed Role Identity */}
-      <div className="p-3 border-t border-[#1a2030] bg-[#090b12]">
-        <div className="p-2.5 rounded-none bg-[#121622] border border-[#1d2436] space-y-2">
+      <div className="p-3 border-t border-[#132a4a] bg-[#000a17]">
+        <div className="p-2.5 rounded-none bg-[#051329] border border-[#132a4a] space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 flex items-center gap-1 font-semibold">
               <ShieldCheck
                 className={`w-3.5 h-3.5 ${
                   isAdmin
-                    ? "text-[#968dfa]"
+                    ? "text-[#38bdf8]"
                     : user?.role === "Data Analyst"
                     ? "text-[#0b7d55]"
                     : "text-zinc-400"
@@ -194,7 +194,7 @@ export default function Sidebar() {
             <span
               className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-none ${
                 isAdmin
-                  ? "bg-[#6c35f5]/25 text-[#b193e0] border border-[#968dfa]/40"
+                  ? "bg-[#1e6aff]/20 text-[#38bdf8] border border-[#1e6aff]/40"
                   : mounted && user?.role === "Data Analyst"
                   ? "bg-[#0b7d55]/15 text-[#0b7d55] border border-[#0b7d55]/30"
                   : "bg-zinc-800 text-zinc-400 border border-zinc-700"
@@ -204,12 +204,12 @@ export default function Sidebar() {
             </span>
           </div>
 
-          <div className="pt-1.5 flex items-center justify-between border-t border-[#1d2436]/60">
+          <div className="pt-1.5 flex items-center justify-between border-t border-[#132a4a]/60">
             <div className="flex items-center gap-2 overflow-hidden">
               <div
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${
                   isAdmin
-                    ? "bg-[#6c35f5]/20 border border-[#968dfa]/40 text-[#b193e0]"
+                    ? "bg-[#1e6aff]/20 border border-[#1e6aff]/40 text-[#38bdf8]"
                     : mounted && user?.role === "Data Analyst"
                     ? "bg-[#0b7d55]/20 border border-[#0b7d55]/40 text-[#0b7d55]"
                     : "bg-zinc-800 border border-zinc-700 text-zinc-300"

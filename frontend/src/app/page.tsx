@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import PublicHeader from "@/components/layout/PublicHeader";
 import PublicFooter from "@/components/layout/PublicFooter";
+import MotionHeroShowcase from "@/components/home/MotionHeroShowcase";
 import {
   Layers,
   Database,
@@ -133,10 +134,10 @@ export default function LandingPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-[#f1f3f7] flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
-      {/* Ambient Radial Background Glows (Render Iris & Mistral Amber) */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[#6c35f5]/15 blur-[160px] pointer-events-none rounded-full" />
-      <div className="fixed top-[400px] right-0 w-[500px] h-[500px] bg-[#ff8204]/10 blur-[150px] pointer-events-none rounded-full" />
+    <div className="min-h-screen bg-[#001225] text-[#ffffff] flex flex-col selection:bg-[#1e6aff]/30 selection:text-[#38bdf8]">
+      {/* Ambient Radial Background Glows (GENESIS Architectural Electric Blue & Deep Midnight) */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[#1e6aff]/10 blur-[170px] pointer-events-none" />
+      <div className="fixed top-[400px] right-0 w-[500px] h-[500px] bg-[#002b5c]/25 blur-[180px] pointer-events-none" />
 
       {/* Public Navigation Header */}
       <PublicHeader />
@@ -147,28 +148,28 @@ export default function LandingPage() {
             1. HERO SECTION: PURPOSE & CORE BUSINESS VALUE
             ========================================================================= */}
         <section className="relative pt-20 pb-8 px-4 w-[90%] mx-auto text-center space-y-6">
-          <div className="mistral-pill mb-2 shadow-sm inline-flex items-center gap-2 rounded-none px-3.5 py-1.5 bg-[#1a140f] border border-[#ff8204]/30 text-[#ffa033] text-xs font-mono">
-            <Sparkles className="w-3.5 h-3.5 text-[#ff8204]" />
+          <div className="genesis-badge mb-2 shadow-sm inline-flex items-center gap-2 rounded-none px-3.5 py-1.5 bg-[#001225] border border-[#1e6aff]/40 text-[#38bdf8] text-xs font-mono">
+            <Sparkles className="w-3.5 h-3.5 text-[#38bdf8]" />
             <span>The Enterprise Hub for High-Volume Revenue, Contracts & Deal Intelligence</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-[#fafaf4] tracking-tight leading-[1.1]">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-[#ffffff] tracking-tight leading-[1.1]">
             Instant Data Discovery. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#968dfa] via-[#6c35f5] to-[#ff8204]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#38bdf8] to-[#1e6aff]">
               Zero Spreadsheets Crashing.
             </span>
           </h1>
 
-          <p className="max-w-3xl mx-auto text-[#a1a1aa] text-sm sm:text-base leading-relaxed font-sans">
+          <p className="max-w-3xl mx-auto text-[#878787] text-sm sm:text-base leading-relaxed font-sans">
             Give your revenue, finance, and operations teams the power to search, filter, and analyze <strong>100,000+ business contracts</strong> in milliseconds. Eliminate slow exports, engineering query bottlenecks, and outdated files with one centralized, audit-ready data platform.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-4">
             <Link
               href="/explorer"
-              className="flex items-center gap-2.5 px-6 py-3.5 rounded-none btn-render-primary text-sm font-semibold group shadow-lg shadow-[#6c35f5]/25"
+              className="flex items-center gap-2.5 px-6 py-3.5 rounded-none btn-render-primary text-sm font-semibold group shadow-lg shadow-[#1e6aff]/25 text-white"
             >
-              <Database className="w-4 h-4 text-[#b193e0]" />
+              <Database className="w-4 h-4 text-[#38bdf8]" />
               <span>Explore Live Demo (100k Contracts)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
@@ -177,7 +178,7 @@ export default function LandingPage() {
               href="/search"
               className="flex items-center gap-2 px-5 py-3.5 rounded-none btn-render-secondary text-sm font-semibold"
             >
-              <SlidersHorizontal className="w-4 h-4 text-[#968dfa]" />
+              <SlidersHorizontal className="w-4 h-4 text-[#38bdf8]" />
               <span>Try Visual Query Builder</span>
             </Link>
 
@@ -185,7 +186,7 @@ export default function LandingPage() {
               href="/features"
               className="flex items-center gap-2 px-5 py-3.5 rounded-none btn-render-secondary text-sm font-semibold"
             >
-              <ShieldCheck className="w-4 h-4 text-[#ffa033]" />
+              <ShieldCheck className="w-4 h-4 text-[#38bdf8]" />
               <span>Security & Governance</span>
             </Link>
           </div>
@@ -200,49 +201,54 @@ export default function LandingPage() {
               <div className="text-3xl sm:text-4xl font-bold font-mono text-emerald-400">
                 &lt; 20ms
               </div>
-              <div className="text-[11px] text-[#a1a1aa] font-mono">
+              <div className="text-[11px] text-[#878787] font-mono">
                 Instant Sub-Second Lookups
               </div>
             </div>
 
             <div className="p-5 rounded-none render-card text-center space-y-1.5">
               <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-                <FileSpreadsheet className="w-3.5 h-3.5 text-indigo-400" />
+                <FileSpreadsheet className="w-3.5 h-3.5 text-[#38bdf8]" />
                 <span>Data Capacity</span>
               </div>
-              <div className="text-3xl sm:text-4xl font-bold font-mono text-[#fafaf4]">
+              <div className="text-3xl sm:text-4xl font-bold font-mono text-[#ffffff]">
                 100,000+
               </div>
-              <div className="text-[11px] text-[#a1a1aa] font-mono">
+              <div className="text-[11px] text-[#878787] font-mono">
                 Records Handled Smoothly
               </div>
             </div>
 
             <div className="p-5 rounded-none render-card text-center space-y-1.5">
               <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-                <Users className="w-3.5 h-3.5 text-[#968dfa]" />
+                <Users className="w-3.5 h-3.5 text-[#38bdf8]" />
                 <span>Self-Serve Access</span>
               </div>
-              <div className="text-3xl sm:text-4xl font-bold font-mono text-[#968dfa]">
+              <div className="text-3xl sm:text-4xl font-bold font-mono text-[#38bdf8]">
                 0 Code
               </div>
-              <div className="text-[11px] text-[#a1a1aa] font-mono">
+              <div className="text-[11px] text-[#878787] font-mono">
                 No SQL or Engineers Needed
               </div>
             </div>
 
             <div className="p-5 rounded-none mistral-card text-center space-y-1.5">
               <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#ff8204]" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#38bdf8]" />
                 <span>Audit Trail</span>
               </div>
-              <div className="text-3xl sm:text-4xl font-bold font-mono text-[#ffa033]">
+              <div className="text-3xl sm:text-4xl font-bold font-mono text-[#38bdf8]">
                 100%
               </div>
-              <div className="text-[11px] text-[#a1a1aa] font-mono">
+              <div className="text-[11px] text-[#878787] font-mono">
                 Tracked & Immutable Logs
               </div>
             </div>
+          </div>
+
+          {/* Interactive Motion Choreography Showcase (Derived from motion.md) */}
+          <div className="pt-6 w-full mx-auto text-left">
+            <MotionHeroShowcase />
           </div>
         </section>
 
@@ -324,8 +330,8 @@ export default function LandingPage() {
         <section className="px-4 w-[90%] mx-auto space-y-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-1.5">
-              <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-none bg-indigo-500" />
+              <span className="text-xs font-mono uppercase tracking-wider text-[#38bdf8] font-semibold flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-none bg-[#1e6aff]" />
                 Interactive Experience
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -338,7 +344,7 @@ export default function LandingPage() {
 
             <Link
               href="/explorer"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#202738] text-xs font-semibold text-[#968dfa] hover:text-white transition-all shrink-0"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-none bg-[#091b36] hover:bg-[#0f2a52] border border-[#142b4d] text-xs font-semibold text-[#38bdf8] hover:text-white transition-all shrink-0"
             >
               <span>Open Full Application</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -346,13 +352,13 @@ export default function LandingPage() {
           </div>
 
           {/* Module Switcher Tabs (Focused on User Goals) */}
-          <div className="flex flex-wrap items-center gap-2 p-1 bg-[#0c0f18] border border-[#1a2030] rounded-none">
+          <div className="flex flex-wrap items-center gap-2 p-1 bg-[#051329] border border-[#132a4a] rounded-none">
             <button
               onClick={() => setActiveTab("explorer")}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold transition-all ${
                 activeTab === "explorer"
-                  ? "bg-[#6c35f5] text-white shadow-md shadow-[#6c35f5]/30"
-                  : "text-zinc-400 hover:text-zinc-200 hover:bg-[#121624]"
+                  ? "bg-[#1e6aff] text-white shadow-md shadow-[#1e6aff]/30"
+                  : "text-zinc-400 hover:text-zinc-200 hover:bg-[#091b36]"
               }`}
             >
               <Database className="w-3.5 h-3.5" />
@@ -363,8 +369,8 @@ export default function LandingPage() {
               onClick={() => setActiveTab("queryBuilder")}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold transition-all ${
                 activeTab === "queryBuilder"
-                  ? "bg-[#6c35f5] text-white shadow-md shadow-[#6c35f5]/30"
-                  : "text-zinc-400 hover:text-zinc-200 hover:bg-[#121624]"
+                  ? "bg-[#1e6aff] text-white shadow-md shadow-[#1e6aff]/30"
+                  : "text-zinc-400 hover:text-zinc-200 hover:bg-[#091b36]"
               }`}
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
@@ -375,8 +381,8 @@ export default function LandingPage() {
               onClick={() => setActiveTab("aiCopilot")}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold transition-all ${
                 activeTab === "aiCopilot"
-                  ? "bg-[#ff8204] text-white shadow-md shadow-[#ff8204]/30"
-                  : "text-zinc-400 hover:text-zinc-200 hover:bg-[#121624]"
+                  ? "bg-[#1e6aff] text-white shadow-md shadow-[#1e6aff]/30"
+                  : "text-zinc-400 hover:text-zinc-200 hover:bg-[#091b36]"
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
@@ -387,8 +393,8 @@ export default function LandingPage() {
               onClick={() => setActiveTab("collaboration")}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-none text-xs font-semibold transition-all ${
                 activeTab === "collaboration"
-                  ? "bg-[#6c35f5] text-white shadow-md shadow-[#6c35f5]/30"
-                  : "text-zinc-400 hover:text-zinc-200 hover:bg-[#121624]"
+                  ? "bg-[#1e6aff] text-white shadow-md shadow-[#1e6aff]/30"
+                  : "text-zinc-400 hover:text-zinc-200 hover:bg-[#091b36]"
               }`}
             >
               <BookmarkCheck className="w-3.5 h-3.5" />
@@ -397,12 +403,12 @@ export default function LandingPage() {
           </div>
 
           {/* Module Container Box */}
-          <div className="rounded-none bg-[#0c0f18] border border-[#1b2234] shadow-2xl overflow-hidden min-h-[460px]">
+          <div className="rounded-none bg-[#051329] border border-[#132a4a] shadow-2xl overflow-hidden min-h-[460px]">
             {/* ================= TAB 1: INSTANT SEARCH & EXPLORER ================= */}
             {activeTab === "explorer" && (
               <div className="space-y-0 animate-in fade-in duration-200">
                 {/* Live Interactive Filter Bar */}
-                <div className="p-3.5 bg-[#0e121d] border-b border-[#1b2234] flex flex-wrap items-center justify-between gap-3 text-xs">
+                <div className="p-3.5 bg-[#001225] border-b border-[#132a4a] flex flex-wrap items-center justify-between gap-3 text-xs">
                   <div className="flex items-center gap-3">
                     <div className="relative w-64 sm:w-80">
                       <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -411,7 +417,7 @@ export default function LandingPage() {
                         placeholder="Type to filter contracts (e.g. Healthcare, Canada, Orion)..."
                         value={mockSearch}
                         onChange={(e) => setMockSearch(e.target.value)}
-                        className="w-full pl-9 pr-3 py-1.5 rounded-none bg-[#121624] border border-[#222a3d] text-xs text-white placeholder-zinc-500 font-sans focus:outline-none focus:border-indigo-500"
+                        className="w-full pl-9 pr-3 py-1.5 rounded-none bg-[#051329] border border-[#132a4a] text-xs text-white placeholder-zinc-500 font-sans focus:outline-none focus:border-[#1e6aff]"
                       />
                     </div>
                     <span className="hidden sm:flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-none bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
@@ -421,12 +427,12 @@ export default function LandingPage() {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <div className="flex items-center bg-[#141926] border border-[#222a3d] rounded-none p-0.5 text-[11px] font-mono">
+                    <div className="flex items-center bg-[#091b36] border border-[#142b4d] rounded-none p-0.5 text-[11px] font-mono">
                       <button
                         onClick={() => setMockDensity("compact")}
                         className={`px-2 py-0.5 rounded-none transition-colors ${
                           mockDensity === "compact"
-                            ? "bg-indigo-600 text-white"
+                            ? "bg-[#1e6aff] text-white"
                             : "text-zinc-400 hover:text-white"
                         }`}
                       >
@@ -436,7 +442,7 @@ export default function LandingPage() {
                         onClick={() => setMockDensity("normal")}
                         className={`px-2 py-0.5 rounded-none transition-colors ${
                           mockDensity === "normal"
-                            ? "bg-indigo-600 text-white"
+                            ? "bg-[#1e6aff] text-white"
                             : "text-zinc-400 hover:text-white"
                         }`}
                       >
@@ -446,7 +452,7 @@ export default function LandingPage() {
 
                     <Link
                       href="/explorer"
-                      className="flex items-center gap-1 px-3 py-1.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors"
+                      className="flex items-center gap-1 px-3 py-1.5 rounded-none btn-render-primary text-white text-xs font-medium transition-colors"
                     >
                       <span>Open 100k Dataset</span>
                       <ArrowRight className="w-3 h-3" />
@@ -481,11 +487,11 @@ export default function LandingPage() {
                         filteredMockRows.map((row) => (
                           <tr
                             key={row.id}
-                            className={`hover:bg-[#141926] transition-colors cursor-pointer ${
+                            className={`hover:bg-[#071529] transition-colors cursor-pointer ${
                               mockDensity === "compact" ? "py-2" : "py-3.5"
                             }`}
                           >
-                            <td className="px-4 py-3 text-indigo-400 font-bold">{row.id}</td>
+                            <td className="px-4 py-3 text-[#38bdf8] font-bold">{row.id}</td>
                             <td className="px-4 py-3 font-sans text-white font-medium">
                               {row.title}
                             </td>
@@ -500,7 +506,7 @@ export default function LandingPage() {
                                 className={`px-2 py-0.5 rounded-none border text-[10px] ${
                                   row.status === "Active"
                                     ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25"
-                                    : "bg-amber-500/10 text-amber-400 border-amber-500/25"
+                                    : "bg-sky-500/10 text-sky-400 border-sky-500/25"
                                 }`}
                               >
                                 {row.status}
@@ -511,7 +517,7 @@ export default function LandingPage() {
                             <td className="px-4 py-3 text-emerald-400 font-semibold">{row.profit}</td>
                             <td className="px-4 py-3 font-sans">
                               <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-none ${
-                                row.priority === "Urgent" ? "text-rose-400 bg-rose-500/10" : "text-amber-400 bg-amber-500/10"
+                                row.priority === "Urgent" ? "text-rose-400 bg-rose-500/10" : "text-[#38bdf8] bg-[#1e6aff]/15"
                               }`}>
                                 {row.priority}
                               </span>
@@ -523,11 +529,11 @@ export default function LandingPage() {
                   </table>
                 </div>
 
-                <div className="p-3.5 bg-[#0b0e17] border-t border-[#1b2234] flex flex-wrap items-center justify-between text-xs text-zinc-400 font-sans">
+                <div className="p-3.5 bg-[#001225] border-t border-[#132a4a] flex flex-wrap items-center justify-between text-xs text-zinc-400 font-sans">
                   <span>
                     💡 <strong>Pro Tip:</strong> Click any record in the live app to slide open its full audit drawer, company background, and deal timeline.
                   </span>
-                  <Link href="/explorer" className="text-indigo-400 hover:text-indigo-300 font-medium">
+                  <Link href="/explorer" className="text-[#38bdf8] hover:text-white font-medium">
                     Try it with 100,000 real rows &rarr;
                   </Link>
                 </div>
@@ -537,25 +543,25 @@ export default function LandingPage() {
             {/* ================= TAB 2: VISUAL QUERY BUILDER ================= */}
             {activeTab === "queryBuilder" && (
               <div className="p-6 space-y-6 animate-in fade-in duration-200">
-                <div className="flex items-center justify-between border-b border-[#1f283d] pb-4">
+                <div className="flex items-center justify-between border-b border-[#132a4a] pb-4">
                   <div>
                     <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-                      <SlidersHorizontal className="w-4 h-4 text-[#968dfa]" />
+                      <SlidersHorizontal className="w-4 h-4 text-[#38bdf8]" />
                       <span>Visual Predicate Query Builder</span>
                     </h3>
                     <p className="text-xs text-zinc-400 mt-0.5 font-sans">
                       Build sophisticated multi-condition business logic with simple point-and-click dropdowns. Zero SQL required.
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-none bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  <span className="genesis-badge">
                     Business Friendly
                   </span>
                 </div>
 
                 {/* Point and click filter visual rows */}
                 <div className="space-y-3">
-                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#20293d] flex flex-wrap items-center gap-3 text-xs">
-                    <span className="px-2.5 py-1 rounded-none bg-indigo-600/30 text-indigo-300 font-bold font-mono">
+                  <div className="p-3.5 rounded-none bg-[#071529] border border-[#132a4a] flex flex-wrap items-center gap-3 text-xs">
+                    <span className="px-2.5 py-1 rounded-none bg-[#1e6aff]/25 text-[#38bdf8] font-bold font-mono">
                       WHERE
                     </span>
                     <span className="text-white font-medium">Deal Status</span>
@@ -565,8 +571,8 @@ export default function LandingPage() {
                     </span>
                   </div>
 
-                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#20293d] flex flex-wrap items-center gap-3 text-xs">
-                    <span className="px-2.5 py-1 rounded-none bg-amber-600/30 text-amber-300 font-bold font-mono">
+                  <div className="p-3.5 rounded-none bg-[#071529] border border-[#132a4a] flex flex-wrap items-center gap-3 text-xs">
+                    <span className="px-2.5 py-1 rounded-none bg-[#091b36] text-[#38bdf8] font-bold font-mono border border-[#142b4d]">
                       AND
                     </span>
                     <span className="text-white font-medium">Contract Revenue</span>
@@ -576,20 +582,20 @@ export default function LandingPage() {
                     </span>
                   </div>
 
-                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#20293d] flex flex-wrap items-center gap-3 text-xs">
-                    <span className="px-2.5 py-1 rounded-none bg-amber-600/30 text-amber-300 font-bold font-mono">
+                  <div className="p-3.5 rounded-none bg-[#071529] border border-[#132a4a] flex flex-wrap items-center gap-3 text-xs">
+                    <span className="px-2.5 py-1 rounded-none bg-[#091b36] text-[#38bdf8] font-bold font-mono border border-[#142b4d]">
                       AND
                     </span>
                     <span className="text-white font-medium">Geographic Region</span>
                     <span className="text-zinc-500">is in</span>
-                    <span className="px-2 py-0.5 rounded-none bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-semibold">
+                    <span className="px-2 py-0.5 rounded-none bg-[#1e6aff]/15 text-[#38bdf8] border border-[#1e6aff]/30 font-semibold">
                       Canada, Germany, Netherlands
                     </span>
                   </div>
                 </div>
 
                 {/* Visual benefit callout */}
-                <div className="p-4 rounded-none bg-[#0e1320] border border-indigo-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="p-4 rounded-none bg-[#071529] border border-[#1e6aff]/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div className="space-y-1">
                     <div className="text-xs font-semibold text-white flex items-center gap-1.5">
                       <Zap className="w-3.5 h-3.5 text-emerald-400" />
@@ -602,7 +608,7 @@ export default function LandingPage() {
 
                   <Link
                     href="/search"
-                    className="px-4 py-2 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors shrink-0"
+                    className="px-4 py-2 rounded-none btn-render-primary text-white text-xs font-medium transition-colors shrink-0"
                   >
                     Launch Visual Query Builder
                   </Link>
@@ -613,17 +619,17 @@ export default function LandingPage() {
             {/* ================= TAB 3: AI COPILOT ================= */}
             {activeTab === "aiCopilot" && (
               <div className="p-6 space-y-6 animate-in fade-in duration-200">
-                <div className="flex items-center justify-between border-b border-[#1f283d] pb-4">
+                <div className="flex items-center justify-between border-b border-[#132a4a] pb-4">
                   <div>
                     <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-[#ff8204]" />
+                      <Sparkles className="w-4 h-4 text-[#38bdf8]" />
                       <span>AI Natural Language Search Assistant</span>
                     </h3>
                     <p className="text-xs text-zinc-400 mt-0.5 font-sans">
                       Ask business questions in normal, plain English. DataScope automatically translates your question into precise, validated data filters.
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-none bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  <span className="genesis-badge">
                     AI-Powered
                   </span>
                 </div>
@@ -631,13 +637,13 @@ export default function LandingPage() {
                 {/* Plain english input sample */}
                 <div className="space-y-2">
                   <label className="text-xs text-zinc-400 font-medium">You type in plain English:</label>
-                  <div className="p-3.5 rounded-none bg-[#121624] border border-[#222a3d] text-white text-xs font-sans">
+                  <div className="p-3.5 rounded-none bg-[#071529] border border-[#132a4a] text-white text-xs font-sans">
                     &quot;Show me all active enterprise contracts in Canada or Germany with net profit over $80,000&quot;
                   </div>
                 </div>
 
                 {/* Translation Result */}
-                <div className="p-4 rounded-none bg-[#0e121d] border border-indigo-500/30 space-y-3">
+                <div className="p-4 rounded-none bg-[#001225] border border-[#1e6aff]/40 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5" />
@@ -647,16 +653,16 @@ export default function LandingPage() {
                   </div>
 
                   <div className="flex flex-wrap gap-2 text-xs">
-                    <span className="px-2.5 py-1 bg-[#141926] border border-[#202738] text-zinc-200">
+                    <span className="px-2.5 py-1 bg-[#091b36] border border-[#142b4d] text-zinc-200">
                       Status: <strong>Active</strong>
                     </span>
-                    <span className="px-2.5 py-1 bg-[#141926] border border-[#202738] text-zinc-200">
+                    <span className="px-2.5 py-1 bg-[#091b36] border border-[#142b4d] text-zinc-200">
                       Countries: <strong>Canada, Germany</strong>
                     </span>
-                    <span className="px-2.5 py-1 bg-[#141926] border border-[#202738] text-zinc-200">
+                    <span className="px-2.5 py-1 bg-[#091b36] border border-[#142b4d] text-zinc-200">
                       Category: <strong>Enterprise</strong>
                     </span>
-                    <span className="px-2.5 py-1 bg-[#141926] border border-[#202738] text-emerald-400">
+                    <span className="px-2.5 py-1 bg-[#091b36] border border-[#142b4d] text-emerald-400">
                       Min Profit: <strong>&gt; $80,000</strong>
                     </span>
                   </div>
@@ -667,23 +673,23 @@ export default function LandingPage() {
             {/* ================= TAB 4: SAVED VIEWS & COLLABORATION ================= */}
             {activeTab === "collaboration" && (
               <div className="p-6 space-y-6 animate-in fade-in duration-200">
-                <div className="flex items-center justify-between border-b border-[#1f283d] pb-4">
+                <div className="flex items-center justify-between border-b border-[#132a4a] pb-4">
                   <div>
                     <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-                      <BookmarkCheck className="w-4 h-4 text-[#968dfa]" />
+                      <BookmarkCheck className="w-4 h-4 text-[#38bdf8]" />
                       <span>Team Saved Views & Live URL Sharing</span>
                     </h3>
                     <p className="text-xs text-zinc-400 mt-0.5 font-sans">
                       Never rebuild a filter twice. Save complex views for weekly standups, share links across departments, and export with one click.
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-none bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  <span className="genesis-badge">
                     Team Productivity
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-4 rounded-none bg-[#121624] border border-[#1e273b] space-y-2">
+                  <div className="p-4 rounded-none bg-[#071529] border border-[#132a4a] space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold text-white">Q4 High-Margin EMEA</span>
                       <span className="text-[10px] font-mono text-emerald-400">🌐 Shared</span>
@@ -691,49 +697,49 @@ export default function LandingPage() {
                     <p className="text-[11px] text-zinc-400 font-sans">
                       Filtered by 4 European territories with profit &gt; $100k. Used weekly by Sales Leadership.
                     </p>
-                    <div className="pt-2 flex items-center justify-between text-[11px] text-indigo-400">
+                    <div className="pt-2 flex items-center justify-between text-[11px] text-[#38bdf8]">
                       <span>420 matching deals</span>
                       <span className="underline">Apply View &rarr;</span>
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-none bg-[#121624] border border-[#1e273b] space-y-2">
+                  <div className="p-4 rounded-none bg-[#071529] border border-[#132a4a] space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold text-white">Pending Executive Review</span>
-                      <span className="text-[10px] font-mono text-amber-400">🔒 Finance Only</span>
+                      <span className="text-[10px] font-mono text-sky-400">🔒 Finance Only</span>
                     </div>
                     <p className="text-[11px] text-zinc-400 font-sans">
                       Deals flagged with pending regulatory review or missing tax clearances.
                     </p>
-                    <div className="pt-2 flex items-center justify-between text-[11px] text-indigo-400">
+                    <div className="pt-2 flex items-center justify-between text-[11px] text-[#38bdf8]">
                       <span>38 flagged deals</span>
                       <span className="underline">Apply View &rarr;</span>
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-none bg-[#121624] border border-[#1e273b] space-y-2">
+                  <div className="p-4 rounded-none bg-[#071529] border border-[#132a4a] space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold text-white">Top Tier-1 Tech Accounts</span>
-                      <span className="text-[10px] font-mono text-indigo-400">🌐 Shared</span>
+                      <span className="text-[10px] font-mono text-[#38bdf8]">🌐 Shared</span>
                     </div>
                     <p className="text-[11px] text-zinc-400 font-sans">
                       Enterprise technology contracts generating &gt; $500,000 annual recurring revenue.
                     </p>
-                    <div className="pt-2 flex items-center justify-between text-[11px] text-indigo-400">
+                    <div className="pt-2 flex items-center justify-between text-[11px] text-[#38bdf8]">
                       <span>180 accounts</span>
                       <span className="underline">Apply View &rarr;</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-none bg-[#090b10] border border-[#1f283d] flex flex-wrap items-center justify-between gap-3 text-xs font-sans">
+                <div className="p-4 rounded-none bg-[#001225] border border-[#132a4a] flex flex-wrap items-center justify-between gap-3 text-xs font-sans">
                   <div className="flex items-center gap-2">
-                    <Share2 className="w-4 h-4 text-cyan-400" />
+                    <Share2 className="w-4 h-4 text-[#38bdf8]" />
                     <span className="text-zinc-300">
                       URL synchronizes with your active filters. Copy and send the link on Slack or email—your colleague sees the exact same data slice.
                     </span>
                   </div>
-                  <Link href="/saved-views" className="px-3.5 py-1.5 rounded-none bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs">
+                  <Link href="/saved-views" className="px-3.5 py-1.5 rounded-none btn-render-primary text-white font-medium text-xs">
                     Explore Saved Views
                   </Link>
                 </div>
@@ -760,17 +766,17 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Persona 1: Executive Leadership */}
-            <div className="p-6 rounded-none render-card space-y-4">
-              <div className="w-10 h-10 rounded-none bg-[#6c35f5]/15 border border-[#968dfa]/30 flex items-center justify-center text-[#968dfa]">
+            <div className="p-6 rounded-none genesis-card space-y-4">
+              <div className="w-10 h-10 rounded-none bg-[#001225] border border-[#1e6aff]/40 flex items-center justify-center text-[#38bdf8]">
                 <Briefcase className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-semibold text-[#fafaf4]">
+              <h3 className="text-base font-semibold text-[#ffffff]">
                 Executive Leadership (CFO, CDO, COO)
               </h3>
-              <p className="text-xs text-[#a1a1aa] leading-relaxed font-sans">
+              <p className="text-xs text-[#878787] leading-relaxed font-sans">
                 Get an instant bird&apos;s-eye view of enterprise revenues, net margins, and operational deal health without waiting for analysts to assemble weekly spreadsheets.
               </p>
-              <ul className="space-y-2 text-xs text-zinc-300 font-sans border-t border-[#1a2030] pt-3">
+              <ul className="space-y-2 text-xs text-zinc-300 font-sans border-t border-[#132a4a] pt-3">
                 <li className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Real-time portfolio revenue aggregates</span>
@@ -783,17 +789,17 @@ export default function LandingPage() {
             </div>
 
             {/* Persona 2: Revenue Operations & Sales Leaders */}
-            <div className="p-6 rounded-none mistral-card space-y-4">
-              <div className="w-10 h-10 rounded-none bg-[#ff8204]/15 border border-[#ff8204]/35 flex items-center justify-center text-[#ffa033]">
+            <div className="p-6 rounded-none genesis-card space-y-4">
+              <div className="w-10 h-10 rounded-none bg-[#001225] border border-[#38bdf8]/40 flex items-center justify-center text-[#38bdf8]">
                 <TrendingUp className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-semibold text-[#fafaf4]">
+              <h3 className="text-base font-semibold text-[#ffffff]">
                 Revenue Operations & Deal Desks
               </h3>
-              <p className="text-xs text-[#a1a1aa] leading-relaxed font-sans">
+              <p className="text-xs text-[#878787] leading-relaxed font-sans">
                 Track enterprise contract pipelines, filter accounts by geography and deal priority, and pinpoint margin discrepancies before quarter-end.
               </p>
-              <ul className="space-y-2 text-xs text-zinc-300 font-sans border-t border-[#1a2030] pt-3">
+              <ul className="space-y-2 text-xs text-zinc-300 font-sans border-t border-[#132a4a] pt-3">
                 <li className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Instant contract lookup by title or client code</span>
@@ -806,17 +812,17 @@ export default function LandingPage() {
             </div>
 
             {/* Persona 3: Data Analysts & Operations */}
-            <div className="p-6 rounded-none render-card space-y-4">
-              <div className="w-10 h-10 rounded-none bg-[#0b7d55]/15 border border-[#0b7d55]/35 flex items-center justify-center text-[#0b7d55]">
+            <div className="p-6 rounded-none genesis-card space-y-4">
+              <div className="w-10 h-10 rounded-none bg-[#001225] border border-[#10b981]/40 flex items-center justify-center text-[#10b981]">
                 <BarChart3 className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-semibold text-[#fafaf4]">
+              <h3 className="text-base font-semibold text-[#ffffff]">
                 Data & Business Analysts
               </h3>
-              <p className="text-xs text-[#a1a1aa] leading-relaxed font-sans">
+              <p className="text-xs text-[#878787] leading-relaxed font-sans">
                 Slice and dice 100k+ records without writing boilerplate SQL. Create custom views, export clean data subsets to CSV, and share findings with stakeholders.
               </p>
-              <ul className="space-y-2 text-xs text-zinc-300 font-sans border-t border-[#1a2030] pt-3">
+              <ul className="space-y-2 text-xs text-zinc-300 font-sans border-t border-[#132a4a] pt-3">
                 <li className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Multi-column sorting and column customization</span>
@@ -835,7 +841,7 @@ export default function LandingPage() {
             ========================================================================= */}
         <section className="px-4 w-[90%] mx-auto space-y-8">
           <div className="text-center space-y-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#968dfa] font-semibold">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#38bdf8] font-semibold">
               The DataScope Advantage
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -844,74 +850,74 @@ export default function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-6 rounded-none render-card space-y-3">
-              <div className="w-10 h-10 rounded-none bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="p-6 rounded-none genesis-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-[#001225] border border-[#1e6aff]/40 flex items-center justify-center text-[#38bdf8]">
                 <Zap className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
                 Sub-Second Speed at Scale
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+              <p className="text-xs text-[#878787] leading-relaxed font-sans">
                 Search, sort, and slice through 100,000+ contracts in less than 20 milliseconds. No waiting for loading spinners or spinning wheels.
               </p>
             </div>
 
-            <div className="p-6 rounded-none mistral-card space-y-3">
-              <div className="w-10 h-10 rounded-none bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
+            <div className="p-6 rounded-none genesis-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-[#001225] border border-[#38bdf8]/40 flex items-center justify-center text-[#38bdf8]">
                 <SlidersHorizontal className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
                 Zero Engineering Dependency
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+              <p className="text-xs text-[#878787] leading-relaxed font-sans">
                 Business users can build intricate multi-variable queries and filters independently. Free up engineering teams to focus on core product features.
               </p>
             </div>
 
-            <div className="p-6 rounded-none render-card space-y-3">
-              <div className="w-10 h-10 rounded-none bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+            <div className="p-6 rounded-none genesis-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-[#001225] border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
                 Role-Based Governance (RBAC)
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+              <p className="text-xs text-[#878787] leading-relaxed font-sans">
                 Keep sensitive financial data secure. Control exactly who can view, mutate, approve, or export records across your entire organization.
               </p>
             </div>
 
-            <div className="p-6 rounded-none render-card space-y-3">
-              <div className="w-10 h-10 rounded-none bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+            <div className="p-6 rounded-none genesis-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-[#001225] border border-cyan-500/30 flex items-center justify-center text-cyan-400">
                 <Clock className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
                 100% Immutable Audit Trail
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+              <p className="text-xs text-[#878787] leading-relaxed font-sans">
                 Every single record update is captured with the user identity, timestamp, and previous values—ensuring total audit compliance.
               </p>
             </div>
 
-            <div className="p-6 rounded-none render-card space-y-3">
-              <div className="w-10 h-10 rounded-none bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400">
+            <div className="p-6 rounded-none genesis-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-[#001225] border border-[#1e6aff]/40 flex items-center justify-center text-[#38bdf8]">
                 <Share2 className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
                 Frictionless Team Sharing
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+              <p className="text-xs text-[#878787] leading-relaxed font-sans">
                 Save team views and share bookmarked URLs instantly. Team members open the exact same filtered dataset without emailing CSV attachments.
               </p>
             </div>
 
-            <div className="p-6 rounded-none render-card space-y-3">
-              <div className="w-10 h-10 rounded-none bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
+            <div className="p-6 rounded-none genesis-card space-y-3">
+              <div className="w-10 h-10 rounded-none bg-[#001225] border border-rose-500/30 flex items-center justify-center text-rose-400">
                 <Download className="w-5 h-5" />
               </div>
               <h3 className="text-base font-semibold text-white">
                 Clean Streaming CSV Export
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+              <p className="text-xs text-[#878787] leading-relaxed font-sans">
                 Export filtered segments directly to CSV with one click. Ideal for offline audits, executive slide presentations, and board reporting.
               </p>
             </div>
@@ -923,7 +929,7 @@ export default function LandingPage() {
             ========================================================================= */}
         <section className="px-4 w-[90%] mx-auto space-y-8">
           <div className="text-center space-y-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#38bdf8] font-semibold">
               Got Questions?
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -956,21 +962,21 @@ export default function LandingPage() {
             ].map((faq, index) => (
               <div
                 key={index}
-                className="rounded-none bg-[#0c0f18] border border-[#1b2234] overflow-hidden"
+                className="rounded-none bg-[#051329] border border-[#132a4a] overflow-hidden"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full p-4 text-left flex items-center justify-between text-xs sm:text-sm font-semibold text-white hover:bg-[#121624] transition-colors"
+                  className="w-full p-4 text-left flex items-center justify-between text-xs sm:text-sm font-semibold text-white hover:bg-[#07172e] transition-colors"
                 >
                   <span className="font-sans">{faq.q}</span>
                   <ChevronDown
                     className={`w-4 h-4 text-zinc-400 transition-transform ${
-                      openFaq === index ? "rotate-180 text-indigo-400" : ""
+                      openFaq === index ? "rotate-180 text-[#38bdf8]" : ""
                     }`}
                   />
                 </button>
                 {openFaq === index && (
-                  <div className="p-4 pt-0 text-xs text-zinc-400 leading-relaxed font-sans border-t border-[#161d2d] bg-[#0a0d14]">
+                  <div className="p-4 pt-0 text-xs text-[#878787] leading-relaxed font-sans border-t border-[#132a4a] bg-[#001225]">
                     {faq.a}
                   </div>
                 )}
@@ -983,21 +989,21 @@ export default function LandingPage() {
             7. FINAL CTA BANNER
             ========================================================================= */}
         <section className="px-4 w-[90%] mx-auto text-center">
-          <div className="p-10 sm:p-14 rounded-none render-card space-y-6 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#6c35f5]/15 blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#ff8204]/10 blur-3xl pointer-events-none" />
+          <div className="p-10 sm:p-14 rounded-none genesis-card space-y-6 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-[#1e6aff]/15 blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#002b5c]/25 blur-3xl pointer-events-none" />
 
-            <h2 className="text-3xl sm:text-5xl font-bold text-[#fafaf4] tracking-tight relative z-10">
+            <h2 className="text-3xl sm:text-5xl font-bold text-[#ffffff] tracking-tight relative z-10">
               Transform How Your Team Explores Enterprise Data
             </h2>
-            <p className="text-xs sm:text-sm text-[#a1a1aa] max-w-xl mx-auto relative z-10 font-sans">
+            <p className="text-xs sm:text-sm text-[#878787] max-w-xl mx-auto relative z-10 font-sans">
               Experience instant sub-second search, visual point-and-click filtering, and audit-ready governance across 100,000 business contracts right now.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2 relative z-10">
               <Link
                 href="/explorer"
-                className="px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold flex items-center gap-2 group shadow-lg shadow-[#6c35f5]/25"
+                className="px-6 py-3.5 rounded-none btn-render-primary text-xs font-semibold flex items-center gap-2 group shadow-lg shadow-[#1e6aff]/25 text-white"
               >
                 <span>Launch Live Data Explorer</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

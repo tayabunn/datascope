@@ -154,7 +154,7 @@ export default function GoogleOAuthModal({
         <div className="p-6 space-y-5">
           {isAuthenticating ? (
             <div className="py-8 text-center space-y-4">
-              <div className="w-12 h-12 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 rounded-none bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto">
                 <Loader2 className="w-6 h-6 animate-spin text-cyan-400" />
               </div>
               <div className="space-y-1">
@@ -165,7 +165,7 @@ export default function GoogleOAuthModal({
                   {authStep}
                 </p>
               </div>
-              <div className="w-48 h-1 bg-[#161d2d] rounded-full mx-auto overflow-hidden">
+              <div className="w-48 h-1 bg-[#161d2d] rounded-none mx-auto overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-indigo-500 to-cyan-500 animate-pulse w-full" />
               </div>
             </div>
@@ -200,9 +200,9 @@ export default function GoogleOAuthModal({
                 <button
                   type="button"
                   onClick={handleLiveGoogleSignIn}
-                  className="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-semibold flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-600/25 transition-all group"
+                  className="w-full py-2.5 px-4 rounded-none bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-semibold flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-600/25 transition-all group"
                 >
-                  <GoogleLogo className="w-4 h-4 bg-white rounded-full p-0.5" />
+                  <GoogleLogo className="w-4 h-4 bg-white rounded-none p-0.5" />
                   <span>Launch Live Google Login Window</span>
                   <ArrowRight className="w-3.5 h-3.5 text-white/80 group-hover:translate-x-0.5 transition-transform" />
                 </button>
@@ -221,7 +221,7 @@ export default function GoogleOAuthModal({
                 <p className="text-[11px] text-zinc-400 font-medium">
                   Select Google Account:
                 </p>
-                <div className="divide-y divide-[#1b2336] border border-[#1d263b] rounded-lg overflow-hidden bg-[#121624]">
+                <div className="divide-y divide-[#1b2336] border border-[#1d263b] rounded-none overflow-hidden bg-[#121624]">
                   {GOOGLE_ACCOUNTS.map((acc) => (
                     <button
                       key={acc.email}
@@ -232,7 +232,7 @@ export default function GoogleOAuthModal({
                       <img
                         src={acc.avatar}
                         alt={acc.name}
-                        className="w-8 h-8 rounded-full object-cover border border-[#2a354f]"
+                        className="w-8 h-8 rounded-none object-cover border border-[#2a354f]"
                       />
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-semibold text-zinc-200 group-hover:text-white flex items-center gap-1.5">

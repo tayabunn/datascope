@@ -42,18 +42,18 @@ export default function Header() {
 
   return (
     <>
-      <header className="h-16 shrink-0 bg-[#0c0f17]/90 backdrop-blur-md border-b border-[#1a2030] px-6 py-3 flex items-center justify-between sticky top-0 z-30">
+      <header className="h-16 shrink-0 bg-[#001225]/95 backdrop-blur-md border-b border-[#132a4a] px-6 py-3 flex items-center justify-between sticky top-0 z-30">
         {/* Left Section: Active Dataset & Telemetry */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-none bg-[#141926] border border-[#1d2436] text-xs">
-            <Database className="w-3.5 h-3.5 text-[#968dfa]" />
+          <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-none bg-[#051329] border border-[#132a4a] text-xs">
+            <Database className="w-3.5 h-3.5 text-[#38bdf8]" />
             <span className="text-zinc-300 font-medium hidden sm:inline">
               Dataset:
             </span>
             <span className="text-white font-semibold">
               Global Enterprise Revenue & Contracts
             </span>
-            <span className="render-pill font-mono">
+            <span className="genesis-badge font-mono">
               100,000 Rows
             </span>
           </div>
@@ -77,9 +77,9 @@ export default function Header() {
               placeholder="Search 100k records (title, company, SKU)..."
               value={globalQuery}
               onChange={(e) => dispatch(setGlobalQuery(e.target.value))}
-              className="w-full pl-9 pr-12 py-1.5 rounded-none bg-[#121622] border border-[#202738] text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-[#968dfa] focus:ring-1 focus:ring-[#6c35f5] transition-all font-mono"
+              className="w-full pl-9 pr-12 py-1.5 rounded-none bg-[#051329] border border-[#132a4a] text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-[#1e6aff] focus:ring-1 focus:ring-[#1e6aff] transition-all font-mono"
             />
-            <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-zinc-400 px-1.5 py-0.5 rounded-none border border-[#262e42] bg-[#161c2a]">
+            <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-zinc-400 px-1.5 py-0.5 rounded-none border border-[#132a4a] bg-[#001225]">
               ⌘K
             </span>
           </div>
@@ -87,27 +87,27 @@ export default function Header() {
           {/* Voice Search with OpenAI Whisper */}
           <button
             onClick={() => setIsVoiceModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/35 text-indigo-300 hover:text-white text-xs font-semibold transition-all shadow-sm cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#001225] hover:bg-[#07172e] border border-[#1e6aff]/40 text-[#38bdf8] hover:text-white text-xs font-semibold transition-all shadow-sm cursor-pointer"
             title="Voice Search powered by OpenAI Whisper-1"
           >
-            <Mic className="w-3.5 h-3.5 text-indigo-400" />
+            <Mic className="w-3.5 h-3.5 text-[#38bdf8]" />
             <span className="hidden md:inline">Voice Search</span>
           </button>
 
-          {/* AI Search Assistant Button (Mistral Amber Signature) */}
+          {/* AI Search Assistant Button */}
           <button
             onClick={() => setIsAiModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#ff8204]/15 hover:bg-[#ff8204]/25 border border-[#ff8204]/35 text-[#ffa033] hover:text-white text-xs font-semibold transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#001225] hover:bg-[#07172e] border border-[#38bdf8]/40 text-[#38bdf8] hover:text-white text-xs font-semibold transition-all shadow-sm"
             title="Ask AI to construct search query in natural language"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#ff8204] animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 text-[#38bdf8] animate-pulse" />
             <span className="hidden sm:inline">AI Search</span>
           </button>
 
           {/* Export CSV Button (RBAC: Admin & Analyst only, Viewer read-only) */}
           {mounted && user?.role === "Viewer" ? (
             <span
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#121622] border border-[#1b2234] text-zinc-500 text-xs font-medium cursor-not-allowed opacity-60"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#051329] border border-[#132a4a] text-zinc-500 text-xs font-medium cursor-not-allowed opacity-60"
               title="Export restricted: Requires Data Analyst or Admin role"
             >
               <Download className="w-3.5 h-3.5 text-zinc-600" />
@@ -117,7 +117,7 @@ export default function Header() {
             <a
               href="/api/export"
               download
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#141926] hover:bg-[#1a2133] border border-[#202738] text-zinc-300 hover:text-white text-xs font-medium transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#051329] hover:bg-[#07172e] border border-[#132a4a] text-zinc-300 hover:text-white text-xs font-medium transition-all"
               title="Export filtered records to CSV"
             >
               <Download className="w-3.5 h-3.5 text-zinc-400" />
@@ -125,13 +125,13 @@ export default function Header() {
             </a>
           )}
 
-          {/* Public Landing Page Link (Render Iris Signature) */}
+          {/* Public Landing Page Link */}
           <Link
             href="/"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#6c35f5]/15 hover:bg-[#6c35f5]/25 border border-[#968dfa]/30 text-[#b193e0] hover:text-white text-xs font-medium transition-all"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#001225] hover:bg-[#07172e] border border-[#1e6aff]/40 text-[#38bdf8] hover:text-white text-xs font-medium transition-all"
             title="Go to Public Landing Page"
           >
-            <Globe className="w-3.5 h-3.5 text-[#968dfa]" />
+            <Globe className="w-3.5 h-3.5 text-[#38bdf8]" />
             <span className="hidden md:inline">Landing Page</span>
           </Link>
         </div>

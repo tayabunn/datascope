@@ -165,12 +165,12 @@ export default function SavedViewsPage() {
 
             <div className="flex items-center gap-3">
               {/* Category Filter Tabs */}
-              <div className="flex items-center bg-[#141926] border border-[#1f273c] rounded-none p-0.5 text-xs font-medium">
+              <div className="flex items-center bg-[#051329] border border-[#132a4a] rounded-none p-0.5 text-xs font-medium">
                 <button
                   onClick={() => setActiveFilterTab("all")}
                   className={`px-3 py-1 rounded-none transition-colors ${
                     activeFilterTab === "all"
-                      ? "bg-[#6c35f5] text-white shadow-sm font-semibold"
+                      ? "bg-[#1e6aff] text-white shadow-sm font-semibold"
                       : "text-[#a1a1aa] hover:text-[#fafaf4]"
                   }`}
                 >
@@ -180,7 +180,7 @@ export default function SavedViewsPage() {
                   onClick={() => setActiveFilterTab("shared")}
                   className={`px-3 py-1 rounded-none transition-colors ${
                     activeFilterTab === "shared"
-                      ? "bg-[#6c35f5] text-white shadow-sm font-semibold"
+                      ? "bg-[#1e6aff] text-white shadow-sm font-semibold"
                       : "text-[#a1a1aa] hover:text-[#fafaf4]"
                   }`}
                 >
@@ -190,7 +190,7 @@ export default function SavedViewsPage() {
                   onClick={() => setActiveFilterTab("private")}
                   className={`px-3 py-1 rounded-none transition-colors ${
                     activeFilterTab === "private"
-                      ? "bg-[#6c35f5] text-white shadow-sm font-semibold"
+                      ? "bg-[#1e6aff] text-white shadow-sm font-semibold"
                       : "text-[#a1a1aa] hover:text-[#fafaf4]"
                   }`}
                 >
@@ -203,7 +203,7 @@ export default function SavedViewsPage() {
                 onClick={() => dispatch(openSaveModal())}
                 className="flex items-center gap-1.5 px-4 py-2 rounded-none btn-render-primary text-xs font-semibold shadow-md"
               >
-                <BookmarkPlus className="w-3.5 h-3.5 text-[#b193e0]" />
+                <BookmarkPlus className="w-3.5 h-3.5 text-[#38bdf8]" />
                 <span>Save Current View</span>
               </button>
             </div>
@@ -236,16 +236,16 @@ export default function SavedViewsPage() {
                     <div className="flex items-center justify-between">
                       <button
                         onClick={() => handleToggleShare(v)}
-                        className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border flex items-center gap-1 cursor-pointer transition-colors ${
+                        className={`text-[10px] font-mono px-2.5 py-0.5 rounded-none border flex items-center gap-1 cursor-pointer transition-colors ${
                           v.isShared
-                            ? "bg-[#ff8204]/15 text-[#ffa033] border-[#ff8204]/30 hover:bg-[#ff8204]/25"
-                            : "bg-[#141926] text-[#a1a1aa] border-[#1f273c] hover:bg-[#1a2133]"
+                            ? "bg-[#001225] text-[#38bdf8] border-[#38bdf8]/40 hover:bg-[#07172e]"
+                            : "bg-[#051329] text-[#a1a1aa] border-[#132a4a] hover:bg-[#07172e]"
                         }`}
                         title="Click to toggle team sharing"
                       >
                         {v.isShared ? (
                           <>
-                            <Globe className="w-3 h-3 text-[#ff8204]" />
+                            <Globe className="w-3 h-3 text-[#38bdf8]" />
                             <span>Team Shared</span>
                           </>
                         ) : (
@@ -261,7 +261,7 @@ export default function SavedViewsPage() {
                       </span>
                     </div>
 
-                    <h3 className="text-sm font-semibold text-[#fafaf4] group-hover:text-[#b193e0] transition-colors">
+                    <h3 className="text-sm font-semibold text-[#fafaf4] group-hover:text-[#38bdf8] transition-colors">
                       {v.viewName}
                     </h3>
                     <p className="text-xs text-[#a1a1aa] line-clamp-2">
@@ -270,17 +270,17 @@ export default function SavedViewsPage() {
 
                     {/* Dataset Name */}
                     <div className="flex items-center gap-1 text-[11px] font-mono text-[#a1a1aa]">
-                      <Database className="w-3 h-3 text-[#968dfa]" />
+                      <Database className="w-3 h-3 text-[#38bdf8]" />
                       <span className="truncate">{v.datasetName || "Global Enterprise (100k)"}</span>
                     </div>
                   </div>
 
                   {/* Filter chips & configuration details */}
-                  <div className="space-y-3 pt-3 border-t border-[#1a2030]">
+                  <div className="space-y-3 pt-3 border-t border-[#132a4a]">
                     <div className="flex flex-wrap gap-1">
                       {/* Search condition if any */}
                       {v.searchConditions?.q && (
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30">
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#001225] text-[#38bdf8] border border-[#1e6aff]/40">
                           q: "{v.searchConditions.q}"
                         </span>
                       )}
@@ -300,7 +300,7 @@ export default function SavedViewsPage() {
 
                       {/* Sorting configuration */}
                       {v.sortingConfig && (
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#ff8204]/15 text-[#ffa033] border border-[#ff8204]/30 flex items-center gap-0.5">
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#001225] text-[#38bdf8] border border-[#38bdf8]/40 flex items-center gap-0.5">
                           <ArrowUpDown className="w-2.5 h-2.5" />
                           {v.sortingConfig.field} ({v.sortingConfig.order})
                         </span>

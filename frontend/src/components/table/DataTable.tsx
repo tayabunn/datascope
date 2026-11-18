@@ -256,7 +256,7 @@ const MemoizedTableRow = React.memo(
                 record.status === "Active"
                   ? "bg-[#0b7d55]/15 text-[#0b7d55] border-[#0b7d55]/30"
                   : record.status === "Pending"
-                  ? "bg-[#ff8204]/15 text-[#ffa033] border-[#ff8204]/30"
+                  ? "bg-[#001225] text-[#38bdf8] border-[#38bdf8]/40"
                   : record.status === "Inactive"
                   ? "bg-[#af1d27]/15 text-rose-400 border-rose-500/30"
                   : "bg-zinc-700/20 text-[#a1a1aa] border-zinc-600/30"

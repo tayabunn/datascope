@@ -22,6 +22,10 @@ import {
   Cpu,
   RefreshCw,
   FileSpreadsheet,
+  Lock,
+  Globe,
+  Activity,
+  Mic,
 } from "lucide-react";
 
 export default function FeaturesPage() {
@@ -30,25 +34,25 @@ export default function FeaturesPage() {
       icon: BarChart3,
       title: "Server-Side SQL Aggregations",
       badge: "Zero Client Memory Bloat",
-      color: "#968dfa",
-      bgBorder: "bg-[#6c35f5]/10 border-[#968dfa]/30",
+      color: "#38bdf8",
+      bgBorder: "bg-[#001225] border-[#1e3a5f]",
       description:
         "Computes portfolio revenues, category-level breakdowns, transaction counts, and growth trends entirely in PostgreSQL. No giant 100k raw-record payloads sent across the network.",
       bullets: [
         "Aggregate queries execute in under 19ms on PostgreSQL 16",
         "Calculates SUM, AVG, MIN, MAX without browser freezing",
-        "Zero memory overhead on low-end mobile and tablet devices",
+        "Zero memory overhead on mobile and low-end laptop devices",
       ],
       codeSnippet: `SELECT category, status, COUNT(*), SUM(revenue) 
-FROM business_records 
+FROM dataset_records 
 GROUP BY category, status;`,
     },
     {
       icon: Search,
       title: "GIN Trigram Fuzzy Search Engine",
       badge: "Sub-18ms Substring Queries",
-      color: "#ffa033",
-      bgBorder: "bg-[#ff8204]/10 border-[#ff8204]/30",
+      color: "#38bdf8",
+      bgBorder: "bg-[#001225] border-[#1e3a5f]",
       description:
         "PostgreSQL pg_trgm inverted indexes enable instant fuzzy matching across deal titles, company names, and SKUs without sequential table scans.",
       bullets: [
@@ -57,21 +61,21 @@ GROUP BY category, status;`,
         "Deterministic index scans instead of O(N) full-table iterations",
       ],
       codeSnippet: `CREATE INDEX gin_trgm_deal_title 
-ON business_records 
+ON dataset_records 
 USING gin (deal_title gin_trgm_ops);`,
     },
     {
       icon: BookmarkCheck,
       title: "Deep-Linked URL State Synchronization",
       badge: "Shareable Team Presets",
-      color: "#38bdf8",
-      bgBorder: "bg-[#005e9e]/10 border-[#005e9e]/30",
+      color: "#1e6aff",
+      bgBorder: "bg-[#001225] border-[#1e3a5f]",
       description:
         "Every search token, active filter facet, sort column, and page index is synchronized with URL search parameters in real time.",
       bullets: [
         "Bookmark or send URLs to colleagues with exact filters intact",
         "Browser back and forward navigation works flawlessly without reloading",
-        "Supports saved views saved directly to database state",
+        "Supports saved views persisted directly to database state",
       ],
       codeSnippet: `/explorer?q=Cloud&status=Active&sort=revenue_desc&page=1`,
     },
@@ -79,8 +83,8 @@ USING gin (deal_title gin_trgm_ops);`,
       icon: ShieldCheck,
       title: "3-Tier Enterprise Role-Based Access Control",
       badge: "Strict Privilege Guard",
-      color: "#c084fc",
-      bgBorder: "bg-[#8a05ff]/10 border-[#8a05ff]/30",
+      color: "#10b981",
+      bgBorder: "bg-[#001225] border-[#1e3a5f]",
       description:
         "Enforces strict boundaries between Administrator, Data Analyst, and Viewer roles with immutable audit logging on all data mutations.",
       bullets: [
@@ -88,34 +92,34 @@ USING gin (deal_title gin_trgm_ops);`,
         "Analyst: Data inspection, composite queries, CSV export, and record edits",
         "Viewer: Secure read-only exploration with export and mutation locked",
       ],
-      codeSnippet: `// RBAC Privilege Guard
+      codeSnippet: `// RBAC Privilege Guard Middleware
 if (user.role === 'Viewer') {
   throw new ForbiddenError('Export and edit restricted');
 }`,
     },
     {
-      icon: TableProperties,
-      title: "Dynamic Column Management & Virtualization",
-      badge: "11+ Schema Attributes",
-      color: "#0b7d55",
-      bgBorder: "bg-[#0b7d55]/10 border-[#0b7d55]/30",
+      icon: Mic,
+      title: "OpenAI Whisper Voice Search Intelligence",
+      badge: "Natural Language to SQL",
+      color: "#38bdf8",
+      bgBorder: "bg-[#001225] border-[#1e3a5f]",
       description:
-        "Customize table layout dynamically by showing, hiding, and resizing 11 schema columns with frozen ID anchors for optimal scanning.",
+        "Speak natural queries like 'Show active tech contracts in Germany above 500k'. Whisper transcribes audio into structured multi-predicate SQL filters in sub-800ms.",
       bullets: [
-        "Sticky frozen Record ID column during horizontal table scrolling",
-        "Dynamic column chooser popup with one-click toggles",
-        "Compact, Normal, and Spacious density options for financial analysts",
+        "Node 20 native FormData & Blob audio stream ingestion",
+        "Prompt injection guardrails and semantic entity extraction",
+        "1-Click dispatch to Redux search slice and Data Explorer",
       ],
-      codeSnippet: `const [visibleCols, setVisibleCols] = useState([
-  'dealTitle', 'company', 'category', 'status', 'revenue'
-]);`,
+      codeSnippet: `POST /api/voice/transcribe
+{ audio: "blob:webm", language: "en" }
+// Returns: { q: "tech", country: "Germany", minRev: 500000 }`,
     },
     {
       icon: Zap,
       title: "RTK Query Normalized Cache & 300s Retention",
       badge: "Zero Waterfall Requests",
-      color: "#968dfa",
-      bgBorder: "bg-[#6c35f5]/10 border-[#968dfa]/30",
+      color: "#38bdf8",
+      bgBorder: "bg-[#001225] border-[#1e3a5f]",
       description:
         "Client queries are cached in memory with a 300-second retention window. Navigating between views, records, and search queries yields instant responses.",
       bullets: [
@@ -140,6 +144,12 @@ providesTags: (result) => [
     },
     {
       capability: "Multi-Predicate Filter Builder (Status, Category, Country)",
+      viewer: true,
+      analyst: true,
+      admin: true,
+    },
+    {
+      capability: "OpenAI Whisper Voice Query Transcription",
       viewer: true,
       analyst: true,
       admin: true,
@@ -175,12 +185,6 @@ providesTags: (result) => [
       admin: true,
     },
     {
-      capability: "Database Vacuum, Cache Flush & GIN Reindexing",
-      viewer: false,
-      analyst: false,
-      admin: true,
-    },
-    {
       capability: "Access Security Audit Trail & Mission Control",
       viewer: false,
       analyst: false,
@@ -190,102 +194,102 @@ providesTags: (result) => [
 
   return (
     <div className="min-h-screen bg-[#07090e] text-[#f1f3f7] flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
-      {/* Background Ambience */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#6c35f5]/15 blur-[160px] pointer-events-none rounded-full" />
-      <div className="fixed top-[450px] right-0 w-[450px] h-[450px] bg-[#ff8204]/10 blur-[150px] pointer-events-none rounded-full" />
+      {/* Background Architectural Grid */}
+      <div className="fixed inset-0 bg-[linear-gradient(to_right,#1620320a_1px,transparent_1px),linear-gradient(to_bottom,#1620320a_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#001225]/40 blur-[160px] pointer-events-none" />
 
       {/* Shared Navigation Header */}
       <PublicHeader />
 
       {/* Hero Section */}
-      <main className="flex-1">
-        <section className="relative pt-16 pb-14 px-4 w-[90%] mx-auto text-center space-y-5">
-          <div className="mistral-pill mb-2 shadow-sm inline-flex items-center gap-2">
-            <Sparkles className="w-3.5 h-3.5 text-[#ff8204] animate-pulse" />
-            <span>Enterprise Feature Specification</span>
+      <main className="flex-1 relative z-10">
+        <section className="relative pt-16 pb-12 px-4 w-[90%] mx-auto text-center space-y-5">
+          <div className="genesis-badge mb-1 shadow-sm inline-flex items-center gap-2">
+            <Sparkles className="w-3.5 h-3.5 text-[#38bdf8] animate-pulse" />
+            <span>GENESIS CAPABILITY SPECIFICATION</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#fafaf4] tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-5xl font-bold text-[#fafaf4] tracking-tight leading-tight">
             High-Performance Capabilities for <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#968dfa] via-[#6c35f5] to-[#ff8204]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] via-[#38bdf8] to-[#1e6aff]">
               Large-Scale Data Intelligence
             </span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-[#a1a1aa] text-sm sm:text-base leading-relaxed">
+          <p className="max-w-2xl mx-auto text-[#a1a1aa] text-xs sm:text-sm leading-relaxed">
             Every feature in DataScope is engineered to eliminate data latency, enforce zero-leak security boundaries, and provide an effortless exploration experience across 100,000+ enterprise records.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <Link
               href="/explorer"
-              className="flex items-center gap-2 px-6 py-3 rounded-none btn-render-primary text-xs font-semibold group"
+              className="flex items-center gap-2 px-6 py-3 rounded-none btn-genesis-primary text-xs font-semibold group shadow-md"
             >
-              <Database className="w-4 h-4 text-[#b193e0]" />
+              <Database className="w-4 h-4 text-[#38bdf8]" />
               <span>Launch Live Data Explorer</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <Link
               href="/architecture"
-              className="flex items-center gap-2 px-5 py-3 rounded-none btn-render-secondary text-xs font-semibold"
+              className="flex items-center gap-2 px-5 py-3 rounded-none btn-genesis-secondary text-xs font-semibold"
             >
-              <Cpu className="w-4 h-4 text-[#968dfa]" />
+              <Cpu className="w-4 h-4 text-[#38bdf8]" />
               <span>Explore Architecture & Indexing</span>
             </Link>
           </div>
         </section>
 
-        {/* Feature Cards Grid */}
-        <section className="py-12 px-4 w-[90%] mx-auto space-y-10">
-          <div className="text-center space-y-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
-              Deep Architectural Foundations
+        {/* Six Enterprise Pillars Grid */}
+        <section className="py-12 px-4 w-[90%] mx-auto space-y-8">
+          <div className="text-center space-y-1.5">
+            <span className="genesis-badge">
+              ARCHITECTURAL FOUNDATIONS
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Six Enterprise Pillars
             </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">
-              Inspect how server-side Postgres engines, Redux state synchronization, and GIN trigrams work in harmony.
+            <p className="text-xs sm:text-sm text-[#878787] max-w-xl mx-auto">
+              Inspect how server-side Postgres engines, Redux state synchronization, and Whisper voice AI work in harmony.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {coreFeatures.map((feat, idx) => {
               const Icon = feat.icon;
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-none render-card flex flex-col justify-between space-y-5"
+                  className="p-5 rounded-none genesis-card flex flex-col justify-between space-y-4"
                 >
-                  <div className="space-y-4">
+                  <div className="space-y-3.5">
                     <div className="flex items-start justify-between gap-3">
                       <div
-                        className={`w-11 h-11 rounded-none ${feat.bgBorder} border flex items-center justify-center`}
+                        className="w-10 h-10 rounded-none bg-[#001225] border border-[#1e3a5f] flex items-center justify-center"
                         style={{ color: feat.color }}
                       >
                         <Icon className="w-5 h-5" />
                       </div>
-                      <span className="text-[10px] font-mono font-semibold px-2.5 py-1 rounded-full bg-[#161d2d] border border-[#232c42] text-zinc-300">
+                      <span className="genesis-badge">
                         {feat.badge}
                       </span>
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-bold text-[#fafaf4] tracking-tight">
+                      <h3 className="text-base font-bold text-[#fafaf4] tracking-tight">
                         {feat.title}
                       </h3>
-                      <p className="text-xs text-[#a1a1aa] mt-1.5 leading-relaxed">
+                      <p className="text-xs text-[#a1a1aa] mt-1 leading-relaxed">
                         {feat.description}
                       </p>
                     </div>
 
-                    <ul className="space-y-2 pt-1">
+                    <ul className="space-y-1.5 pt-0.5">
                       {feat.bullets.map((b, bIdx) => (
                         <li
                           key={bIdx}
                           className="flex items-start gap-2 text-xs text-zinc-300"
                         >
-                          <span className="text-emerald-400 font-bold mt-0.5">•</span>
+                          <span className="text-[#10b981] font-bold mt-0.5">•</span>
                           <span>{b}</span>
                         </li>
                       ))}
@@ -293,8 +297,8 @@ providesTags: (result) => [
                   </div>
 
                   {/* Code snippet block */}
-                  <div className="p-3 rounded-none bg-[#080a10] border border-[#1a2030] font-mono text-[11px] text-zinc-400 overflow-x-auto">
-                    <pre className="text-indigo-300 leading-tight">
+                  <div className="p-3 rounded-none bg-[#050810] border border-[#162032] font-mono text-[11px] text-[#38bdf8] overflow-x-auto">
+                    <pre className="leading-tight">
                       <code>{feat.codeSnippet}</code>
                     </pre>
                   </div>
@@ -305,70 +309,70 @@ providesTags: (result) => [
         </section>
 
         {/* RBAC Permission Matrix Section */}
-        <section className="py-16 px-4 w-[90%] mx-auto space-y-8">
-          <div className="text-center space-y-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
-              Security & Access Isolation
+        <section className="py-12 px-4 w-[90%] mx-auto space-y-6">
+          <div className="text-center space-y-1.5">
+            <span className="genesis-badge">
+              SECURITY & ACCESS ISOLATION
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Role-Based Permission Matrix (RBAC)
             </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto">
+            <p className="text-xs sm:text-sm text-[#878787] max-w-lg mx-auto">
               DataScope enforces strict privilege partitioning across user classifications to ensure compliance and data integrity.
             </p>
           </div>
 
-          <div className="rounded-none bg-[#0b0e17] border border-[#1d263b] shadow-2xl overflow-hidden">
+          <div className="rounded-none genesis-card overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs font-mono">
-                <thead className="bg-[#0f1320] text-zinc-400 uppercase text-[11px] border-b border-[#1b2234]">
+                <thead className="bg-[#001225] text-[#878787] uppercase text-[10px] border-b border-[#162032]">
                   <tr>
                     <th className="px-5 py-3.5">Platform Capability</th>
                     <th className="px-5 py-3.5 text-center">
-                      <span className="px-2 py-0.5 rounded-none bg-zinc-800 text-zinc-300">
+                      <span className="px-2 py-0.5 rounded-none bg-[#0a0e18] text-[#878787] border border-[#162032]">
                         Viewer
                       </span>
                     </th>
                     <th className="px-5 py-3.5 text-center">
-                      <span className="px-2 py-0.5 rounded-none bg-indigo-950 text-indigo-300 border border-indigo-700/40">
+                      <span className="px-2 py-0.5 rounded-none bg-[#001225] text-[#38bdf8] border border-[#1e3a5f]">
                         Data Analyst
                       </span>
                     </th>
                     <th className="px-5 py-3.5 text-center">
-                      <span className="px-2 py-0.5 rounded-none bg-[#6c35f5]/20 text-[#968dfa] border border-[#6c35f5]/40 font-bold">
+                      <span className="px-2 py-0.5 rounded-none bg-[#001225] text-[#1e6aff] border border-[#1e6aff]/40 font-bold">
                         Administrator
                       </span>
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#171d2e] text-zinc-300">
+                <tbody className="divide-y divide-[#162032] text-zinc-300">
                   {rbacMatrix.map((row, idx) => (
                     <tr
                       key={idx}
-                      className="hover:bg-[#121624] transition-colors font-sans"
+                      className="hover:bg-[#001225]/40 transition-colors font-sans"
                     >
                       <td className="px-5 py-3 text-xs text-zinc-200 font-medium">
                         {row.capability}
                       </td>
                       <td className="px-5 py-3 text-center">
                         {row.viewer ? (
-                          <Check className="w-4 h-4 text-emerald-400 mx-auto" />
+                          <Check className="w-4 h-4 text-[#10b981] mx-auto" />
                         ) : (
-                          <X className="w-4 h-4 text-zinc-600 mx-auto" />
+                          <X className="w-4 h-4 text-[#878787] mx-auto opacity-50" />
                         )}
                       </td>
                       <td className="px-5 py-3 text-center">
                         {row.analyst ? (
-                          <Check className="w-4 h-4 text-emerald-400 mx-auto" />
+                          <Check className="w-4 h-4 text-[#10b981] mx-auto" />
                         ) : (
-                          <X className="w-4 h-4 text-zinc-600 mx-auto" />
+                          <X className="w-4 h-4 text-[#878787] mx-auto opacity-50" />
                         )}
                       </td>
                       <td className="px-5 py-3 text-center">
                         {row.admin ? (
-                          <Check className="w-4 h-4 text-emerald-400 mx-auto" />
+                          <Check className="w-4 h-4 text-[#10b981] mx-auto" />
                         ) : (
-                          <X className="w-4 h-4 text-zinc-600 mx-auto" />
+                          <X className="w-4 h-4 text-[#878787] mx-auto opacity-50" />
                         )}
                       </td>
                     </tr>
@@ -380,25 +384,26 @@ providesTags: (result) => [
         </section>
 
         {/* CTA Banner */}
-        <section className="py-16 px-4 w-[90%] mx-auto text-center">
-          <div className="p-10 sm:p-12 rounded-none render-card space-y-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#fafaf4] tracking-tight">
+        <section className="py-14 px-4 w-[90%] mx-auto text-center">
+          <div className="p-8 sm:p-10 rounded-none genesis-card space-y-5 max-w-4xl mx-auto border-t-2 border-t-[#1e6aff]">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#fafaf4] tracking-tight">
               Test These Capabilities Live
             </h2>
-            <p className="text-xs sm:text-sm text-[#a1a1aa] max-w-xl mx-auto">
+            <p className="text-xs text-[#a1a1aa] max-w-xl mx-auto">
               Launch into the 100,000 record grid with instant trigram filtering, density controls, and URL synchronization.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
               <Link
                 href="/explorer"
-                className="px-6 py-3 rounded-none btn-render-primary text-xs font-semibold flex items-center gap-2"
+                className="px-6 py-3 rounded-none btn-genesis-primary text-xs font-semibold flex items-center gap-2 shadow-md"
               >
-                <Database className="w-3.5 h-3.5" />
+                <Database className="w-4 h-4 text-[#38bdf8]" />
                 <span>Launch Data Explorer</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/login"
-                className="px-6 py-3 rounded-none btn-render-secondary text-xs font-semibold"
+                className="px-6 py-3 rounded-none btn-genesis-secondary text-xs font-semibold"
               >
                 Sign In to Test Admin Role
               </Link>

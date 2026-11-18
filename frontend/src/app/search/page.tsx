@@ -190,11 +190,11 @@ export default function AdvancedSearchPage() {
             </p>
           </div>
 
-          {/* Builder Panel (Render Iris Inset Card) */}
-          <div className="p-5 rounded-none render-card space-y-4">
-            <div className="flex items-center justify-between border-b border-[#1a2030] pb-3">
+          {/* Builder Panel (GENESIS Architectural Blueprint Card) */}
+          <div className="p-5 rounded-none genesis-card space-y-4">
+            <div className="flex items-center justify-between border-b border-[#132a4a] pb-3">
               <span className="text-xs font-mono uppercase text-[#a1a1aa] font-semibold flex items-center gap-1.5">
-                <SlidersHorizontal className="w-3.5 h-3.5 text-[#968dfa]" />
+                <SlidersHorizontal className="w-3.5 h-3.5 text-[#38bdf8]" />
                 Active Predicate Conditions ({conditions.length})
               </span>
 
@@ -202,7 +202,7 @@ export default function AdvancedSearchPage() {
                 onClick={addCondition}
                 className="flex items-center gap-1 px-3 py-1.5 rounded-none btn-render-secondary text-xs font-medium"
               >
-                <Plus className="w-3.5 h-3.5 text-[#968dfa]" />
+                <Plus className="w-3.5 h-3.5 text-[#38bdf8]" />
                 <span>Add Condition</span>
               </button>
             </div>
@@ -212,9 +212,9 @@ export default function AdvancedSearchPage() {
               {conditions.map((cond, index) => (
                 <div
                   key={cond.id}
-                  className="flex flex-wrap items-center gap-2 p-2.5 rounded-none bg-[#121624] border border-[#1f273c] text-xs"
+                  className="flex flex-wrap items-center gap-2 p-2.5 rounded-none bg-[#051329] border border-[#132a4a] text-xs"
                 >
-                  <span className="font-mono text-[10px] text-[#ffa033] w-12 text-center font-bold">
+                  <span className="font-mono text-[10px] text-[#38bdf8] w-12 text-center font-bold">
                     {index === 0 ? "WHERE" : "AND"}
                   </span>
 
@@ -224,10 +224,10 @@ export default function AdvancedSearchPage() {
                     onChange={(e) =>
                       updateCondition(cond.id, "field", e.target.value)
                     }
-                    className="px-2.5 py-1.5 rounded-none bg-[#161c2c] border border-[#232c42] text-[#fafaf4] focus:outline-none focus:border-[#968dfa] cursor-pointer"
+                    className="px-2.5 py-1.5 rounded-none bg-[#001225] border border-[#132a4a] text-[#fafaf4] focus:outline-none focus:border-[#1e6aff] cursor-pointer"
                   >
                     {AVAILABLE_FIELDS.map((f) => (
-                      <option key={f.key} value={f.key} className="bg-[#121624]">
+                      <option key={f.key} value={f.key} className="bg-[#051329]">
                         {f.label}
                       </option>
                     ))}
@@ -239,10 +239,10 @@ export default function AdvancedSearchPage() {
                     onChange={(e) =>
                       updateCondition(cond.id, "operator", e.target.value)
                     }
-                    className="px-2.5 py-1.5 rounded-none bg-[#161c2c] border border-[#232c42] text-[#fafaf4] focus:outline-none focus:border-[#968dfa] cursor-pointer"
+                    className="px-2.5 py-1.5 rounded-none bg-[#001225] border border-[#132a4a] text-[#fafaf4] focus:outline-none focus:border-[#1e6aff] cursor-pointer"
                   >
                     {OPERATORS.map((op) => (
-                      <option key={op.key} value={op.key} className="bg-[#121624]">
+                      <option key={op.key} value={op.key} className="bg-[#051329]">
                         {op.label}
                       </option>
                     ))}
@@ -256,7 +256,7 @@ export default function AdvancedSearchPage() {
                       updateCondition(cond.id, "value", e.target.value)
                     }
                     placeholder="Enter value..."
-                    className="flex-1 min-w-[140px] px-3 py-1.5 rounded-none bg-[#161c2c] border border-[#232c42] text-[#fafaf4] placeholder-zinc-500 font-mono focus:outline-none focus:border-[#968dfa]"
+                    className="flex-1 min-w-[140px] px-3 py-1.5 rounded-none bg-[#001225] border border-[#132a4a] text-[#fafaf4] placeholder-zinc-500 font-mono focus:outline-none focus:border-[#1e6aff]"
                   />
 
                   {/* Remove Button */}
@@ -275,7 +275,7 @@ export default function AdvancedSearchPage() {
             <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
               <button
                 onClick={handleNavigateToExplorer}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-none bg-[#141926] hover:bg-[#1b2234] border border-[#222a3d] text-zinc-300 hover:text-white text-xs font-semibold transition-all"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-none bg-[#051329] hover:bg-[#07172e] border border-[#132a4a] text-zinc-300 hover:text-white text-xs font-semibold transition-all"
                 title="Launch these query predicates in the central Data Explorer"
               >
                 <span>Open in Data Explorer</span>
@@ -285,7 +285,7 @@ export default function AdvancedSearchPage() {
               <button
                 onClick={handleExecuteInline}
                 disabled={isSearching}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-none btn-mistral-amber text-xs font-semibold group shadow-md shadow-[#ff8204]/20"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-none btn-render-primary text-xs font-semibold group shadow-md shadow-[#1e6aff]/20 text-white"
               >
                 {isSearching ? (
                   <RefreshCw className="w-3.5 h-3.5 animate-spin text-white" />
@@ -299,13 +299,13 @@ export default function AdvancedSearchPage() {
             </div>
           </div>
 
-          {/* Dynamic SQL Compiler Preview (Mistral Obsidian + Amber AST card) */}
-          <div className="p-5 rounded-none mistral-card space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase text-[#ffa033] font-semibold">
-              <Code2 className="w-4 h-4 text-[#ff8204]" />
+          {/* Dynamic SQL Compiler Preview */}
+          <div className="p-5 rounded-none genesis-card space-y-2">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase text-[#38bdf8] font-semibold">
+              <Code2 className="w-4 h-4 text-[#38bdf8]" />
               <span>Compiled PostgreSQL Abstract Syntax Tree (AST)</span>
             </div>
-            <pre className="p-3.5 rounded-none bg-[#1a1a1e] border border-[#2a2a30] text-xs font-mono text-[#ffa033] overflow-x-auto leading-relaxed">
+            <pre className="p-3.5 rounded-none bg-[#001225] border border-[#132a4a] text-xs font-mono text-[#38bdf8] overflow-x-auto leading-relaxed">
               {sqlPreview}
             </pre>
           </div>
@@ -329,7 +329,7 @@ export default function AdvancedSearchPage() {
                     </strong>{" "}
                     matching records
                   </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 flex items-center gap-1">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 flex items-center gap-1">
                     <Zap className="w-3 h-3 text-emerald-400" />
                     <span>{executionTime}ms Latency</span>
                   </span>
@@ -394,7 +394,7 @@ export default function AdvancedSearchPage() {
                           </td>
                           <td className="px-4 py-2.5">
                             <span
-                              className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${
+                              className={`px-2 py-0.5 rounded-none text-[10px] font-semibold border ${
                                 rec.status === "Active"
                                   ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25"
                                   : rec.status === "Pending"

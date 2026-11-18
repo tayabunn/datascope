@@ -60,7 +60,7 @@ export default function SettingsPage() {
                 <ShieldAlert className="w-7 h-7" />
               </div>
               <div className="space-y-1.5">
-                <div className="inline-block px-2.5 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-[10px] font-mono text-rose-400 font-semibold uppercase tracking-wider">
+                <div className="inline-block px-2.5 py-0.5 rounded-none bg-rose-500/10 border border-rose-500/20 text-[10px] font-mono text-rose-400 font-semibold uppercase tracking-wider">
                   403 Forbidden • Admin Authority Required
                 </div>
                 <h2 className="text-lg font-bold text-[#fafaf4] tracking-tight">
@@ -70,7 +70,7 @@ export default function SettingsPage() {
                   Database engine telemetry, connection pooling parameters, and platform architecture controls are restricted strictly to platform <span className="text-rose-400 font-semibold">Administrators</span>.
                 </p>
                 <p className="text-[11px] font-mono text-zinc-500 pt-1">
-                  Your current session role is: <span className="text-[#b193e0] font-semibold">{user?.role || "Viewer"}</span>
+                  Your current session role is: <span className="text-[#38bdf8] font-semibold">{user?.role || "Viewer"}</span>
                 </p>
               </div>
               <div className="pt-2 flex justify-center">
@@ -121,7 +121,7 @@ export default function SettingsPage() {
           {/* Table Display Preferences */}
           <div className="p-5 rounded-none render-card space-y-4">
             <div className="flex items-center gap-2 border-b border-[#1a2030] pb-3">
-              <Sliders className="w-4 h-4 text-[#968dfa]" />
+              <Sliders className="w-4 h-4 text-[#38bdf8]" />
               <h2 className="text-xs font-semibold uppercase font-mono tracking-wider text-[#fafaf4]">
                 Data Explorer Viewport Preferences
               </h2>
@@ -142,7 +142,7 @@ export default function SettingsPage() {
                       onClick={() => dispatch(setTableDensity(density))}
                       className={`px-3 py-1 rounded-none text-xs font-mono capitalize transition-all ${
                         tableDensity === density
-                          ? "bg-[#6c35f5] text-white font-semibold shadow"
+                          ? "bg-[#1e6aff] text-white font-semibold shadow"
                           : "text-[#a1a1aa] hover:text-zinc-200"
                       }`}
                     >
@@ -162,7 +162,7 @@ export default function SettingsPage() {
                 <select
                   value={pageSize}
                   onChange={(e) => dispatch(setPageSize(Number(e.target.value)))}
-                  className="px-3 py-1.5 rounded-none bg-[#121624] border border-[#1f273c] text-zinc-200 font-mono focus:outline-none focus:border-[#968dfa] cursor-pointer"
+                  className="px-3 py-1.5 rounded-none bg-[#121624] border border-[#1f273c] text-zinc-200 font-mono focus:outline-none focus:border-[#1e6aff] cursor-pointer"
                 >
                   <option value={25}>25 rows</option>
                   <option value={50}>50 rows (Standard)</option>
@@ -184,7 +184,7 @@ export default function SettingsPage() {
           {/* Database Diagnostics */}
           <div className="p-5 rounded-none render-card space-y-4">
             <div className="flex items-center gap-2 border-b border-[#1a2030] pb-3">
-              <Database className="w-4 h-4 text-[#968dfa]" />
+              <Database className="w-4 h-4 text-[#38bdf8]" />
               <h2 className="text-xs font-semibold uppercase font-mono tracking-wider text-[#fafaf4]">
                 Database Engine Status (PostgreSQL + Drizzle)
               </h2>
@@ -200,7 +200,7 @@ export default function SettingsPage() {
               <div className="p-3 rounded-none bg-[#121624] border border-[#1f273c] space-y-1">
                 <span className="text-[#a1a1aa]">Indexing Engines Active</span>
                 <div className="text-[#fafaf4] font-bold">B-Tree + GIN Trigram</div>
-                <div className="text-[10px] text-[#ffa033] font-semibold">pg_trgm Extension Enabled</div>
+                <div className="text-[10px] text-[#38bdf8] font-semibold">pg_trgm Extension Enabled</div>
               </div>
             </div>
           </div>

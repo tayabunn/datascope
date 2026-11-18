@@ -10,7 +10,7 @@ export default function NotFound() {
         <DataScopeLogo className="w-full h-full text-white" />
       </div>
 
-      <span className="text-xs font-mono px-3 py-1 rounded-full bg-rose-500/15 text-rose-400 border border-rose-500/30 font-semibold mb-3">
+      <span className="text-xs font-mono px-3 py-1 rounded-none bg-rose-500/15 text-rose-400 border border-rose-500/30 font-semibold mb-3">
         404 — Resource Not Found
       </span>
 

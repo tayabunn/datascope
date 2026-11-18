@@ -39,14 +39,14 @@ export function DataScopeSpinner({ size = "md", label }: { size?: "sm" | "md" | 
         {/* Outer glowing pulsing orb */}
         <div
           className={cn(
-            "absolute rounded-full bg-gradient-to-tr from-[#6c35f5]/30 to-[#ff8204]/20 blur-md animate-pulse",
+            "absolute rounded-full bg-gradient-to-tr from-[#1e6aff]/30 to-[#38bdf8]/20 blur-md animate-pulse",
             size === "sm" ? "w-8 h-8" : size === "md" ? "w-14 h-14" : "w-24 h-24"
           )}
         />
         {/* Spinning gradient border ring */}
         <div
           className={cn(
-            "rounded-full border-t-[#968dfa] border-r-[#ff8204] border-b-transparent border-l-transparent animate-spin",
+            "rounded-full border-t-[#38bdf8] border-r-[#1e6aff] border-b-transparent border-l-transparent animate-spin",
             sizeClasses[size]
           )}
         />
@@ -54,7 +54,7 @@ export function DataScopeSpinner({ size = "md", label }: { size?: "sm" | "md" | 
         <div className="absolute flex items-center justify-center">
           <Database
             className={cn(
-              "text-[#968dfa] animate-pulse",
+              "text-[#38bdf8] animate-pulse",
               size === "sm" ? "w-3 h-3" : size === "md" ? "w-4 h-4" : "w-7 h-7"
             )}
           />

@@ -59,15 +59,15 @@ export default function RecordDetailDrawer() {
         <div className="p-5 border-b border-[#1a2030] flex items-center justify-between bg-[#0e121d]">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="render-pill text-xs py-0.5 px-2.5 font-semibold">
+              <span className="genesis-badge text-xs py-0.5 px-2.5 font-semibold">
                 {record?.recordCode || "LOADING..."}
               </span>
               <span
-                className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border font-semibold ${
+                className={`text-[10px] font-mono px-2.5 py-0.5 rounded-none border font-semibold ${
                   record?.status === "Active"
                     ? "bg-[#0b7d55]/15 text-[#0b7d55] border-[#0b7d55]/30"
                     : record?.status === "Pending"
-                    ? "bg-[#ff8204]/15 text-[#ffa033] border-[#ff8204]/30"
+                    ? "bg-[#001225] text-[#38bdf8] border-[#38bdf8]/40"
                     : "bg-rose-500/15 text-rose-400 border-rose-500/30"
                 }`}
               >
@@ -111,7 +111,7 @@ export default function RecordDetailDrawer() {
 
                 <div className="p-3.5 rounded-none render-card space-y-1">
                   <div className="text-[11px] font-mono text-[#a1a1aa] flex items-center gap-1">
-                    <TrendingUp className="w-3.5 h-3.5 text-[#968dfa]" />
+                    <TrendingUp className="w-3.5 h-3.5 text-[#38bdf8]" />
                     Net Profit
                   </div>
                   <div className="text-base font-mono font-bold text-[#0b7d55]">
@@ -119,12 +119,12 @@ export default function RecordDetailDrawer() {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-none mistral-card space-y-1">
+                <div className="p-3.5 rounded-none genesis-card space-y-1">
                   <div className="text-[11px] font-mono text-[#a1a1aa] flex items-center gap-1">
-                    <Shield className="w-3.5 h-3.5 text-[#ff8204]" />
+                    <Shield className="w-3.5 h-3.5 text-[#38bdf8]" />
                     Priority
                   </div>
-                  <div className="text-base font-mono font-bold text-[#ffa033]">
+                  <div className="text-base font-mono font-bold text-[#38bdf8]">
                     {record.priority}
                   </div>
                 </div>
@@ -149,7 +149,7 @@ export default function RecordDetailDrawer() {
                         onClick={() => handleStatusChange(st)}
                         className={`text-xs px-2.5 py-1 rounded-none font-mono font-medium transition-all ${
                           record.status === st
-                            ? "bg-[#6c35f5] text-white shadow-sm font-semibold"
+                            ? "bg-[#1e6aff] text-white shadow-sm font-semibold"
                             : "bg-[#141926] text-[#a1a1aa] hover:text-white hover:bg-[#1a2133]"
                         }`}
                       >
@@ -184,7 +184,7 @@ export default function RecordDetailDrawer() {
                   </div>
                   <div>
                     <span className="text-zinc-500">Client Rating:</span>
-                    <p className="text-[#ffa033] font-mono">★ {record.rating} / 5.0</p>
+                    <p className="text-[#38bdf8] font-mono">★ {record.rating} / 5.0</p>
                   </div>
                   <div>
                     <span className="text-zinc-500">Ingested At:</span>
@@ -197,7 +197,7 @@ export default function RecordDetailDrawer() {
                     {record.tags.map((t, i) => (
                       <span
                         key={i}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-[#6c35f5]/15 text-[#b193e0] border border-[#968dfa]/30"
+                        className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-[#001225] text-[#38bdf8] border border-[#1e6aff]/40"
                       >
                         #{t}
                       </span>
@@ -209,14 +209,14 @@ export default function RecordDetailDrawer() {
               {/* Related Records (Connected Graph) */}
               <div className="rounded-none render-card p-4 space-y-3">
                 <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#a1a1aa] font-semibold border-b border-[#1a2030] pb-2">
-                  <LinkIcon className="w-3.5 h-3.5 text-[#968dfa]" />
+                  <LinkIcon className="w-3.5 h-3.5 text-[#38bdf8]" />
                   <span>Related Business Records</span>
                 </div>
                 <div className="space-y-2">
                   {related.map((rel, idx) => (
                     <div
                       key={idx}
-                      className="p-2.5 rounded-none bg-[#0e121d] border border-[#1a2030] flex items-center justify-between text-xs hover:border-[#968dfa]/40 transition-colors"
+                      className="p-2.5 rounded-none bg-[#0e121d] border border-[#1a2030] flex items-center justify-between text-xs hover:border-[#1e6aff]/40 transition-colors"
                     >
                       <div>
                         <div className="font-medium text-[#fafaf4]">
@@ -237,13 +237,13 @@ export default function RecordDetailDrawer() {
               {/* Historical Audit Trail Timeline */}
               <div className="rounded-none render-card p-4 space-y-3">
                 <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#a1a1aa] font-semibold border-b border-[#1a2030] pb-2">
-                  <History className="w-3.5 h-3.5 text-[#ff8204]" />
+                  <History className="w-3.5 h-3.5 text-[#38bdf8]" />
                   <span>Historical Change Audit Log</span>
                 </div>
                 <div className="space-y-3 relative before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#1a2030]">
                   {auditLogs.map((log) => (
                     <div key={log.id} className="pl-6 relative space-y-1">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#ff8204] absolute left-1 top-1.5 -translate-x-1/2 ring-4 ring-[#0c0f18]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#1e6aff] absolute left-1 top-1.5 -translate-x-1/2 ring-4 ring-[#001225]" />
                       <div className="flex items-center justify-between text-xs">
                         <span className="font-semibold text-[#fafaf4] font-mono">
                           {log.action}
@@ -253,10 +253,10 @@ export default function RecordDetailDrawer() {
                         </span>
                       </div>
                       <p className="text-[11px] text-[#a1a1aa]">
-                        Changed by <span className="text-[#ffa033] font-medium">{log.changedBy}</span>
+                        Changed by <span className="text-[#38bdf8] font-medium">{log.changedBy}</span>
                       </p>
                       {Object.keys(log.newValues || {}).length > 0 && (
-                        <pre className="p-2 rounded-none bg-[#1a1a1e] text-[10px] font-mono text-[#ffa033] border border-[#2a2a30] overflow-x-auto">
+                        <pre className="p-2 rounded-none bg-[#001225] text-[10px] font-mono text-[#38bdf8] border border-[#132a4a] overflow-x-auto">
                           {JSON.stringify(log.newValues, null, 2)}
                         </pre>
                       )}

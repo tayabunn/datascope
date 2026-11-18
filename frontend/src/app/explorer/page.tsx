@@ -300,8 +300,8 @@ function ExplorerContent() {
                 title="Force background cache invalidation & refetch"
               >
                 <RefreshCw
-                  className={`w-3.5 h-3.5 text-[#968dfa] ${
-                    isFetching ? "animate-spin text-[#ffa033]" : ""
+                  className={`w-3.5 h-3.5 text-[#38bdf8] ${
+                    isFetching ? "animate-spin text-[#1e6aff]" : ""
                   }`}
                 />
                 <span>{isFetching ? "Syncing..." : "Sync Cluster"}</span>

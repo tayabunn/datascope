@@ -207,11 +207,11 @@ function LoginContent() {
         </button>
       </div>
 
-      {/* Background Ambient Glow (Render Iris & Mistral Amber) */}
-      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-[#6c35f5]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-[#ff8204]/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Background Ambient Glow (GENESIS Architectural Electric Blue & Deep Midnight) */}
+      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-[#1e6aff]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-[#002b5c]/25 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-md w-full render-card rounded-none p-8 shadow-2xl space-y-6 relative z-10">
+      <div className="max-w-md w-full genesis-card rounded-none p-8 shadow-2xl space-y-6 relative z-10">
         {/* Brand Header with In-Card Back Arrow */}
         <div className="relative text-center space-y-2">
           <button
@@ -223,7 +223,7 @@ function LoginContent() {
             <ArrowLeft className="w-4 h-4" />
           </button>
 
-          <div className="w-12 h-12 rounded-none bg-gradient-to-br from-[#6c35f5] via-[#581ccb] to-[#ff8204] flex items-center justify-center mx-auto shadow-lg shadow-[#6c35f5]/30 text-white p-2.5">
+          <div className="w-12 h-12 rounded-none bg-[#001225] border border-[#1e6aff] flex items-center justify-center mx-auto shadow-lg shadow-[#1e6aff]/30 text-white p-2.5">
             <DataScopeLogo className="w-full h-full text-white" />
           </div>
           <h2 className="text-2xl font-bold text-[#fafaf4] tracking-tight">
@@ -254,7 +254,7 @@ function LoginContent() {
                 onClick={() => handleQuickRole(item.role, item.email)}
                 className={`py-1.5 px-2 rounded-none text-xs font-medium transition-all text-center ${
                   selectedRole === item.role
-                    ? "bg-[#6c35f5] text-white font-semibold shadow"
+                    ? "bg-[#1e6aff] text-white font-semibold shadow"
                     : "text-[#a1a1aa] hover:text-white"
                 }`}
               >
@@ -279,11 +279,11 @@ function LoginContent() {
         </button>
 
         <div className="relative flex items-center justify-center">
-          <div className="border-t border-[#1a2030] w-full" />
-          <span className="bg-[#0c0f18] px-2.5 text-[10px] font-mono uppercase tracking-wider text-[#a1a1aa] whitespace-nowrap">
+          <div className="border-t border-[#132a4a] w-full" />
+          <span className="bg-[#001225] px-2.5 text-[10px] font-mono uppercase tracking-wider text-[#a1a1aa] whitespace-nowrap">
             Or with work email
           </span>
-          <div className="border-t border-[#1a2030] w-full" />
+          <div className="border-t border-[#132a4a] w-full" />
         </div>
 
         {/* Login Form */}
@@ -297,7 +297,7 @@ function LoginContent() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-9 pr-3 py-2.5 rounded-none bg-[#121624] border border-[#1f273c] text-white focus:outline-none focus:border-[#968dfa] font-mono"
+                className="w-full pl-9 pr-3 py-2.5 rounded-none bg-[#051329] border border-[#132a4a] text-white focus:outline-none focus:border-[#1e6aff] font-mono"
               />
             </div>
           </div>
@@ -311,7 +311,7 @@ function LoginContent() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-9 pr-3 py-2.5 rounded-none bg-[#121624] border border-[#1f273c] text-white focus:outline-none focus:border-[#968dfa] font-mono"
+                className="w-full pl-9 pr-3 py-2.5 rounded-none bg-[#051329] border border-[#132a4a] text-white focus:outline-none focus:border-[#1e6aff] font-mono"
               />
             </div>
           </div>
@@ -335,12 +335,12 @@ function LoginContent() {
           </button>
         </form>
 
-        <div className="text-center pt-2 space-y-2 border-t border-[#1a2030]">
+        <div className="text-center pt-2 space-y-2 border-t border-[#132a4a]">
           <p className="text-xs text-[#a1a1aa]">
             Need an enterprise account?{" "}
             <Link
               href="/register"
-              className="text-[#968dfa] hover:text-[#b193e0] font-semibold underline underline-offset-4"
+              className="text-[#38bdf8] hover:text-white font-semibold underline underline-offset-4"
             >
               Register
             </Link>
