@@ -267,7 +267,7 @@ h1, .typography-h1 {
   line-height: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: #ffffff;
+  color: inherit;
 }
 @media (min-width: 768px) {
   h1, .typography-h1 {
@@ -288,7 +288,7 @@ h2, .typography-h2 {
   line-height: 2rem;
   font-weight: 600;
   letter-spacing: -0.025em;
-  color: #ffffff;
+  color: inherit;
 }
 @media (min-width: 768px) {
   h2, .typography-h2 {
@@ -303,7 +303,7 @@ h3, .typography-h3 {
   line-height: 1.75rem;
   font-weight: 600;
   letter-spacing: -0.025em;
-  color: #ffffff;
+  color: inherit;
 }
 @media (min-width: 768px) {
   h3, .typography-h3 {
@@ -318,7 +318,7 @@ h4, .typography-h4 {
   line-height: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: inherit;
 }
 
 /* Paragraphs */
