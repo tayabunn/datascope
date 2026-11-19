@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: 'Instrument Serif', 'Newsreader', 'Playfair Display', Georgia, Cambria, serif;
+  --font-serif: 'Newsreader', Georgia, Cambria, serif;
   --font-mono: 'Outfit', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --radius-sm: 0px;
   --radius-md: 0px;
@@ -117,7 +117,6 @@ input,
 select,
 textarea,
 .btn,
-.card,
 .render-card,
 .mistral-card,
 .genesis-card,
@@ -461,5 +460,682 @@ blockquote, .typography-blockquote {
   height: 100%;
   background: linear-gradient(90deg, #1e6aff, #38bdf8, #0055ff);
   animation: progress-indeterminate 1.5s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+}
+
+/* =========================================================================
+   Distill / Quantum Laser Conveyor Belt & Showcase Cards
+   ========================================================================= */
+
+:root {
+  --cw: 46vw;
+  --ch: 52vh;
+  --gap: 4.75vw;
+  --top: 40.2vh;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --cw: 84vw;
+    --ch: 54vw;
+    --gap: 7vw;
+    --top: 54svh;
+  }
+}
+
+.distill-belt {
+  position: relative;
+  width: 100%;
+  height: calc(var(--ch) + 140px);
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  overflow: hidden;
+}
+
+.distill-belt.is-dragging {
+  cursor: grabbing;
+}
+
+.distill-belt .codes,
+.distill-belt .cards {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.distill-belt .codes {
+  mask-image: linear-gradient(90deg, transparent 0, #000 24vw);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24vw);
+}
+
+.distill-belt canvas.fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.distill-belt .card,
+.distill-belt .code {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: var(--cw);
+  height: var(--ch);
+  will-change: transform, clip-path;
+}
+
+.distill-belt .card {
+  border-radius: 16px !important;
+  clip-path: inset(0 0 0 0 round 16px);
+  overflow: hidden !important;
+  color: #FFFFFF;
+  container-type: inline-size;
+  user-select: none;
+  background-color: #1A1614;
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.22);
+}
+
+.distill-belt .code {
+  container-type: inline-size;
+  white-space: pre;
+  overflow: hidden;
+  user-select: none;
+}
+
+.distill-belt .code-html {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 400;
+  font-size: 1.56cqw;
+  line-height: 1.39;
+  color: #1e293b;
+}
+
+.distill-belt .code-meta {
+  position: absolute;
+  top: 0;
+  left: 51%;
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 400;
+  font-size: 1.56cqw;
+  line-height: 1.39;
+  color: #475569;
+}
+
+.font-newsreader {
+  font-family: 'Newsreader', Georgia, Cambria, serif !important;
+}
+
+.distill-belt .scan {
+  position: absolute;
+  left: 50%;
+  top: 56px;
+  width: 0;
+  height: calc(var(--ch) + 28px);
+  pointer-events: none;
+  z-index: 8;
+}
+
+.distill-belt .scan i {
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #38bdf8 0%, #1e6aff 12%, #1e6aff 88%, #38bdf8 100%);
+  box-shadow: 0 0 10px 2px rgba(30, 106, 255, 0.85), 0 0 28px 8px rgba(30, 106, 255, 0.35);
+}
+
+.distill-belt .scan b {
+  position: absolute;
+  left: 0;
+  top: 4%;
+  height: 92%;
+  width: 42px;
+  background: linear-gradient(90deg, rgba(30, 106, 255, 0.45), transparent);
+  filter: blur(6px);
+}
+
+.distill-belt .badge {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.distill-belt .badge-label {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.distill-belt .badge-pill {
+  height: 26px;
+  border-radius: 999px;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: stretch;
+  box-shadow: 0 0 18px rgba(30, 106, 255, 0.25);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.distill-belt .badge-num {
+  background: #1e6aff;
+  color: #FFFFFF;
+  padding: 0 11px 0 13px;
+  min-width: 8.2ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+
+.distill-belt .badge-pct {
+  background: #e0f2fe;
+  color: #0284c7;
+  font-size: 11px;
+  padding: 0 12px 0 10px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* ── Kessler Card Internals (all sized in cqw) ──────────────────────── */
+.k-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.k-nav {
+  position: absolute;
+  left: 4.4cqw;
+  right: 4.4cqw;
+  top: 4cqw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+}
+
+.k-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.3cqw;
+  font-weight: 500;
+  font-size: 4.6cqw;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.k-brand svg {
+  width: 5.4cqw;
+  height: 4.2cqw;
+  display: block;
+}
+
+.k-menu {
+  display: flex;
+  align-items: center;
+  gap: 3.4cqw;
+  font-weight: 500;
+  font-size: 1.32cqw;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.k-pill {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 0.7cqw 1.6cqw;
+  margin: -0.7cqw -1.6cqw;
+  border-radius: 999px;
+}
+
+/* Card 1: Home */
+.k-home-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 10, 4, 0.25) 0%,
+    transparent 30%,
+    rgba(20, 10, 4, 0.55) 100%
+  );
+  z-index: 1;
+}
+
+.k-home-bottom {
+  position: absolute;
+  left: 4.4cqw;
+  right: 4.4cqw;
+  bottom: 4.4cqw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.k-home-stats {
+  display: flex;
+  align-items: stretch;
+  gap: 4cqw;
+}
+
+.k-home-stat-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.k-home-num {
+  font-weight: 300;
+  font-size: 9cqw;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.k-home-lbl {
+  margin-top: 1cqw;
+  font-weight: 400;
+  font-size: 1.9cqw;
+  opacity: 0.9;
+}
+
+.k-home-tagline {
+  width: 24cqw;
+  font-weight: 400;
+  font-size: 2.2cqw;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+}
+
+/* Card 2: Pricing */
+.distill-belt .card.card--price,
+.card--price {
+  color: #001f3f !important;
+  background: radial-gradient(
+    120% 90% at 20% 110%,
+    #1e6aff 0%,
+    #38bdf8 34%,
+    #bae6fd 64%,
+    #f0f7ff 100%
+  );
+}
+
+.distill-belt .card.card--price *,
+.card--price * {
+  color: #001f3f !important;
+}
+
+.distill-belt .card.card--price .k-pill,
+.card--price .k-pill {
+  border-color: rgba(0, 31, 63, 0.4);
+}
+
+.k-price-amount {
+  position: absolute;
+  left: 4.4cqw;
+  top: 38%;
+  font-weight: 300;
+  font-size: 13cqw;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: #001f3f !important;
+}
+
+.k-price-dollar {
+  font-size: 0.4em;
+  vertical-align: 0.95em;
+  margin-right: 0.08em;
+  color: #001f3f !important;
+}
+
+.k-price-sub {
+  position: absolute;
+  left: 4.6cqw;
+  top: 62%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+  font-size: 1.6cqw;
+  letter-spacing: 0.08em;
+  color: #00244a !important;
+  opacity: 0.85;
+}
+
+.k-price-plans {
+  position: absolute;
+  right: 4.4cqw;
+  top: 40%;
+  width: 36cqw;
+  display: flex;
+  flex-direction: column;
+}
+
+.k-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 31, 63, 0.25);
+  padding: 2cqw 0;
+  font-size: 2.1cqw;
+  color: #001f3f !important;
+}
+
+.k-price-row span:last-child {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 1.9cqw;
+  color: #001f3f !important;
+}
+
+.distill-belt .card.card--price .k-price-cta,
+.k-price-cta {
+  position: absolute;
+  left: 4.4cqw;
+  bottom: 4.4cqw;
+  background: #001225 !important;
+  color: #ffffff !important;
+  padding: 1.4cqw 2.8cqw;
+  border-radius: 999px;
+  font-size: 1.85cqw;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.distill-belt .card.card--price .k-price-cta:hover,
+.k-price-cta:hover {
+  background: #1e6aff !important;
+}
+
+/* Card 3: Case Study */
+.k-case-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(1.4cqw) saturate(1.1);
+  transform: scale(1.12);
+}
+
+.k-case-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(25, 14, 8, 0.15) 0%, rgba(25, 14, 8, 0.55) 100%);
+  z-index: 1;
+}
+
+.k-case-kicker {
+  position: absolute;
+  left: 4.4cqw;
+  top: 17%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 1.4cqw;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+  z-index: 2;
+}
+
+.k-case-title {
+  position: absolute;
+  left: 4.4cqw;
+  top: 24%;
+  width: 56cqw;
+  margin: 0;
+  font-weight: 400;
+  font-size: 4.6cqw;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  z-index: 2;
+}
+
+.k-case-stats {
+  position: absolute;
+  left: 4.4cqw;
+  right: 4.4cqw;
+  bottom: 4.4cqw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.6cqw;
+  z-index: 2;
+}
+
+.k-case-stat {
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  padding-top: 1.5cqw;
+}
+
+.k-case-num {
+  font-weight: 300;
+  font-size: 6cqw;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.k-case-lbl {
+  margin-top: 0.8cqw;
+  font-size: 1.65cqw;
+  opacity: 0.85;
+}
+
+/* Card 4: Architecture / Vision */
+.distill-belt .card.card--vision,
+.card--vision {
+  background: #040914;
+}
+
+.k-vision-row {
+  position: absolute;
+  left: 4.4cqw;
+  right: 4.4cqw;
+  top: 21%;
+  height: 46%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 2cqw;
+  align-items: center;
+}
+
+.k-vision-tile {
+  height: 100%;
+  border-radius: 1.4cqw;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  filter: brightness(0.82) contrast(1.08);
+}
+
+.k-vision-quote {
+  margin: 0;
+  font-weight: 400;
+  font-size: 3.4cqw;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.k-vision-quote em {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.k-vision-footer {
+  position: absolute;
+  left: 4.4cqw;
+  right: 4.4cqw;
+  bottom: 4.4cqw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-size: 1.6cqw;
+  line-height: 1.4;
+  opacity: 0.7;
+}
+
+/* Card 5: Alloy */
+.card--alloy {
+  background: #140C08;
+}
+
+.k-alloy-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(0.6cqw);
+  transform: scale(1.06);
+}
+
+.k-alloy-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 12, 8, 0.15) 0%,
+    rgba(20, 12, 8, 0.45) 60%,
+    rgba(20, 12, 8, 0.65) 100%
+  );
+  z-index: 1;
+}
+
+.k-alloy-bottom {
+  position: absolute;
+  left: 4.4cqw;
+  right: 4.4cqw;
+  bottom: 4.4cqw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.k-alloy-title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 7.4cqw;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+.k-alloy-title em {
+  display: block;
+  font-style: italic;
+}
+
+.k-alloy-specs {
+  width: 30cqw;
+  display: flex;
+  flex-direction: column;
+}
+
+.k-alloy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1.4cqw 0;
+  font-size: 1.8cqw;
+}
+
+.k-alloy-row span:first-child {
+  opacity: 0.72;
+}
+
+/* Card 6: Journal */
+.distill-belt .card.card--journal,
+.card--journal {
+  background: #E9ECF1;
+  color: #121A2A !important;
+}
+
+.distill-belt .card.card--journal *,
+.card--journal * {
+  color: #121A2A !important;
+}
+
+.distill-belt .card.card--journal .k-menu,
+.card--journal .k-menu {
+  opacity: 0.85;
+}
+
+.distill-belt .card.card--journal .k-pill,
+.card--journal .k-pill {
+  border-color: rgba(18, 26, 42, 0.45);
+}
+
+.k-journal-title {
+  position: absolute;
+  left: 4.4cqw;
+  top: 23%;
+  margin: 0;
+  font-weight: 400;
+  font-size: 5.6cqw;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: #121A2A !important;
+}
+
+.k-journal-title em {
+  display: block;
+  font-style: italic;
+  color: #2b4674 !important;
+}
+
+.k-journal-posts {
+  position: absolute;
+  left: 4.4cqw;
+  right: 4.4cqw;
+  bottom: 4.4cqw;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 2.2cqw;
+  align-items: start;
+}
+
+.k-journal-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 1.2cqw;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  filter: brightness(0.82) contrast(1.1);
+}
+
+.k-journal-kicker {
+  margin-top: 1.2cqw;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 1.25cqw;
+  letter-spacing: 0.08em;
+  color: #6A7891;
+}
+
+.k-journal-headline {
+  margin-top: 0.5cqw;
+  font-size: 1.85cqw;
+  line-height: 1.25;
+  font-weight: 500;
 }
 
