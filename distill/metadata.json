@@ -1,0 +1,8 @@
+{
+  "name": "Distill",
+  "description": "Built for people. Read by machines. Distill detects AI agents at the edge and serves them a clean, token-light version of every page.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
