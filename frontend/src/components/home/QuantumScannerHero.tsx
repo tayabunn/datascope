@@ -379,6 +379,24 @@ export default function QuantumScannerHero() {
 
   return (
     <section className="relative w-full bg-white text-[#001225] pt-8 pb-16 overflow-hidden select-none">
+      {/* Architectural Blueprint Grid Lines - Faded across Hero Section with smooth vertical gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none z-0 opacity-40"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,1) 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,1) 100%)",
+        }}
+      >
+        <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto h-full grid grid-cols-4 border-x-[1.5px] border-dashed border-zinc-400">
+          <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
+          <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
+          <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
+          <div className="h-full" />
+        </div>
+      </div>
+
       {/* Hidden probe to measure CSS --gap in px across breakpoints */}
       <div
         ref={gapProbeRef}
@@ -392,13 +410,13 @@ export default function QuantumScannerHero() {
         }}
       />
 
-      {/* Two-Column Hero Copy */}
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
-        <div className="lg:col-span-7">
-          <p className="font-mono text-xs font-semibold tracking-wider uppercase text-slate-500 mb-3">
+      {/* Two-Column Hero Copy - Perfectly aligned to 0% and 100% architectural grid lines */}
+      <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto px-0 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8 relative z-10">
+        <div className="lg:col-span-7 xl:col-span-8">
+          <p className="font-mono text-xs sm:text-sm lg:text-[15px] font-bold tracking-widest uppercase text-slate-500 mb-3.5 sm:mb-4">
             DATA INTELLIGENCE
           </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-sans tracking-tight text-[#001225] leading-[1.05] font-normal">
+          <h1 className="text-4xl sm:text-5xl lg:text-[64px] xl:text-[72px] 2xl:text-[78px] font-sans tracking-tight text-[#001225] leading-[1.08] font-normal">
             Instant Data Discovery.
             <br />
             <em
@@ -409,8 +427,8 @@ export default function QuantumScannerHero() {
             </em>
           </h1>
         </div>
-        <div className="lg:col-span-5 flex flex-col items-start lg:pt-3">
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
+        <div className="lg:col-span-5 xl:col-span-4 flex flex-col items-start lg:pt-3">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed w-full">
             Search, filter, and analyze 100,000+ business contracts in milliseconds.
             Eliminate spreadsheet crashes and query bottlenecks with one centralized,
             audit-ready platform.
