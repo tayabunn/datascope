@@ -9,13 +9,10 @@ import {
   ShieldCheck,
   ArrowRight,
   Sparkles,
-  SlidersHorizontal,
   Database,
   ArrowUpRight,
   Terminal,
-  Activity,
   CheckCircle2,
-  Lock,
 } from "lucide-react";
 import FluidWaveCanvas from "./FluidWaveCanvas";
 
@@ -427,84 +424,34 @@ export default function QuantumScannerHero() {
   }, []);
 
   return (
-    <section className="w-full relative bg-[#001225] text-white pt-6 pb-20 border-b border-[#132a4a] overflow-hidden">
+    <section className="w-full relative bg-white text-zinc-900 pt-8 pb-20 border-b border-zinc-200 overflow-hidden">
       <div className="w-[90%] mx-auto max-w-7xl relative space-y-10">
         {/* Background Fluid Wave Refraction Canvas */}
-        <FluidWaveCanvas intensity="dark" className="opacity-60" />
+        <FluidWaveCanvas intensity="light" className="opacity-70" />
 
       {/* =========================================================================
-          1. TOP TRUST ROW (Genesis / Intelligence Designed To Evolve Style)
+          HERO HEADLINE & VALUE PROPOSITION
           ========================================================================= */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#132a4a] pb-4">
-        {/* Overlapping Enterprise Avatar Rings */}
-        <div className="inline-flex items-center gap-3">
-          <div className="flex -space-x-2.5">
-            <div className="w-8 h-8 rounded-none bg-[#091b36] border border-[#1e6aff] flex items-center justify-center text-[10px] font-mono font-bold text-white shadow-md">
-              <Database className="w-3.5 h-3.5 text-[#38bdf8]" />
-            </div>
-            <div className="w-8 h-8 rounded-none bg-[#091b36] border border-[#38bdf8] flex items-center justify-center text-[10px] font-mono font-bold text-white shadow-md">
-              <Activity className="w-3.5 h-3.5 text-emerald-400" />
-            </div>
-            <div className="w-8 h-8 rounded-none bg-[#091b36] border border-emerald-500 flex items-center justify-center text-[10px] font-mono font-bold text-white shadow-md">
-              <Lock className="w-3.5 h-3.5 text-[#38bdf8]" />
-            </div>
-          </div>
-
-          <div className="genesis-badge text-xs py-1 px-3">
-            <span className="w-2 h-2 rounded-none bg-[#38bdf8] animate-ping" />
-            <span>The Enterprise Hub for High-Volume Revenue, Contracts &amp; Deal Intelligence</span>
-          </div>
-        </div>
-
-        {/* Real-time Status Badge */}
-        <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
-          <span className="w-2 h-2 rounded-none bg-emerald-400 animate-pulse" />
-          <span className="text-white font-semibold">14.2MS P95</span>
-          <span className="text-zinc-600">|</span>
-          <span className="text-[#38bdf8]">GIN TRIGRAM ACTIVE</span>
-        </div>
-      </div>
-
-      {/* =========================================================================
-          2. HERO HEADLINE & VALUE PROPOSITION
-          ========================================================================= */}
-      <div className="text-center max-w-4xl mx-auto space-y-6">
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.08] font-sans">
-          Instant Data Discovery. <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#38bdf8] to-[#1e6aff]">
-            Zero Spreadsheets Crashing.
-          </span>
+      <div className="text-center max-w-4xl mx-auto space-y-6 pt-4">
+        <h1
+          className="hero-heading-navy text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] font-sans"
+          style={{ color: "#00244a" }}
+        >
+          <span style={{ color: "#00244a" }}>Instant Data Discovery.</span> <br />
+          <span style={{ color: "#00244a" }}>Zero Spreadsheets Crashing.</span>
         </h1>
 
-        <p className="max-w-2xl mx-auto text-zinc-400 text-sm sm:text-base leading-relaxed font-sans">
+        <p className="max-w-2xl mx-auto text-zinc-600 text-sm sm:text-base leading-relaxed font-sans">
           Give your revenue, finance, and operations teams the power to search, filter, and analyze <strong>100,000+ business contracts</strong> in milliseconds. Eliminate slow exports, engineering query bottlenecks, and outdated files with one centralized, audit-ready data platform.
         </p>
 
-        {/* 3 CTAs */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+        {/* Hero CTA Button */}
+        <div className="flex items-center justify-center pt-2">
           <Link
             href="/explorer"
-            className="flex items-center gap-2.5 px-6 py-3.5 rounded-none btn-render-primary text-sm font-semibold group shadow-lg shadow-[#1e6aff]/30 text-white"
+            className="px-7 py-3.5 rounded-none bg-[#001225] hover:bg-[#1e6aff] text-white text-sm font-semibold shadow-md transition-all"
           >
-            <Database className="w-4 h-4 text-[#38bdf8]" />
-            <span>Explore Live Demo (100k Contracts)</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-
-          <Link
-            href="/search"
-            className="flex items-center gap-2 px-5 py-3.5 rounded-none btn-render-secondary text-sm font-semibold text-zinc-200 hover:text-white"
-          >
-            <SlidersHorizontal className="w-4 h-4 text-[#38bdf8]" />
-            <span>Try Visual Query Builder</span>
-          </Link>
-
-          <Link
-            href="/features"
-            className="flex items-center gap-2 px-5 py-3.5 rounded-none btn-render-secondary text-sm font-semibold text-zinc-200 hover:text-white"
-          >
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Security &amp; Governance</span>
+            Explore Datascope
           </Link>
         </div>
       </div>
@@ -513,19 +460,19 @@ export default function QuantumScannerHero() {
           3. THE CENTERPIECE: QUANTUM DUAL-STATE LASER SCANNER & DISSOLVE ENGINE
           (Derived from Distill Canvas Dissolve + Ribbed Glass Refraction)
           ========================================================================= */}
-      <div className="relative w-full rounded-none bg-[#000a17] border border-[#132a4a] overflow-hidden p-4 sm:p-8 space-y-4">
+      <div className="relative w-full rounded-none bg-zinc-50 border border-zinc-200 shadow-lg overflow-hidden p-4 sm:p-8 space-y-4">
         {/* Scanner HUD Header */}
-        <div className="flex flex-wrap items-center justify-between text-xs font-mono border-b border-[#132a4a] pb-3 text-zinc-400">
+        <div className="flex flex-wrap items-center justify-between text-xs font-mono border-b border-zinc-200 pb-3 text-zinc-500">
           <div className="flex items-center gap-2">
-            <Terminal className="w-3.5 h-3.5 text-[#38bdf8]" />
-            <span className="text-white font-bold uppercase tracking-wider">
+            <Terminal className="w-3.5 h-3.5 text-[#1e6aff]" />
+            <span className="text-zinc-900 font-bold uppercase tracking-wider">
               [LIVE COMPILATION // HUMAN DEAL VIEW ⇄ MACHINE AST TOKEN VIEW]
             </span>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="hidden sm:inline text-zinc-500">DRAG OR HOVER TO SCRUB DEALS</span>
-            <span className="px-2 py-0.5 rounded-none bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-bold">
+            <span className="hidden sm:inline text-zinc-400">DRAG OR HOVER TO SCRUB DEALS</span>
+            <span className="px-2 py-0.5 rounded-none bg-emerald-50 text-emerald-700 border border-emerald-300 text-[11px] font-bold">
               100K CONTRACTS READY
             </span>
           </div>
@@ -540,8 +487,8 @@ export default function QuantumScannerHero() {
           {/* Laser Scanner Beam at x = 50% */}
           <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-[#38bdf8] via-white to-[#1e6aff] shadow-[0_0_20px_#38bdf8,0_0_40px_#1e6aff] z-30 pointer-events-none">
             {/* Top Laser HUD Marker */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-none bg-[#001225] border border-[#38bdf8] text-[#38bdf8] text-[10px] font-mono font-bold tracking-wider uppercase whitespace-nowrap shadow-xl flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-none bg-emerald-400 animate-ping" />
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-none bg-white border border-[#1e6aff] text-[#1e6aff] text-[10px] font-mono font-bold tracking-wider uppercase whitespace-nowrap shadow-md flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-none bg-emerald-500 animate-ping" />
               <span>LATENCY: -94.8% (&lt; 14.2MS)</span>
             </div>
 
@@ -564,13 +511,13 @@ export default function QuantumScannerHero() {
                   ref={(el) => {
                     cardRefs.current[idx] = el;
                   }}
-                  className="absolute top-0 left-0 rounded-none bg-[#051329] border border-[#132a4a] p-6 shadow-2xl flex flex-col justify-between pointer-events-auto"
+                  className="absolute top-0 left-0 rounded-none bg-white border border-zinc-200 p-6 shadow-xl flex flex-col justify-between pointer-events-auto"
                 >
-                  <div className="flex items-center justify-between border-b border-[#132a4a] pb-3">
-                    <span className="text-xs font-mono font-bold text-[#38bdf8]">
+                  <div className="flex items-center justify-between border-b border-zinc-200 pb-3">
+                    <span className="text-xs font-mono font-bold text-[#1e6aff]">
                       {card.id}
                     </span>
-                    <span className="px-2 py-0.5 rounded-none bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono">
+                    <span className="px-2 py-0.5 rounded-none bg-emerald-50 text-emerald-700 border border-emerald-300 text-[10px] font-mono font-semibold">
                       {card.status}
                     </span>
                   </div>
@@ -579,24 +526,24 @@ export default function QuantumScannerHero() {
                     <span className="text-[10px] font-mono uppercase text-zinc-400">
                       {card.category} • {card.country}
                     </span>
-                    <h3 className="text-lg font-bold text-white tracking-tight leading-snug font-sans">
+                    <h3 className="text-lg font-bold text-zinc-900 tracking-tight leading-snug font-sans">
                       {card.title}
                     </h3>
-                    <div className="text-xs text-zinc-400 font-sans">{card.company}</div>
+                    <div className="text-xs text-zinc-500 font-sans">{card.company}</div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-2 border-t border-[#132a4a] pt-3 text-xs font-mono">
+                  <div className="grid grid-cols-3 gap-2 border-t border-zinc-200 pt-3 text-xs font-mono">
                     <div>
-                      <div className="text-[10px] text-zinc-500 uppercase">Revenue</div>
-                      <div className="text-white font-bold">{card.revenue}</div>
+                      <div className="text-[10px] text-zinc-400 uppercase">Revenue</div>
+                      <div className="text-zinc-900 font-bold">{card.revenue}</div>
                     </div>
                     <div>
-                      <div className="text-[10px] text-zinc-500 uppercase">Profit</div>
-                      <div className="text-emerald-400 font-bold">{card.profit}</div>
+                      <div className="text-[10px] text-zinc-400 uppercase">Profit</div>
+                      <div className="text-emerald-600 font-bold">{card.profit}</div>
                     </div>
                     <div>
-                      <div className="text-[10px] text-zinc-500 uppercase">Margin</div>
-                      <div className="text-[#38bdf8] font-bold">{card.margin}</div>
+                      <div className="text-[10px] text-zinc-400 uppercase">Margin</div>
+                      <div className="text-[#1e6aff] font-bold">{card.margin}</div>
                     </div>
                   </div>
                 </div>
@@ -644,11 +591,11 @@ export default function QuantumScannerHero() {
         </div>
 
         {/* Footer Subtext */}
-        <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-zinc-500 pt-2 border-t border-[#132a4a] gap-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-zinc-500 pt-2 border-t border-zinc-200 gap-2">
           <span>
             💡 <strong>Interactive Demo:</strong> Contracts automatically decompose into sub-20ms GIN trigram index AST nodes as they cross the quantum laser line.
           </span>
-          <Link href="/explorer" className="text-[#38bdf8] hover:text-white transition-colors font-semibold flex items-center gap-1">
+          <Link href="/explorer" className="text-[#1e6aff] hover:text-zinc-900 transition-colors font-semibold flex items-center gap-1">
             <span>Query All 100,000 Rows</span>
             <ArrowUpRight className="w-3 h-3" />
           </Link>
@@ -659,58 +606,58 @@ export default function QuantumScannerHero() {
           4. STATS FOOTER (4 Impact Metrics from Element 2 & Current Hero)
           ========================================================================= */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-        <div className="p-5 rounded-none bg-[#051329] border border-[#132a4a] text-center space-y-1 relative group hover:border-[#10b981] transition-colors">
-          <span className="absolute top-1.5 left-2 text-[9px] font-mono text-zinc-500">MTR-01</span>
-          <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-            <Zap className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="p-5 rounded-none bg-zinc-50 border border-zinc-200 shadow-xs text-center space-y-1 relative group hover:border-emerald-500 hover:bg-white transition-all">
+          <span className="absolute top-1.5 left-2 text-[9px] font-mono text-zinc-400 font-bold">MTR-01</span>
+          <div className="flex items-center justify-center gap-1.5 text-zinc-500 text-xs font-mono uppercase tracking-wider">
+            <Zap className="w-3.5 h-3.5 text-emerald-600" />
             <span>Search Latency</span>
           </div>
-          <div className="text-3xl sm:text-4xl font-bold font-mono text-emerald-400">
+          <div className="text-3xl sm:text-4xl font-bold font-mono text-emerald-600">
             &lt; 20ms
           </div>
-          <div className="text-[11px] text-[#878787] font-mono">
+          <div className="text-[11px] text-zinc-500 font-mono">
             Instant Sub-Second Lookups
           </div>
         </div>
 
-        <div className="p-5 rounded-none bg-[#051329] border border-[#132a4a] text-center space-y-1 relative group hover:border-[#38bdf8] transition-colors">
-          <span className="absolute top-1.5 left-2 text-[9px] font-mono text-zinc-500">MTR-02</span>
-          <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-            <FileSpreadsheet className="w-3.5 h-3.5 text-[#38bdf8]" />
+        <div className="p-5 rounded-none bg-zinc-50 border border-zinc-200 shadow-xs text-center space-y-1 relative group hover:border-[#1e6aff] hover:bg-white transition-all">
+          <span className="absolute top-1.5 left-2 text-[9px] font-mono text-zinc-400 font-bold">MTR-02</span>
+          <div className="flex items-center justify-center gap-1.5 text-zinc-500 text-xs font-mono uppercase tracking-wider">
+            <FileSpreadsheet className="w-3.5 h-3.5 text-[#1e6aff]" />
             <span>Data Capacity</span>
           </div>
-          <div className="text-3xl sm:text-4xl font-bold font-mono text-white">
+          <div className="text-3xl sm:text-4xl font-bold font-mono text-zinc-900">
             100,000+
           </div>
-          <div className="text-[11px] text-[#878787] font-mono">
+          <div className="text-[11px] text-zinc-500 font-mono">
             Records Handled Smoothly
           </div>
         </div>
 
-        <div className="p-5 rounded-none bg-[#051329] border border-[#132a4a] text-center space-y-1 relative group hover:border-[#1e6aff] transition-colors">
-          <span className="absolute top-1.5 left-2 text-[9px] font-mono text-zinc-500">MTR-03</span>
-          <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-            <Users className="w-3.5 h-3.5 text-[#38bdf8]" />
+        <div className="p-5 rounded-none bg-zinc-50 border border-zinc-200 shadow-xs text-center space-y-1 relative group hover:border-[#1e6aff] hover:bg-white transition-all">
+          <span className="absolute top-1.5 left-2 text-[9px] font-mono text-zinc-400 font-bold">MTR-03</span>
+          <div className="flex items-center justify-center gap-1.5 text-zinc-500 text-xs font-mono uppercase tracking-wider">
+            <Users className="w-3.5 h-3.5 text-[#1e6aff]" />
             <span>Self-Serve Access</span>
           </div>
-          <div className="text-3xl sm:text-4xl font-bold font-mono text-[#38bdf8]">
+          <div className="text-3xl sm:text-4xl font-bold font-mono text-[#1e6aff]">
             0 Code
           </div>
-          <div className="text-[11px] text-[#878787] font-mono">
+          <div className="text-[11px] text-zinc-500 font-mono">
             No SQL or Engineers Needed
           </div>
         </div>
 
-        <div className="p-5 rounded-none bg-[#051329] border border-[#132a4a] text-center space-y-1 relative group hover:border-[#38bdf8] transition-colors">
-          <span className="absolute top-1.5 left-2 text-[9px] font-mono text-zinc-500">MTR-04</span>
-          <div className="flex items-center justify-center gap-1.5 text-zinc-400 text-xs font-mono uppercase tracking-wider">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#38bdf8]" />
+        <div className="p-5 rounded-none bg-zinc-50 border border-zinc-200 shadow-xs text-center space-y-1 relative group hover:border-[#1e6aff] hover:bg-white transition-all">
+          <span className="absolute top-1.5 left-2 text-[9px] font-mono text-zinc-400 font-bold">MTR-04</span>
+          <div className="flex items-center justify-center gap-1.5 text-zinc-500 text-xs font-mono uppercase tracking-wider">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#1e6aff]" />
             <span>Audit Trail</span>
           </div>
-          <div className="text-3xl sm:text-4xl font-bold font-mono text-white">
+          <div className="text-3xl sm:text-4xl font-bold font-mono text-zinc-900">
             100%
           </div>
-          <div className="text-[11px] text-[#878787] font-mono">
+          <div className="text-[11px] text-zinc-500 font-mono">
             Tracked &amp; Immutable Logs
           </div>
         </div>
