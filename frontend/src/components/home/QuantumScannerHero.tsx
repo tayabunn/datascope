@@ -430,29 +430,45 @@ export default function QuantumScannerHero() {
         <FluidWaveCanvas intensity="light" className="opacity-70" />
 
       {/* =========================================================================
-          HERO HEADLINE & VALUE PROPOSITION
+          HERO HEADER: 2-COLUMN SPLIT (DISTILL SIGNATURE ARCHITECTURE)
           ========================================================================= */}
-      <div className="text-center max-w-4xl mx-auto space-y-6 pt-4">
-        <h1
-          className="hero-heading-navy text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] font-sans"
-          style={{ color: "#00244a" }}
-        >
-          <span style={{ color: "#00244a" }}>Instant Data Discovery.</span> <br />
-          <span style={{ color: "#00244a" }}>Zero Spreadsheets Crashing.</span>
-        </h1>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pt-4 pb-2">
+        {/* Left Column: Category Badge + Headline */}
+        <div className="lg:col-span-7 space-y-4 text-left">
+          <span className="font-mono text-xs text-zinc-500 tracking-widest uppercase block font-semibold">
+            DATA INTELLIGENCE
+          </span>
 
-        <p className="max-w-2xl mx-auto text-zinc-600 text-sm sm:text-base leading-relaxed font-sans">
-          Give your revenue, finance, and operations teams the power to search, filter, and analyze <strong>100,000+ business contracts</strong> in milliseconds. Eliminate slow exports, engineering query bottlenecks, and outdated files with one centralized, audit-ready data platform.
-        </p>
-
-        {/* Hero CTA Button */}
-        <div className="flex items-center justify-center pt-2">
-          <Link
-            href="/explorer"
-            className="px-7 py-3.5 rounded-none bg-[#001225] hover:bg-[#1e6aff] text-white text-sm font-semibold shadow-md transition-all"
+          <h1
+            className="hero-heading-navy text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] font-sans"
+            style={{ color: "#00244a" }}
           >
-            Explore Datascope
-          </Link>
+            <span className="block" style={{ color: "#00244a" }}>
+              Instant Data Discovery.
+            </span>
+            <span
+              className="block font-serif italic font-normal tracking-tight text-3xl sm:text-5xl lg:text-6xl pt-1"
+              style={{ color: "#00244a" }}
+            >
+              Zero Spreadsheets Crashing.
+            </span>
+          </h1>
+        </div>
+
+        {/* Right Column: Description Paragraph + CTA Button */}
+        <div className="lg:col-span-5 space-y-6 lg:pt-8 text-left flex flex-col justify-between">
+          <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-sans">
+            Give your revenue, finance, and operations teams the power to search, filter, and analyze <strong>100,000+ business contracts</strong> in milliseconds. Eliminate slow exports, engineering query bottlenecks, and outdated files with one centralized, audit-ready data platform.
+          </p>
+
+          <div>
+            <Link
+              href="/explorer"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-none bg-[#001225] hover:bg-[#1e6aff] text-white text-sm font-semibold shadow-md transition-all"
+            >
+              Explore Datascope
+            </Link>
+          </div>
         </div>
       </div>
 
