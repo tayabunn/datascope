@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { KESSLER_CARDS, renderKesslerCardBody } from "@/components/home/KesslerCards";
-import { Zap, Database, Users, ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
 
 const PALETTE = [
   "#0284c7",
@@ -485,63 +484,6 @@ export default function QuantumScannerHero() {
 
         {/* Particle Canvas */}
         <canvas ref={canvasRef} className="fx" aria-hidden="true" />
-      </div>
-
-      {/* Enterprise Metrics Ribbon Below Belt */}
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 mt-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-slate-200">
-          <div className="bg-slate-50/60 rounded-xl p-4 border border-slate-200/80">
-            <div className="flex items-center gap-2 text-emerald-600 text-xs font-mono font-medium mb-1">
-              <Zap className="w-3.5 h-3.5" />
-              <span>SEARCH LATENCY</span>
-            </div>
-            <div className="text-2xl font-bold tracking-tight text-[#001225] font-sans">
-              &lt; 20ms
-            </div>
-            <div className="text-xs text-slate-500 mt-0.5">
-              Instant Sub-Second Lookups
-            </div>
-          </div>
-
-          <div className="bg-slate-50/60 rounded-xl p-4 border border-slate-200/80">
-            <div className="flex items-center gap-2 text-blue-600 text-xs font-mono font-medium mb-1">
-              <Database className="w-3.5 h-3.5" />
-              <span>DATA CAPACITY</span>
-            </div>
-            <div className="text-2xl font-bold tracking-tight text-[#001225] font-sans">
-              100,000+
-            </div>
-            <div className="text-xs text-slate-500 mt-0.5">
-              Records Handled Smoothly
-            </div>
-          </div>
-
-          <div className="bg-slate-50/60 rounded-xl p-4 border border-slate-200/80">
-            <div className="flex items-center gap-2 text-sky-600 text-xs font-mono font-medium mb-1">
-              <Users className="w-3.5 h-3.5" />
-              <span>SELF-SERVE ACCESS</span>
-            </div>
-            <div className="text-2xl font-bold tracking-tight text-[#001225] font-sans">
-              0 Code
-            </div>
-            <div className="text-xs text-slate-500 mt-0.5">
-              No SQL or Engineers Needed
-            </div>
-          </div>
-
-          <div className="bg-slate-50/60 rounded-xl p-4 border border-slate-200/80">
-            <div className="flex items-center gap-2 text-indigo-600 text-xs font-mono font-medium mb-1">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>AUDIT TRAIL</span>
-            </div>
-            <div className="text-2xl font-bold tracking-tight text-[#001225] font-sans">
-              100%
-            </div>
-            <div className="text-xs text-slate-500 mt-0.5">
-              Tracked &amp; Immutable Logs
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
