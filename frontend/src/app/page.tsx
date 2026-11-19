@@ -195,16 +195,16 @@ export default function LandingPage() {
               </div>
 
               {/* Columns 3 & 4 (Right Half): Headline spanning both columns, perfectly aligned between 50% line and 100% line */}
-              <div className="lg:col-span-2 flex flex-col justify-between space-y-8 pt-1">
+              <div className="lg:col-span-2 flex flex-col space-y-3 sm:space-y-4 pt-1">
                 {/* Clean, fully justified typography matching Genesis 00:10 - 00:26 with natural inter-word spacing */}
                 <h2 className="w-full text-justify [text-justify:inter-word] [text-align-last:left] [text-indent:60px] sm:[text-indent:90px] lg:[text-indent:115px] xl:[text-indent:130px] font-bold text-[#001225] text-xl sm:text-2xl lg:text-[25px] xl:text-[28px] 2xl:text-[31px] tracking-tight leading-[1.3] font-sans">
                   We engineer unified data architectures that transform scattered contracts into predictive enterprise assets. By fusing sub-20ms inverted indexing with real-time audit intelligence, we build the discovery engines that eliminate spreadsheet crashes and accelerate decision velocity across 100,000+ live contracts.
                 </h2>
 
-                {/* Sub-row aligned under Columns 3 and 4: Col 3 (Full-width Let's Talk Button) and Col 4 (Full-width Subtext) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 items-start pt-6 sm:pt-8">
+                {/* Sub-row aligned under Columns 3 and 4: Col 3 (Full-width Let's Talk Button) and Col 4 (Subtext raised to upper red line) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 items-start pt-1 sm:pt-2">
                   {/* Column 3 Position: [ Let's Talk ] Button spanning full Column 3 from 50% line to 75% line */}
-                  <div className="w-full pt-10 sm:pt-14 lg:pt-16 pr-0">
+                  <div className="w-full pt-16 sm:pt-22 lg:pt-26 pr-0">
                     <Link
                       href="/explorer"
                       className="relative group w-full h-[52px] inline-flex items-center justify-center bg-[#001225] hover:bg-[#1e6aff] text-white text-sm font-sans font-semibold tracking-wide transition-colors shadow-sm"
@@ -218,9 +218,9 @@ export default function LandingPage() {
                     </Link>
                   </div>
 
-                  {/* Column 4 Position: Subtext styled identically to the headline (justified, indented, bold, matching palette) */}
-                  <div className="w-full pt-1 sm:pt-2">
-                    <p className="w-full text-justify [text-justify:inter-word] [text-align-last:left] [text-indent:40px] sm:[text-indent:55px] lg:[text-indent:65px] font-bold text-[#001225] text-sm sm:text-base lg:text-[17px] xl:text-[18px] tracking-tight leading-[1.35] font-sans">
+                  {/* Column 4 Position: Subtext raised up to the upper red line directly below the headline */}
+                  <div className="w-full -mt-3 sm:-mt-5 lg:-mt-6">
+                    <p className="w-full text-justify [text-justify:inter-word] [text-align-last:left] [text-indent:40px] sm:[text-indent:55px] lg:[text-indent:65px] font-medium text-[#001225] text-sm sm:text-base lg:text-[17px] xl:text-[18px] tracking-tight leading-[1.35] font-sans">
                       No legacy reporting. No frozen spreadsheets. Just clean, audit-ready contract discovery built to scale your edge without SQL.
                     </p>
                   </div>
