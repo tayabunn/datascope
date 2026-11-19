@@ -75,6 +75,26 @@ export default function LandingPage() {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
 
+  // Intro Section Video State (Genesis 00:10 - 00:26)
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const introVideoRef = React.useRef<HTMLVideoElement>(null);
+
+  const handlePlayVideo = () => {
+    if (introVideoRef.current) {
+      const playPromise = introVideoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsVideoPlaying(true);
+          })
+          .catch((err) => {
+            console.warn("Video playback:", err);
+            setIsVideoPlaying(true);
+          });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white flex flex-col selection:bg-[#1e6aff]/20 selection:text-[#1e6aff] relative overflow-hidden font-sans">
       {/* Public Navigation Header */}
@@ -91,112 +111,129 @@ export default function LandingPage() {
         {/* =========================================================================
             SECTION 2: [01 - INTRO] (PURE WHITE THEME - Genesis 00:10 - 00:26)
             ========================================================================= */}
-        <section className="w-full bg-[#ffffff] text-[#001225] py-24 border-b border-zinc-200 relative overflow-hidden">
-          {/* Subtle Light Blueprint Grid Lines */}
-          <div className="absolute inset-0 pointer-events-none opacity-40 z-0">
-            <div className="w-[90%] mx-auto h-full grid grid-cols-4 sm:grid-cols-6 border-x border-zinc-200">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="border-r border-dashed border-zinc-200 h-full" />
-              ))}
+        <section className="w-full bg-[#ffffff] text-[#001225] py-20 border-b border-zinc-200 relative overflow-hidden">
+          {/* Subtle Architectural Blueprint Grid Lines - 4 Column Architectural Grid with enhanced visible stroke */}
+          <div className="absolute inset-0 pointer-events-none z-0">
+            <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto h-full grid grid-cols-4 border-x-[1.5px] border-dashed border-zinc-400">
+              <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
+              <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
+              <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
+              <div className="h-full" />
             </div>
           </div>
 
-          <div className="w-[90%] mx-auto max-w-7xl relative z-10 space-y-12">
-            {/* Left-Aligned Header Bar */}
-            <div className="flex items-center justify-between border-b border-zinc-200 pb-4">
-              <span className="font-mono text-xs text-zinc-500 font-bold tracking-widest uppercase">
-                [01 - INTRO] // ENTERPRISE DATA ARCHITECTURE
-              </span>
-              <span className="font-mono text-xs text-[#1e6aff] font-bold">
-                REDUCED TIME-TO-INSIGHT
-              </span>
-            </div>
-
-            {/* 2-Column Split Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-              {/* Left Column: Interactive Simulation Card */}
-              <div className="lg:col-span-5 p-7 rounded-none bg-zinc-50 border border-zinc-200 shadow-sm flex flex-col justify-between space-y-6 relative overflow-hidden">
-                <span className="absolute top-2 left-2 text-[9px] font-mono text-zinc-400">⌜ 01.A</span>
-                <span className="absolute bottom-2 right-2 text-[9px] font-mono text-zinc-400">01.B ⌟</span>
-
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono text-zinc-800 px-2.5 py-1 rounded-none bg-zinc-200 border border-zinc-300 font-bold">
-                      LIVE SYSTEM SIMULATION
-                    </span>
-                    <span className="text-xs font-mono text-emerald-600 font-bold flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-none bg-emerald-500 animate-ping" />
-                      14.2ms P95
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-zinc-900 tracking-tight font-sans">
-                    Interactive Inverted GIN Indexing &amp; Query Pipeline
-                  </h3>
-                  <p className="text-xs text-zinc-600 leading-relaxed font-sans">
-                    Experience sub-20ms multi-variable lookups across 100,000 active business deals in real time.
-                  </p>
+          <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto relative z-10 space-y-16">
+            {/* 4-Column Grid Layout matching homepage.mp4 Genesis 00:10 - 00:26 */}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-0 items-start">
+              {/* Column 1: [01 - INTRO] Header + Full-width Column 1 Tech Video */}
+              <div className="space-y-6 pr-0">
+                <div className="flex items-center gap-2.5">
+                  <span className="font-mono text-xs font-bold tracking-widest text-zinc-600 uppercase shrink-0">
+                    [01 - INTRO]
+                  </span>
+                  <div
+                    className="h-3 flex-1 opacity-25"
+                    style={{
+                      backgroundImage:
+                        "repeating-linear-gradient(45deg, #71717a, #71717a 1px, transparent 1px, transparent 6px)",
+                    }}
+                  />
                 </div>
 
-                {/* Simulation Preview Terminal */}
-                <div className="p-4 rounded-none bg-zinc-950 text-white border border-zinc-800 font-mono text-xs space-y-2 shadow-inner">
-                  <div className="flex items-center justify-between text-zinc-400 text-[10px]">
-                    <span>QUERY EXECUTION TIME</span>
-                    <span className="text-emerald-400 font-bold">14.5ms</span>
-                  </div>
-                  <div className="text-[#38bdf8] truncate font-semibold">
-                    SELECT * FROM contracts WHERE trigram(title) &gt; 0.3 AND rev &gt; $50k
-                  </div>
-                  <div className="flex items-center justify-between pt-2 border-t border-zinc-800 text-[11px]">
-                    <span className="text-zinc-400">PGBouncer Pool Check:</span>
-                    <span className="text-emerald-400 font-bold">Active (0.8ms)</span>
+                {/* Video Container (spanning full Column 1 width up to 25% dashed line) */}
+                <div className="pt-4 sm:pt-8">
+                  <div className="w-full h-[245px] sm:h-[250px] relative bg-black overflow-hidden shadow-lg border border-zinc-800/40 group">
+                    <video
+                      ref={introVideoRef}
+                      poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
+                      className="w-full h-full object-cover"
+                      controls={isVideoPlaying}
+                      playsInline
+                      preload="auto"
+                      loop
+                      muted={!isVideoPlaying}
+                      onPlay={() => setIsVideoPlaying(true)}
+                      onPause={() => setIsVideoPlaying(false)}
+                      onClick={handlePlayVideo}
+                    >
+                      <source src="https://cdn.coverr.co/videos/coverr-coding-on-a-laptop-2116/1080p.mp4" type="video/mp4" />
+                      <source src="https://assets.mixkit.co/videos/preview/mixkit-animation-of-a-futuristic-circuit-board-42956-large.mp4" type="video/mp4" />
+                      <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-computer-circuit-board-12255-large.mp4" type="video/mp4" />
+                    </video>
+
+                    {/* Pre-play overlay with CAD brackets & central play badge */}
+                    {!isVideoPlaying && (
+                      <div
+                        onClick={handlePlayVideo}
+                        className="absolute inset-0 cursor-pointer flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors z-10"
+                      >
+                        {/* 4 CAD Corner Bracket Tick Marks */}
+                        <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-white pointer-events-none" />
+                        <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-white pointer-events-none" />
+                        <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-white pointer-events-none" />
+                        <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-white pointer-events-none" />
+
+                        {/* Centered White Play Badge */}
+                        <div className="w-14 h-9 bg-white/95 group-hover:bg-white rounded flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                          <Play className="w-4 h-4 text-black fill-black ml-0.5" />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-
-                <Link
-                  href="/explorer"
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-none bg-[#001225] hover:bg-[#1e6aff] text-white text-xs font-semibold shadow-md transition-colors"
-                >
-                  <Play className="w-3.5 h-3.5 text-[#38bdf8] fill-current" />
-                  <span>Open Full Interactive Engine</span>
-                </Link>
               </div>
 
-              {/* Right Column: Left-Aligned Editorial Statement */}
-              <div className="lg:col-span-7 flex flex-col justify-between space-y-6 p-7 rounded-none bg-zinc-50 border border-zinc-200 text-left">
-                <div className="space-y-5">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-zinc-900 tracking-tight leading-tight font-sans">
-                    We engineer unified data architectures that transform scattered information into predictive enterprise assets.
-                  </h2>
-                  <p className="text-sm text-zinc-700 leading-relaxed font-sans">
-                    By fusing advanced indexing with deep visual analytics, we build the intelligence engines that drive multi-million dollar growth and accelerate market velocity across 100,000+ live contracts.
-                  </p>
-                  <div className="p-4 rounded-none bg-zinc-100 border-l-2 border-[#1e6aff] text-xs text-zinc-700 font-sans leading-relaxed">
-                    No legacy reporting. No useless dashboards. Just clean, AI-powered foresight built to scale your competitive edge without waiting for engineers to write SQL.
-                  </div>
-                </div>
+              {/* Column 2: Hatched Stripe Extension & Open Whitespace Buffer */}
+              <div className="hidden lg:block space-y-6 px-3">
+                <div
+                  className="h-3 w-full opacity-25"
+                  style={{
+                    backgroundImage:
+                      "repeating-linear-gradient(45deg, #71717a, #71717a 1px, transparent 1px, transparent 6px)",
+                  }}
+                />
+              </div>
 
-                <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-zinc-200">
-                  <Link
-                    href="/explorer"
-                    className="px-6 py-3.5 rounded-none bg-[#001225] hover:bg-[#1e6aff] text-white font-bold text-xs tracking-wider transition-colors shadow-md"
-                  >
-                    Let&apos;s Talk
-                  </Link>
-                  <Link
-                    href="/features"
-                    className="px-6 py-3.5 rounded-none bg-white hover:bg-zinc-100 border border-zinc-300 text-zinc-800 text-xs font-semibold transition-colors"
-                  >
-                    View Architectural Blueprints
-                  </Link>
+              {/* Columns 3 & 4 (Right Half): Headline spanning both columns, perfectly aligned between 50% line and 100% line */}
+              <div className="lg:col-span-2 flex flex-col justify-between space-y-8 pt-1">
+                {/* Clean, fully justified typography matching Genesis 00:10 - 00:26 with natural inter-word spacing */}
+                <h2 className="w-full text-justify [text-justify:inter-word] [text-align-last:left] [text-indent:60px] sm:[text-indent:90px] lg:[text-indent:115px] xl:[text-indent:130px] font-bold text-[#001225] text-xl sm:text-2xl lg:text-[25px] xl:text-[28px] 2xl:text-[31px] tracking-tight leading-[1.3] font-sans">
+                  We engineer unified data architectures that transform scattered contracts into predictive enterprise assets. By fusing sub-20ms inverted indexing with real-time audit intelligence, we build the discovery engines that eliminate spreadsheet crashes and accelerate decision velocity across 100,000+ live contracts.
+                </h2>
+
+                {/* Sub-row aligned under Columns 3 and 4: Col 3 (Full-width Let's Talk Button) and Col 4 (Full-width Subtext) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 items-start pt-6 sm:pt-8">
+                  {/* Column 3 Position: [ Let's Talk ] Button spanning full Column 3 from 50% line to 75% line */}
+                  <div className="w-full pt-10 sm:pt-14 lg:pt-16 pr-0">
+                    <Link
+                      href="/explorer"
+                      className="relative group w-full h-[52px] inline-flex items-center justify-center bg-[#001225] hover:bg-[#1e6aff] text-white text-sm font-sans font-semibold tracking-wide transition-colors shadow-sm"
+                    >
+                      {/* CAD Corner Brackets */}
+                      <span className="absolute top-1.5 left-1.5 w-2 h-2 border-t-2 border-l-2 border-white/80 group-hover:border-white transition-colors" />
+                      <span className="absolute top-1.5 right-1.5 w-2 h-2 border-t-2 border-r-2 border-white/80 group-hover:border-white transition-colors" />
+                      <span className="absolute bottom-1.5 left-1.5 w-2 h-2 border-b-2 border-l-2 border-white/80 group-hover:border-white transition-colors" />
+                      <span className="absolute bottom-1.5 right-1.5 w-2 h-2 border-b-2 border-r-2 border-white/80 group-hover:border-white transition-colors" />
+                      Let&apos;s Talk
+                    </Link>
+                  </div>
+
+                  {/* Column 4 Position: Subtext styled identically to the headline (justified, indented, bold, matching palette) */}
+                  <div className="w-full pt-1 sm:pt-2">
+                    <p className="w-full text-justify [text-justify:inter-word] [text-align-last:left] [text-indent:40px] sm:[text-indent:55px] lg:[text-indent:65px] font-bold text-[#001225] text-sm sm:text-base lg:text-[17px] xl:text-[18px] tracking-tight leading-[1.35] font-sans">
+                      No legacy reporting. No frozen spreadsheets. Just clean, audit-ready contract discovery built to scale your edge without SQL.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Stepped / Cascading Staircase (Genesis 00:26 Light Cards) */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-end pt-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 items-end pt-4">
               <div className="p-6 rounded-none bg-zinc-50 border border-zinc-200 shadow-sm space-y-2 h-40 flex flex-col justify-end text-left">
-                <div className="text-3xl sm:text-5xl font-black font-mono text-zinc-900 tracking-tight">
-                  $50M+
+                <div className="text-3xl sm:text-5xl font-black font-mono text-zinc-900 tracking-tight flex items-baseline gap-1.5">
+                  <span className="text-zinc-400 font-light text-2xl sm:text-4xl">|</span>
+                  <span>$50M+</span>
                 </div>
                 <div className="text-xs text-zinc-600 font-sans">
                   Client revenue impact delivered.
@@ -204,8 +241,9 @@ export default function LandingPage() {
               </div>
 
               <div className="p-6 rounded-none bg-zinc-50 border border-zinc-200 shadow-sm space-y-2 h-48 flex flex-col justify-end border-t-2 border-t-[#1e6aff] text-left">
-                <div className="text-3xl sm:text-5xl font-black font-mono text-[#1e6aff] tracking-tight">
-                  87%
+                <div className="text-3xl sm:text-5xl font-black font-mono text-[#1e6aff] tracking-tight flex items-baseline gap-1.5">
+                  <span className="text-zinc-400 font-light text-2xl sm:text-4xl">|</span>
+                  <span>87%</span>
                 </div>
                 <div className="text-xs text-zinc-600 font-sans">
                   Faster strategic decision speed.
@@ -213,8 +251,9 @@ export default function LandingPage() {
               </div>
 
               <div className="p-6 rounded-none bg-zinc-50 border border-zinc-200 shadow-sm space-y-2 h-56 flex flex-col justify-end border-t-2 border-t-[#38bdf8] text-left">
-                <div className="text-3xl sm:text-5xl font-black font-mono text-zinc-900 tracking-tight">
-                  20+
+                <div className="text-3xl sm:text-5xl font-black font-mono text-zinc-900 tracking-tight flex items-baseline gap-1.5">
+                  <span className="text-zinc-400 font-light text-2xl sm:text-4xl">|</span>
+                  <span>20+</span>
                 </div>
                 <div className="text-xs text-zinc-600 font-sans">
                   Sources unified into one system.
@@ -222,8 +261,9 @@ export default function LandingPage() {
               </div>
 
               <div className="p-6 rounded-none bg-zinc-50 border border-zinc-200 shadow-sm space-y-2 h-64 flex flex-col justify-end border-t-2 border-t-emerald-500 text-left">
-                <div className="text-3xl sm:text-5xl font-black font-mono text-emerald-600 tracking-tight">
-                  100%
+                <div className="text-3xl sm:text-5xl font-black font-mono text-emerald-600 tracking-tight flex items-baseline gap-1.5">
+                  <span className="text-zinc-400 font-light text-2xl sm:text-4xl">|</span>
+                  <span>100%</span>
                 </div>
                 <div className="text-xs text-zinc-600 font-sans">
                   Automated predictive accuracy.
