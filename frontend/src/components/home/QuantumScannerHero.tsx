@@ -425,46 +425,51 @@ export default function QuantumScannerHero() {
 
   return (
     <section className="w-full relative bg-white text-zinc-900 pt-8 pb-20 border-b border-zinc-200 overflow-hidden">
-      <div className="w-[90%] mx-auto max-w-7xl relative space-y-10">
+      <div className="w-[90%] mx-auto max-w-[1680px] relative space-y-12">
         {/* Background Fluid Wave Refraction Canvas */}
         <FluidWaveCanvas intensity="light" className="opacity-70" />
 
       {/* =========================================================================
           HERO HEADER: 2-COLUMN SPLIT (DISTILL SIGNATURE ARCHITECTURE)
           ========================================================================= */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pt-4 pb-2">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-16 items-center pt-4 pb-4">
         {/* Left Column: Category Badge + Headline */}
-        <div className="lg:col-span-7 space-y-4 text-left">
-          <span className="font-mono text-xs text-zinc-500 tracking-widest uppercase block font-semibold">
+        <div className="lg:col-span-7 xl:col-span-7 space-y-4 text-left">
+          <span className="font-mono text-xs sm:text-sm text-zinc-500 tracking-widest uppercase block font-semibold">
             DATA INTELLIGENCE
           </span>
 
           <h1
-            className="hero-heading-navy text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] font-sans"
+            className="hero-heading-navy text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.08] font-sans"
             style={{ color: "#00244a" }}
           >
             <span className="block" style={{ color: "#00244a" }}>
               Instant Data Discovery.
             </span>
             <span
-              className="block font-serif italic font-normal tracking-tight text-3xl sm:text-5xl lg:text-6xl pt-1"
-              style={{ color: "#00244a" }}
+              className="block distill-italic-serif pt-1 text-2xl sm:text-4xl lg:text-5xl xl:text-[52px] leading-tight tracking-normal"
+              style={{
+                color: "#00244a",
+                fontFamily: "'Instrument Serif', 'Newsreader', 'Playfair Display', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 400,
+              }}
             >
               Zero Spreadsheets Crashing.
             </span>
           </h1>
         </div>
 
-        {/* Right Column: Description Paragraph + CTA Button */}
-        <div className="lg:col-span-5 space-y-6 lg:pt-8 text-left flex flex-col justify-between">
-          <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-sans">
-            Give your revenue, finance, and operations teams the power to search, filter, and analyze <strong>100,000+ business contracts</strong> in milliseconds. Eliminate slow exports, engineering query bottlenecks, and outdated files with one centralized, audit-ready data platform.
+        {/* Right Column: Description Paragraph + CTA Button (Vertically Middle Aligned) */}
+        <div className="lg:col-span-5 xl:col-span-5 space-y-6 text-left">
+          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-sans max-w-xl">
+            Search, filter, and analyze <strong>100,000+ business contracts</strong> in milliseconds. Eliminate spreadsheet crashes and query bottlenecks with one centralized, audit-ready platform.
           </p>
 
           <div>
             <Link
               href="/explorer"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-none bg-[#001225] hover:bg-[#1e6aff] text-white text-sm font-semibold shadow-md transition-all"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-none bg-[#001225] hover:bg-[#1e6aff] text-white text-sm sm:text-base font-semibold shadow-md transition-all"
             >
               Explore Datascope
             </Link>
