@@ -36,7 +36,7 @@ export default function PublicHeader() {
 
   return (
     <header className="sticky top-0 z-40 bg-white">
-      <div className="w-[90%] mx-auto max-w-[1680px] h-18 flex items-center justify-between relative">
+      <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto h-18 flex items-center justify-between relative px-0">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2.5">
           <DataScopeLogo className="w-7 h-7 shrink-0" fill="#00244a" />
