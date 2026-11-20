@@ -379,21 +379,14 @@ export default function QuantumScannerHero() {
 
   return (
     <section className="relative w-full bg-white text-[#001225] pt-8 pb-16 overflow-hidden select-none">
-      {/* Architectural Blueprint Grid Lines - Faded across Hero Section with smooth vertical gradient */}
-      <div
-        className="absolute inset-0 pointer-events-none z-0 opacity-40"
-        style={{
-          maskImage:
-            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,1) 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,1) 100%)",
-        }}
-      >
-        <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto h-full grid grid-cols-4 border-x-[1.5px] border-dashed border-zinc-400">
-          <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
-          <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
-          <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
-          <div className="h-full" />
+      {/* Architectural Blueprint Grid Lines - exact 1px crisp stroke matching Intro section seamlessly */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto h-full relative">
+          <div className="absolute left-0 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
+          <div className="absolute left-1/4 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
+          <div className="absolute left-1/2 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
+          <div className="absolute left-3/4 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
+          <div className="absolute right-0 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
         </div>
       </div>
 
