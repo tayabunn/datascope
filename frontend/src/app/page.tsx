@@ -112,13 +112,14 @@ export default function LandingPage() {
             SECTION 2: [01 - INTRO] (PURE WHITE THEME - Genesis 00:10 - 00:26)
             ========================================================================= */}
         <section className="w-full bg-[#ffffff] text-[#001225] py-20 border-b border-zinc-200 relative overflow-hidden">
-          {/* Subtle Architectural Blueprint Grid Lines - 4 Column Architectural Grid with enhanced visible stroke */}
+          {/* Subtle Architectural Blueprint Grid Lines - 4 Column Architectural Grid with exact 1px crisp stroke & refined dashes */}
           <div className="absolute inset-0 pointer-events-none z-0">
-            <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto h-full grid grid-cols-4 border-x-[1.5px] border-dashed border-zinc-400">
-              <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
-              <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
-              <div className="border-r-[1.5px] border-dashed border-zinc-400 h-full" />
-              <div className="h-full" />
+            <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto h-full relative">
+              <div className="absolute left-0 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
+              <div className="absolute left-1/4 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
+              <div className="absolute left-1/2 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
+              <div className="absolute left-3/4 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
+              <div className="absolute right-0 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
             </div>
           </div>
 
