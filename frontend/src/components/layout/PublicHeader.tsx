@@ -100,8 +100,13 @@ export default function PublicHeader() {
               </Link>
               <Link
                 href="/explorer"
-                className="px-5 py-2.5 rounded-none bg-[#001225] hover:bg-[#1e6aff] text-white text-sm font-semibold shadow-md transition-all"
+                className="relative group inline-flex items-center justify-center px-5 py-2.5 bg-[#001225] hover:bg-[#1e6aff] text-white text-sm font-semibold tracking-wide transition-colors shadow-sm"
               >
+                {/* CAD Corner Brackets matching Let's Talk button */}
+                <span className="absolute top-1.5 left-1.5 w-2 h-2 border-t-2 border-l-2 border-white/80 group-hover:border-white transition-colors" />
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 border-t-2 border-r-2 border-white/80 group-hover:border-white transition-colors" />
+                <span className="absolute bottom-1.5 left-1.5 w-2 h-2 border-b-2 border-l-2 border-white/80 group-hover:border-white transition-colors" />
+                <span className="absolute bottom-1.5 right-1.5 w-2 h-2 border-b-2 border-r-2 border-white/80 group-hover:border-white transition-colors" />
                 Get Started
               </Link>
             </div>

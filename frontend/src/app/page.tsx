@@ -111,9 +111,9 @@ export default function LandingPage() {
         {/* =========================================================================
             SECTION 2: [01 - INTRO] (PURE WHITE THEME - Genesis 00:10 - 00:26)
             ========================================================================= */}
-        <section className="w-full bg-[#ffffff] text-[#001225] py-20 border-b border-zinc-200 relative overflow-hidden">
+        <section className="w-full bg-[#ffffff] text-[#001225] pt-16 sm:pt-20 pb-0 border-b border-zinc-200 relative overflow-hidden">
           {/* Subtle Architectural Blueprint Grid Lines - 4 Column Architectural Grid with exact 1px crisp stroke & refined dashes */}
-          <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 pointer-events-none z-20">
             <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto h-full relative">
               <div className="absolute left-0 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
               <div className="absolute left-1/4 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
@@ -123,7 +123,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto relative z-10 space-y-16">
+          <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto relative z-10">
             {/* 4-Column Grid Layout matching homepage.mp4 Genesis 00:10 - 00:26 */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-0 items-start">
               {/* Column 1: [01 - INTRO] Header + Full-width Column 1 Tech Video */}
@@ -229,44 +229,65 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Stepped / Cascading Staircase (Genesis 00:26 Light Cards) */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 items-end pt-4">
-              <div className="p-6 rounded-none bg-zinc-50 border border-zinc-200 shadow-sm space-y-2 h-40 flex flex-col justify-end text-left">
-                <div className="text-3xl sm:text-5xl font-black font-mono text-zinc-900 tracking-tight flex items-baseline gap-1.5">
-                  <span className="text-zinc-400 font-light text-2xl sm:text-4xl">|</span>
-                  <span>$50M+</span>
+            {/* Horizontal Architectural Blueprint Grid Line matching Reference Image 1 */}
+            <div
+              className="w-full h-[1px] mt-8 sm:mt-10 mb-4 sm:mb-5"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(to right, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)",
+              }}
+            />
+
+            {/* Redesigned 4-Column Architectural Staircase Cards matching Reference Image 1 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 items-end">
+              {/* Column 1: Card 1 ($50M+) - Lowest */}
+              <div className="w-full h-auto lg:h-[135px] p-6 sm:p-7 xl:p-8 bg-[#f8f9fa] border-t border-zinc-200/90 flex flex-col justify-start text-left">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-zinc-400 font-light text-2xl sm:text-3xl lg:text-4xl select-none">|</span>
+                  <span className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-bold font-sans text-[#001225] tracking-tight">
+                    $50M+
+                  </span>
                 </div>
-                <div className="text-xs text-zinc-600 font-sans">
+                <div className="text-xs sm:text-[13px] text-zinc-500 font-sans leading-snug">
                   Client revenue impact delivered.
                 </div>
               </div>
 
-              <div className="p-6 rounded-none bg-zinc-50 border border-zinc-200 shadow-sm space-y-2 h-48 flex flex-col justify-end border-t-2 border-t-[#1e6aff] text-left">
-                <div className="text-3xl sm:text-5xl font-black font-mono text-[#1e6aff] tracking-tight flex items-baseline gap-1.5">
-                  <span className="text-zinc-400 font-light text-2xl sm:text-4xl">|</span>
-                  <span>87%</span>
+              {/* Column 2: Card 2 (87%) - Mid-Low */}
+              <div className="w-full h-auto lg:h-[210px] p-6 sm:p-7 xl:p-8 bg-[#f8f9fa] border-t border-zinc-200/90 flex flex-col justify-start text-left">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-zinc-400 font-light text-2xl sm:text-3xl lg:text-4xl select-none">|</span>
+                  <span className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-bold font-sans text-[#001225] tracking-tight">
+                    87%
+                  </span>
                 </div>
-                <div className="text-xs text-zinc-600 font-sans">
+                <div className="text-xs sm:text-[13px] text-zinc-500 font-sans leading-snug">
                   Faster strategic decision speed.
                 </div>
               </div>
 
-              <div className="p-6 rounded-none bg-zinc-50 border border-zinc-200 shadow-sm space-y-2 h-56 flex flex-col justify-end border-t-2 border-t-[#38bdf8] text-left">
-                <div className="text-3xl sm:text-5xl font-black font-mono text-zinc-900 tracking-tight flex items-baseline gap-1.5">
-                  <span className="text-zinc-400 font-light text-2xl sm:text-4xl">|</span>
-                  <span>20+</span>
+              {/* Column 3: Card 3 (20+) - Peak / Tallest */}
+              <div className="w-full h-auto lg:h-[370px] p-6 sm:p-7 xl:p-8 bg-[#f8f9fa] border-t border-zinc-200/90 flex flex-col justify-start text-left">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-zinc-400 font-light text-2xl sm:text-3xl lg:text-4xl select-none">|</span>
+                  <span className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-bold font-sans text-[#001225] tracking-tight">
+                    20+
+                  </span>
                 </div>
-                <div className="text-xs text-zinc-600 font-sans">
+                <div className="text-xs sm:text-[13px] text-zinc-500 font-sans leading-snug">
                   Sources unified into one system.
                 </div>
               </div>
 
-              <div className="p-6 rounded-none bg-zinc-50 border border-zinc-200 shadow-sm space-y-2 h-64 flex flex-col justify-end border-t-2 border-t-emerald-500 text-left">
-                <div className="text-3xl sm:text-5xl font-black font-mono text-emerald-600 tracking-tight flex items-baseline gap-1.5">
-                  <span className="text-zinc-400 font-light text-2xl sm:text-4xl">|</span>
-                  <span>100%</span>
+              {/* Column 4: Card 4 (100%) - Mid-High */}
+              <div className="w-full h-auto lg:h-[285px] p-6 sm:p-7 xl:p-8 bg-[#f8f9fa] border-t border-zinc-200/90 flex flex-col justify-start text-left">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-zinc-400 font-light text-2xl sm:text-3xl lg:text-4xl select-none">|</span>
+                  <span className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-bold font-sans text-[#001225] tracking-tight">
+                    100%
+                  </span>
                 </div>
-                <div className="text-xs text-zinc-600 font-sans">
+                <div className="text-xs sm:text-[13px] text-zinc-500 font-sans leading-snug">
                   Automated predictive accuracy.
                 </div>
               </div>

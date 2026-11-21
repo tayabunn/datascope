@@ -379,14 +379,22 @@ export default function QuantumScannerHero() {
 
   return (
     <section className="relative w-full bg-white text-[#001225] pt-8 pb-16 overflow-hidden select-none">
-      {/* Architectural Blueprint Grid Lines - exact 1px crisp stroke matching Intro section seamlessly */}
-      <div className="absolute inset-0 pointer-events-none z-0">
+      {/* Architectural Blueprint Grid Lines - deeply extended ultra-smooth vertical fade from top */}
+      <div
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, transparent 22%, rgba(0, 0, 0, 0.05) 32%, rgba(0, 0, 0, 0.16) 44%, rgba(0, 0, 0, 0.35) 56%, rgba(0, 0, 0, 0.60) 68%, rgba(0, 0, 0, 0.82) 80%, rgba(0, 0, 0, 0.96) 92%, black 98%, black 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, transparent 22%, rgba(0, 0, 0, 0.05) 32%, rgba(0, 0, 0, 0.16) 44%, rgba(0, 0, 0, 0.35) 56%, rgba(0, 0, 0, 0.60) 68%, rgba(0, 0, 0, 0.82) 80%, rgba(0, 0, 0, 0.96) 92%, black 98%, black 100%)",
+        }}
+      >
         <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto h-full relative">
-          <div className="absolute left-0 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
-          <div className="absolute left-1/4 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
-          <div className="absolute left-1/2 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
-          <div className="absolute left-3/4 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
-          <div className="absolute right-0 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 14px, transparent 14px, transparent 24px)" }} />
+          <div className="absolute left-0 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
+          <div className="absolute left-1/4 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
+          <div className="absolute left-1/2 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
+          <div className="absolute left-3/4 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
+          <div className="absolute right-0 top-0 bottom-0 w-[1px]" style={{ backgroundImage: "repeating-linear-gradient(to bottom, #a1a1aa 0px, #a1a1aa 8px, transparent 8px, transparent 14px)" }} />
         </div>
       </div>
 
@@ -405,7 +413,7 @@ export default function QuantumScannerHero() {
 
       {/* Two-Column Hero Copy - Perfectly aligned to 0% and 100% architectural grid lines */}
       <div className="w-[94%] 2xl:w-[92%] max-w-[1600px] mx-auto px-0 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8 relative z-10">
-        <div className="lg:col-span-7 xl:col-span-8">
+        <div className="lg:col-span-7 xl:col-span-6 2xl:col-span-6">
           <p className="font-mono text-xs sm:text-sm lg:text-[15px] font-bold tracking-widest uppercase text-slate-500 mb-3.5 sm:mb-4">
             DATA INTELLIGENCE
           </p>
@@ -420,19 +428,26 @@ export default function QuantumScannerHero() {
             </em>
           </h1>
         </div>
-        <div className="lg:col-span-5 xl:col-span-4 flex flex-col items-start lg:pt-3">
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed w-full">
-            Search, filter, and analyze 100,000+ business contracts in milliseconds.
-            Eliminate spreadsheet crashes and query bottlenecks with one centralized,
-            audit-ready platform.
-          </p>
-          <div className="mt-5">
-            <Link
-              href="/contracts"
-              className="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#001225] hover:bg-[#1e6aff] text-white text-xs sm:text-sm font-medium transition-colors duration-200 shadow-sm"
-            >
-              Explore Datascope
-            </Link>
+        <div className="lg:col-span-5 xl:col-span-6 2xl:col-span-6 flex flex-col items-start lg:items-end lg:pt-3">
+          <div className="flex flex-col items-start text-left w-fit max-w-full">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-left">
+              Search, filter, and analyze 100,000+ business contracts in milliseconds. Eliminate{" "}
+              <br className="hidden xl:inline" />
+              spreadsheet crashes and query bottlenecks with one centralized, audit-ready platform.
+            </p>
+            <div className="mt-5">
+              <Link
+                href="/contracts"
+                className="relative group inline-flex items-center justify-center h-10 px-6 bg-[#001225] hover:bg-[#1e6aff] text-white text-xs sm:text-sm font-semibold tracking-wide transition-colors shadow-sm"
+              >
+                {/* CAD Corner Brackets matching Let's Talk button */}
+                <span className="absolute top-1.5 left-1.5 w-2 h-2 border-t-2 border-l-2 border-white/80 group-hover:border-white transition-colors" />
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 border-t-2 border-r-2 border-white/80 group-hover:border-white transition-colors" />
+                <span className="absolute bottom-1.5 left-1.5 w-2 h-2 border-b-2 border-l-2 border-white/80 group-hover:border-white transition-colors" />
+                <span className="absolute bottom-1.5 right-1.5 w-2 h-2 border-b-2 border-r-2 border-white/80 group-hover:border-white transition-colors" />
+                Explore Datascope
+              </Link>
+            </div>
           </div>
         </div>
       </div>
